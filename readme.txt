@@ -11,7 +11,7 @@ This plugin will handle your downloadable files. You can set password and set ac
 
 == Description ==
 
-This plugin will handle you downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
+This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
 
 
