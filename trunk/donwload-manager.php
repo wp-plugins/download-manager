@@ -1,15 +1,15 @@
 <?php 
 /**
- * @package File Manager
+ * @package Downlodable File Manager
  * @author Shaon
- * @version 1.2
+ * @version 1.1
  */
 /*
-Plugin Name: File Manager
+Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.2
+Version: 1.1
 Author URI: http://www.intelisoftbd.com
 */
 
