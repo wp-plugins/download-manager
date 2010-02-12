@@ -32,7 +32,8 @@ N/A
 == Changelog ==
 
 = 1.1 =
-* Fixes security bug with direct download protection
+* Fixed security bug with direct download protection
+* Fxied installation bug
 
 
 == Arbitrary section ==
