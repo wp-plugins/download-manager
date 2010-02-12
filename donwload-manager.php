@@ -2,14 +2,14 @@
 /**
  * @package File Manager
  * @author Shaon
- * @version 1.0
+ * @version 1.1
  */
 /*
 Plugin Name: File Manager
 Plugin URI: http://www.intelisoftbd.com
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.0
+Version: 1.1
 Author URI: http://www.intelisoftbd.com
 */
 
