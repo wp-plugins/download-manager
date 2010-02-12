@@ -27,18 +27,18 @@ function Install(){
     global $wpdb;
     global $jal_db_version;
 
-    $table_name = $wpdb->prefix . "file_manager";
+    $table_name = "ahm_files";
     if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
       
-      $sql = "CREATE TABLE " . $table_name . " (
-      id mediumint(9) NOT NULL AUTO_INCREMENT,
-      date bigint(11) DEFAULT '0' NOT NULL,
-      name VARCHAR(250) NOT NULL,
-      description text NOT NULL,
-      file VARCHAR(250) NOT NULL,
-      protected enum(0,1) DEFAULT '0' NOT NULL,
-      PRIMARY KEY id (id)
-    );";
+      $sql = "CREATE TABLE IF NOT EXISTS `ahm_files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `file` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `access` enum('guest','member') NOT NULL,
+  PRIMARY KEY (`id`)
+    )";
 
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
@@ -169,3 +169,5 @@ if(is_admin()){
 }
 
 add_filter( 'the_content', 'Downloadable');
+
+register_activation_hook(__FILE__,'Install');
