@@ -31,9 +31,12 @@ N/A
 
 == Changelog ==
 
+
+= 1.2 =
+* Fxied installation bug
+
 = 1.1 =
 * Fixed security bug with direct download protection
-* Fxied installation bug
 
 
 == Arbitrary section ==
