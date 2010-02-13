@@ -32,6 +32,10 @@ N/A
 == Changelog ==
 
 
+=1.2.3=
+* removed function mime_content_type()
+* Thanks Adnest (adnest@gmail.com) for your help
+
 =1.2.2=
 * Fixed bug with edit item
 
