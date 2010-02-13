@@ -31,6 +31,8 @@ N/A
 
 == Changelog ==
 
+=1.2.1=
+* Fixed bug with download link
 
 = 1.2 =
 * Fxied installation bug
