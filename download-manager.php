@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.2.1
+ * @version 1.2.2
  */
 /*
 Plugin Name: Downlodable File Manager
-Plugin URI: http://www.intelisoftbd.com
+Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.2.1
+Version: 1.2.2
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -143,7 +143,7 @@ function EditFile(){
     
         $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
         move_uploaded_file($_FILES['media']['tmp_name'],dirname(__FILE__).'/files/'.$name);        
-        $file = ",file='$name'";
+        $file['file'] = $name;
     }
     
         DB::Update("ahm_files", $file, "id='$_POST[id]'"); 
