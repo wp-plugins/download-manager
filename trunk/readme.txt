@@ -31,6 +31,11 @@ N/A
 
 == Changelog ==
 
+
+=1.2.2=
+* Fixed bug with edit item
+
+
 =1.2.1=
 * Fixed bug with download link
 
