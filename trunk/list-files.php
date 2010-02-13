@@ -75,7 +75,7 @@ $res = mysql_query("select * from ahm_files");
                 <th class="check-column" scope="row"><input type="checkbox" value="8" name="id[]"></th>
                 <td class="column-icon media-icon">                
                     <a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media[id]?>">
-                    <img title="<?php echo end(explode(".",$media[file]))?> file" alt="<?php echo end(explode(".",$media[file]))?> file" class="attachment-80x60" src="../wp-content/plugins/donwload-manager/file-type-icons/<?php echo $icon; ?>">
+                    <img title="<?php echo end(explode(".",$media[file]))?> file" alt="<?php echo end(explode(".",$media[file]))?> file" class="attachment-80x60" src="../wp-content/plugins/download-manager/file-type-icons/<?php echo $icon; ?>">
                     </a>
                 </td>
                 <td class="media column-media">
