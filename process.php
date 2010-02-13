@@ -197,7 +197,7 @@ if(is_array($_SESSION[$_GET[did]])){
                         "z" => "application/x-compress",
                         "zip" => "application/zip");
                         
-    $mtype = $mime_types[end(explode('.',$fname))];  
+    $mtype = $mime_types[strtolower(end(explode('.',$fname)))];  
      
     $asfname = basename($fname);
 
