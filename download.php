@@ -34,7 +34,7 @@ if($data){
                     </form>
                     
                     <script>
-                    window.opener.location.href='".get_option('siteurl')."/wp-content/plugins/donwload-manager/process.php?did={$did}'; 
+                    window.opener.location.href='".get_option('siteurl')."/wp-content/plugins/download-manager/process.php?did={$did}'; 
                     self.close();
                     </script>
                     ";     
