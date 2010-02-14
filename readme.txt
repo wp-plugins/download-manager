@@ -31,21 +31,19 @@ N/A
 
 == Changelog ==
 
-=1.2.4=
+= 1.2.4 =
 * Fixed bug with upload path
 * `File exists` check added
-* Fixed wrong password message
-* Moved download folder to new location
 
-=1.2.3=
+= 1.2.3 =
 * removed function mime_content_type()
 * Thanks Adnest (adnest@gmail.com) for your help
 
-=1.2.2=
+= 1.2.2 =
 * Fixed bug with edit item
 
 
-=1.2.1=
+= 1.2.1 =
 * Fixed bug with download link
 
 = 1.2 =
