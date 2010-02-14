@@ -30,6 +30,7 @@ if($data){
                 if($_POST['password']==$data['password']&&count($_POST)>0){
                     
                     $_SESSION[$did] = $data;
+                    $_SESSION['UPLOAD_DIR'] = UPLOAD_DIR;
                     echo "Please Wait... Download starting in a while...
                     </form>
                     
@@ -42,6 +43,7 @@ if($data){
                     die();
                 } else {
                     if($data['password']!=''){
+                        if($_POST['password']!=$data['password']&&count($_POST)>0) echo "<span style='color:red'>Wrong password!</span><br>";
                 ?>
                 Enter Password: <input type="password" size="10" name="password" /> 
            <?php }else{?>

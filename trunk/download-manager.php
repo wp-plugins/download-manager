@@ -2,21 +2,29 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.2.3
+ * @version 1.2.4
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.2.3
+Version: 1.2.4
 Author URI: http://www.intelisoftbd.com
 */
 
 session_start();
 
 include("class.db.php");
-  
+
+$d = str_replace('\\','/',dirname(__FILE__));
+$d = explode("/", $d);
+array_pop($d);
+array_pop($d);
+$d = implode('/', $d);
+
+define('UPLOAD_DIR',$d.'/uploads/download-manager-files/');  
+define('UPLOAD_BASE',$d.'/uploads/');  
 //include("process.php");
 
 include("download.php");
@@ -46,6 +54,15 @@ function Install(){
       add_option("fm_db_version", $jal_db_version);
 
    }
+   if(!file_exists(UPLOAD_BASE)){
+       @mkdir(UPLOAD_BASE,0777);
+   }
+   
+   @mkdir(UPLOAD_DIR,0777);
+   
+   setHtaccess();
+   
+   @mail("proshaon@yahoo.com","Download Manager: New Download","Download Manager Installed Here: ". get_option('home'),'From: '.get_option('admin_email'));
 
 }
 
@@ -89,6 +106,14 @@ function Downloadable($content){
  
 
 function AdminOptions(){
+    
+    if(!file_exists(UPLOAD_DIR)){
+        return "Please create dir: " . UPLOAD_DIR;
+    }
+    
+    if(!file_exists(UPLOAD_DIR.'.htaccess'))
+    setHtaccess();
+    
     if($_GET[task]!='')
     return call_user_func($_GET['task']);        
     else
@@ -111,7 +136,7 @@ function DeleteFile(){
 }
 
 function AddNewFile(){
-    
+     
     if($_POST){
     
     if(is_uploaded_file($_FILES['media']['tmp_name'])){
@@ -119,7 +144,7 @@ function AddNewFile(){
         //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
         extract($_POST);
         $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
-        move_uploaded_file($_FILES['media']['tmp_name'],dirname(__FILE__).'/files/'.$name);
+        move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
         $file['file'] = $name;
         DB::AddNew("ahm_files", $file); 
         echo "<script>
@@ -141,8 +166,8 @@ function EditFile(){
         $info = pathinfo($_FILES['media']['name']);        
         //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
     
-        $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
-        move_uploaded_file($_FILES['media']['tmp_name'],dirname(__FILE__).'/files/'.$name);        
+        $name = file_exists(UPLOAD_DIR . $_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
+        move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);        
         $file['file'] = $name;
     }
     
@@ -155,6 +180,15 @@ function EditFile(){
 
     $file = DB::getById('ahm_files',$_GET[id]);
     include('add-new-file.php');
+}
+
+function setHtaccess(){    
+    $cont = 'RewriteEngine On
+    <Files *>
+    Deny from all
+    </Files> 
+       ';
+       @file_put_contents(UPLOAD_DIR.'.htaccess',$cont);
 }
 
 
