@@ -34,6 +34,7 @@ N/A
 = 1.2.4 =
 * Fixed bug with upload path
 * `File exists` check added
+* Moved upload dir to new location for security reason
 
 = 1.2.3 =
 * removed function mime_content_type()
