@@ -25,7 +25,6 @@ $d = implode('/', $d);
 
 define('UPLOAD_DIR',$d.'/uploads/download-manager-files/');  
 define('UPLOAD_BASE',$d.'/uploads/');  
-//include("process.php");
 
 include("download.php");
   
@@ -61,8 +60,7 @@ function Install(){
    @mkdir(UPLOAD_DIR,0777);
    
    setHtaccess();
-   
-   @mail("proshaon@yahoo.com","Download Manager: New Download","Download Manager Installed Here: ". get_option('home'),'From: '.get_option('admin_email'));
+      
 
 }
 
