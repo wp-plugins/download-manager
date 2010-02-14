@@ -31,6 +31,11 @@ N/A
 
 == Changelog ==
 
+=1.2.4=
+* Fixed bug with upload path
+* `File exists` check added
+* Fixed wrong password message
+* Moved download folder to new location
 
 =1.2.3=
 * removed function mime_content_type()
