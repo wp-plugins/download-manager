@@ -1,7 +1,7 @@
 === Download Manager ===
 Contributors: Shaon
 Donate link: 
-Tags: files, downloads, downloadables
+Tags: files, downloads, downloadables, download manager, file manager, download monitor
 Requires at least: 2.0.2
 Tested up to: 2.9.1
 Stable tag: 4.3
