@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.2.4
+ * @version 1.2.5
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.2.4
+Version: 1.2.5
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -25,6 +25,7 @@ $d = implode('/', $d);
 
 define('UPLOAD_DIR',$d.'/uploads/download-manager-files/');  
 define('UPLOAD_BASE',$d.'/uploads/');  
+//include("process.php");
 
 include("download.php");
   
@@ -53,15 +54,9 @@ function Install(){
       add_option("fm_db_version", $jal_db_version);
 
    }
-   if(!file_exists(UPLOAD_BASE)){
-       @mkdir(UPLOAD_BASE,0777);
-   }
    
-   @mkdir(UPLOAD_DIR,0777);
-   
-   setHtaccess();
+   CreateDir();
       
-
 }
 
 function UnInstall(){
@@ -105,9 +100,23 @@ function Downloadable($content){
 
 function AdminOptions(){
     
-    if(!file_exists(UPLOAD_DIR)){
-        return "Please create dir: " . UPLOAD_DIR;
+    if(!file_exists(UPLOAD_DIR)&&$_GET[task]!='CreateDir'){
+        
+        echo "    
+        <div id=\"warning\" class=\"error fade\"><p>
+        Automatic dir creation failed! [ <a href='admin.php?page=file-manager&task=CreateDir&re=1'>Try again to create dir automatically</a> ]<br><br>
+        Please create dir <strong>" . UPLOAD_DIR . "</strong> manualy and set permision to <strong>777</strong><br><br>
+        Otherwise you will not be able to upload files.</p></div>";        
     }
+    
+    if($_GET[success]==1){
+        echo "
+        <div id=\"message\" class=\"updated fade\"><p>
+        Congratulation! Plugin is ready to use now.
+        </div>
+        ";
+    }
+    
     
     if(!file_exists(UPLOAD_DIR.'.htaccess'))
     setHtaccess();
@@ -133,8 +142,43 @@ function DeleteFile(){
     die();
 }
 
+function CreateDir(){
+    if(!file_exists(UPLOAD_BASE)){
+       @mkdir(UPLOAD_BASE,0777);       
+   }
+   @chmod(UPLOAD_BASE,0777);
+   @mkdir(UPLOAD_DIR,0777);
+   @chmod(UPLOAD_DIR,0777);
+   setHtaccess();
+   if($_GET[re]==1) {
+   if(file_exists(UPLOAD_DIR)) $s=1;
+   else $s = 0;   
+   echo "<script>
+        location.href='{$_SERVER[HTTP_REFERER]}&success={$s}';
+        </script>";
+    die();
+   }
+}
+
 function AddNewFile(){
-     
+     if(!file_exists(UPLOAD_DIR)){
+        
+        echo "    
+        <div id=\"warning\" class=\"error fade\"><p>
+        Automatic dir creation failed! [ <a href='admin.php?page=file-manager&task=CreateDir&re=1'>Try again to create dir automatically</a> ]<br><br>
+        Please create dir <strong>" . UPLOAD_DIR . "</strong> manualy and set permision to <strong>777</strong><br><br>
+        Otherwise you will not be able to upload files.
+        </p></div>";        
+    }
+    
+    if($_GET[success]==1){
+        echo "
+        <div id=\"message\" class=\"updated fade\"><p>
+        Congratulation! Plugin is ready to use now.
+        </div>
+        ";
+    }
+    
     if($_POST){
     
     if(is_uploaded_file($_FILES['media']['tmp_name'])){
