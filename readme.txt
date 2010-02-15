@@ -31,6 +31,9 @@ N/A
 
 == Changelog ==
 
+= 1.2.5 =
+* Added new option for automatic dir creation
+
 = 1.2.4 =
 * Fixed bug with upload path
 * `File exists` check added

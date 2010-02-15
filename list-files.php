@@ -3,6 +3,12 @@
 $res = mysql_query("select * from ahm_files");
 
 ?>
+<style>
+.wrap *{
+    font-family: Tahoma;
+    letter-spacing: 1px;
+}
+</style>
 
 <div class="wrap">
     <div class="icon32" id="icon-upload"><br></div>
