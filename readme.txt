@@ -31,6 +31,9 @@ N/A
 
 == Changelog ==
 
+= 1.3 = 
+* Fixed issue with pagination
+
 = 1.2.5 =
 * Added new option for automatic dir creation
 

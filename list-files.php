@@ -1,6 +1,11 @@
 <?php
 
-$res = mysql_query("select * from ahm_files");
+$limit = 10;
+ 
+$start = $_GET['paged']?(($_GET['paged']-1)*$limit):0;
+$res = mysql_query("select * from ahm_files limit $start, $limit");
+ 
+$row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"));
 
 ?>
 <style>
@@ -98,11 +103,31 @@ $res = mysql_query("select * from ahm_files");
     </tbody>
 </table>
 
+<?php
+$page_links = paginate_links( array(
+    'base' => add_query_arg( 'paged', '%#%' ),
+    'format' => '',
+    'prev_text' => __('&laquo;'),
+    'next_text' => __('&raquo;'),
+    'total' => ceil($row[total]/$limit),
+    'current' => $_GET['paged']
+));
+
+
+?>
 
 <div id="ajax-response"></div>
 
 <div class="tablenav">
 
+<?php if ( $page_links ) { ?>
+<div class="tablenav-pages"><?php $page_links_text = sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' ) . '</span>%s',
+    number_format_i18n( ( $_GET['paged'] - 1 ) * $limit + 1 ),
+    number_format_i18n( min( $_GET['paged'] * $limit, $row[total] ) ),
+    number_format_i18n( $row[total] ),
+    $page_links
+); echo $page_links_text; ?></div>
+<?php } ?>
 
 <div class="alignleft actions">
 <select class="select-action" name="action2">
