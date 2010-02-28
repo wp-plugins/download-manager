@@ -31,6 +31,9 @@ N/A
 
 == Changelog ==
 
+= 1.4 =
+* Fixed conflict with some other plugins
+
 = 1.3 = 
 * Fixed issue with pagination
 

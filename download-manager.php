@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.3
+ * @version 1.4
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.3
+Version: 1.4
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -92,7 +92,7 @@ function Downloadable($content){
     else
     $matches[1][$i] = "<a href='#' onclick='javascript:window.open(\"{$_SERVER[REQUEST_URI]}{$sap}download={$id}\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/d24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Download</a>";
     }
-    echo str_replace($matches[0],$matches[1], $content);    
+    return str_replace($matches[0],$matches[1], $content);    
     
 }
 
