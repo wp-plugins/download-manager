@@ -1,7 +1,7 @@
 === Download Manager ===
 Contributors: Shaon
 Donate link: 
-Tags: files, downloads, downloadables, download manager, file manager, download monitor
+Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter
 Requires at least: 2.0.2
 Tested up to: 2.9.1
 Stable tag: 4.3
@@ -30,6 +30,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 N/A
 
 == Changelog ==
+
+= 1.5 = 
+* New feature: Download counter
+* 2 minor bug fixed
 
 = 1.4 =
 * Fixed conflict with some other plugins

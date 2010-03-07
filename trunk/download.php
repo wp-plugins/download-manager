@@ -31,6 +31,7 @@ if($data){
                     
                     $_SESSION[$did] = $data;
                     $_SESSION['UPLOAD_DIR'] = UPLOAD_DIR;
+                    mysql_query("update ahm_files set `download_count`=`download_count`+1 where id='{$data[id]}'");
                     echo "Please Wait... Download starting in a while...
                     </form>
                     

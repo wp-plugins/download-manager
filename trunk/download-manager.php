@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.4
+ * @version 1.5
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.4
+Version: 1.5
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -50,7 +50,7 @@ function Install(){
 
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
-
+      dbDelta("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL;");      
       add_option("fm_db_version", $jal_db_version);
 
    }
@@ -90,7 +90,7 @@ function Downloadable($content){
     if($data['access']=='member'&&!is_user_logged_in())
     $matches[1][$i] = "<a href='".get_option('siteurl')."/wp-login.php'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Please login to access downloadables</a>";
     else
-    $matches[1][$i] = "<a href='#' onclick='javascript:window.open(\"{$_SERVER[REQUEST_URI]}{$sap}download={$id}\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/d24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Download</a>";
+    $matches[1][$i] = "<a href='#' onclick='javascript:window.open(\"{$_SERVER[REQUEST_URI]}{$sap}download={$id}\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/d24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Download</a><br><small style='margin-left:30px;'>Downloaded $data[download_count] times</small>";
     }
     return str_replace($matches[0],$matches[1], $content);    
     
