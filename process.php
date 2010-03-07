@@ -7,7 +7,7 @@ if(is_array($_SESSION[$_GET[did]])){
     $data = $_SESSION[$_GET[did]];
     $_SESSION[$_GET[did]] = '';
     unset($_SESSION[$_GET[did]]);
-    
+        
     //d$data = DB::getById('ahm_files',$_GET['download']);
     $fname = $_SESSION['UPLOAD_DIR'] . $data['file'];
     $mime_types = array("323" => "text/h323",
