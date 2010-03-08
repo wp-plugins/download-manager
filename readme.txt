@@ -31,6 +31,9 @@ N/A
 
 == Changelog ==
 
+= 1.5.1 =
+* Adjsuted minor issues with download counter
+
 = 1.5 = 
 * New feature: Download counter
 * 2 minor bug fixed
