@@ -3,7 +3,7 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter
 Requires at least: 2.0.2
-Tested up to: 2.9.1
+Tested up to: 2.9.2
 Stable tag: 4.3
 
 This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
@@ -30,6 +30,12 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 N/A
 
 == Changelog ==
+
+
+= 1.5.2 =
+* Added admin option to see download counts
+* 3 Minor bugs fixed
+
 
 = 1.5.1 =
 * Adjsuted minor issues with download counter
