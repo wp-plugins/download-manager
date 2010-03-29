@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.5.1
+ * @version 1.5.2
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.5.1
+Version: 1.5.2
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -44,13 +44,14 @@ function Install(){
   `description` text CHARACTER SET utf8 NOT NULL,
   `file` varchar(255) CHARACTER SET utf8 NOT NULL,
   `password` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `download_count` INT NOT NULL,
   `access` enum('guest','member') NOT NULL,
   PRIMARY KEY (`id`)
     )";
 
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
-      dbDelta("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL");      
+      //dbDelta("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL");      
       add_option("fm_db_version", $jal_db_version);
 
    }

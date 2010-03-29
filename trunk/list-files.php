@@ -51,6 +51,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     <th style="" class="manage-column column-media" id="media" scope="col">File</th>
     <th style="" class="manage-column column-author" id="author" scope="col">Password</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Access</th>
+    <th style="" class="manage-column column-parent" id="parent" scope="col">Downloads</th>
     </tr>
     </thead>
 
@@ -61,6 +62,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     <th style="" class="manage-column column-media" id="media" scope="col">File</th>
     <th style="" class="manage-column column-author" id="author" scope="col">Password</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Access</th>
+    <th style="" class="manage-column column-parent" id="parent" scope="col">Downloads</th>
     </tr>
     </tfoot>
 
@@ -97,6 +99,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
                 </td>
                 <td class="author column-author"><?php echo $media[password]; ?></td>
                 <td class="parent column-parent"><?php echo $media[access]; ?></td>
+                <td class="parent column-parent"><?php echo $media[download_count]; ?></td>
      
      </tr>
      <?php } ?>
