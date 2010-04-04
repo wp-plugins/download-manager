@@ -31,6 +31,8 @@ N/A
 
 == Changelog ==
 
+= 1.5.3 = 
+* Download counter show/hide feature added for frontend download counter display
 
 = 1.5.2 =
 * Added admin option to see download counts

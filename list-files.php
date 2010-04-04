@@ -51,6 +51,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     <th style="" class="manage-column column-media" id="media" scope="col">File</th>
     <th style="" class="manage-column column-author" id="author" scope="col">Password</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Access</th>
+    <th style="" class="manage-column column-parent" id="parent" scope="col">Counter</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Downloads</th>
     </tr>
     </thead>
@@ -62,6 +63,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     <th style="" class="manage-column column-media" id="media" scope="col">File</th>
     <th style="" class="manage-column column-author" id="author" scope="col">Password</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Access</th>
+    <th style="" class="manage-column column-parent" id="parent" scope="col">Counter</th>
     <th style="" class="manage-column column-parent" id="parent" scope="col">Downloads</th>
     </tr>
     </tfoot>
@@ -87,19 +89,20 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
 
                 <th class="check-column" scope="row"><input type="checkbox" value="8" name="id[]"></th>
                 <td class="column-icon media-icon">                
-                    <a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media[id]?>">
-                    <img title="<?php echo end(explode(".",$media[file]))?> file" alt="<?php echo end(explode(".",$media[file]))?> file" class="attachment-80x60" src="../wp-content/plugins/download-manager/file-type-icons/<?php echo $icon; ?>">
+                    <a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media['id']?>">
+                    <img title="<?php echo end(explode(".",$media['file']))?> file" alt="<?php echo end(explode(".",$media['file']))?> file" class="attachment-80x60" src="../wp-content/plugins/download-manager/file-type-icons/<?php echo $icon; ?>">
                     </a>
                 </td>
                 <td class="media column-media">
-                    <strong><a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media[id]?>"><?php echo $media[title]?></a></strong> | Embed Code: <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="{filelink=<?php echo $media[id];?>}" /><br>
-                    <code>File: <?php echo $media[file]; ?></code><Br>
+                    <strong><a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media['id']?>"><?php echo $media['title']?></a></strong> | Embed Code: <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="{filelink=<?php echo $media['id'];?>}" /><br>
+                    <code>File: <?php echo $media['file']; ?></code><Br>
                     <?php echo $media['description']?>
-                    <div class="row-actions"><span class="edit"><a href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media[id]?>">Edit</a> | </span><span class="delete"><a href="admin.php?page=file-manager&task=DeleteFile&id=<?php echo $media[id]?>" onclick="return showNotice.warn();" class="submitdelete">Delete Permanently</a></div>
+                    <div class="row-actions"><span class="edit"><a href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media['id']?>">Edit</a> | </span><span class="delete"><a href="admin.php?page=file-manager&task=DeleteFile&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="submitdelete">Delete Permanently</a></div>
                 </td>
-                <td class="author column-author"><?php echo $media[password]; ?></td>
-                <td class="parent column-parent"><?php echo $media[access]; ?></td>
-                <td class="parent column-parent"><?php echo $media[download_count]; ?></td>
+                <td class="author column-author"><?php echo $media['password']; ?></td>
+                <td class="parent column-parent"><?php echo $media['access']; ?></td>
+                <td class="parent column-parent"><?php echo $media['show_counter']!=0?'Show':'Hide'; ?></td>
+                <td class="parent column-parent"><?php echo $media['download_count']; ?></td>
      
      </tr>
      <?php } ?>
