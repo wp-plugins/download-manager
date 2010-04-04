@@ -13,7 +13,7 @@ input{
    padding: 7px; 
 }
 </style>
-
+ 
 <div class="wrap">
     <div class="icon32" id="icon-edit"><br></div>
 <h2>Add New File</h2>
@@ -34,6 +34,14 @@ input{
 <tr>
 <td width="70">Password:</td>
 <td><input size="90" type="text" name="file[password]" value="<?php echo $file[password]; ?>" /></td>
+</tr>
+
+<tr>
+<td width="70">Counter: </td>
+<td><select name="file[show_counter]">
+<option value="0">Hide</option>
+<option value="1" <?php if($file['show_counter']!=0) echo 'selected="selected"'; ?> >Show</option>
+</select></td>
 </tr>
 
 <tr>
