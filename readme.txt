@@ -31,6 +31,9 @@ N/A
 
 == Changelog ==
 
+= 1.5.31 = 
+* Minor bug fixed with creating db table
+
 = 1.5.3 = 
 * Download counter show/hide feature added for frontend download counter display
 
