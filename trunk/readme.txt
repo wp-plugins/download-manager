@@ -31,7 +31,7 @@ N/A
 
 == Changelog ==
 
-= 1.5.31 = 
+= 1.5.32 = 
 * Minor bug fixed with creating db table
 
 = 1.5.3 = 
