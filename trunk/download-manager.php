@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.5.32
+ * @version 1.5.33
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.5.32
+Version: 1.5.33
 Author URI: http://www.intelisoftbd.com
 */
 
@@ -56,7 +56,7 @@ function Install(){
       add_option("fm_db_version", $jal_db_version);
 
    }
-   
+   update_option('access_level','level_10');
    CreateDir();
       
 }
@@ -165,6 +165,14 @@ function CreateDir(){
    }
 }
 
+function FMSettings(){
+    if($_POST){
+        update_option('access_level',$_POST[access]);
+    }
+    $access = get_option('access_level');
+    include('fm-settings.php'); 
+}
+
 function AddNewFile(){
      if(!file_exists(UPLOAD_DIR)){
         
@@ -240,9 +248,11 @@ function setHtaccess(){
 
 
 function fmmenu(){
-    add_menu_page("File Manager","File Manager","administrator",'file-manager','AdminOptions');
-    add_submenu_page( 'file-manager', 'File Manager', 'Manage', 'administrator', 'file-manager', 'AdminOptions');    
-    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', 'administrator', 'file-manager/add-new-file', 'AddNewFile');    
+    add_menu_page("File Manager","File Manager",get_option('access_level'),'file-manager','AdminOptions');
+    add_submenu_page( 'file-manager', 'File Manager', 'Manage', get_option('access_level'), 'file-manager', 'AdminOptions');    
+    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', get_option('access_level'), 'file-manager/add-new-file', 'AddNewFile');    
+    add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', 'administrator', 'file-manager/settings', 'FMSettings');    
+    
 }
 
 if(is_admin()){
