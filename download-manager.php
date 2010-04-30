@@ -10,7 +10,7 @@ Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wo
 Description: Manage Downloadable Files
 Author: Shaon
 Version: 1.5.33
-Author URI: http://www.intelisoftbd.com
+Author URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 */
 
 session_start();
