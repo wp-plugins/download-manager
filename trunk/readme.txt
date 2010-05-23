@@ -30,6 +30,8 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 N/A
 
 == Changelog ==
+= 1.5.9 =
+* Hotlink protection added
 
 = 1.5.33 = 
 * Add new option for controlling plugin access. Now you can set access level for the plugin
