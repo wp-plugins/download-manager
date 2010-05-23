@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.5.33
+ * @version 1.5.9
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.5.33
+Version: 1.5.9
 Author URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 */
 
