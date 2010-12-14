@@ -25,6 +25,10 @@ input{
 <td width="70">Title:</td>
 <td><input size="90" type="text" value="<?php echo $file[title]; ?>" name="file[title]" /></td>
 </tr>
+<tr>
+<td width="70">Download Link Label:</td>
+<td><input size="90" type="text" value="<?php echo $file[link_label]?$file[link_label]:'Download'; ?>" name="file[link_label]" /></td>
+</tr>
 
 <tr>
 <td width="70" valign="top">Description:</td>

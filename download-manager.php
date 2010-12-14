@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 1.5.9
+ * @version 2.0.0
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 1.5.9
+Version: 2.0.0
 Author URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 */
 
@@ -40,19 +40,22 @@ function Install(){
       
       $sql = "CREATE TABLE IF NOT EXISTS `ahm_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8 NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `download_count` int(11) NOT NULL,
   `access` enum('guest','member') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `show_counter` tinyint(1) NOT NULL,
+  `link_label` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM";
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8";
 
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
+      dbDelta("ALTER TABLE `ahm_files` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci");      
       dbDelta("ALTER TABLE `ahm_files` ADD `show_counter` BOOL NOT NULL");      
+      dbDelta("ALTER TABLE `ahm_files` ADD `link_label` VARCHAR( 255 ) NOT NULL");      
       add_option("fm_db_version", $jal_db_version);
 
    }
@@ -89,10 +92,11 @@ function Downloadable($content){
     for($i=0;$i<count($matches[1]);$i++){
     $id = $matches[1][$i];    
     $data = DB::getById('ahm_files',$id);
+    $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in())
     $matches[1][$i] = "<a href='".get_option('siteurl')."/wp-login.php'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Please login to access downloadables</a>";
     else {
-    $matches[1][$i] = "<a href='#' onclick='javascript:window.open(\"{$_SERVER[REQUEST_URI]}{$sap}download={$id}\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/d24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Download</a>";
+    $matches[1][$i] = "<a href='#' onclick='javascript:window.open(\"{$_SERVER[REQUEST_URI]}{$sap}download={$id}\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/d24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">$link_label</a>";
     if($data['show_counter']!=0)
     $matches[1][$i] .= "<br><small style='margin-left:30px;'>Downloaded $data[download_count] times</small>";
     }

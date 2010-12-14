@@ -30,6 +30,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 N/A
 
 == Changelog ==
+= 2.0.0 =
+* New Option added for download link label
+
 = 1.5.9 =
 * Hotlink protection added
 
