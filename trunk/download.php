@@ -1,6 +1,6 @@
 <?php
 if($_GET['download']!=''){
-    $data = DB::getById('ahm_files',$_GET[download]);
+    $data = DMDB::getById('ahm_files',$_GET[download]);
 ?>
 <style>
 *{

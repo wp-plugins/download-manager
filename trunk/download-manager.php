@@ -2,14 +2,14 @@
 /**
  * @package Downlodable File Manager
  * @author Shaon
- * @version 2.0.1
+ * @version 2.0.2
  */
 /*
 Plugin Name: Downlodable File Manager
 Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 2.0.1
+Version: 2.0.2
 Author URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
 */
         
@@ -91,7 +91,7 @@ function Downloadable($content){
     $sap = count($_GET)>0?'&':'?';
     for($i=0;$i<count($matches[1]);$i++){
     $id = $matches[1][$i];    
-    $data = DB::getById('ahm_files',$id);
+    $data = DMDB::getById('ahm_files',$id);
     $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in())
     $matches[1][$i] = "<a href='".get_option('siteurl')."/wp-login.php'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Please login to access downloadables</a>";
@@ -144,7 +144,7 @@ function DeleteFile(){
         $cond = implode(" and ", $qry);
     } else
     $cond = "id='".(int)$_GET[id]."'";
-    DB::Delete('ahm_files', $cond);
+    DMDB::Delete('ahm_files', $cond);
     echo "<script>
         location.href='admin.php?page=file-manager';
         </script>";
@@ -205,7 +205,7 @@ function AddNewFile(){
         $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
         move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
         $file['file'] = $name;
-        DB::AddNew("ahm_files", $file); 
+        DMDB::AddNew("ahm_files", $file); 
         echo "<script>
         location.href='admin.php?page=file-manager';
         </script>";
@@ -230,14 +230,14 @@ function EditFile(){
         $file['file'] = $name;
     }
     
-        DB::Update("ahm_files", $file, "id='$_POST[id]'"); 
+        DMDB::Update("ahm_files", $file, "id='$_POST[id]'"); 
         echo "<script>
         location.href='admin.php?page=file-manager';
         </script>";
     
    }
 
-    $file = DB::getById('ahm_files',$_GET[id]);
+    $file = DMDB::getById('ahm_files',$_GET[id]);
     include('add-new-file.php');
 }
 

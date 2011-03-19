@@ -30,6 +30,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 N/A
 
 == Changelog ==
+= 2.0.2 =
+* database class conflick fixed
+
 = 2.0.1 =
 * New Option added for download link label
 
