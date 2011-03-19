@@ -1,6 +1,6 @@
 <?php
 
-class DB{
+class DMDB{
     
     
     function AddNew($table, $data){
