@@ -17,9 +17,17 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
 
 <div class="wrap">
     <div class="icon32" id="icon-upload"><br></div>
-<h2>Manage Files <a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> </h2>
+    
+<h2>Manage Files <a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
+</h2>
+<div class="updated" style="padding:5px 10px;position: absolute;color:#008000;font-weight:bold;margin:-35px 0 0 300px">
+ <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get download manager premium version now! only @ 19.50 $ </a> | 
+ <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/features/" target="_blank">Checkout the features here</a>
+ </div>
  <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
 
+ 
+ 
  
 
            
@@ -33,7 +41,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
 </select>
 <input type="submit" class="button-secondary action" id="doaction" name="doaction" value="Apply">
  
-
+  
 
 
 </div>

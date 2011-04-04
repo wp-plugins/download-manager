@@ -13,11 +13,15 @@ input{
    padding: 7px; 
 }
 </style>
- 
+  
 <div class="wrap">
     <div class="icon32" id="icon-edit"><br></div>
 <h2>Add New File</h2>
-
+ <div class="updated" style="padding:5px 10px;position: absolute;color:#008000;font-weight:bold;margin:-35px 0 0 300px">
+Missing some options you need here?&nbsp;
+ <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get premium version now! only @ 19.50 $ </a> | 
+ <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/features/" target="_blank">Checkout the features here</a>
+ </div>
 <form action="" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo $file[id]; ?>" />
 <table cellpadding="5" cellspacing="5">
@@ -38,6 +42,11 @@ input{
 <tr>
 <td width="70">Password:</td>
 <td><input size="90" type="text" name="file[password]" value="<?php echo $file[password]; ?>" /></td>
+</tr>
+
+<tr>
+<td width="70">Download Count: </td>
+<td><input type="text" name="file[download_count]" value="<?php echo $file[download_count]?$file[download_count]:0; ?>" /></td>
 </tr>
 
 <tr>
@@ -79,5 +88,5 @@ input{
 
 
 </form>
-
 </div>
+

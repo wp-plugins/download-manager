@@ -1,16 +1,16 @@
 <?php 
 /**
- * @package Downlodable File Manager
+ * @package Download Manager
  * @author Shaon
- * @version 2.0.2
+ * @version 2.0.3
  */
 /*
-Plugin Name: Downlodable File Manager
-Plugin URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
+Plugin Name: Download Manager
+Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 2.0.2
-Author URI: http://www.intelisoftbd.com/open-source-projects/download-manager-wordpress-plugin.html
+Version: 2.0.3
+Author URI: http://www.wpdownloadmanager.com/
 */
         
 session_start();
@@ -54,6 +54,7 @@ function Install(){
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
       dbDelta("ALTER TABLE `ahm_files` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci");      
+      dbDelta("ALTER TABLE `ahm_files` ADD `download_count` int(11) NOT NULL DEFAULT '0'");      
       dbDelta("ALTER TABLE `ahm_files` ADD `show_counter` BOOL NOT NULL");      
       dbDelta("ALTER TABLE `ahm_files` ADD `link_label` VARCHAR( 255 ) NOT NULL");      
       add_option("fm_db_version", $jal_db_version);
@@ -205,6 +206,7 @@ function AddNewFile(){
         $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
         move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
         $file['file'] = $name;
+        $file['show_counter'] = 0;
         DMDB::AddNew("ahm_files", $file); 
         echo "<script>
         location.href='admin.php?page=file-manager';
@@ -262,6 +264,8 @@ function fmmenu(){
 if(is_admin()){
     add_Action("admin_menu","fmmenu");
 }
+
+
 
 add_filter( 'the_content', 'Downloadable');
 
