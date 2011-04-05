@@ -14,22 +14,22 @@ This plugin will handle your downloadable files. You can set password and set ac
 This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
 
-We also have a premium version with following Features:		
-* Upload Progress Bar
-* Multiple Files in single pack
-* Access Control for all user roles
-* Bandwidth Control
-* Bulk Import
-* Custom Link Template
-* Download Counter and Tracker
-* Categories and Category Template
-* Custom TinyMce Button
-* Remote file url download support
-* Download Speed Control 
-* Add-ons Support
-* Payment gateway for saling packages (add-on)
-* Order management system (add-on)
-* Auto licensing system (add-on)
+= We also have a premium version with following Features: =
+*	Upload Progress Bar
+*	Multiple Files in single pack
+*	Access Control for all user roles
+*	Bandwidth Control
+*	Bulk Import
+*	Custom Link Template
+*	Download Counter and Tracker
+*	Categories and Category Template
+*	Custom TinyMce Button
+*	Remote file url download support
+*	Download Speed Control 
+*	Add-ons Support
+*	Payment gateway for saling packages (add-on)
+*	Order management system (add-on)
+*	Auto licensing system (add-on)
 
 Check full details here http://www.wpdownloadmanager.com/
 
