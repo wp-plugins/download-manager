@@ -7,7 +7,7 @@ Tested up to: 3.1
 
 
 This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
-  
+   
 
 == Description ==
 
