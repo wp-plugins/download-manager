@@ -32,8 +32,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Auto licensing system (add-on)
 
 Check full details here http://www.wpdownloadmanager.com/
-
 Discussion forum http://www.wpdownloadmanager.com/forum/
+Check demo here:
+url: http://dev.wpdownloadmanager.com/wp-admin/
+username: demo
+password: demo
 
 
 
