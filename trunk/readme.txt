@@ -3,7 +3,7 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter
 Requires at least: 2.0.2
-Tested up to: 3.1
+Tested up to: 3.1.1
 
 
 This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
@@ -54,6 +54,11 @@ password: demo
 N/A
 
 == Changelog ==
+= 2.0.4 =
+* some plgins conflict adjusted
+* new option added for setting custom message
+* new option added for uploading upload link icon
+
 = 2.0.3 =
 * Add/Edit Downoad count option added
 = 2.0.2 =
