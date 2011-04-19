@@ -32,10 +32,26 @@ input{
 </td>
 </tr>
 
+<tr>
+<td>Login Required Message:</td>
+<td>
+<input type="text" name="wpdm_login_msg" value="<?php echo get_option('wpdm_login_msg',true); ?>" size="40">
+</td>
+</tr>
+
+
+<tr>
+<td>Download Link Icon:</td>
+<td>
+<input type="file" name="icon">
+ | Current Icon: <img src="<?php echo plugins_url(); ?>/download-manager/icon/download.png" />
+</td>
+</tr>
+
  
 
 <tr>
-<tdvalign="top"></td>
+<td valign="top"></td>
 <td align="right">
 
 <input type="button" value="&#171; back" tabindex="9" class="button-secondary" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
