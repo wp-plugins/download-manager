@@ -38,6 +38,7 @@ Discussion forum http://www.wpdownloadmanager.com/forum/
 Check demo here:
 
 url: http://dev.wpdownloadmanager.com/wp-admin/
+
 username: demo
 password: demo
 
