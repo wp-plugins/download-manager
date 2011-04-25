@@ -1,7 +1,7 @@
 === Download Manager ===
 Contributors: Shaon
 Donate link: 
-Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter
+Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker
 Requires at least: 2.0.2
 Tested up to: 3.1.1
 
@@ -13,6 +13,17 @@ This plugin will handle your downloadable files. You can set password and set ac
 
 This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
+
+= Features =
+*	Control who can access to download
+*	Password protection
+*	Download Counter
+*	control who can user this plugin (author, editor, administrator)
+*	Custom download link icon
+*	Custom link label
+*	shortcode for download link
+*	jquery popup for download page
+
 
 = We also have a premium version with following Features: =
 *	Upload Progress Bar
@@ -27,9 +38,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Remote file url download support
 *	Download Speed Control 
 *	Add-ons Support
-*	Payment gateway for saling packages (add-on)
+*	Payment gateway for selling packages (add-on)
 *	Order management system (add-on)
 *	Auto licensing system (add-on)
+*	Auto update notification (add-on)
+*	Custom user roles and user specific access controlling (add-on)
 
 Check full details here http://www.wpdownloadmanager.com/
 
