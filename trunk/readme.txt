@@ -23,7 +23,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom link label
 *	shortcode for download link
 *	jquery popup for download page
-
+*	Tinymce button for short-code embed
 
 = We also have a premium version with following Features: =
 *	Upload Progress Bar
@@ -43,6 +43,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Auto licensing system (add-on)
 *	Auto update notification (add-on)
 *	Custom user roles and user specific access controlling (add-on)
+*	Advanced Tiny-mce button (add-on)
 
 Check full details here http://www.wpdownloadmanager.com/
 
@@ -71,6 +72,10 @@ password: demo
 N/A
 
 == Changelog ==
+= 2.0.5 =
+* new option for tiny-mce button added
+* "Install" function conflict resolved
+
 = 2.0.4 =
 * some plgins conflict adjusted
 * new option added for setting custom message

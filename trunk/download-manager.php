@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.4
+ * @version 2.0.5
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 2.0.4
+Version: 2.0.5
 Author URI: http://www.wpdownloadmanager.com/
 */
         
@@ -31,7 +31,7 @@ include("download.php");
   
 if(!$_POST)    $_SESSION['download'] = 0;
 
-function Install(){
+function wpdm_free_Install(){
     global $wpdb;
     global $jal_db_version;
 
@@ -65,23 +65,7 @@ function Install(){
       
 }
 
-function UnInstall(){
-    global $wpdb;
-    global $jal_db_version;
-
-    $table_name = $wpdb->prefix . "file_manager";
-    if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-      
-      $sql = "DROP TABLE " . $table_name ;
-
-      require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-      dbDelta($sql);
-
-      remove_option("fm_db_version");
-
-    }
-
-}
+   
 
 function Downloadable($content){
      
@@ -269,10 +253,11 @@ function fmmenu(){
 
 if(is_admin()){
     add_Action("admin_menu","fmmenu");
+    include("wpdm-free-mce-button.php");
 }
 
 
 
 add_filter( 'the_content', 'Downloadable');
 
-register_activation_hook(__FILE__,'Install');
+register_activation_hook(__FILE__,'wpdm_free_Install');
