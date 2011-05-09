@@ -12,6 +12,8 @@ class DMDB{
     }
     
     function Delete($table, $cond){
+        $d = mysql_fetch_assoc(mysql_query("select * from $table where $cond"));
+        @unlink(UPLOAD_DIR.$d['file']);
         mysql_query("delete from $table where ".$cond);
     }
     
