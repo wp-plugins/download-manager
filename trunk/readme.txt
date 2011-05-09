@@ -38,6 +38,13 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Remote file url download support
 *	Download Speed Control 
 *	Add-ons Support
+*	Individual download for multi-file package
+*	Multiple image previews
+*	Multilevel category
+*	Custom category url
+*	Custom Package url
+*	Widget for categories, top downloads, new packages
+*	SEO title and description
 *	Payment gateway for selling packages (add-on)
 *	Order management system (add-on)
 *	Auto licensing system (add-on)
