@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.5
+ * @version 2.0.6
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 2.0.5
+Version: 2.0.6
 Author URI: http://www.wpdownloadmanager.com/
 */
         
@@ -63,6 +63,19 @@ function wpdm_free_Install(){
    update_option('access_level','level_10');
    CreateDir();
       
+}
+
+function wpdm_new_packages($show=5, $show_count=true){
+    global $wpdb;
+     
+    $data = $wpdb->get_results("select * from ahm_files order by id desc limit 0, $show",ARRAY_A);
+    foreach($data as $d){
+        
+        $key = $d['id'];
+        if($show_count) $sc = "<br/><i>$d[download_count] downloads</i>";         
+        $url = home_url("/?download={$d[id]}");  
+        echo "<li><a href='#' onclick='javascript:window.open(\"$url\",\"Window1\",\"menubar=no,width=400,height=200,toolbar=no, left=\"+((screen.width/2)-200)+\", top=\"+((screen.height/2)-100));return false;'>{$d[title]}</a> $sc</li>\r\n";
+    }
 }
 
    
@@ -259,5 +272,7 @@ if(is_admin()){
 
 
 add_filter( 'the_content', 'Downloadable');
+
+include("wpdm-widgets.php");
 
 register_activation_hook(__FILE__,'wpdm_free_Install');
