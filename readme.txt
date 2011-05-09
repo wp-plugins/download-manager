@@ -153,6 +153,8 @@ N/A
 = 1.2 =
 * Fxied installation bug
 
+
+
 = 1.1 =
 * Fixed security bug with direct download protection
 
