@@ -19,7 +19,7 @@ input{
 <h2>Add New File</h2>
  <div class="updated" style="padding:5px 10px;position: absolute;color:#008000;font-weight:bold;margin:-35px 0 0 300px">
 Missing some options you need here?&nbsp;
- <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get premium version now! only @ 24.95 $ </a> | 
+ <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get premium version now! only @ 30.00 $ </a> | 
  <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/features/" target="_blank">Checkout the features here</a>
  </div>
 <form action="" method="post" enctype="multipart/form-data">
