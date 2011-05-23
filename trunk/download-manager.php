@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.6
+ * @version 2.0.7
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage Downloadable Files
 Author: Shaon
-Version: 2.0.6
+Version: 2.0.7
 Author URI: http://www.wpdownloadmanager.com/
 */
         
@@ -36,7 +36,7 @@ function wpdm_free_Install(){
     global $jal_db_version;
 
     $table_name = "ahm_files";
-    if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+    
       
       $sql = "CREATE TABLE IF NOT EXISTS `ahm_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ function wpdm_free_Install(){
       dbDelta("ALTER TABLE `ahm_files` ADD `link_label` VARCHAR( 255 ) NOT NULL");      
       add_option("fm_db_version", $jal_db_version);
 
-   }
+   
    update_option('access_level','level_10');
    CreateDir();
       

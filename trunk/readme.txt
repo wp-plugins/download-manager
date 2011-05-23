@@ -80,6 +80,10 @@ password: demo
 N/A
 
 == Changelog ==
+= 2.0.7 =
+* fixed bug with installation
+* fixed bug with icon
+
 = 2.0.6 =
 * new widget added for showing new downloads
 * adjusted file delete issue
