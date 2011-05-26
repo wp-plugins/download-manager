@@ -34,7 +34,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Bulk Import
 *	Custom Link Template
 *	Download Counter and Tracker
-*	Categories and Category Template
+*	Multi-livel Categories and Category Template
 *	Custom TinyMce Button
 *	Remote file url download support
 *	Download Speed Control 
@@ -46,6 +46,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom Package url
 *	Widget for categories, top downloads, new packages
 *	SEO title and description
+*	Multi-user option
+*	Advanced server file browser
+*	Limit maximum downloads per user
 *	Payment gateway for selling packages (add-on)
 *	Order management system (add-on)
 *	Auto licensing system (add-on)
