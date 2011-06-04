@@ -20,17 +20,17 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     
 <h2>Manage Files <a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
 </h2>
-<div class="updated" style="padding:5px 10px;position: absolute;color:#008000;font-weight:bold;margin:-35px 0 0 300px">
- <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get download manager premium version now! only @ 30.00 $ </a> | 
- <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/features/" target="_blank">Checkout the features here</a> |
- </div>
+ 
  <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
 
  
  
- 
+<div class="updated" style="padding: 5px 10px;">
+We discontinued <b>Download Manager</b>. Now It's <b>Download Controller</b> with  all bug fixes and new features. Upgrade <b>Download Manager</b> Now.
+<b><a href='<?php echo home_url('/wp-admin/update.php?action=install-plugin&plugin=download-controler&_wpnonce='.wp_create_nonce());?>'>Upgrade automatically</a></b> or get it from <b><a href='http://wordpress.org/extend/plugins/download-controler/'>here</a></b>.
+</div> 
 
-           
+                                                 
 <form method="get" action="" id="posts-filter">
 <div class="tablenav">
 
