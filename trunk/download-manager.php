@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.7
+ * @version 2.0.8
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
-Description: Manage Downloadable Files
+Description: We discontinued `download manager`, Its `Download Controller` now. Get your next update from here http://wordpress.org/extend/plugins/download-controler/
 Author: Shaon
-Version: 2.0.7
+Version: 2.0.8
 Author URI: http://www.wpdownloadmanager.com/
 */
         
@@ -57,6 +57,7 @@ function wpdm_free_Install(){
       dbDelta("ALTER TABLE `ahm_files` ADD `download_count` int(11) NOT NULL DEFAULT '0'");      
       dbDelta("ALTER TABLE `ahm_files` ADD `show_counter` BOOL NOT NULL");      
       dbDelta("ALTER TABLE `ahm_files` ADD `link_label` VARCHAR( 255 ) NOT NULL");      
+      dbDelta("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");      
       add_option("fm_db_version", $jal_db_version);
 
    
