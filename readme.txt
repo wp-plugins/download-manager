@@ -47,7 +47,9 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 
 == Screenshots ==
-N/A
+1. Create new download package
+2. Manage download packages
+3. Categories
 
 == Changelog ==
 
