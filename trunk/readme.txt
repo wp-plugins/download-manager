@@ -27,48 +27,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Tinymce button for short-code embed
 *	Widget for new downloads
 
-= We also have a premium version with following Features: =
-*	Upload Progress Bar
-*	Multiple Files in single pack
-*	Access Control for all user roles
-*	Bandwidth Control
-*	Bulk Import
-*	Custom Link Template
-*	Download Counter and Tracker
-*	Multi-livel Categories and Category Template
-*	Custom TinyMce Button
-*	Remote file url download support
-*	Download Speed Control 
-*	Add-ons Support
-*	Individual download for multi-file package
-*	Multiple image previews
-*	Multilevel category
-*	Custom category url
-*	Custom Package url
-*	Widget for categories, top downloads, new packages
-*	SEO title and description
-*	Multi-user option
-*	Advanced server file browser
-*	Limit maximum downloads per user
-*	Payment gateway for selling packages (add-on)
-*	Order management system (add-on)
-*	Auto licensing system (add-on)
-*	Auto update notification (add-on)
-*	Custom user roles and user specific access controlling (add-on)
-*	Advanced Tiny-mce button (add-on)
-
-Check full details here http://www.wpdownloadmanager.com/
-
+ 
 Discussion forum http://www.wpdownloadmanager.com/forum/
 
-Check demo here:
-
-url: http://dev.wpdownloadmanager.com/wp-admin/
-
-username: demo
-password: demo
-
-
+ 
 
 == Installation ==
 
