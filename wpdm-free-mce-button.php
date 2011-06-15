@@ -27,7 +27,7 @@ function wpdm_free_tinymce(){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
-<title>Download Manager &#187; Insert Package or Category</title>
+<title>Download Contrller &#187; Insert Package or Category</title>
 <style type="text/css">
 *{font-family: Tahoma !important; font-size: 9pt; letter-spacing: 1px;}
 select,input{padding:5px;font-size: 9pt !important;font-family: Tahoma !important; letter-spacing: 1px;margin:5px;}
@@ -81,6 +81,14 @@ fieldset{padding: 10px;}
     </select>
     <input type="submit" id="addtopost" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>   <br>
+<fieldset><legend>Embed Category</legend>
+    <select class="button input" id="flc">
+    <?php
+    wpdm_dropdown_categories();
+    ?>
+    </select>
+    <input type="submit" id="addtopostc" class="button button-primary" name="addtopost" value="Insert into post" />
+</fieldset>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo home_url('/wp-includes/js/tinymce/tiny_mce_popup.js'); ?>"></script>
@@ -92,7 +100,12 @@ fieldset{padding: 10px;}
                     tinyMCEPopup.close();
                     return false;                   
                     });
-                      
+                    jQuery('#addtopostc').click(function(){
+                    var win = window.dialogArguments || opener || parent || top;                
+                    win.send_to_editor('{wpdm_category='+jQuery('#flc').val()+'}');
+                    tinyMCEPopup.close();
+                    return false;                   
+                    });  
                               
                     /* ]]> */
                 </script>

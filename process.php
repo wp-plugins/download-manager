@@ -1,15 +1,19 @@
 <?php
     
-session_start(); 
+$data = @ unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
 
-if(is_array($_SESSION[$_GET[did]])){    
+if(is_array($data)){    
     
-    $data = $_SESSION[$_GET[did]];
-    $_SESSION[$_GET[did]] = '';
-    unset($_SESSION[$_GET[did]]);
+    unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
         
     //d$data = DMDB::getById('ahm_files',$_GET['download']);
-    $fname = $_SESSION['UPLOAD_DIR'] . $data['file'];
+    if(file_exists($data['file']))
+    $fname = $data['file'];
+    else if(file_exists(UPLOAD_DIR . $data['file']))
+    $fname = UPLOAD_DIR . $data['file'];
+    else 
+    die('File not found!');
+    
     $mime_types = array("323" => "text/h323",
                         "acx" => "application/internet-property-stream",
                         "ai" => "application/postscript",
@@ -238,6 +242,9 @@ if(is_array($_SESSION[$_GET[did]])){
 
     }
 
+}  else {
+    die('File not found');
 }
 
+die();
 ?>

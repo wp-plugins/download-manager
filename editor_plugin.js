@@ -4,11 +4,11 @@
     tinymce.create('tinymce.plugins.wpdm_tinyplugin', {
 
         init : function(ed, url){            
-            ed.addCommand('mcedonwloadmanager', function() {
+            ed.addCommand('wpdm_mcedonwloadmanager', function() {
                                 ed.windowManager.open({
-                                        title: 'Download Manager',
+                                        title: 'Download Controller',
                                         file : 'admin.php?wpdm_action=wpdm_tinymce_button',
-                                        height: 200,
+                                        height: 300,
                                         width:400,                                        
                                         inline : 1
                                 }, {
@@ -19,14 +19,14 @@
             
             ed.addButton('wpdm_tinyplugin', {
                 title : 'Download Manager: Insert Package or Category',
-                cmd : 'mcedonwloadmanager',
+                cmd : 'wpdm_mcedonwloadmanager',
                 image: url + "/img/donwloadmanager.png"
             });
         },
 
         getInfo : function() {
             return {
-                longname : 'WPDM - TinyMCE Button Add-on',
+                longname : 'WPDC - TinyMCE Button Add-on',
                 author : 'Shaon',
                 authorurl : 'http://www.wpdownloadmanager.com',
                 infourl : 'http://www.wpdownloadmanager.com',
