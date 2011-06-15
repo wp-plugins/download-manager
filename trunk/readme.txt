@@ -3,16 +3,16 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection, page, posts, post, widget, links, image, admin, sidebar, plugins, plugin, comments
 Requires at least: 2.0.2
-Tested up to: 3.1.2
+Tested up to: 3.2.0
  
 
  
-This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
+This plugin will help you to manage, track and control file downloads from your wordpress site.
    
 
 == Description ==
 
-This plugin will handle your downloadable files. You can set password and set access level any of your downloadable files from your wordpress site.
+This plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
 
 = Features =
@@ -26,11 +26,15 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	jquery popup for download page
 *	Tinymce button for short-code embed
 *	Widget for new downloads
-
+*	Multi-livel Categories
+*	Custom TinyMce Button
+*	Category embed short-code
+*	Advanced server file browser
  
-Discussion forum http://www.wpdownloadmanager.com/forum/
 
+Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforum&f=2.0
  
+
 
 == Installation ==
 
@@ -46,6 +50,13 @@ Discussion forum http://www.wpdownloadmanager.com/forum/
 N/A
 
 == Changelog ==
+
+= 2.0.9 =
+* added categroy feature
+* new popup style added
+* advanced server file browser added
+
+
 = 2.0.7 =
 * fixed bug with installation
 * fixed bug with icon

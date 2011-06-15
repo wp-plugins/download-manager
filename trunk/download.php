@@ -1,6 +1,15 @@
 <?php
-if($_GET['download']!=''){
-    $data = DMDB::getById('ahm_files',$_GET[download]);
+global $wpdb;
+$dl = (int)$_REQUEST['download'];
+if($dl>0){
+    $data = $wpdb->get_row("select * from ahm_files where id='$dl'",ARRAY_A);
+    if($_POST['password']==$data['password']&&isset($_POST['password'])){
+        $did = uniqid();
+        file_put_contents(dirname(__FILE__).'/cache/'.$did,serialize($data)); 
+        die($did);
+    }else if($_POST['password']!=$data['password']&&isset($_POST['password'])){
+        die('error');
+    }
 ?>
 <style>
 *{
@@ -17,7 +26,7 @@ form{text-align:center;}
 
 if($data){
     
-    echo "<h3><nobr>$data[title]</nobr></h3><p style='height:100px;overflow:auto;'>$data[description]</p>";
+    echo "<div style='min-weight:300px;min-height:200px;padding:30px;background:#fff;color:#000'><h1><nobr>$data[title]</nobr></h1><br/><p style='height:100px;overflow:auto;'>$data[description]</p>";
         /*
         if($_POST&&$data[password]==''){
         echo "<script>
@@ -26,17 +35,18 @@ if($data){
         ?>        
         <form method="post">
             <?php 
-                $did = uniqid();
+                
                 if($_POST['password']==$data['password']&&count($_POST)>0){
                     
-                    $_SESSION[$did] = $data;
-                    $_SESSION['UPLOAD_DIR'] = UPLOAD_DIR;
+                    
+                     
+                    
                     mysql_query("update ahm_files set `download_count`=`download_count`+1 where id='{$data[id]}'");
                     echo "Please Wait... Download starting in a while...
                     </form>
                     
                     <script>
-                    window.opener.location.href='".get_option('siteurl')."/wp-content/plugins/download-manager/process.php?did={$did}'; 
+                    window.opener.location.href='".get_option('siteurl')."/?wpdmact=process&did={$did}'; 
                     self.close();
                     </script>
                     ";     
@@ -46,15 +56,28 @@ if($data){
                     if($data['password']!=''){
                         if($_POST['password']!=$data['password']&&count($_POST)>0) echo "<span style='color:red'>Wrong password!</span><br>";
                 ?>
-                Enter Password: <input type="password" size="10" name="password" /> 
+                Enter Password: <input type="password" id="pass" size="10" name="password" />  
            <?php }else{?>
-           <input type="hidden" name="password" value="" /> 
+           <input type="hidden" id="pass" name="password" value="" /> 
            <?php }}
            
             ?>
-        <input type="submit" value="Download"/>
+        <input type="button" onclick="validate_pass()" value="Download"/>
+        <div id="err" style="color: red;"></div>
         </form>
-        
+        <script language="JavaScript">
+        <!--
+          function validate_pass(){
+              jQuery.post("<?php echo home_url('/'); ?>",{'download':'<?php echo $dl; ?>','password':jQuery('#pass').val()},function(res){                  
+                  if(res=='error') jQuery('#err').html('Password not matched');
+                  else
+                  location.href='<?php echo get_option('siteurl'); ?>/?wpdmact=process&did='+res; 
+                  
+              });
+          }
+        //-->
+        </script>
+        </div>
         <?php
         die();
    }
