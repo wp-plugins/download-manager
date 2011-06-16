@@ -54,6 +54,10 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 == Changelog ==
 
+= 2.0.10 =
+* fixed bug with server browser 
+* fixed bug with db table creation
+
 = 2.0.9 =
 * added categroy feature
 * new popup style added
