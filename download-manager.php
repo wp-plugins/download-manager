@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.9
+ * @version 2.0.10
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.9
+Version: 2.0.10
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -51,9 +51,11 @@ function wpdm_free_install(){
 
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       
-      dbDelta($sql);
-      dbDelta("ALTER TABLE `ahm_files` ADD `quota` INT NOT NULL");
-      dbDelta("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");
+      $wpdb->query($sql);
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `link_label` varchar(255) NOT NULL");
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `show_counter` tinyint(1) NOT NULL");      
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `quota` INT NOT NULL");
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");
       
    update_option('wpdm_access_level','level_10');
    wpdm_create_dir();
@@ -233,11 +235,11 @@ function wpdm_add_new_file(){
     }
     
     if($_POST){
-    
+    extract($_POST);
     if(is_uploaded_file($_FILES['media']['tmp_name'])){
         $info = pathinfo($_FILES['media']['name']);        
         //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
-        extract($_POST);
+        
         $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
         move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
         $file['file'] = $name;
@@ -546,9 +548,10 @@ if(is_admin()){
     add_action("admin_menu","wpdm_menu");
     include("wpdm-free-mce-button.php");
     wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');     
+    
 }else{
     wp_enqueue_script('jquery');  
-   wp_enqueue_script('11',plugins_url().'/download-manager/js/jquery.colorbox-min.js');         
+   wp_enqueue_script('11',plugins_url().'/download-manager/js/jquery.colorbox-min.js');            
    wp_enqueue_style('22',plugins_url().'/download-manager/css/colorbox.css');      
    add_action('wp_head','wpdm_front_js');
 }
