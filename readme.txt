@@ -27,7 +27,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	jquery popup for download page
 *	Tinymce button for short-code embed
 *	Widget for new downloads
-*	Multi-livel Categories
+*	Multi-level Categories
 *	Custom TinyMce Button
 *	Category embed short-code
 *	Advanced server file browser
