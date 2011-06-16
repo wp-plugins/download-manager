@@ -119,7 +119,7 @@ input{
 <div style="float: right;width:23%">
 
 <div class="postbox " id="upload_meta_box">
-<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Upload file(s) from PC</span></h3>
+<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Upload file from PC</span></h3>
 <div class="inside">
   
 <div id="currentfiles">
@@ -159,7 +159,7 @@ jQuery('#dcf').click(function(){
 </div>
 
 <div class="postbox " id="action">
-<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Add file(s) from server</span></h3>
+<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Add file from server</span></h3>
 <div class="inside">
 
 
