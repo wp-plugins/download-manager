@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.10
+ * @version 2.0.11
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.10
+Version: 2.0.11
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -85,9 +85,9 @@ function wpdm_downloadable($content){
      
     
     $sap = count($_GET)>0?'&':'?';
-    for($i=0;$i<count($matches[1]);$i++){
-    $id = $matches[1][$i];    
-    $data = $wpdb->query("select * from ahm_files were id='$id'",ARRAY_A);
+    for($i=0;$i<count($matches[1]);$i++){        
+    $id = $matches[1][$i];       
+    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);      
     $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
     $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in())
