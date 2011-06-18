@@ -45,7 +45,7 @@ input{
 <tr>
 <td valign="top"> 
 <div id="poststuff" class="postarea">
-                <?php the_editor(stripslashes($file['description']),'file[description]','file[description]', false); ?>
+                <?php the_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
                 </div>
@@ -63,7 +63,7 @@ input{
 <div class="inside">
 <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="frm">
 <tr id="link_label_row">    
-<td width="90px">Link Label:</td>
+<td width="110px">Link Label:</td>
 <td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?$file[link_label]:'Download'; ?>" name="file[link_label]" />
 </td></tr>
 <tr id="password_row">
@@ -74,7 +74,18 @@ input{
 <td>Stock&nbsp;Limit:</td>  
 <td><input size="10" style="width: 80px" type="text" name="file[quota]" value="<?php echo $file[quota]; ?>" /></td>
 </tr>
- 
+ <tr>
+<td>Download Count: </td>
+<td><input type="text" name="file[download_count]" value="<?php echo $file[download_count]?$file[download_count]:0; ?>" /></td>
+</tr>
+
+<tr>
+<td>Counter: </td>
+<td><select name="file[show_counter]">
+<option value="0">Hide</option>
+<option value="1" <?php if($file['show_counter']!=0) echo 'selected="selected"'; ?> >Show</option>
+</select></td>
+</tr>
 </table>
 <div class="clear"></div>
 </div>
