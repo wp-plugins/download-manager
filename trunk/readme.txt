@@ -54,6 +54,9 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 == Changelog ==
 
+= 2.0.11 =
+* download counter and download label issue fixed
+
 = 2.0.10 =
 * fixed bug with server browser 
 * fixed bug with db table creation
