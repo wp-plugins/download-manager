@@ -8,11 +8,13 @@ if(is_array($data)){
         
     //d$data = DMDB::getById('ahm_files',$_GET['download']);
     if(file_exists($data['file']))
-    $fname = $data['file'];
+    $fname = $data['file'];    
     else if(file_exists(UPLOAD_DIR . $data['file']))
     $fname = UPLOAD_DIR . $data['file'];
     else 
     die('File not found!');
+    
+    $wpdb->query("update ahm_files set download_count=download_count+1 where id='$data[id]'");
     
     $mime_types = array("323" => "text/h323",
                         "acx" => "application/internet-property-stream",
