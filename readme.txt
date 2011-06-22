@@ -54,6 +54,9 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 == Changelog ==
 
+= 2.0.12 =
+* frontend download counter issue adjusted
+
 = 2.0.11 =
 * download counter and download label issue fixed
 
