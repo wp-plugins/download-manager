@@ -54,6 +54,9 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 == Changelog ==
 
+= 2.0.13 =
+* access option restored
+
 = 2.0.12 =
 * frontend download counter issue adjusted
 

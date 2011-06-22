@@ -86,6 +86,14 @@ input{
 <option value="1" <?php if($file['show_counter']!=0) echo 'selected="selected"'; ?> >Show</option>
 </select></td>
 </tr>
+<tr>
+<td width="70">Access:</td>
+<td><select name="file[access]">
+    <option value="guest">All Visitors</option>
+    <option value="member" <?php if($file[access]=='memder') echo 'selected'; ?>>Members Only</option>    
+    </select>
+</td>
+</tr>
 </table>
 <div class="clear"></div>
 </div>
