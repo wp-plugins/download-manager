@@ -54,6 +54,9 @@ Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforu
 
 == Changelog ==
 
+= 2.0.14 =
+* Addded option for "Import Download Monitor files". You can use this option if you already using "Download Monitor" from earlier and want use "Download Manager" now. It'll import all files and categories from "Download Monitor" to "Download Manager"
+
 = 2.0.13 =
 * access option restored
 
