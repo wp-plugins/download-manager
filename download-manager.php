@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.13
+ * @version 2.0.14
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.13
+Version: 2.0.14
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -52,8 +52,10 @@ function wpdm_free_install(){
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       
       $wpdb->query($sql);
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `` varchar(255) NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `link_label` varchar(255) NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `show_counter` tinyint(1) NOT NULL");      
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `quota` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");
       
@@ -73,6 +75,47 @@ function wpdm_new_packages($show=5, $show_count=true){
         $url = home_url("/?download={$d[id]}");  
         echo "<li><a  class='wpdm-popup' rel='colorbox' title='$d[title]' href='$url'>{$d[title]}</a> $sc</li>\r\n";
     }
+}
+
+function import_download_monitor(){
+    global $wpdb;
+    $data = $wpdb->get_results("select * from {$wpdb->prefix}download_monitor_files");    
+    if($data){
+    foreach($data as $d){
+        $tdata = $wpdb->get_results("select t.name from {$wpdb->prefix}download_monitor_taxonomies t,{$wpdb->prefix}download_monitor_relationships r where t.taxonomy='category' and t.id=r.taxonomy_id and r.download_id={$d->id}");
+        $ct = array();
+        foreach($tdata as $c){
+            $ctu = strtolower(preg_replace("/([^a-zA-Z0-9\-]+)/","-", $c->name));
+            $ct[] = $ctu;
+            $allc["$ctu"] = array('title'=>$c->name);
+        }
+        $wpdm = array(
+            'title'=>$d->title,
+            'description'=>$d->file_description,
+            'file'=>$d->filename,
+            'password'=>'',
+            'download_count'=>$d->hits,
+            'access'=> ($d->member?'member':'guest'),
+            'show_counter'=>'1',
+            'quota'=>0,
+            'category' => serialize($ct),
+            'link_label'=>'Download'
+        );
+        $wpdb->insert('ahm_files', $wpdm);
+    }
+    $tpldata = maybe_unserialize(get_option('_fm_categories'));
+    if(!$tpldata)  $tpldata = array();
+    $tpldata = $tpldata + $allc;
+    update_option('_fm_categories',@serialize($tpldata)); 
+    }
+    echo "
+    <script>
+    location.href='admin.php?page=file-manager';
+    </script>
+    ";
+    die();
+    
+    
 }
 
    
@@ -250,6 +293,7 @@ function wpdm_add_new_file(){
         $file['category'] = serialize($file['category']);
         $wpdb->insert("ahm_files", $file); 
         if(!$wpdb->insert_id){
+            $wpdb->show_errors();
             $wpdb->print_error();
             die();               
         }
