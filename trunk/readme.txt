@@ -16,8 +16,6 @@ This plugin will help you to manage, track and control file downloads from your 
 This plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
 
- 
-
 = Features =
 *	Control who can access to download
 *	Password protection
@@ -35,8 +33,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Advanced server file browser
 *	"Download Monitor" to "Download Manager" files Importer 
 
-Discussion forum http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforum&f=2.0
- 
+= Discussion forum for Download Manager =
+`http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforum&f=2.0`
+
+= My other plugins =
+`http://wordpress.org/extend/plugins/profile/codename065` 
 
 
 == Installation ==
