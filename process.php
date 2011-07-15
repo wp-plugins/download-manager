@@ -1,4 +1,10 @@
 <?php
+ 
+ if(!file_exists(dirname(__FILE__).'/cache/'))
+    die("<code>".dirname(__FILE__).'/cache/</code> is missing!' );
+    
+    if(!is_writable(dirname(__FILE__).'/cache/'))
+    die("<code>".dirname(__FILE__).'/cache/</code> must have to be writable!' );
     
 $data = @ unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
 
