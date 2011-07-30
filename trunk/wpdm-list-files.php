@@ -20,7 +20,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     
 <h2>Manage Files 
 <a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
-<a class="button add-new-h2" href="admin.php?page=file-manager&task=import_download_monitor">Import Files from Download Monitor</a> 
+<a class="button add-new-h2" href="admin.php?page=file-manager&task=wpdm_import_download_monitor">Import Files from Download Monitor</a> 
 </h2>
 <div class="updated" style="padding:5px 10px;position: absolute;color:#008000;font-weight:bold;margin:-35px 0 0 550px">
  <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/download/" target="_blank">Get download manager premium version now! only @ 30.00 $ </a> | 

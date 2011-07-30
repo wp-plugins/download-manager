@@ -232,9 +232,10 @@ if(is_array($data)){
     if ($file) {
 
                                        
-        print(fread($file, $fsize));
-
-        flush();
+       while (!feof($file)) {
+            echo fread($file, 8192);
+        }
+      fclose($file);
 
         if (connection_status()!=0) {
 
@@ -247,6 +248,7 @@ if(is_array($data)){
      
 
       @fclose($file);
+      
 
     }
 

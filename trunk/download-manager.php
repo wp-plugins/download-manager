@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.15
+ * @version 2.0.16
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.15
+Version: 2.0.16
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -26,7 +26,7 @@ include("process.php");
 
 include("download.php");
 include("functions.php");
-include("class.pagination.php");
+include("class.wpdmpagination.php");
 include("wpdm-server-file-browser.php");
   
 if(!$_POST)    $_SESSION['download'] = 0;
@@ -390,7 +390,7 @@ function wpdm_embed_category($id){
     $pages = ceil($total/$item_per_page);
     $page = $_GET['cp']?$_GET['cp']:1;
     $start = ($page-1)*$item_per_page;
-    $pag = new Pagination();             
+    $pag = new wpdmpagination();             
     $pag->items($total);
     $pag->limit($item_per_page);
     $pag->currentPage($page);
