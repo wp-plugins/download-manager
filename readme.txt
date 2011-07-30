@@ -57,9 +57,16 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
-= 2.0.15 =
+= 2.0.16 =
+* memory limit error fixed
+* tinymce issue adjusted
 * download url issue adjusted
 * `file not found` issue adjusted
+
+= 2.0.15 =
+
+* pagination class conflict issue resolved
+* adjusted a minor database bug
 
 = 2.0.14 =
 * Addded option for "Import Download Monitor files". You can use this option if you already using "Download Monitor" from earlier and want use "Download Manager" now. It'll import all files and categories from "Download Monitor" to "Download Manager"
