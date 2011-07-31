@@ -601,8 +601,8 @@ if(is_admin()){
    add_action('wp_head','wpdm_front_js');
 }
 
-if($_GET['page']=='file-manager/add-new-file'||$_GET['page']=='file-manager'||$_GET['page']=='file-manager/templates')
-add_filter('admin_head','wpdm_tinymce');
+//if($_GET['page']=='file-manager/add-new-file'||$_GET['page']=='file-manager'||$_GET['page']=='file-manager/templates')
+//add_filter('admin_head','wpdm_tinymce');
 
 
 
