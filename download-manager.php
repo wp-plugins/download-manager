@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.16
+ * @version 2.0.17
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.16
+Version: 2.0.17
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -458,8 +458,8 @@ function wpdm_tinymce()
   wp_print_scripts('editor');
   wp_print_scripts('editor-functions');
   add_thickbox();
-  wp_tiny_mce();
-  wp_admin_css();
+  //wp_tiny_mce();
+  //wp_admin_css();
   wp_enqueue_script('utils');
   do_action("admin_print_styles-post-php");
   do_action('admin_print_styles');
@@ -601,8 +601,8 @@ if(is_admin()){
    add_action('wp_head','wpdm_front_js');
 }
 
-//if($_GET['page']=='file-manager/add-new-file'||$_GET['page']=='file-manager'||$_GET['page']=='file-manager/templates')
-//add_filter('admin_head','wpdm_tinymce');
+if($_GET['page']=='file-manager/add-new-file')
+add_filter('admin_head','wpdm_tinymce');
 
 
 

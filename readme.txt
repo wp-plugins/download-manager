@@ -57,6 +57,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.0.17 =
+* server file browser issue fixed
+
 = 2.0.16 =
 * memory limit error fixed
 * tinymce issue adjusted
