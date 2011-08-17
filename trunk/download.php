@@ -3,6 +3,10 @@ global $wpdb;
 $dl = (int)$_REQUEST['download'];
 if($dl>0){
     $data = $wpdb->get_row("select * from ahm_files where id='$dl'",ARRAY_A);
+    if($data['access']=='member'&&!is_user_logged_in()){
+        $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
+        die("<div style='padding:20px 30px;background:#fff'><a href='".get_option('siteurl')."/wp-login.php'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">".$wpdm_login_msg."</a></div>") ;
+    }
     if($_POST['password']==$data['password']&&isset($_POST['password'])){
         $did = uniqid();
         file_put_contents(dirname(__FILE__).'/cache/'.$did,serialize($data)); 
@@ -12,11 +16,7 @@ if($dl>0){
     }
 ?>
 <style>
-*{
-    font-family: tahoma;
-    letter-spacing: 0.5px;
-}
-
+ 
 input,form,p{
     font-size:9pt;    
 }
