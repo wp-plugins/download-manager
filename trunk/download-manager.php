@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.17
+ * @version 2.0.18
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.17
+Version: 2.0.18
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -424,7 +424,8 @@ foreach($ndata as $data){
             //foreach( $data as $ind=>$val ) $reps["[".$ind."]"] = $val;
             //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));  
             $template = "<li><b>$data[page_link]</b><br/>$data[counter]</li>";
-            
+            if($data['access']=='member'&&!is_user_logged_in())
+            $template = "<li><b><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">$data[title]</a></b><br/>login to download</li>";
             $html .= $template;
           
             
