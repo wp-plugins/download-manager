@@ -57,6 +57,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.0.18 =
+* members download issue fixed
+
 = 2.0.17 =
 * server file browser issue fixed
 
