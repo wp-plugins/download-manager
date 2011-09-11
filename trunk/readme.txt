@@ -57,6 +57,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.1.0 =
+* adjusted category hirarchy issue on parent selection
+* download monitor importer adjusted
+
 = 2.0.19 =
 * members download issue fixed with widget
 

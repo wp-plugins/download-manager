@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.0.19
+ * @version 2.1.0
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.0.19
+Version: 2.1.0
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -80,7 +80,7 @@ function wpdm_new_packages($show=5, $show_count=true){
     }
 }
 
-function import_download_monitor(){
+function wpdm_import_download_monitor(){
     global $wpdb;
     $data = $wpdb->get_results("select * from {$wpdb->prefix}download_monitor_files");    
     if($data){
@@ -172,14 +172,21 @@ function wpdm_cblist_categories($parent="", $level = 0, $sel = array()){
    }
 }
 
-function wpdm_dropdown_categories($parent="", $level = 0){
+function wpdm_dropdown_categories($parent="", $level = 0, $sel='',$cid='',$class=array()){
    $cats = maybe_unserialize(get_option('_fm_categories')); 
-   
+   if(!is_array($cats)) $cats = array();   
    foreach($cats as $id=>$cat){
        $pres = str_repeat("&mdash;", $level);
-       if($cat['parent']==$parent){       
-       echo "<option value='$id' />{$pres} $cat[title]</option>\n";
-       wpdm_dropdown_categories($id,$level+1, $sel);}
+       array_push($class,$parent);
+       if($parent=='') $class = array();
+       $class = array_unique($class);
+       $cssclass = implode(" ",$class);
+       if($cat['parent']==$parent){
+       if($sel==$id)    
+       echo "<option class='level_{$level} $id $cssclass' selected=selected value='$id'>{$pres} $cat[title]</option>\n";
+       else
+       echo "<option class='level_{$level} $id $cssclass' value='$id'>{$pres} $cat[title]</option>\n";  
+       wpdm_dropdown_categories($id,$level+1, $sel, $cid, $class);}
    }
    
 } 
