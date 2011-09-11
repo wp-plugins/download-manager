@@ -102,7 +102,7 @@ input{
                 Parent:<br />
                 <select name="cat[parent]">
                 <option value="">Top Level Category</option>
-                <?php wpdm_cat_dropdown_tree(); ?>
+                <?php wpdm_dropdown_categories('',0,$cat['parent']); ?>
                 </select>                
                 <br>                
                 <br>                
@@ -118,3 +118,8 @@ input{
  
 
 </div>
+<script language="JavaScript">
+<!--
+  jQuery('.<?php echo $_GET['cid'];?>').attr('disabled','disabled');
+//-->
+</script>
