@@ -55,14 +55,14 @@ function wpdm_free_install(){
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       
       $wpdb->query($sql);
-      $wpdb->query("ALTER TABLE `ahm_files` ADD `` varchar(255) NOT NULL");
+      //$wpdb->query("ALTER TABLE `ahm_files` ADD `` varchar(255) NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `link_label` varchar(255) NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `show_counter` tinyint(1) NOT NULL");      
       $wpdb->query("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `quota` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");
       
-   update_option('wpdm_access_level','level_10');
+   update_option('wpdm_access_level','administrator');
    wpdm_create_dir();
       
 }
@@ -593,8 +593,9 @@ function wpdm_copyold(){
 
 function wpdm_menu(){
     add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options');
-    add_submenu_page( 'file-manager', 'File Manager', 'Manage', get_option('wpdm_access_level'), 'file-manager', 'wpdm_admin_options');    
-    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', get_option('wpdm_access_level'), 'file-manager/add-new-file', 'wpdm_add_new_file');    
+    $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
+    add_submenu_page( 'file-manager', 'File Manager', 'Manage', $access, 'file-manager', 'wpdm_admin_options');    
+    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', $access, 'file-manager/add-new-file', 'wpdm_add_new_file');    
     add_submenu_page( 'file-manager', 'Categories &lsaquo; File Manager', 'Categories', 'administrator', 'file-manager/categories', 'wpdm_categories');        
     add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', 'administrator', 'file-manager/settings', 'wpdm_settings');    
     
