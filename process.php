@@ -5,12 +5,19 @@
     
     if(!is_writable(dirname(__FILE__).'/cache/'))
     die("<code>".dirname(__FILE__).'/cache/</code> must have to be writable!' );
-    
-$data = @ unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
+
+if(is_numeric($_GET['did'])){        
+    $data = @unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
+}
+else {
+    $id = array_shift(explode('.',base64_decode($_GET['did'])));
+    global $wpdb;
+    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
+}
 
 if(is_array($data)){    
     
-    unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
+    @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
         
     //d$data = DMDB::getById('ahm_files',$_GET['download']);
     if(file_exists($data['file']))

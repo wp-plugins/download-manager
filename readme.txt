@@ -8,13 +8,15 @@ License: GPLv2 or later
  
 
  
-This plugin will help you to manage, track and control file downloads from your wordpress site.
+WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site.
    
 
 == Description ==
 
-This plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
-You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content.
+WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
+You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
+
+`v2.1.1 comes with new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], use the short-code to place direct download link to files without showing popup`
 
 = Features =
 *	Control who can access to download
@@ -56,7 +58,8 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 3. Categories
 
 == Changelog ==
-
+= 2.1.1 =
+* added new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], use the short-code to place direct download link to files without showing popup
 = 2.1.0 =
 * adjusted category hirarchy issue on parent selection
 * download monitor importer adjusted

@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.1.0
+ * @version 2.1.1
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.1.0
+Version: 2.1.1
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -21,8 +21,11 @@ $d = implode('/', $d);
 
 define('UPLOAD_DIR',$d.'/uploads/download-manager-files/');  
 define('UPLOAD_BASE',$d.'/uploads/');  
-if($_GET['wpdmact']=='process')
-include("process.php");
+
+function wpdm_process(){
+    if($_GET['wpdmact']=='process')
+    include("process.php");
+}
 
 include("functions.php");
 include("class.wpdmpagination.php");
@@ -591,6 +594,18 @@ function wpdm_copyold(){
     <?php
 }
 
+function wpdm_hotlink($params){
+    global $wpdb;
+    extract($params);
+    if($id=='') return;
+    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
+    if($data['id']=='') return;
+    $link_label = $link_label?$link_label:$data['link_label'];
+    $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); 
+    return "<a href='$url'>$link_label</a>";
+    
+}
+
 function wpdm_menu(){
     add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options');
     $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
@@ -607,7 +622,7 @@ if(is_admin()){
     wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');     
     
 }else{
-    wp_enqueue_script('jquery');  
+   wp_enqueue_script('jquery');  
    wp_enqueue_script('11',plugins_url().'/download-manager/js/jquery.colorbox-min.js');            
    wp_enqueue_style('22',plugins_url().'/download-manager/css/colorbox.css');      
    add_action('wp_head','wpdm_front_js');
@@ -616,9 +631,13 @@ if(is_admin()){
 if($_GET['page']=='file-manager/add-new-file')
 add_filter('admin_head','wpdm_tinymce');
 
-add_Action("wp","wpdm_download_info");
+add_action("wp","wpdm_download_info");
 
 add_filter( 'the_content', 'wpdm_downloadable');
+
+add_shortcode('wpdm_hotlink','wpdm_hotlink');
+
+add_action('init','wpdm_process');
 
 include("wpdm-widgets.php");
 
