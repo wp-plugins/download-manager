@@ -128,9 +128,9 @@ function wpdm_import_download_monitor(){
 
 function wpdm_downloadable($content){
     global $wpdb; 
-    //$id = 2;
+     
     preg_match_all("/\{filelink\=([^\}]+)\}/", $content, $matches);
-    //
+     
     $home = home_url('/');
     
     $sap = count($_GET)>0?'&':'?';
