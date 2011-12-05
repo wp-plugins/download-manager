@@ -1,17 +1,19 @@
 <?php
- 
+global $wpdb; 
  if(!file_exists(dirname(__FILE__).'/cache/'))
     die("<code>".dirname(__FILE__).'/cache/</code> is missing!' );
     
     if(!is_writable(dirname(__FILE__).'/cache/'))
     die("<code>".dirname(__FILE__).'/cache/</code> must have to be writable!' );
-
-if(is_numeric($_GET['did'])){        
+$did = explode('.',base64_decode($_GET['did']));
+$id = array_shift($did);
+if(!is_numeric($id)){        
     $data = @unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
+   
 }
-else {
-    $id = array_shift(explode('.',base64_decode($_GET['did'])));
-    global $wpdb;
+else {    
+    
+    
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
 }
 

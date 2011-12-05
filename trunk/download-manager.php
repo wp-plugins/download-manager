@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.1.1
+ * @version 2.1.2
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.1.1
+Version: 2.1.2
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -142,7 +142,9 @@ function wpdm_downloadable($content){
     if($data['access']=='member'&&!is_user_logged_in())
     $matches[1][$i] = "<a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">".$wpdm_login_msg."</a>";
     else {
-    $matches[1][$i] = "<a class='wpdm-popup' rel='colorbox' title='{$data[title]}' href='{$home}?download={$id}' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/icon/download.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">$link_label</a>";
+    if($data['password']=='') { $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); $classrel = ""; }
+    else { $url = home_url('/?download='.$id);  $classrel = " class='wpdm-popup' rel='colorbox' "; }
+    $matches[1][$i] = "<a $classrel title='{$data[title]}' href='$url' style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/icon/download.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">$link_label</a>";
     if($data['show_counter']!=0)
     $matches[1][$i] .= "<br><small style='margin-left:30px;'>Downloaded $data[download_count] times</small>";
     }
