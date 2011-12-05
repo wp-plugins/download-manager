@@ -3,7 +3,7 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection, ad, admin, administration, ads, adsense, advertising, affiliate, AJAX, amazon, analytics, anti-spam, api, archive, atom, audio, authentication, author, automatic, blog, blogroll, book, bookmark, bookmarking, bookmarks, buddypress, button, calendar, captcha, categories, category, cms, code, comment, comments, community, contact, content, counter, CSS, custom, dashboard, database, date, del.icio.us, Digg, ecommerce, edit, editor, email, embed, event, events, excerpt, Facebook, feed, feeds, filter, flash, flickr, form, Formatting, free, gallery, google, html, image, images, integration, iphone, javascript, jquery, language, lightbox, Like, link, links, list, login, mail, manage, maps, media, menu, meta, mobile, mp3, multisite, music, myspace, navigation, network, News, nofollow, notification, page, pages, password, paypal, performance, permalink, photo, photos, php, picture, pictures, plugin, plugins, Post, posts, profile, quotes, random, Reddit, redirect, register, registration, related, rss, scroll, search, security, seo, Share, sharing, shortcode, sidebar, simple, slideshow, social, social, bookmarking, spam, statistics, stats, Style, tag, tags, template, text, theme, themes, thumbnail, time, TinyMCE, title, tracking, tweet, twitter, update, upload, url, user, users, video, widget, widgets, wordpress, wpmu, xml, yahoo, youtube
 Requires at least: 2.0.2
-Tested up to: 3.2.0
+Tested up to: 3.2.1
 License: GPLv2 or later
  
 
@@ -16,7 +16,9 @@ WordPress Download Manager plugin will help you to manage, track and control fil
 WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
-`v2.1.1 comes with new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], use the short-code to place direct download link to files without showing popup`
+`v2.1.2 comes with new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], 
+use the short-code to place direct download link to files without showing popup
+also enabled 1 click download for files without password`
 
 = Features =
 *	Control who can access to download
@@ -58,6 +60,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 3. Categories
 
 == Changelog ==
+= 2.1.2 =
+* fixed download issues with 2.1.1
+* acitvated direct download without apearing popup for the files without password, so popup will apear only for files with password
 = 2.1.1 =
 * added new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], use the short-code to place direct download link to files without showing popup
 = 2.1.0 =
