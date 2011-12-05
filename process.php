@@ -230,11 +230,7 @@ if(is_array($data)){
     header("Content-Transfer-Encoding: binary");
     header("Content-Length: " . $fsize);
     
-    
-
-// download
-
-// @readfile($file_path);
+ 
 
     $file = @fopen($fname,"rb");
 
