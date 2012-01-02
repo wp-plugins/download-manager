@@ -13,7 +13,7 @@ function wpdm_tinyplugin_add_button($buttons)
 
 function wpdm_tinyplugin_register($plugin_array)
 {
-    $url = trim(get_bloginfo('url'), "/")."/wp-content/plugins/download-manager/editor_plugin.js";
+    $url = plugins_url("download-manager/editor_plugin.js");
 
     $plugin_array['wpdm_tinyplugin'] = $url;
     return $plugin_array;

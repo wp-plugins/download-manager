@@ -61,6 +61,9 @@ also enabled 1 click download for files without password`
 
 == Changelog ==
 
+= 2.1.3 =
+* fixed tinymce button and editor issue
+
 = 2.1.2 =
 * fixed download issues with 2.1.1
 * acitvated direct download without apearing popup for the files without password, so popup will apear only for files with password
