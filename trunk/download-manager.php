@@ -2,14 +2,14 @@
 /**
  * @package Download Manager
  * @author Shaon
- * @version 2.1.2
+ * @version 2.1.3
  */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.1.2
+Version: 2.1.3
 Author URI: http://www.wpdownloadmanager.com/
 */
 
