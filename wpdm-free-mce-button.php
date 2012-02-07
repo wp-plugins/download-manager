@@ -64,6 +64,21 @@ fieldset{padding: 10px;}
 </head>
 <body>    <br>
 
+<input type="checkbox" id="title" value="1"> <label for="title">Show Title</label> 
+<input type="checkbox" id="desc" value="1"> <label for="desc">Show Description</label> <br/>
+Template: <select id="template">
+<option value="facebook">Facebook</option>
+<option value="bluebox">Blue Box</option>
+</select>
+<br />
+Drop Shadow Effect: <select id="shadow">
+<option value="">None</option>
+<option value="drop-shadow raised">Raised</option>
+<option value="drop-shadow lifted">Lifted</option>
+<option value="drop-shadow curved curved-hz-2">Curved</option>
+</select>
+<br/>
+<br/>
 <fieldset><legend>Embed File</legend>
     <select class="button input" id="fl">
     <?php
@@ -78,7 +93,7 @@ fieldset{padding: 10px;}
         
     }
 ?>
-    </select>
+    </select>    
     <input type="submit" id="addtopost" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>   <br>
 <fieldset><legend>Embed Category</legend>
@@ -94,14 +109,21 @@ fieldset{padding: 10px;}
 <script type="text/javascript" src="<?php echo home_url('/wp-includes/js/tinymce/tiny_mce_popup.js'); ?>"></script>
                 <script type="text/javascript">
                     /* <![CDATA[ */                    
+                    var title ='', desc = '';
                     jQuery('#addtopost').click(function(){
-                    var win = window.dialogArguments || opener || parent || top;                
-                    win.send_to_editor('{filelink='+$('#fl').val()+'}');
+                    var win = window.dialogArguments || opener || parent || top;                     
+                    if(jQuery('#title').attr("checked")==true) title = ' title="true" ';
+                    if(jQuery('#desc').attr("checked")==true) desc = ' desc="true" ';  
+                    var shadow = jQuery('#shadow').val();  
+                    var template = ' template="'+jQuery('#template').val()+' '+shadow+'" ';
+                    win.send_to_editor('[wpdm_file id='+$('#fl').val()+title+desc+template+']');
                     tinyMCEPopup.close();
                     return false;                   
                     });
-                    jQuery('#addtopostc').click(function(){
+                    jQuery('#addtopostc').click(function(){              
                     var win = window.dialogArguments || opener || parent || top;                
+                    if(jQuery('#title').attr("checked")==true) title = ' title="true" ';
+                    if(jQuery('#desc').attr("checked")==true) desc = ' desc="true" ';
                     win.send_to_editor('{wpdm_category='+jQuery('#flc').val()+'}');
                     tinyMCEPopup.close();
                     return false;                   

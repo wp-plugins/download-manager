@@ -1,9 +1,9 @@
-=== Download Manager ===
+=== WordPress Download Manager ===
 Contributors: Shaon
-Donate link: 
+Donate link: http://www.wpdownloadmanager.com
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection, ad, admin, administration, ads, adsense, advertising, affiliate, AJAX, amazon, analytics, anti-spam, api, archive, atom, audio, authentication, author, automatic, blog, blogroll, book, bookmark, bookmarking, bookmarks, buddypress, button, calendar, captcha, categories, category, cms, code, comment, comments, community, contact, content, counter, CSS, custom, dashboard, database, date, del.icio.us, Digg, ecommerce, edit, editor, email, embed, event, events, excerpt, Facebook, feed, feeds, filter, flash, flickr, form, Formatting, free, gallery, google, html, image, images, integration, iphone, javascript, jquery, language, lightbox, Like, link, links, list, login, mail, manage, maps, media, menu, meta, mobile, mp3, multisite, music, myspace, navigation, network, News, nofollow, notification, page, pages, password, paypal, performance, permalink, photo, photos, php, picture, pictures, plugin, plugins, Post, posts, profile, quotes, random, Reddit, redirect, register, registration, related, rss, scroll, search, security, seo, Share, sharing, shortcode, sidebar, simple, slideshow, social, social, bookmarking, spam, statistics, stats, Style, tag, tags, template, text, theme, themes, thumbnail, time, TinyMCE, title, tracking, tweet, twitter, update, upload, url, user, users, video, widget, widgets, wordpress, wpmu, xml, yahoo, youtube
 Requires at least: 2.0.2
-Tested up to: 3.3
+Tested up to: 3.3.1
 License: GPLv2 or later
  
 
@@ -16,19 +16,19 @@ WordPress Download Manager plugin will help you to manage, track and control fil
 WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
-`v2.1.2 comes with new shortcode [wpdm_hotlink id=file_id_required link_label=any_text_optional], 
-use the short-code to place direct download link to files without showing popup
-also enabled 1 click download for files without password`
+`v2.2.0 ! Yes, its totally redesigned to give you better experience`
 
 = Features =
 *	Control who can access to download
 *	Password protection
 *	Download Counter
-*	control who can user this plugin (author, editor, administrator)
+*	Control who can user this plugin (author, editor, administrator)
 *	Custom download link icon
 *	Custom link label
-*	shortcode for download link
-*	jquery popup for download page
+*	Shortcode for download link
+*	Shortcode for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
+*	New templates for file links
+*	WP Thickbox popup for download page
 *	Tinymce button for short-code embed
 *	Widget for new downloads
 *	Multi-level Categories
@@ -51,18 +51,22 @@ also enabled 1 click download for files without password`
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 
-== Frequently Asked Questions ==
-
 
 == Screenshots ==
 1. Create new download package
 2. Manage download packages
 3. Categories
+4. Frton-end link template preview
 
 == Changelog ==
 
+= 2.2.0 =
+* New templates for file links
+* WP Thickbox popup for download page
+* Upgraded tiny-mce butotn
+
 = 2.1.3 =
-* fixed tinymce button and editor issue
+* update short-code from {filelink=fileid} to [file id=fileid]. also support for old styles shortcode exists.
 
 = 2.1.2 =
 * fixed download issues with 2.1.1
@@ -198,9 +202,3 @@ also enabled 1 click download for files without password`
 * Fixed security bug with direct download protection
 
 
-== Arbitrary section ==
-N/A
-
-== A brief Markdown Example ==
-
-== Upgrade Notice ==
