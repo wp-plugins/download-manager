@@ -37,8 +37,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Advanced server file browser
 *	"Download Monitor" to "Download Manager" files Importer 
 
-= Discussion forum for Download Manager =
-`http://www.wpdownloadmanager.com/forum/?vasthtmlaction=viewforum&f=2.0`
+ 
 
 = My other plugins =
 `http://wordpress.org/extend/plugins/profile/codename065` 
