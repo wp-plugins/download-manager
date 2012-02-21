@@ -6,7 +6,7 @@ Requires at least: 2.0.2
 Tested up to: 3.3.1
 License: GPLv2 or later
  
-
+  
  
 WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site.
    
