@@ -209,8 +209,7 @@ border-top-right-radius: 1px;
 }
 
 .wpdm_file .cont{
-    padding:5px 10px;
-    background: #fff;
+    padding:5px 10px;    
     -webkit-border-bottom-right-radius: 3px;
 -webkit-border-bottom-left-radius: 3px;
 -moz-border-radius-bottomright: 3px;
@@ -248,6 +247,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
     letter-spacing: 0.5px;
 }
  
+.facebook .cont {
+    background: #fff;  
+}
 .facebook .btn_outer {
     background: none repeat scroll 0 0 #D6E3FF;
     border: 1px solid #3b5998;

@@ -16,7 +16,7 @@ WordPress Download Manager plugin will help you to manage, track and control fil
 WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
-`v2.2.0 ! Yes, its totally redesigned to give you better experience`
+`v2.2.x ! Yes, its totally redesigned to give you better experience`
 
 = Features =
 *	Control who can access to download
@@ -58,6 +58,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 4. Frton-end link template preview
 
 == Changelog ==
+
+= 2.2.1 =
+* adjusted issue with template selection in tinymce popup
+* hyperlink issue with description fixed
+* adjusted css styling issue
 
 = 2.2.0 =
 * New templates for file links

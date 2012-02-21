@@ -67,6 +67,7 @@ fieldset{padding: 10px;}
 <input type="checkbox" id="title" value="1"> <label for="title">Show Title</label> 
 <input type="checkbox" id="desc" value="1"> <label for="desc">Show Description</label> <br/>
 Template: <select id="template">
+<option value="">None</option>
 <option value="facebook">Facebook</option>
 <option value="bluebox">Blue Box</option>
 </select>
@@ -116,6 +117,7 @@ Drop Shadow Effect: <select id="shadow">
                     if(jQuery('#desc').attr("checked")==true) desc = ' desc="true" ';  
                     var shadow = jQuery('#shadow').val();  
                     var template = ' template="'+jQuery('#template').val()+' '+shadow+'" ';
+                    if(jQuery('#template').val()=='') template = "";
                     win.send_to_editor('[wpdm_file id='+$('#fl').val()+title+desc+template+']');
                     tinyMCEPopup.close();
                     return false;                   
