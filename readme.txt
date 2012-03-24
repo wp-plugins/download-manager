@@ -60,6 +60,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 == Changelog ==
 
 = 2.2.1 =
+* setHtaccess funtion error fixed
+* optimized front-end css
+* additional button template added
+
+= 2.2.1 =
 * adjusted issue with template selection in tinymce popup
 * hyperlink issue with description fixed
 * adjusted css styling issue

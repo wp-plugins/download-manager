@@ -69,7 +69,7 @@ fieldset{padding: 10px;}
 Template: <select id="template">
 <option value="">None</option>
 <option value="facebook">Facebook</option>
-<option value="bluebox">Blue Box</option>
+<option value="bluebox">Blue Box</option> 
 </select>
 <br />
 Drop Shadow Effect: <select id="shadow">

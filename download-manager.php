@@ -1,15 +1,10 @@
 <?php 
-/**
- * @package Download Manager
- * @author Shaon
- * @version 2.2.1
- */
 /*
 Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.1
+Version: 2.2.2
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -27,9 +22,9 @@ function wpdm_process(){
     include("process.php");
 }
 
-include("functions.php");
-include("class.wpdmpagination.php");
-include("wpdm-server-file-browser.php");
+include(dirname(__FILE__)."/functions.php");
+include(dirname(__FILE__)."/class.wpdmpagination.php");
+include(dirname(__FILE__)."/wpdm-server-file-browser.php");
   
 if(!$_POST)    $_SESSION['download'] = 0;
 
@@ -141,27 +136,47 @@ function wpdm_downloadable_nsc($params){
     if($desc=='true') $desc = $data['description']."</br>";
     else  $desc = '';
     $desc = stripslashes($desc);
+    if($data['show_counter']!=0)  $hc= 'has-counter';
+    if($template=='') $template = 'wpdm-only-button';
     $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
     $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in()){    
-        //$html = "<a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">".$wpdm_login_msg."</a>";
-    $loginform = "<div class=passit>Login Required<br/><input placeholder='Username' type=text id='username_{$id}' size=15 class='inf' /> <input placeholder='Password' class='inf' type=password id='password_{$id}' size=15 /><span class='perror'></span></div>";    
-    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$loginform}<div class='btn_outer'><a class='btn_left $classrel' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";    
-    if($data['show_counter']!=0)
-    $html .= "<span class='btn_right'>$data[download_count] downloads</span>";    
-    else
-    $html .= "<span class='btn_right'><img src='".plugins_url('/download-manager/icon/download.png')."'  height='16px'/></span>";                 
-    $html .= "</div><div class='clear'></div></div></div>";
+    $url = get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI'];
+    $uuid = uniqid();
+    /*$args = array(
+        'echo' => false,
+        'redirect' => $_SERVER['REQUEST_URI'], 
+        'form_id' => 'loginform_'.$id,
+        'label_username' => __( 'Username' ),
+        'label_password' => __( 'Password' ),
+        'label_remember' => __( 'Remember Me' ),
+        'label_log_in' => __( 'Log In' ),
+        'id_username' => 'user_login',
+        'id_password' => 'user_pass',
+        'id_remember' => 'rememberme_'.$id,
+        'id_submit' => 'wp-submit_'.$id,
+        'remember' => true,
+        'value_username' => NULL,
+        'value_remember' => false );
+    $loginform = "<div id='wpdm-login-form' class='wpdm-login-form'>".wp_login_form( $args ).'</div>';*/
+    
+    //"<div class=passit>Login Required<br/><input placeholder='Username' type=text id='username_{$id}' size=15 class='inf' /> <input placeholder='Password' class='inf' type=password id='password_{$id}' size=15 /><span class='perror'></span></div>";    
+    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$loginform}<div class='btn_outer'><div class='btn_outer_c'><a class='btn_left $classrel $hc login-please' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";    
+    //if($data['show_counter']!=0)
+    //$html .= "<span class='btn_right counter'>$data[download_count] downloads</span>";    
+    //else
+    $html .= "<span class='btn_right counter'>Login Required</span>";                 
+    $html .= "</div></div><div class='clear'></div></div></div>";
     }
     else {
     if($data['password']=='') { $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); $classrel = ""; }
     else { $classrel='haspass'; /*$url = home_url('/?download='.$id);*/ $url = home_url('/');  $password_field = "<div class=passit>Enter password<br/><input type=password id='pass_{$id}' size=15 /><span class='perror'></span></div>"; }
-    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><a class='btn_left $classrel' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
+    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
     if($data['show_counter']!=0)
-    $html .= "<span class='btn_right'>$data[download_count] downloads</span>";    
+    $html .= "<span class='btn_right counter'>$data[download_count] downloads</span>";    
     else
-    $html .= "<span class='btn_right'><img src='".plugins_url('/download-manager/icon/download.png')."'  height='16px'/></span>";             
-    $html .= "</div><div class='clear'></div></div></div>";
+    $html .= "<span class='btn_right'>&nbsp;</span>";             
+    $html .= "</div></div><div class='clear'></div></div></div>";
     }        
     return $html;    
 }
@@ -257,7 +272,7 @@ function wpdm_admin_options(){
     
     
     if(!file_exists(UPLOAD_DIR.'.htaccess'))
-    setHtaccess();
+    wpdm_set_htaccess();
     
     if($_GET[task]!='')
     return call_user_func($_GET['task']);        
@@ -481,7 +496,7 @@ foreach($ndata as $data){
             //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));  
             $template = "<li><div class='wpdm_clink'><b>$data[page_link]</b><br/><small>$data[counter]</small></div></li>";
             if($data['access']=='member'&&!is_user_logged_in())
-            $template = "<li><b><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/l24.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">$data[title]</a></b><br/>login to download</li>";
+            $template = "<li><div class='wpdm_clink'><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]</a></b><br/><small>login to download</small></div></li>";
             $html .= $template;
           
             

@@ -1,3 +1,64 @@
+.wpdm-only-button .btn_outer:hover{
+color: #333;
+    border-color: #999;
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.btn_outer{
+float: left;
+    color: #6e6e6e;
+    font: bold 12px Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    padding: 4px 12px 4px 3px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-transition: border-color .218s;
+    -moz-transition: border .218s;
+    -o-transition: border-color .218s;
+    transition: border-color .218s;
+    background: #f3f3f3;
+    background: -webkit-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    background: -moz-linear-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    border: solid 1px #dcdcdc;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    margin-right: 10px;
+}  
+.wpdm-only-button .btn_outer{
+    margin-top: 5px;
+}
+.btn_right{
+    line-height: 26px;
+}
+.wpdm-only-button .btn_left,
+.wpdm-only-button .btn_right{
+display: block;
+line-height: normal !important;
+}
+.wpdm-only-button .btn_outer_c{
+    padding-left: 40px;
+    background-image: url(../icon/download.png);
+    background-position: 2px center;
+    background-repeat: no-repeat;
+}
+.wpdm-only-button .has-counter,
+.wpdm-only-button .counter{
+    display: block;
+    float: none;
+    line-height: normal;
+}
+.wpdm-only-button .counter{
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.btn_left {
+    color: #000000;
+    line-height: 20pt;
+}
+
 .download_link{
 
     padding:10px 20px;
@@ -193,13 +254,14 @@ filter:alpha(opacity=90);
 margin-bottom: 10px;
 }
 .facebook h3{
-    margin:0px;
-    padding:4px 10px;
-    background: #3B5998;    
-    color:#ffffff;
-    font-family: 'Lucida Grande','Lucida Sans';
+    margin:0px !important;
+    padding:4px 10px !important;
+    background: #3B5998 !important;    
+    color:#ffffff !important;
+    font-family: 'Lucida Grande','Lucida Sans' !important;
     font-size:12pt;
     font-weight: bold;
+    border: 0px  !important;
     -webkit-border-top-left-radius: 1px;
 -webkit-border-top-right-radius: 1px;
 -moz-border-radius-topleft: 1px;
@@ -245,6 +307,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
     font-size: 10pt;
     padding: 5px 10px;
     letter-spacing: 0.5px;
+    text-shadow: 0 1px 0 #000;        
 }
  
 .facebook .cont {
@@ -449,7 +512,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
         }
         .bluebox .cont{
            background: #ffffff url(../images/content-shadow.png) center -2px no-repeat;
-           
+           text-align: left;
            padding-top: 10px; 
            padding-bottom: 10px;
            -webkit-border-radius: 8px;
