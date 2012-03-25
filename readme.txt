@@ -59,7 +59,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
-= 2.2.1 =
+= 2.2.2 =
 * setHtaccess funtion error fixed
 * optimized front-end css
 * additional button template added
