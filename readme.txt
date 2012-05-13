@@ -3,7 +3,7 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 2.0.2
-Tested up to: 3.3.1
+Tested up to: 3.3.2
 License: GPLv2 or later
  
   
@@ -58,6 +58,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 4. Frton-end link template preview
 
 == Changelog ==
+
+= 2.2.4 =
+* fixed empty category name issue
+* added new option to delete all category
+* fixed delete category issue
 
 = 2.2.3 =
 * Fixed category page security issue

@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.3
+Version: 2.2.4
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -408,14 +408,14 @@ function wpdm_edit_file(){
 } 
 
 function wpdm_categories(){
-   $cid = (int)$_GET['cid']; 
+   $cid = addslashes($_GET['cid']); 
    if($_GET['task']=='DeleteCategory'){
         $tpldata = maybe_unserialize(get_option('_fm_categories'));
         unset($tpldata[$cid]);         
         update_option('_fm_categories',@serialize($tpldata)); 
         echo "<script>
         location.href='{$_SERVER[HTTP_REFERER]}';
-        </script>";
+        </script>";   
     die();
     } 
      if($_POST['cat']){
@@ -427,8 +427,9 @@ function wpdm_categories(){
             $cid = $tcid."-".(++$postfx);
         }
         
+        if($_POST['cat']['title']!=''){
         $tpldata[$cid] = $_POST['cat'];        
-        update_option('_fm_categories',@serialize($tpldata));
+        update_option('_fm_categories',@serialize($tpldata)); }
          echo "<script>
         location.href='{$_SERVER[HTTP_REFERER]}';
         </script>";
@@ -689,6 +690,14 @@ function wpdm_hotlink($params){
     
 }
 
+function delete_all_cats(){
+    if($_GET['page']=='file-manager/categories'&&$_GET['task']=='delete-all'){
+        delete_option('_fm_categories');
+        header('location: '.$_SERVER['HTTP_REFERER']);
+        die();
+    }
+}
+
 function wpdm_menu(){
     add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options');
     $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
@@ -701,6 +710,7 @@ function wpdm_menu(){
 
 if(is_admin()){
     add_action("admin_menu","wpdm_menu");
+    add_action("init","delete_all_cats");
     include("wpdm-free-mce-button.php");
     wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');     
     
