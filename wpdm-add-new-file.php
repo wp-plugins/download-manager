@@ -1,8 +1,4 @@
 <style>
-.wrap *{
-   
-    letter-spacing: 1px;
-}
 
 input[type=text],textarea{
  

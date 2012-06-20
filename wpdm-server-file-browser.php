@@ -60,12 +60,8 @@ function wpdm_file_browser(){
     die();
 }
 
-if(is_admin()){
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('file-tree-js',plugins_url().'/download-manager/js/jqueryFileTree.js');    
-    add_action("init","wpdm_file_browser");
-    add_action("init","wpdm_dir_tree");
-}
+ 
+
 
 
 ?>

@@ -1,8 +1,4 @@
  <style>
-.wrap *{
-    font-family: Tahoma;
-    letter-spacing: 1px;
-}
 
 input[type=text],textarea{
     width:500px;

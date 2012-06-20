@@ -59,10 +59,14 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.2.5 =
+
+* Fixed compatibility issue with wordpress 3.4
+
 = 2.2.4 =
-* fixed empty category name issue
-* added new option to delete all category
-* fixed delete category issue
+* Fixed empty category name issue
+* Added new option to delete all category
+* Fixed delete category issue
 
 = 2.2.3 =
 * Fixed category page security issue

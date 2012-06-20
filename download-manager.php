@@ -4,9 +4,11 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.4
+Version: 2.2.5
 Author URI: http://www.wpdownloadmanager.com/
 */
+
+error_reporting(E_ALL&~E_NOTICE);
 
 $d = str_replace('\\','/',dirname(__FILE__));
 $d = explode("/", $d);
@@ -25,6 +27,7 @@ function wpdm_process(){
 include(dirname(__FILE__)."/functions.php");
 include(dirname(__FILE__)."/class.wpdmpagination.php");
 include(dirname(__FILE__)."/wpdm-server-file-browser.php");
+include(dirname(__FILE__)."/wpdm-free-mce-button.php");
   
 if(!$_POST)    $_SESSION['download'] = 0;
 
@@ -708,21 +711,32 @@ function wpdm_menu(){
     
 }
 
-if(is_admin()){
-    add_action("admin_menu","wpdm_menu");
-    add_action("init","delete_all_cats");
-    include("wpdm-free-mce-button.php");
-    wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');     
-    
-}else{
+
+function wpdm_admin_enque_scripts(){
+    wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');        
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('file-tree-js',plugins_url().'/download-manager/js/jqueryFileTree.js');    
+    add_action("init","wpdm_file_browser");
+    add_action("init","wpdm_dir_tree");
+     
+}
+
+function wpdm_enque_scripts(){
    wp_enqueue_script('jquery');  
    wp_enqueue_script('thickbox');  
    wp_enqueue_style('thickbox');  
-   wp_enqueue_style('wpdm-front',plugins_url().'/download-manager/css/front.css');      
-   add_action('wp_head','wpdm_front_js');
+   wp_enqueue_style('wpdm-front',plugins_url().'/download-manager/css/front.css'); 
 }
 
-if($_GET['page']=='file-manager/add-new-file')
+
+add_action("admin_menu","wpdm_menu");
+add_action("init","delete_all_cats");
+
+add_action('admin_enqueue_scripts','wpdm_admin_enque_scripts');
+add_action('wp_enqueue_scripts','wpdm_enque_scripts');
+add_action('wp_head','wpdm_front_js');
+
+if(isset($_GET['page'])&&$_GET['page']=='file-manager/add-new-file')
 add_filter('admin_head','wpdm_tinymce');
 
 add_action("wp","wpdm_download_info");
