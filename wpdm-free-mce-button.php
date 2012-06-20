@@ -22,7 +22,7 @@ function wpdm_tinyplugin_register($plugin_array)
 
 function wpdm_free_tinymce(){
     global $wpdb;
-    if($_GET['wpdm_action']!='wpdm_tinymce_button') return false;
+    if(!isset($_GET['wpdm_action'])||$_GET['wpdm_action']!='wpdm_tinymce_button') return false;
     ?>
 <html>
 <head>

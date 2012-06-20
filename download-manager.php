@@ -4,11 +4,10 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.5
+Version: 2.2.6
 Author URI: http://www.wpdownloadmanager.com/
 */
 
-error_reporting(E_ALL&~E_NOTICE);
 
 $d = str_replace('\\','/',dirname(__FILE__));
 $d = explode("/", $d);
@@ -20,6 +19,7 @@ define('UPLOAD_DIR',$d.'/uploads/download-manager-files/');
 define('UPLOAD_BASE',$d.'/uploads/');  
 
 function wpdm_process(){
+    if(!isset($_GET['wpdmact'])) return;
     if($_GET['wpdmact']=='process')
     include("process.php");
 }
@@ -265,7 +265,7 @@ function wpdm_admin_options(){
         Otherwise you will not be able to upload files.</p></div>";        
     }
     
-    if($_GET[success]==1){
+    if(isset($_GET['success'])&&$_GET['success']==1){
         echo "
         <div id=\"message\" class=\"updated fade\"><p>
         Congratulation! Plugin is ready to use now.
@@ -277,7 +277,7 @@ function wpdm_admin_options(){
     if(!file_exists(UPLOAD_DIR.'.htaccess'))
     wpdm_set_htaccess();
     
-    if($_GET[task]!='')
+    if(isset($_GET['task'])&&$_GET['task']!='')
     return call_user_func($_GET['task']);        
     else
     include('wpdm-list-files.php');
@@ -694,6 +694,7 @@ function wpdm_hotlink($params){
 }
 
 function delete_all_cats(){
+    if(!isset($_GET['page'])) return;
     if($_GET['page']=='file-manager/categories'&&$_GET['task']=='delete-all'){
         delete_option('_fm_categories');
         header('location: '.$_SERVER['HTTP_REFERER']);

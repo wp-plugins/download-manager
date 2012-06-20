@@ -2,7 +2,7 @@
 global $wpdb;
 $limit = 10;
  
-$start = $_GET['paged']?(($_GET['paged']-1)*$limit):0;
+$start = isset($_GET['paged'])?(($_GET['paged']-1)*$limit):0;
 $res = mysql_query("select * from ahm_files limit $start, $limit");
  
 $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"));
