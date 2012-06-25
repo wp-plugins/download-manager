@@ -716,9 +716,7 @@ function wpdm_menu(){
 function wpdm_admin_enque_scripts(){
     wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');        
     wp_enqueue_script('jquery');
-    wp_enqueue_script('file-tree-js',plugins_url().'/download-manager/js/jqueryFileTree.js');    
-    add_action("init","wpdm_file_browser");
-    add_action("init","wpdm_dir_tree");
+    wp_enqueue_script('file-tree-js',plugins_url().'/download-manager/js/jqueryFileTree.js',array('jquery'));        
      
 }
 
@@ -748,6 +746,9 @@ add_shortcode('wpdm_hotlink','wpdm_hotlink');
 add_shortcode('wpdm_file','wpdm_downloadable_nsc');
 
 add_action('init','wpdm_process');
+
+add_action("init","wpdm_file_browser");
+add_action("init","wpdm_dir_tree");
 
 include("wpdm-widgets.php");
 

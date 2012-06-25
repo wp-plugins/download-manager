@@ -59,8 +59,13 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
-= 2.2.5 =
+= 2.2.7 =
+* Fixed server file browser issue
 
+= 2.2.6 =
+* Adjusted enqueue script issue
+
+= 2.2.5 =
 * Fixed compatibility issue with wordpress 3.4
 
 = 2.2.4 =
