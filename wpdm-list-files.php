@@ -3,9 +3,9 @@ global $wpdb;
 $limit = 10;
  
 $start = isset($_GET['paged'])?(($_GET['paged']-1)*$limit):0;
-$res = mysql_query("select * from ahm_files limit $start, $limit");
+$res = $wpdb->get_results("select * from ahm_files limit $start, $limit",ARRAY_A);
  
-$row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"));
+$row = $wpdb->get_row("select count(*) as total from ahm_files",ARRAY_A);
 
 ?>
  
@@ -74,7 +74,7 @@ $row = mysql_fetch_assoc(mysql_query("select count(*) as total from ahm_files"))
     </tfoot>
 
     <tbody class="list:post" id="the-list">
-    <?php while($media = mysql_fetch_assoc($res)) { 
+    <?php foreach($res as $media) { 
         
             switch(end(explode(".",$media[file]))){
                 case 'jpg':  case 'png':  case 'bmp':   case 'gif': 

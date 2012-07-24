@@ -59,6 +59,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.2.8 =
+* Fixed a minor database issue with file list
+
 = 2.2.7 =
 * Fixed server file browser issue
 
