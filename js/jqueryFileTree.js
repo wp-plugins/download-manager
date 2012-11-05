@@ -69,7 +69,8 @@ if(jQuery) (function($){
 									$(this).parent().parent().find('LI.directory').removeClass('expanded').addClass('collapsed');
 								}
 								$(this).parent().find('UL').remove(); // cleanup
-								showTree( $(this).parent(), escape($(this).attr('rel').match( /.*\// )) );
+                                var dr =  escape($(this).attr('rel').match( /.*\// ))=='null'?$(this).attr('rel'):escape($(this).attr('rel').match( /.*\// ));
+								showTree( $(this).parent(), dr );
 								$(this).parent().removeClass('collapsed').addClass('expanded');
 							} else {
 								// Collapse

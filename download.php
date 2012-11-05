@@ -26,7 +26,7 @@ form{text-align:center;}
 
 if($data){
     
-    echo "<div style='min-weight:300px;min-height:200px;padding:30px;background:#fff;color:#000'><h1><nobr>$data[title]</nobr></h1><br/><p>$data[description]</p>";
+    echo "<div style='min-weight:300px;min-height:200px;padding:30px;background:#fff;color:#000'><h1><nobr>$data[title]</nobr></h1><br/><p>".stripcslashes($data[description])."</p>";
         /*
         if($_POST&&$data[password]==''){
         echo "<script>

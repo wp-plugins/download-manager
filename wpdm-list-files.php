@@ -104,7 +104,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files",ARRAY_A);
                 <td class="media column-media">
                     <strong><a title="Edit" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>"><?php echo $media['title']?></a></strong> | Embed Code: <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="[wpdm_file id=<?php echo $media['id'];?>]" /><br>
                     <code>File: <?php echo $media['file']; ?></code><Br>
-                    <?php echo $media['description']?>
+                     
                     <div class="row-actions"><span class="edit"><a href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>">Edit</a> | </span><span class="delete"><a href="admin.php?page=file-manager&task=wpdm_delete_file&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="submitdelete">Delete Permanently</a></div>
                 </td>
                 <td class="author column-author"><?php echo $media['password']; ?></td>

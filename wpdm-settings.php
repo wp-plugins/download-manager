@@ -31,7 +31,7 @@ input{
 <tr>
 <td>Login Required Message:</td>
 <td>
-<input type="text" name="wpdm_login_msg" value="<?php echo get_option('wpdm_login_msg',true); ?>" size="40">
+<input type="text" name="wpdm_login_msg" value="<?php echo stripcslashes(htmlspecialchars(get_option('wpdm_login_msg',true))); ?>" size="40">
 </td>
 </tr>
 

@@ -35,6 +35,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom TinyMce Button
 *	Category embed short-code
 *	Advanced server file browser
+*	Complete category and file tree using a simple short-code [wpdm_tree]
 *	"Download Monitor" to "Download Manager" files Importer 
 
  
@@ -56,8 +57,14 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 2. Manage download packages
 3. Categories
 4. Frton-end link template preview
+5. Full tree view of categories and files with a simple short-code [wpdm_tree]
 
 == Changelog ==
+
+= 2.2.9 =
+* Added new short-code [wpdm_tree] to show all files and categories in tree format
+* Fixed image issue with file description
+* Fixed subcategory edit issue
 
 = 2.2.8 =
 * Fixed a minor database issue with file list

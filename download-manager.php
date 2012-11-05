@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.8
+Version: 2.2.9
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -252,7 +252,102 @@ function wpdm_dropdown_categories($parent="", $level = 0, $sel='',$cid='',$class
        wpdm_dropdown_categories($id,$level+1, $sel, $cid, $class);}
    }
    
+}
+
+function wpdm_tree(){
+    ?>
+    <script language="JavaScript" src="<?php echo plugins_url().'/download-manager/js/jqueryFileTree.js';?>"></script>     
+    <link rel="stylesheet" href="<?php echo plugins_url().'/download-manager/css/jqueryFileTree.css';?>" />          
+    <div id="tree"></div>    
+    <script language="JavaScript">
+    <!--
+      jQuery(document).ready( function() {
+            jQuery('#tree').fileTree({                
+                script: '<?php echo site_url(); ?>/?task=wpdm_tree',
+                expandSpeed: 1000,
+                collapseSpeed: 1000,
+                multiFolder: false
+            }, function(file) {
+                //alert(file);
+                //var sfilename = file.split('/');
+                //var filename = sfilename[sfilename.length-1];
+                tb_show(jQuery(this).html(),'<?php echo home_url('/?download=');?>'+file+'&modal=1&width=600&height=400');
+                 
+            });
+            
+            
+      });
+    //-->
+    </script>    
+    <?php
 } 
+
+function wpdm_embed_tree(){  
+if($_GET['task']!='wpdm_tree')     return;
+        global $wpdb;
+        $cats = maybe_unserialize(get_option('_fm_categories')); 
+        if(!is_array($cats)) $cats = array();   
+    
+     
+         
+       
+            echo "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
+            // All Cats
+            $_POST['dir'] = $_POST['dir']=='/'?'':$_POST['dir'];
+            foreach( $cats as $id=>$file ) {                         
+                    if($file['parent']==$_POST['dir'])                                                                                            
+                    echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $id . "\">" . htmlentities($file[title]) . "</a></li>";                
+            }  
+       
+            // All files
+            if($_POST[dir])
+            $ct = "\"{$_POST[dir]}\"";
+            else $ct = '';
+            $ndata = $wpdb->get_results("select * from ahm_files where category like '%{$ct}%'",ARRAY_A);
+            $sap = '?'; //count($_GET)>0?'&':'?';
+              
+            foreach($ndata as $data){
+               $html = '';
+                $link_label = $data['title']?$data['title']:'Download';  
+                $data['page_link'] = "<a class='wpdm-popup' href='' rel='{$data[id]}'>$link_label</a>";
+                if($data[preview]!='')
+                $data['thumb'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[preview]}' />";
+                else
+                $data['thumb'] = '';
+                if($data[icon]!='')
+                $data['icon'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[icon]}' />";
+                else
+                $data['icon'] = '';
+                
+                
+                        if($data['show_counter']==1){
+                            $counter = "{$data[download_count]} downloads<br/>";
+                            $data['counter'] = $counter;
+                        }
+                        $ext = end(explode(".", $data['file']));
+                        //foreach( $data as $ind=>$val ) $reps["[".$ind."]"] = $val;
+                        //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));  
+                        $template = "<li class=\"wpdm_clink file ext_$ext\">$data[page_link]</li>";
+                        if($data['access']=='member'&&!is_user_logged_in())
+                        $template = "<li  class=\"file ext_$ext\"><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]<small> (login to download)</small></a></li>";
+                        $html .= $template;
+                        
+                      
+                        
+                echo $html;
+                        
+                    
+                    
+               
+                    
+             
+                    
+            }
+            echo "</ul>";    
+            die();
+        
+    
+}
 
 function wpdm_admin_options(){
     
@@ -703,7 +798,7 @@ function delete_all_cats(){
 }
 
 function wpdm_menu(){
-    add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options');
+    add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options',plugins_url('download-manager/img/donwloadmanager-16.png'));
     $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
     add_submenu_page( 'file-manager', 'File Manager', 'Manage', $access, 'file-manager', 'wpdm_admin_options');    
     add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', $access, 'file-manager/add-new-file', 'wpdm_add_new_file');    
@@ -744,7 +839,9 @@ add_filter( 'the_content', 'wpdm_downloadable');
 
 add_shortcode('wpdm_hotlink','wpdm_hotlink');
 add_shortcode('wpdm_file','wpdm_downloadable_nsc');
+add_shortcode('wpdm_tree','wpdm_tree');
 
+add_action('init','wpdm_embed_tree');
 add_action('init','wpdm_process');
 
 add_action("init","wpdm_file_browser");
