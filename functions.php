@@ -77,6 +77,34 @@
         return $ismu&&$cond?$cond:$ismu;
     }
     
+    // Function that output's the contents of the dashboard widget
+    function wpdm_dashboard_widget_function() {
+        echo "<img src='".plugins_url('/download-manager/images/wpdm-logo.png')."' /><br/>";
+         
+        if(function_exists('curl_init')){
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,'http://wpdownloadmanager.com/notice.php');
+        curl_exec($ch);
+        curl_close($ch);
+        } else 
+        echo "CURL need to be enabled!";
+    }
+
+    // Function that beeng used in the action hook
+    function wpdm_add_dashboard_widgets() {
+        wp_add_dashboard_widget('wpdm_dashboard_widget', 'WordPress Download Manager', 'wpdm_dashboard_widget_function');
+        global $wp_meta_boxes;              
+        $side_dashboard = $wp_meta_boxes['dashboard']['side']['core'];    
+        $wpdm_widget = array('wpdm_dashboard_widget' => $wp_meta_boxes['dashboard']['normal']['core']['wpdm_dashboard_widget']);
+        unset($wp_meta_boxes['dashboard']['normal']['core']['wpdm_dashboard_widget']);
+        $sorted_dashboard = array_merge($wpdm_widget, $side_dashboard);
+        $wp_meta_boxes['dashboard']['side']['core'] = $sorted_dashboard;         
+    }
+
+    // Register the new dashboard widget into the 'wp_dashboard_setup' action
+    add_action('wp_dashboard_setup', 'wpdm_add_dashboard_widgets',999999 );
+
+    
     /**
     * popup
     * 

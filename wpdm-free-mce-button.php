@@ -63,7 +63,7 @@ fieldset{padding: 10px;}
 </style> 
 </head>
 <body>    <br>
-
+<fieldset><legend>Embed File</legend> 
 <input type="checkbox" id="title" value="1"> <label for="title">Show Title</label> 
 <input type="checkbox" id="desc" value="1"> <label for="desc">Show Description</label> <br/>
 Template: <select id="template">
@@ -80,7 +80,7 @@ Drop Shadow Effect: <select id="shadow">
 </select>
 <br/>
 <br/>
-<fieldset><legend>Embed File</legend>
+
     <select class="button input" id="fl">
     <?php
     $res = $wpdb->get_results("select * from ahm_files", ARRAY_A); 
@@ -105,6 +105,7 @@ Drop Shadow Effect: <select id="shadow">
     </select>
     <input type="submit" id="addtopostc" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>
+
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo home_url('/wp-includes/js/tinymce/tiny_mce_popup.js'); ?>"></script>

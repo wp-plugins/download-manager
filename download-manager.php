@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and controll file download from your wordpress site
 Author: Shaon
-Version: 2.2.9
+Version: 2.3.0
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -141,6 +141,7 @@ function wpdm_downloadable_nsc($params){
     $desc = stripslashes($desc);
     if($data['show_counter']!=0)  $hc= 'has-counter';
     if($template=='') $template = 'wpdm-only-button';
+    else  $template = "wpdm-{$template}";
     $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
     $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in()){    
@@ -564,13 +565,14 @@ function wpdm_embed_category($id){
     $pag->items($total);
     $pag->limit($item_per_page);
     $pag->currentPage($page);
-    $url = strpos($_SERVER['REQUEST_URI'],'?')?$_SERVER['REQUEST_URI'].'&':$_SERVER['REQUEST_URI'].'?';
+    $plink = $url = preg_replace("/[\?|\&]+cp=[0-9]+/","",$_SERVER['REQUEST_URI']);
+    $url = strpos($url,'?')?$url.'&':$url.'?';
     $pag->urlTemplate($url."cp=[%PAGENO%]");
 
     $ndata = $wpdb->get_results("select * from ahm_files where category like '%\"$id\"%' limit $start, $item_per_page",ARRAY_A);
      
-
-$sap = count($_GET)>0?'&':'?';
+ 
+$sap = strpos($plink,'?')>0?'&':'?';
 $html = '';
 foreach($ndata as $data){
   
@@ -610,7 +612,7 @@ END;
 }
  
 
-return "<ul class='wpdm-category $id'>".$html."</div><div style='clear:both'></ul>";
+return "<ul class='wpdm-category $id'>".$html."</ul><div style='clear:both'></div>".$pag->show()."<div style='clear:both'></div>";
 }
 
  

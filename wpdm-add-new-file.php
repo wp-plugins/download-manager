@@ -139,7 +139,7 @@ input{
   
 <div id="currentfiles">
 <?php if($file['file']!=''){ ?>
-<div class="cfile"> 
+<div class="cfile" id="cfl"> 
 <nobr>
 <b style="float: left"><?php echo  basename($file['file']); ?></b> <a href='#' id="dcf" title="Delete Current File" style="float: right;">delete</a>
 </nobr>
@@ -148,12 +148,12 @@ input{
 <?php } ?> 
 
 
-<?php if($files):  ?>
+<?php if($file['file']!=''): ?>
 <script type="text/javascript">
 
 
-jQuery('#dcf').click(function(){
-
+jQuery('#dcf').click(function(){      
+     jQuery('#cfl').slideUp();
      return false;
 });
 
@@ -181,53 +181,7 @@ jQuery('#dcf').click(function(){
 <ul id="serverfiles">
 
 
-
-<?php  
-/*  
-$path = "wp-content/plugins/download-manager/imports/";
-$scan = scandir( '../'.$path );
-$k = 0;
-foreach( $scan as $v )
-{
-if( $v=='.' or $v=='..' or is_dir('../'.$path.$v) ) continue;
-
-$fileinfo[$k]['file'] = 'download-manager/imports/'.$v;
-$fileinfo[$k]['name'] = $v;
-$k++;
-}
-
-
-if( !empty($fileinfo) )
-{
-
- include dirname(__FILE__).'/imports.php';
-?>
-<div id="major-publishing-actions">
-<div id="delete-action">
-
-What do you want:<select name="whatido">
-<option value="move"> Move files </option>
-<option value="copy"> Copy files </option>
-</select>
-
-
-
-</div>
-
-
-<div class="clear"></div>
-</div>
-
  
-<?php
-} else {
-
-?>
-<div style="padding: 5px;line-height: 1.5;font-family: Tahoma; letter-spacing: 1px;">
-    upload your files on <code>/wp-content/plugins/download-manager/imports/</code> using ftp, file list will show here.</div>
-
-<?php } */ ?>
-
 
 
 </ul>   <br>
@@ -295,6 +249,7 @@ What do you want:<select name="whatido">
 <div class="postbox " id="action">
 <h3><span>My Other Plugins</span></h3>
 <div class="inside">
+   <a href="http://wpeden.com/wpeden-club/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Themes & Plugins Club</h3><span style="display: block;padding: 10px;font-size:14pt;font-family:'Segoe UI Light';line-height: 1.5;color:#008000">WP Eden Club! Download all of our club themes and plugins only for $35!</span></a>
    <a href="http://wpeden.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Themes & Plugins Collection</h3><img src="http://wpeden.com/wp-content/themes/wp-eden/img/logo.png" /></a>
    <a href="http://www.wpdownloadmanager.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Download Manager Pro</h3><img src="http://www.wpdownloadmanager.com/wp-content/themes/wpdm/images/icon.png" /></a>
    <a href="http://www.wpmarketplaceplugin.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Marketplace Plugin</h3><img vspace="12" src="http://wpmarketplaceplugin.com/wp-content/uploads/2011/06/logo2.png" /></a>

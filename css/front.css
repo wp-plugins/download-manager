@@ -242,7 +242,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 .clear{
     clear: both;
 }
-.facebook{
+.wpdm-facebook{
     border:6px solid #777777;
     background:#7C89A3;
     -webkit-border-radius: 8px;
@@ -253,7 +253,7 @@ opacity:0.9;
 filter:alpha(opacity=90);
 margin-bottom: 10px;
 }
-.facebook h3{
+.wpdm-facebook h3{
     margin:0px !important;
     padding:4px 10px !important;
     background: #3B5998 !important;    
@@ -285,7 +285,7 @@ font-size: 9pt;
 
 
  
-.facebook .btn_left {
+.wpdm-facebook .btn_left {
     background: #3b5998;
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzNiNTk5OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NDc3YmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 background: -moz-linear-gradient(top,  #3b5998 0%, #5477bf 100%);
@@ -310,10 +310,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
     text-shadow: 0 1px 0 #000;        
 }
  
-.facebook .cont {
+.wpdm-facebook .cont {
     background: #fff;  
 }
-.facebook .btn_outer {
+.wpdm-facebook .btn_outer {
     background: none repeat scroll 0 0 #D6E3FF;
     border: 1px solid #3b5998;
     -webkit-border-radius: 5px;
@@ -326,7 +326,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
     padding: 0;
 }
  
-.facebook .btn_right {
+.wpdm-facebook .btn_right {
     display: block;
     float: left;
     font-size: 10pt;
@@ -481,7 +481,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
         }
         
         
-        .bluebox{
+        .wpdm-bluebox{
            border:1px solid #30aedc;  
            -webkit-border-radius: 8px;
             -moz-border-radius: 8px;
@@ -503,14 +503,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
             text-align: center;
         }
         
-        .bluebox h3{
+        .wpdm-bluebox h3{
             padding: 4px 10px;
             font-size:12pt;
             font-family: 'Lucida Grande','Lucida Sans';
             margin-bottom: 0px;
              
         }
-        .bluebox .cont{
+        .wpdm-bluebox .cont{
            background: #ffffff url(../images/content-shadow.png) center -2px no-repeat;
            text-align: left;
            padding-top: 10px; 
@@ -520,10 +520,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
             border-radius: 8px;
         }
         
-        .bluebox .passit{
+        .wpdm-bluebox .passit{
             margin-bottom: 10px;
         }
-        .bluebox .btn_outer .btn_left{
+        .wpdm-bluebox .btn_outer .btn_left{
             background: #7abcff;
             background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdhYmNmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUyJSIgc3RvcC1jb2xvcj0iIzYwYWJmOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0MDk2ZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
             background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 52%, #4096ee 100%);
@@ -552,11 +552,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
  
  .wpdm-category {
      list-style: none;
-     margin: 0px;
+     margin: 0px !important;
+     padding: 10px 0px !important;
+     margin-left: 0px !important;
+ }
+ .wpdm-category li div{
+     min-height: 32px;
  }
  .wpdm-category li{
-     padding: 10px 5px;
+     padding: 10px 5px !important;
      border-bottom: 1px solid #cccccc;
+     list-style: none !important;
+     margin-left: 0px !important;
+     min-height: 32px;
  }
  
  .wpdm_clink{
@@ -567,3 +575,43 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', end
  .wpdm_clink small{
      font-size:8pt;
  }
+ 
+ 
+ /**
+ * pagination
+ */
+ 
+ div.pagination {
+    font-size: 14px;     
+    padding:2px;
+    background-color:#c1c1c1;
+}
+
+div.pagination a {
+    padding: 2px 7px 2px 7px;
+    margin: 2px;
+    background-color:#eeeeee;
+    text-decoration: none; /* no underline */
+    color: #000;
+     
+}
+div.pagination a:hover, div.pagination a:active {
+    background-color:#444444;
+    color: #ffffff;
+}
+div.pagination span.current {
+    padding: 2px 7px 2px 7px;
+    margin: 2px;
+        font-weight: bold;
+        background-color: #fff;
+        color: #303030;
+        
+    }
+div.pagination span.disabled {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        background-color:#c1c1c1;
+        color: #797979;
+    }
+ 
+ 
