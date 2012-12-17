@@ -221,18 +221,22 @@ function wpdm_downloadable($content){
 function wpdm_cblist_categories($parent="", $level = 0, $sel = array()){
    $cats = maybe_unserialize(get_option('_fm_categories')); 
    if(is_array($cats)){
-   if($parent!='') echo "<ul>";   
+   //if($parent!='') echo "<ul>";   
    foreach($cats as $id=>$cat){
-       $pres = str_repeat("&mdash;", $level);
+       $pres = str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $level);
        if($cat['parent']==$parent){
        if(in_array($id,$sel))    
        $checked = 'checked=checked';
        else
        $checked = '';
-       echo "<li><input type='checkbox' name='file[category][]' value='$id' $checked /> $cat[title]</li>\n";
-       wpdm_cblist_categories($id,$level+1, $sel);}
+       echo "<li style='line-height:16px'><input type='checkbox' name='file[category][]' value='$id' $checked /> $cat[title]";
+       echo "<ul style='margin:0px;margin-left:20px;padding:0px;'>";
+       wpdm_cblist_categories($id,$level+1, $sel);
+       echo "</ul>";
+       echo "</li>\n";
+       }
    }
-   if($parent!='') echo "</ul>";
+   //if($parent!='') echo "</ul>";
    }
 }
 
@@ -453,7 +457,7 @@ function wpdm_add_new_file(){
         $info = pathinfo($_FILES['media']['name']);        
         //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
         
-        $name = file_exists(dirname(__FILE__).'/files/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
+        $name = file_exists(dirname(__FILE__).'/'.UPLOAD_DIR.'/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
         move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
         $file['file'] = $name;
         
@@ -799,6 +803,33 @@ function delete_all_cats(){
     }
 }
 
+
+// handle uploaded file here
+function wpdm_check_upload(){
+  check_ajax_referer('photo-upload');  
+  if(file_exists(UPLOAD_DIR.$_FILES['async-upload']['name']))
+  $filename = time().'wpdm_'.$_FILES['async-upload']['name'];  
+  else
+  $filename = $_FILES['async-upload']['name'];  
+  move_uploaded_file($_FILES['async-upload']['tmp_name'],UPLOAD_DIR.$filename);
+  $filesize = number_format(filesize(UPLOAD_DIR.'/'.$filename)/1025,2);        
+  echo $filename."|||".$filesize;
+  exit;
+}
+
+function wpdm_delete__file(){
+  global $wpdb;  
+  $id = intval($_REQUEST['file']);
+  $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);  
+  if(file_exists(UPLOAD_DIR.'/'.$data['file']))    
+    @unlink(UPLOAD_DIR.'/'.$data['file']);    
+  else if(file_exists($data['file']))    
+    @unlink($data['file']); 
+  unset($data['file']);
+  $wpdb->query("update ahm_files set `file`='' where id='$id'");   
+  die('ok');
+}
+
 function wpdm_menu(){
     add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options',plugins_url('download-manager/img/donwloadmanager-16.png'));
     $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
@@ -845,6 +876,8 @@ add_shortcode('wpdm_tree','wpdm_tree');
 
 add_action('init','wpdm_embed_tree');
 add_action('init','wpdm_process');
+add_action('wp_ajax_file_upload','wpdm_check_upload');
+add_action('wp_ajax_delete_file','wpdm_delete__file');
 
 add_action("init","wpdm_file_browser");
 add_action("init","wpdm_dir_tree");

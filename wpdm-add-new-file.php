@@ -8,7 +8,7 @@ input[type=text],textarea{
 input{
    padding: 4px 7px;
 }
-.cfile{margin: 2px;border:1px solid #008000;background: #F3FFF2;overflow:hidden;padding:5px;} 
+.cfile{margin: 2px;border:3px solid #eeeeee;background: #fafafa;overflow:hidden;padding:5px;margin-bottom: 10px;} 
 .dfile{margin: 2px;border:1px solid #800;background: #ffdfdf;overflow:hidden;padding:5px;} 
 .cfile img, .dfile img{cursor: pointer;}
 .inside{padding:10px !important;}
@@ -136,24 +136,34 @@ input{
 <div class="postbox " id="upload_meta_box">
 <div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Upload file from PC</span></h3>
 <div class="inside">
-  
+<input type="hidden" name="file[file]" value="<?php echo $file['file']; ?>" id="wpdmfile" />  
 <div id="currentfiles">
-<?php if($file['file']!=''){ ?>
 <div class="cfile" id="cfl"> 
-<nobr>
-<b style="float: left"><?php echo  basename($file['file']); ?></b> <a href='#' id="dcf" title="Delete Current File" style="float: right;">delete</a>
-</nobr>
+<?php if($file['file']!=''){ 
+if(file_exists(UPLOAD_DIR.'/'.$file['file']))    
+$filesize = number_format(filesize(UPLOAD_DIR.'/'.$file['file'])/1025,2);    
+else if(file_exists($file['file']))    
+$filesize = number_format(filesize($file['file'])/1025,2);    
+?>
+ 
+<div style="float: left"><strong><?php echo  basename($file['file']); ?></strong><br/><?php echo $filesize; ?> KB</div> <a href='#' id="dcf" title="Delete Current File" style="float: right;height:32px;"><img src="<?php echo plugins_url('/download-manager/images/error.png'); ?>" /></a>
+<?php } else echo "<span style='font-weight:bold;color:#ddd'>No file uploaded yet!</span>"; ?>  
 <div style="clear: both;"></div>
 </div>
-<?php } ?> 
+
 
 
 <?php if($file['file']!=''): ?>
 <script type="text/javascript">
 
 
-jQuery('#dcf').click(function(){      
-     jQuery('#cfl').slideUp();
+jQuery('#dcf').click(function(){  
+     if(!confirm('Are your sure?')) return false;
+     jQuery('#cfl').fadeTo('slow',0.3);
+     jQuery.post('admin-ajax.php',{action:'delete_file',file:'<?php echo $file['id']; ?>'},function(res){
+        jQuery('#cfl').slideUp();      
+        jQuery('#wpdmfile').val('');
+     });     
      return false;
 });
 
@@ -167,7 +177,134 @@ jQuery('#dcf').click(function(){
 
 
 </div>
-<input type="file" id="file_upload" name="media"/>
+ 
+<div id="plupload-upload-ui" class="hide-if-no-js">
+     <div id="drag-drop-area">
+       <div class="drag-drop-inside">
+        <p class="drag-drop-info"><?php _e('Drop files here'); ?></p>
+        <p><?php _ex('or', 'Uploader: Drop files here - or - Select Files'); ?></p>
+        <p class="drag-drop-buttons"><input id="plupload-browse-button" type="button" value="<?php esc_attr_e('Select Files'); ?>" class="button" /></p>
+      </div>
+     </div>
+  </div>
+  
+  <?php
+
+  $plupload_init = array(
+    'runtimes'            => 'html5,silverlight,flash,html4',
+    'browse_button'       => 'plupload-browse-button',
+    'container'           => 'plupload-upload-ui',
+    'drop_element'        => 'drag-drop-area',
+    'file_data_name'      => 'async-upload',            
+    'multiple_queues'     => false,
+    'max_file_size'       => wp_max_upload_size().'b',
+    'url'                 => admin_url('admin-ajax.php'),
+    'flash_swf_url'       => includes_url('js/plupload/plupload.flash.swf'),
+    'silverlight_xap_url' => includes_url('js/plupload/plupload.silverlight.xap'),
+    'filters'             => array(array('title' => __('Allowed Files'), 'extensions' => '*')),
+    'multipart'           => true,
+    'urlstream_upload'    => true,
+
+    // additional post data to send to our ajax hook
+    'multipart_params'    => array(
+      '_ajax_nonce' => wp_create_nonce('photo-upload'),
+      'action'      => 'file_upload',            // the ajax action name
+    ),
+  );
+
+  // we should probably not apply this filter, plugins may expect wp's media uploader...
+  $plupload_init = apply_filters('plupload_init', $plupload_init); ?>
+
+  <script type="text/javascript">
+
+    jQuery(document).ready(function($){
+
+      // create the uploader and pass the config from above
+      var uploader = new plupload.Uploader(<?php echo json_encode($plupload_init); ?>);
+
+      // checks if browser supports drag and drop upload, makes some css adjustments if necessary
+      uploader.bind('Init', function(up){
+        var uploaddiv = jQuery('#plupload-upload-ui');
+
+        if(up.features.dragdrop){
+          uploaddiv.addClass('drag-drop');
+            jQuery('#drag-drop-area')
+              .bind('dragover.wp-uploader', function(){ uploaddiv.addClass('drag-over'); })
+              .bind('dragleave.wp-uploader, drop.wp-uploader', function(){ uploaddiv.removeClass('drag-over'); });
+
+        }else{
+          uploaddiv.removeClass('drag-drop');
+          jQuery('#drag-drop-area').unbind('.wp-uploader');
+        }
+      });
+
+      uploader.init();
+
+      // a file was added in the queue
+      uploader.bind('FilesAdded', function(up, files){
+        //var hundredmb = 100 * 1024 * 1024, max = parseInt(up.settings.max_file_size, 10);
+        
+           
+
+        plupload.each(files, function(file){
+          jQuery('#filelist').append(
+                        '<div class="file" id="' + file.id + '"><b>' +
+ 
+                        file.name + '</b> (<span>' + plupload.formatSize(0) + '</span>/' + plupload.formatSize(file.size) + ') ' +
+                        '<div class="progress progress-success progress-striped active"><div class="bar fileprogress"></div></div></div>');
+        });
+
+        up.refresh();
+        up.start();
+      });
+      
+      uploader.bind('UploadProgress', function(up, file) {
+                      
+                jQuery('#' + file.id + " .fileprogress").width(file.percent + "%");
+                jQuery('#' + file.id + " span").html(plupload.formatSize(parseInt(file.size * file.percent / 100)));
+            });
+ 
+
+      // a file was uploaded 
+      uploader.bind('FileUploaded', function(up, file, response) {
+
+        // this is your ajax response, update the DOM with it or something...
+        //console.log(response);
+        //response
+        jQuery('#' + file.id ).remove();
+        var d = new Date();
+        var ID = d.getTime();
+        response = response.response;
+        var data = response.split("|||");
+        jQuery('#wpdmfile').val(data[0]);
+        jQuery('#cfl').html('<div style="float: left"><strong>'+data[0]+'</strong><br/>'+data[1]+' KB</div>').slideDown();
+                            /*if(response.length>20) nm = response.substring(0,7)+'...'+response.substring(response.length-10);                             
+                            jQuery('#currentfiles table.widefat').append("<tr id='"+ID+"' class='cfile'><td><input type='hidden' id='in_"+ID+"' name='files[]' value='"+response+"' /><img id='del_"+ID+"' src='<?php echo plugins_url(); ?>/download-manager/images/minus.png' rel='del' align=left /></td><td>"+response+"</td><td width='40%'><input style='width:99%' type='text' name='wpdm_meta[fileinfo]["+response+"][title]' value='"+response+"' onclick='this.select()'></td><td><input size='10' type='text' id='indpass_"+ID+"' name='wpdm_meta[fileinfo]["+response+"][password]' value=''> <img style='cursor: pointer;float: right;margin-top: -3px' class='genpass' onclick=\"return generatepass('indpass_"+ID+"')\" title='Generate Password' src=\"<?php echo plugins_url('download-manager/images/generate-pass.png'); ?>\" /></td></tr>");
+                            jQuery('#'+ID).fadeIn();
+                            jQuery('#del_'+ID).click(function(){
+                                if(jQuery(this).attr('rel')=='del'){
+                                jQuery('#'+ID).removeClass('cfile').addClass('dfile');
+                                jQuery('#in_'+ID).attr('name','del[]');
+                                jQuery(this).attr('rel','undo').attr('src','<?php echo plugins_url(); ?>/download-manager/images/add.png').attr('title','Undo Delete');
+                                } else if(jQuery(this).attr('rel')=='undo'){
+                                jQuery('#'+ID).removeClass('dfile').addClass('cfile');
+                                jQuery('#in_'+ID).attr('name','files[]');
+                                jQuery(this).attr('rel','del').attr('src','<?php echo plugins_url(); ?>/download-manager/images/minus.png').attr('title','Delete File');
+                                }
+                                
+                                
+                            });  */
+                           
+
+      });
+
+    });   
+
+  </script>
+  <div id="filelist"></div>
+
+ <div class="clear"></div>
+<!--<input type="file" id="file_upload" name="media"/>-->
 
  <div class="clear"></div>
 </div>
