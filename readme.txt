@@ -3,7 +3,7 @@ Contributors: Shaon
 Donate link: 
 Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 2.0.2
-Tested up to: 3.3.2
+Tested up to: 3.5
 License: GPLv2 or later
  
   
