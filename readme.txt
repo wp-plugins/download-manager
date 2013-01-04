@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.3.2 = 
+* Fixed a minor issue with uploader
+
 = 2.3.1 = 
 * Optimized for wp 3.5
 * Upgraded file upload option
