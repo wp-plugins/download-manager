@@ -40,8 +40,11 @@ line-height: normal !important;
 .wpdm-only-button .btn_outer_c{
     padding-left: 40px;
     background-image: url(../icon/download.png);
+    min-height: 30px;
+    padding-top: 2px;
     background-position: 2px center;
     background-repeat: no-repeat;
+    vertical-align: middle;
 }
 .wpdm-only-button .has-counter,
 .wpdm-only-button .counter{

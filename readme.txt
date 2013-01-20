@@ -1,29 +1,32 @@
 === WordPress Download Manager ===
 Contributors: Shaon
 Donate link: 
-Tags: files, downloads, downloadables, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
+Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 2.0.2
 Tested up to: 3.5
 License: GPLv2 or later
  
   
  
-WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site.
+WordPress Download Manager is a Files and Document Management plugin for your WordPress Site which will help you to manage, track and control file downloads from your wordpress site.
    
 
 == Description ==
-
-WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
+WordPress Download Manager is a Files and Document Management plugin for your WordPress Site. WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
 `v2.3.x ! Yes, its totally redesigned to give you better experience`
 
 = Features =
+*	Drag and Drop File Upload
 *	Control who can access to download
 *	Password protection
 *	Download Counter
 *	Control who can user this plugin (author, editor, administrator)
 *	Custom download link icon
+*	File type icon support
+*	DataTable support ( use short-code [wpdm_all_packages] )
+*	Seatching and Sorting Option
 *	Custom link label
 *	Shortcode for download link
 *	Shortcode for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
@@ -58,8 +61,14 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 3. Categories
 4. Frton-end link template preview
 5. Full tree view of categories and files with a simple short-code [wpdm_tree]
+6. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
 
 == Changelog ==
+
+= 2.3.3 =
+* added search functionality in admin
+* added individual icon support 
+* added new short-code for all download using datatable.js, with sorting and searhing option
 
 = 2.3.2 = 
 * Fixed a minor issue with uploader

@@ -28,7 +28,9 @@ input{
 <h2>Add New Download Package</h2>
 
 <?php }?>
-<form action="" method="post" enctype="multipart/form-data">
+<form id="wpdmpack" action="" method="post">
+<input type="hidden" name="action" value="save_wpdm_file" />
+<input type="hidden" name="wpdmtask" value="<?php echo $_GET['task']=='wpdm_edit_file'?'update':'create';?>" />
 <input type="hidden" name="id" value="<?php echo $file['id']; ?>" />
 <div  style="width: 75%;float:left;">
     
@@ -41,7 +43,7 @@ input{
 <tr>
 <td valign="top"> 
 <div id="poststuff" class="postarea">
-                <?php the_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
+                <?php wp_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
                 </div>
@@ -113,6 +115,11 @@ input{
 <div class="clear"></div>
 </div>
 </div>  
+ 
+<?php
+ include(dirname(__FILE__).'/wpdm-file-icon.php');
+?>
+   
 
 
 </div> 
@@ -380,16 +387,17 @@ jQuery('#dcf').click(function(){
 
 <input type="submit" value="<?php echo $_GET['task']=='wpdm_edit_file'?'Update Package':'Create Package'; ?>" accesskey="p" tabindex="5" id="publish" class="button-primary" name="publish">
  <div class="clear"></div>
+ 
 </div>
 </div>
 
 <div class="postbox " id="action">
 <h3><span>My Other Plugins</span></h3>
 <div class="inside">
-   <a href="http://wpeden.com/wpeden-club/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Themes & Plugins Club</h3><span style="display: block;padding: 10px;font-size:14pt;font-family:'Segoe UI Light';line-height: 1.5;color:#008000">WP Eden Club! Download all of our club themes and plugins only for $35!</span></a>
-   <a href="http://wpeden.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Themes & Plugins Collection</h3><img src="http://wpeden.com/wp-content/themes/wp-eden/img/logo.png" /></a>
-   <a href="http://www.wpdownloadmanager.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Download Manager Pro</h3><img src="http://www.wpdownloadmanager.com/wp-content/themes/wpdm/images/icon.png" /></a>
-   <a href="http://www.wpmarketplaceplugin.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Marketplace Plugin</h3><img vspace="12" src="http://wpmarketplaceplugin.com/wp-content/uploads/2011/06/logo2.png" /></a>
+   <a href="http://wpeden.com/product/white-fang-responsive-wordpress-theme-with-drag-and-drop-builder/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WP Theme Builder</h3><span style="display: block;padding: 10px;font-size:14pt;font-family:'Segoe UI Light';line-height: 1.5;color:#008000"><img style="max-width: 100%;height:auto;" src="<?php echo plugins_url('download-manager/images/theme.png'); ?>" /></span></a>
+   <a href="http://wpeden.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Themes & Plugins Collection</h3><img style="max-width: 100%;height:auto;" src="<?php echo plugins_url('download-manager/images/wpeden.png'); ?>" /></a>
+   <a href="http://www.wpdownloadmanager.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Download Manager Pro</h3><img style="max-width: 100%;height:auto;" src="<?php echo plugins_url('download-manager/images/wpdm.png'); ?>" /></a>
+   <a href="http://www.wpmarketplaceplugin.com/" style="width:97%;overflow:hidden;margin:5px;background: #fafafa;border: 1px solid #ccc;display: block;float: left;text-align: center;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;" ><h3 style="margin: 0px;background: #ccc;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;text-decoration: none;color:#333">WordPress Marketplace Plugin</h3><img style="max-width: 100%;height:auto;" vspace="12" src="<?php echo plugins_url('download-manager/images/wpmp.png'); ?>" /></a>
    <div style="clear: both;"></div>
    </div>
 </div>   
@@ -399,7 +407,25 @@ jQuery('#dcf').click(function(){
 </form>
 
 </div>
-
+ <div id="w84sv" style="display: none;position: fixed;top:0px;right:0px;padding:8px 20px;background: #00aa00;color:#ffffff;font-weight: bold;font-family:'Courier New';z-index:999999;font-size: 12pt;">
+ Saving<span style="text-decoration:blink;">...</span>
+ </div>
  
-       
+<script language="JavaScript">
+<!--
+  jQuery('#wpdmpack').submit(function(){
+      jQuery('#w84sv').fadeIn();
+      jQuery(this).ajaxSubmit({
+          action:'admin-ajax.php',
+          beforeSubmit:function(){
+               
+          },
+          success:function(res){
+             jQuery('#w84sv').fadeOut(); 
+          }
+      });
+      return false;
+  });
+//-->
+</script>       
        

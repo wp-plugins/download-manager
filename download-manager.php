@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.3.2
+Version: 2.3.3
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -50,6 +50,7 @@ function wpdm_free_install(){
               `show_counter` tinyint(1) NOT NULL,
               `quota` INT NOT NULL,
               `link_label` varchar(255) NOT NULL,
+              `icon` VARCHAR( 256 ) NOT NULL,
               PRIMARY KEY (`id`)
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8";
 
@@ -62,6 +63,7 @@ function wpdm_free_install(){
       $wpdb->query("ALTER TABLE `ahm_files` ADD `download_count` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `quota` INT NOT NULL");
       $wpdb->query("ALTER TABLE `ahm_files` ADD `category` TEXT NOT NULL");
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `icon` VARCHAR( 256 ) NOT NULL ");
       
    update_option('wpdm_access_level','administrator');
    wpdm_create_dir();
@@ -122,21 +124,29 @@ function wpdm_import_download_monitor(){
     
 }
 
-   
+   function wpdm_all_packages($params = array()){    
+     @extract($params);
+     global $wpdb, $current_user;          
+     ob_start();
+     include("wpdm-all-downloads.php");
+     $data = ob_get_contents();
+     ob_clean();  
+     return $data;
+     }   
 
 function wpdm_downloadable_nsc($params){
     global $wpdb; 
-    extract($params); 
-    
-    
+    extract($params);       
+         
     $home = home_url('/');
     
     $sap = count($_GET)>0?'&':'?';
         
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);      
+    
     if($title=='true') $title = "<h3>".$data['title']."</h3>";
     else  $title = '';
-    if($desc=='true') $desc = $data['description']."</br>";
+    if($desc=='true') $desc = wpautop($data['description'])."</br>";
     else  $desc = '';
     $desc = stripslashes($desc);
     if($data['show_counter']!=0)  $hc= 'has-counter';
@@ -165,7 +175,9 @@ function wpdm_downloadable_nsc($params){
     $loginform = "<div id='wpdm-login-form' class='wpdm-login-form'>".wp_login_form( $args ).'</div>';*/
     
     //"<div class=passit>Login Required<br/><input placeholder='Username' type=text id='username_{$id}' size=15 class='inf' /> <input placeholder='Password' class='inf' type=password id='password_{$id}' size=15 /><span class='perror'></span></div>";    
-    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$loginform}<div class='btn_outer'><div class='btn_outer_c'><a class='btn_left $classrel $hc login-please' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";    
+    if($data['icon']!='') $bg = "background-image: url(".plugins_url()."/download-manager/icon/{$data[icon]});";
+    
+    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$loginform}<div class='btn_outer'><div class='btn_outer_c' style='{$bg}'><a class='btn_left $classrel $hc login-please' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";    
     //if($data['show_counter']!=0)
     //$html .= "<span class='btn_right counter'>$data[download_count] downloads</span>";    
     //else
@@ -173,9 +185,10 @@ function wpdm_downloadable_nsc($params){
     $html .= "</div></div><div class='clear'></div></div></div>";
     }
     else {
+    if($data['icon']!='') $bg = "background-image: url(".plugins_url()."/download-manager/icon/{$data[icon]});";    
     if($data['password']=='') { $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); $classrel = ""; }
     else { $classrel='haspass'; /*$url = home_url('/?download='.$id);*/ $url = home_url('/');  $password_field = "<div class=passit>Enter password<br/><input type=password id='pass_{$id}' size=15 /><span class='perror'></span></div>"; }
-    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
+    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c' style='{$bg}'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
     if($data['show_counter']!=0)
     $html .= "<span class='btn_right counter'>$data[download_count] downloads</span>";    
     else
@@ -433,6 +446,26 @@ function wpdm_settings(){
 
 function wpdm_add_new_file(){
     global $wpdb; 
+    
+    if($_POST){
+    extract($_POST);
+     
+                      
+        $file['show_counter'] = 0;
+        $file['quota'] = $file['quota']?$file['quota']:0;
+        $file['category'] = serialize($file['category']);        
+        $wpdb->insert("ahm_files", $file); 
+        if(!$wpdb->insert_id){
+            $wpdb->show_errors();
+            $wpdb->print_error();
+            die();               
+        }
+        echo "<script>
+        location.href='admin.php?page=file-manager';
+        </script>";
+    
+   }
+    
     if(!file_exists(UPLOAD_DIR)){
         
         echo "    
@@ -451,33 +484,6 @@ function wpdm_add_new_file(){
         ";
     }
     
-    if($_POST){
-    extract($_POST);
-    if(is_uploaded_file($_FILES['media']['tmp_name'])){
-        $info = pathinfo($_FILES['media']['name']);        
-        //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
-        
-        $name = file_exists(dirname(__FILE__).'/'.UPLOAD_DIR.'/'.$_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
-        move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);
-        $file['file'] = $name;
-        
-    }
-                      
-        $file['show_counter'] = 0;
-        $file['quota'] = $file['quota']?$file['quota']:0;
-        $file['category'] = serialize($file['category']);
-        $wpdb->insert("ahm_files", $file); 
-        if(!$wpdb->insert_id){
-            $wpdb->show_errors();
-            $wpdb->print_error();
-            die();               
-        }
-        echo "<script>
-        location.href='admin.php?page=file-manager';
-        </script>";
-    
-   }
-
     
     include('wpdm-add-new-file.php');
 }
@@ -496,7 +502,7 @@ function wpdm_edit_file(){
     }        
          
         $file['category'] = serialize($file['category']);        
-       
+         
         $wpdb->update("ahm_files", $file, array("id"=>$_POST[id])); 
        
         echo "<script>
@@ -803,6 +809,44 @@ function delete_all_cats(){
     }
 }
 
+function wpdm_save_file(){
+      if($_POST['id']&&$_POST['wpdmtask']=='update'){
+        extract($_POST);
+        if(is_uploaded_file($_FILES['media']['tmp_name'])){
+            $info = pathinfo($_FILES['media']['name']);        
+            //echo dirname(__FILE__).'/files/'.$_FILES['media']['name'];
+        
+            $name = file_exists(UPLOAD_DIR . $_FILES['media']['name'])?str_replace('.'.$info['extension'],'_'.uniqid().'.'.$info['extension'],$info['basename']):$_FILES['media']['name'];        
+            move_uploaded_file($_FILES['media']['tmp_name'], UPLOAD_DIR . $name);        
+            $file['file'] = $name;
+        }        
+             
+            $file['category'] = serialize($file['category']);        
+             
+            $wpdb->update("ahm_files", $file, array("id"=>$_POST[id])); 
+           
+            
+        
+       }
+       
+       if($_POST['wpdmtask']=='create'){
+            extract($_POST);
+                          
+            $file['show_counter'] = 0;
+            $file['quota'] = $file['quota']?$file['quota']:0;
+            $file['category'] = serialize($file['category']);        
+            $wpdb->insert("ahm_files", $file); 
+            if(!$wpdb->insert_id){
+                $wpdb->show_errors();
+                $wpdb->print_error();
+                die();               
+            }
+        
+       }
+       echo "Done!" ;
+       die();
+}
+
 
 // handle uploaded file here
 function wpdm_check_upload(){
@@ -830,6 +874,9 @@ function wpdm_delete__file(){
   die('ok');
 }
 
+
+ 
+
 function wpdm_menu(){
     add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options',plugins_url('download-manager/img/donwloadmanager-16.png'));
     $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
@@ -844,6 +891,7 @@ function wpdm_menu(){
 function wpdm_admin_enque_scripts(){
     wp_enqueue_style('icons',plugins_url().'/download-manager/css/icons.css');        
     wp_enqueue_script('jquery');
+    wp_enqueue_script('jquery-form');
     wp_enqueue_script('plupload-all');
     wp_enqueue_script('file-tree-js',plugins_url().'/download-manager/js/jqueryFileTree.js',array('jquery'));        
      
@@ -871,6 +919,7 @@ add_action("wp","wpdm_download_info");
 
 add_filter( 'the_content', 'wpdm_downloadable');
 
+add_shortcode('wpdm_all_packages','wpdm_all_packages');
 add_shortcode('wpdm_hotlink','wpdm_hotlink');
 add_shortcode('wpdm_file','wpdm_downloadable_nsc');
 add_shortcode('wpdm_tree','wpdm_tree');
@@ -879,6 +928,8 @@ add_action('init','wpdm_embed_tree');
 add_action('init','wpdm_process');
 add_action('wp_ajax_file_upload','wpdm_check_upload');
 add_action('wp_ajax_delete_file','wpdm_delete__file');
+add_action('wp_ajax_save_wpdm_file','wpdm_save_file');
+ 
 
 add_action("init","wpdm_file_browser");
 add_action("init","wpdm_dir_tree");

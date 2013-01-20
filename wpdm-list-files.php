@@ -1,11 +1,19 @@
 <?php
 global $wpdb;
 $limit = 10;
+
+$cond = '';
+$s = isset($_GET['s'])?explode(" ",$_GET['s']):array();
+foreach($s as $p){
+    $cond[] = "title like '%".mysql_escape_string($p)."%'";
+    
+}
+if(isset($_GET['s'])) $cond = "where ".implode(" or ", $cond);
  
 $start = isset($_GET['paged'])?(($_GET['paged']-1)*$limit):0;
-$res = $wpdb->get_results("select * from ahm_files limit $start, $limit",ARRAY_A);
+$res = $wpdb->get_results("select * from ahm_files $cond limit $start, $limit",ARRAY_A);
  
-$row = $wpdb->get_row("select count(*) as total from ahm_files",ARRAY_A);
+$row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 
 ?>
  
@@ -26,23 +34,27 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files",ARRAY_A);
  
  
  
-
+<div style="position: absolute;right:10px;margin-top: 5px;">
+<form action="" method="get">
+ <input type="hidden" name="page" value="file-manager" />
+ <input type="text" name="s" id="s" value="<?php echo isset($_GET['s'])?$_GET['s']:''; ?>" />
+ <input type="submit" class="button-primary action" id="doaction" name="doaction" value="Search">
+ </form>
+</div>
            
 <form method="get" action="" id="posts-filter">
 <div class="tablenav">
 
 <div class="alignleft actions">
 <select class="select-action" name="task">
-<option selected="selected" value="">Bulk Actions</option>
+<option selected="selected" value="-1">Bulk Actions</option>
 <option value="DeleteFile">Delete Permanently</option>
 </select>
+
 <input type="submit" class="button-secondary action" id="doaction" name="doaction" value="Apply">
  
-  
-
 
 </div>
-
 <br class="clear">
 </div>
 
@@ -154,28 +166,7 @@ $page_links = paginate_links( array(
 
 <br class="clear">
 </div>
-    <div style="display: none;" class="find-box" id="find-posts">
-        <div class="find-box-head" id="find-posts-head">Find Posts or Pages</div>
-        <div class="find-box-inside">
-            <div class="find-box-search">
-                
-                <input type="hidden" value="" id="affected" name="affected">
-                <input type="hidden" value="3a4edcbda3" name="_ajax_nonce" id="_ajax_nonce">                <label for="find-posts-input" class="screen-reader-text">Search</label>
-                <input type="text" value="" name="ps" id="find-posts-input">
-                <input type="button" class="button" value="Search" onclick="findPosts.send();"><br>
-
-                <input type="radio" value="posts" checked="checked" id="find-posts-posts" name="find-posts-what">
-                <label for="find-posts-posts">Posts</label>
-                <input type="radio" value="pages" id="find-posts-pages" name="find-posts-what">
-                <label for="find-posts-pages">Pages</label>
-            </div>
-            <div id="find-posts-response"></div>
-        </div>
-        <div class="find-box-buttons">
-            <input type="button" value="Close" onclick="findPosts.close();" class="button alignleft">
-            <input type="submit" value="Select" class="button-primary alignright" id="find-posts-submit">
-        </div>
-    </div>
+   
 </form>
 <br class="clear">
 
