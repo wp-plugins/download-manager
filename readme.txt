@@ -1,5 +1,5 @@
 === WordPress Download Manager ===
-Contributors: Shaon
+Contributors: codename065
 Donate link: 
 Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 2.0.2
@@ -8,14 +8,14 @@ License: GPLv2 or later
  
   
  
-WordPress Download Manager is a Files and Document Management plugin for your WordPress Site which will help you to manage, track and control file downloads from your wordpress site.
+This is a Files and Document Management plugin which will help you to manage, track and control file downloads from your wordpress site.
    
 
 == Description ==
 WordPress Download Manager is a Files and Document Management plugin for your WordPress Site. WordPress Download Manager plugin will help you to manage, track and control file downloads from your wordpress site. You can set password and set access level any of your downloadable files from your wordpress site.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
-`v2.3.x ! Yes, its totally redesigned to give you better experience`
+`"Download Monitor" to "Download Manager" Files Importer Integrated. Import all download monitor files in a single click`
 
 = Features =
 *	Drag and Drop File Upload
@@ -42,11 +42,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	"Download Monitor" to "Download Manager" files Importer 
 
  
-
-= My other plugins =
-`http://wordpress.org/extend/plugins/profile/codename065` 
-
-
+ 
 == Installation ==
 
 
@@ -64,6 +60,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 6. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
 
 == Changelog ==
+
+= 2.3.4 =
+* Fixed file save issue with v2.3.3
+* Fixed issue with download monitor import 
 
 = 2.3.3 =
 * added search functionality in admin

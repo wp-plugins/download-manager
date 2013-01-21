@@ -122,6 +122,10 @@ $cid = stripslashes($_GET['cid']);
 <!--
   jQuery('.<?php echo $cid;?>').attr('disabled','disabled');
   
+  jQuery(function(){
+      jQuery('select').chosen();
+  });
+  
   function wpdm_deleteallcats(){
       if(!confirm('Are you sure?')) return false;
       location.href='admin.php?page=file-manager/categories&task=delete-all';

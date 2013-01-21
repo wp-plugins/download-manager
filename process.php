@@ -21,7 +21,13 @@ if(is_array($data)){
     
     @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
         
-    //d$data = DMDB::getById('ahm_files',$_GET['download']);
+    //added for download monitor import feature
+    $data['file'] = str_replace(site_url('/'),ABSPATH, $data['file']);
+     
+    if(strpos($data['file'],'ttp://')){
+        header("location: ".$data['file']);
+        die();
+    }
     if(file_exists($data['file']))
     $fname = $data['file'];    
     else if(file_exists(UPLOAD_DIR . $data['file']))

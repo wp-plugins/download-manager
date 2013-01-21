@@ -11,7 +11,7 @@ foreach($s as $p){
 if(isset($_GET['s'])) $cond = "where ".implode(" or ", $cond);
  
 $start = isset($_GET['paged'])?(($_GET['paged']-1)*$limit):0;
-$res = $wpdb->get_results("select * from ahm_files $cond limit $start, $limit",ARRAY_A);
+$res = $wpdb->get_results("select * from ahm_files $cond order by id desc limit $start, $limit",ARRAY_A);
  
 $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 

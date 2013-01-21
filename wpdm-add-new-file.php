@@ -79,14 +79,14 @@ input{
 
 <tr>
 <td>Counter: </td>
-<td><select name="file[show_counter]">
+<td><select id="counter" style="width: 100px;" name="file[show_counter]">
 <option value="0">Hide</option>
 <option value="1" <?php if($file['show_counter']!=0) echo 'selected="selected"'; ?> >Show</option>
 </select></td>
 </tr>
 <tr>
 <td width="70">Access:</td>
-<td><select name="file[access]">
+<td><select id="access" style="width: 120px;" name="file[access]">
     <option value="guest">All Visitors</option>
     <option value="member" <?php if($file[access]=='memder') echo 'selected'; ?>>Members Only</option>    
     </select>
@@ -407,21 +407,38 @@ jQuery('#dcf').click(function(){
 </form>
 
 </div>
- <div id="w84sv" style="display: none;position: fixed;top:0px;right:0px;padding:8px 20px;background: #00aa00;color:#ffffff;font-weight: bold;font-family:'Courier New';z-index:999999;font-size: 12pt;">
+ <div id="w84sv" style="display: none;position: fixed;top:10px;right:10px;padding:15px 30px;border-radius:4px;background: #aa0000;color:#ffffff;font-weight: bold;font-family:'Courier New';z-index:999999;font-size: 12pt;">
  Saving<span style="text-decoration:blink;">...</span>
  </div>
+ <div id="svd" onclick="jQuery(this).fadeOut();" style="display: none;position: fixed;top:10px;right:10px;padding:15px 30px;border-radius:4px;background: #00aa00;color:#ffffff;font-weight: bold;font-family:'Courier New';z-index:999999;font-size: 12pt;">  
+ </div>
+ 
+  
  
 <script language="JavaScript">
 <!--
+  jQuery(function(){
+      jQuery('select').chosen();
+  });
   jQuery('#wpdmpack').submit(function(){
+      jQuery('#svd').fadeOut(); 
       jQuery('#w84sv').fadeIn();
+      jQuery('#publish').attr('disabled','disabled');
       jQuery(this).ajaxSubmit({
-          action:'admin-ajax.php',
+          url:'admin-ajax.php',
           beforeSubmit:function(){
                
           },
           success:function(res){
-             jQuery('#w84sv').fadeOut(); 
+              var msg = '';
+              if(res=='updated') msg = '<?php _e('File Updated Successfully!'); ?>';
+              else if(parseInt(res)>0){
+                  msg = '<?php _e('File Created Successfully! Please wait while redirecting...'); ?>';
+                  location.href='admin.php?page=file-manager&task=wpdm_edit_file&id='+res;
+              }
+              jQuery('#w84sv').fadeOut(); 
+              jQuery('#svd').html(msg).fadeIn(); 
+              jQuery('#publish').removeAttr('disabled');
           }
       });
       return false;
