@@ -61,6 +61,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.3.5 =
+* Optimized ui and some internal code for better experience
+* Fixed tree view short-code issue
+
 = 2.3.4 =
 * Fixed file save issue with v2.3.3
 * Fixed issue with download monitor import 

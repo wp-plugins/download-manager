@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.3.4
+Version: 2.3.5
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -266,15 +266,18 @@ function wpdm_dropdown_categories($parent="", $level = 0, $sel='',$cid='',$class
 }
 
 function wpdm_tree(){
-    ?>
-    <script language="JavaScript" src="<?php echo plugins_url().'/download-manager/js/jqueryFileTree.js';?>"></script>     
-    <link rel="stylesheet" href="<?php echo plugins_url().'/download-manager/css/jqueryFileTree.css';?>" />          
+    $treejs = plugins_url().'/download-manager/js/jqueryFileTree.js';
+    $treecss = plugins_url().'/download-manager/css/jqueryFileTree.css';
+    $siteurl = site_url();
+    $data = <<<TREE
+    <script language="JavaScript" src="{$treejs}"></script>     
+    <link rel="stylesheet" href="{$treecss}" />          
     <div id="tree"></div>    
     <script language="JavaScript">
     <!--
       jQuery(document).ready( function() {
             jQuery('#tree').fileTree({                
-                script: '<?php echo site_url(); ?>/?task=wpdm_tree',
+                script: '{$siteurl}/?task=wpdm_tree',
                 expandSpeed: 1000,
                 collapseSpeed: 1000,
                 multiFolder: false
@@ -282,7 +285,7 @@ function wpdm_tree(){
                 //alert(file);
                 //var sfilename = file.split('/');
                 //var filename = sfilename[sfilename.length-1];
-                tb_show(jQuery(this).html(),'<?php echo home_url('/?download=');?>'+file+'&modal=1&width=600&height=400');
+                tb_show(jQuery(this).html(),'{$siteurl}/?download='+file+'&modal=1&width=600&height=400');
                  
             });
             
@@ -290,7 +293,9 @@ function wpdm_tree(){
       });
     //-->
     </script>    
-    <?php
+TREE;
+    
+    return $data;
 } 
 
 function wpdm_embed_tree(){  
@@ -850,6 +855,21 @@ function wpdm_delete__file(){
 }
 
 
+function wpdm_help(){
+    ?>
+    <div class="wrap">
+    <div class="icon32" id="icon-index"><br></div>
+    <h2>Help</h2>  <br>
+    
+    If you have anything to ask or if anything not clear please search or ask here:
+    <br/>
+    <strong><a href="http://www.wpdownloadmanager.com/support/forum/download-manager-free/" target="_blank">http://www.wpdownloadmanager.com/support/forum/download-manager-free/</a></strong>
+    
+     
+    
+    <?php
+}
+
  
 
 function wpdm_menu(){
@@ -859,6 +879,7 @@ function wpdm_menu(){
     add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', $access, 'file-manager/add-new-file', 'wpdm_add_new_file');    
     add_submenu_page( 'file-manager', 'Categories &lsaquo; File Manager', 'Categories', 'administrator', 'file-manager/categories', 'wpdm_categories');        
     add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', 'administrator', 'file-manager/settings', 'wpdm_settings');    
+    add_submenu_page( 'file-manager', 'Help &lsaquo; File Manager', 'Help', get_option('wpdm_access_level'), 'file-manager/help', 'wpdm_help');    
     
 }
 

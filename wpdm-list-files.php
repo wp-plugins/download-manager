@@ -24,11 +24,12 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 <h2>Manage Files 
 <a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
 <a class="button add-new-h2" href="admin.php?page=file-manager&task=wpdm_import_download_monitor">Import Files from Download Monitor</a> <br />
-<div class="updated" style="padding:5px 10px;color:#008000;font-weight:bold;">
- <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! only @ 45.00 $ </a> | 
- <a style="color: #3399ff;" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
-</div> 
-</h2>
+ 
+</h2> 
+<div class="updated" style="padding:5px 10px;color:#fff;font-weight:bold;background: #6F9348; border: 0px;padding:8px 20px;font-size:10pt;font-style: italic;">
+ <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
+ <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
+</div>
  <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
 
  
@@ -114,10 +115,10 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
                     </a>
                 </td>
                 <td class="media column-media">
-                    <strong><a title="Edit" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>"><?php echo $media['title']?></a></strong> | Embed Code: <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="[wpdm_file id=<?php echo $media['id'];?>]" /><br>
+                    <strong><a title="Edit" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>"><?php echo $media['title']?></a></strong> <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="[wpdm_file id=<?php echo $media['id'];?>]" /><br>
                     <code>File: <?php echo $media['file']; ?></code><Br>
                      
-                    <div class="row-actions"><span class="edit"><a href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>">Edit</a> | </span><span class="delete"><a href="admin.php?page=file-manager&task=wpdm_delete_file&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="submitdelete">Delete Permanently</a></div>
+                    <div class="row-actions"><div class="button-group"><a class="button" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>">Edit</a><a href="admin.php?page=file-manager&task=wpdm_delete_file&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="button submitdelete" style="color: #aa0000;">Delete Permanently</a></div></div>
                 </td>
                 <td class="author column-author"><?php echo $media['password']; ?></td>
                 <td class="parent column-parent"><?php echo $media['access']; ?></td>
@@ -130,6 +131,8 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 </table>
 
 <?php
+$_GET['paged'] = $_GET['paged'] ?$_GET['paged'] :1;
+
 $page_links = paginate_links( array(
     'base' => add_query_arg( 'paged', '%#%' ),
     'format' => '',
@@ -146,7 +149,8 @@ $page_links = paginate_links( array(
 
 <div class="tablenav">
 
-<?php if ( $page_links ) { ?>
+<?php 
+if ( $page_links ) { ?>
 <div class="tablenav-pages"><?php $page_links_text = sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' ) . '</span>%s',
     number_format_i18n( ( $_GET['paged'] - 1 ) * $limit + 1 ),
     number_format_i18n( min( $_GET['paged'] * $limit, $row[total] ) ),
