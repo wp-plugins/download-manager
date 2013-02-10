@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.3.5
+Version: 2.3.6
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -57,6 +57,12 @@ function wpdm_free_install(){
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       
       $wpdb->query($sql);
+      $tmpdata = $wpdb->get_results("SHOW COLUMNS FROM ahm_files");
+      foreach($tmpdata as $d){
+        $fields[] = $d->Field;
+      }
+      if(!in_array('icon',$fields))
+      $wpdb->query("ALTER TABLE `ahm_files` ADD `icon` VARCHAR( 255 ) NOT NULL");
       
    update_option('wpdm_access_level','administrator');
    wpdm_create_dir();
@@ -316,10 +322,13 @@ if($_GET['task']!='wpdm_tree')     return;
             }  
        
             // All files
-            if($_POST[dir])
-            $ct = "\"{$_POST[dir]}\"";
-            else $ct = '';
-            $ndata = $wpdb->get_results("select * from ahm_files where category like '%{$ct}%'",ARRAY_A);
+            
+             
+            if($_POST['dir'])
+            $ndata = $wpdb->get_results("select * from ahm_files where category like '%\"{$_POST['dir']}\"%'",ARRAY_A);
+            else
+            $ndata = $wpdb->get_results("select * from ahm_files where category = 'N;'",ARRAY_A);
+            
             $sap = '?'; //count($_GET)>0?'&':'?';
               
             foreach($ndata as $data){

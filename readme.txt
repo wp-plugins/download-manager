@@ -3,7 +3,7 @@ Contributors: codename065
 Donate link: 
 Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 2.0.2
-Tested up to: 3.5
+Tested up to: 3.5.1
 License: GPLv2 or later
  
   
@@ -60,6 +60,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 6. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
 
 == Changelog ==
+
+= 2.3.6 =
+* Upgraded tree view
 
 = 2.3.5 =
 * Optimized ui and some internal code for better experience
