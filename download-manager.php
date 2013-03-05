@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.3.6
+Version: 2.3.7
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -69,16 +69,29 @@ function wpdm_free_install(){
       
 }
 
-function wpdm_new_packages($show=5, $show_count=true){
+function wpdm_top_packages($show=5, $show_count=true){
     global $wpdb;
      
-    $data = $wpdb->get_results("select * from ahm_files order by id desc limit 0, $show",ARRAY_A);
+    $data = $wpdb->get_results("select * from ahm_files order by download_count desc limit 0, $show",ARRAY_A);
     foreach($data as $d){
         
         $key = $d['id'];
         if($show_count) $sc = "<br/><i>$d[download_count] downloads</i>";         
         $url = home_url("/?download={$d[id]}");  
         echo "<li><div class='wpdm_link'><a  class='wpdm-popup' title='$d[title]' href='$url'>{$d[title]}</a> $sc</div></li>\r\n";
+    }
+}
+
+function wpdm_new_packages($show=5, $show_count=true){
+    global $wpdb;
+     
+    $data = $wpdb->get_results("select * from ahm_files order by id desc limit 0, $show",ARRAY_A);
+    foreach($data as $d){
+        $key = $d['id'];
+        $d['icon'] = $d['icon']?$d['icon']:'file_extension_'.end(explode('.',$d['file'])).'.png';
+        if($show_count) $sc = "<br/><i>$d[download_count] downloads</i>";         
+        $url = home_url("/?download={$d[id]}");  
+        echo "<li><div class='wpdm_link'><img src='".plugins_url('download-manager/icon/'.$d['icon'])."' style='border:0px;box-shadow:none;float:left;margin-right:5px;margin-top:5px;'><a  style='line-height:normal;' class='wpdm-popup' title='$d[title]' href='$url'>{$d[title]}</a> $sc</div><div style='clear:both;margin-bottom:5px'></div></li>\r\n";
     }
 }
 

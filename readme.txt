@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.3.7 =
+* Upgraded new download widget
+
 = 2.3.6 =
 * Upgraded tree view
 
