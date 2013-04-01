@@ -237,14 +237,18 @@ if(is_array($data)){
     header("Content-Length: " . $fsize);
     
  
-
+    $wpdm_tsize = 0;
+    $wpdm_chunk = 8192;
     $file = @fopen($fname,"rb");
-
+    $wpdm_rest = $fsize;
     if ($file) {
 
                                        
        while (!feof($file)) {
-            echo fread($file, 8192);
+            if($wpdm_rest<$wpdm_chunk) $wpdm_chunk = $wpdm_rest;
+            echo fread($file, $wpdm_chunk);
+            $wpdm_tsize += $wpdm_chunk;
+            $wpdm_rest = $fsize - $wpdm_tsize;
         }
       fclose($file);
 
