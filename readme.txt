@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.3.9 =
+* Fxied the issue with fread
+
 = 2.3.8 =
 * Adjusted broken file issue
 

@@ -245,7 +245,7 @@ if(is_array($data)){
 
                                        
        while (!feof($file)) {
-            if($wpdm_rest<$wpdm_chunk) $wpdm_chunk = $wpdm_rest;
+            if($wpdm_rest<$wpdm_chunk&&$wpdm_rest>0) $wpdm_chunk = $wpdm_rest;
             echo fread($file, $wpdm_chunk);
             $wpdm_tsize += $wpdm_chunk;
             $wpdm_rest = $fsize - $wpdm_tsize;
