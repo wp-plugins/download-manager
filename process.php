@@ -7,18 +7,22 @@ global $wpdb;
     die("<code>".dirname(__FILE__).'/cache/</code> must have to be writable!' );
 $did = explode('.',base64_decode($_GET['did']));
 $id = array_shift($did);
-if(!is_numeric($id)){        
+if(!is_numeric($id)){   
+    $_GET['did'] = esc_attr($_GET['did']); 
     $data = @unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
    
 }
 else {    
     
-    
+    $id = (int)$id;
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
 }
 
 if(is_array($data)){    
-    
+    if($data['access']=='member'&&!is_user_logged_in()) {
+        header("location: wp-login.php?redirect_to=".urlencode($_SERVER['REQUEST_URI']));
+        die();
+    }
     @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
         
     //added for download monitor import feature
@@ -247,6 +251,7 @@ if(is_array($data)){
        while (!feof($file)) {
             if($wpdm_rest<$wpdm_chunk&&$wpdm_rest>0) $wpdm_chunk = $wpdm_rest;
             echo fread($file, $wpdm_chunk);
+            if(function_exists('ob_flush')) @ob_flush();
             $wpdm_tsize += $wpdm_chunk;
             $wpdm_rest = $fsize - $wpdm_tsize;
         }

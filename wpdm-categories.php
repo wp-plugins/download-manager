@@ -95,7 +95,7 @@ $cid = stripslashes($_GET['cid']);
 ?> 
     
     <tbody class="list:post" id="the-list">    
-    <tr valign="top" class="alternate author-self status-inherit" id="post-8">
+    <tr valign="top">
                 <td class="author column-author">
                 <input style="" type="hidden" name="cid" value="<?php echo $cat?$cid:''; ?>">
                 Title:<br>
