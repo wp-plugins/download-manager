@@ -62,6 +62,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 == Changelog ==
 
 
+= 2.4.1 =
+
+* Upgraded category sort-code
+
 = 2.4.0 =
 
 * Fixed members download issue

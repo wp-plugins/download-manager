@@ -18,7 +18,7 @@ else {
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
 }
 
-if(is_array($data)){    
+if(is_array($data)){   
     if($data['access']=='member'&&!is_user_logged_in()) {
         header("location: wp-login.php?redirect_to=".urlencode($_SERVER['REQUEST_URI']));
         die();
@@ -32,6 +32,7 @@ if(is_array($data)){
         header("location: ".$data['file']);
         die();
     }
+    $data['file'] = trim($data['file']);
     if(file_exists($data['file']))
     $fname = $data['file'];    
     else if(file_exists(UPLOAD_DIR . $data['file']))

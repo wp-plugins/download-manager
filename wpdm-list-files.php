@@ -22,14 +22,16 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
     <div class="icon32" id="icon-upload"><br></div>
     
 <h2>Manage Files 
-<a class="button add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
-<a class="button add-new-h2" href="admin.php?page=file-manager&task=wpdm_import_download_monitor">Import Files from Download Monitor</a> <br />
+<a class="button button-secondary add-new-h2" href="admin.php?page=file-manager/add-new-file">Add New</a> 
+<a class="button button-secondary  add-new-h2" href="admin.php?page=file-manager&task=wpdm_import_download_monitor">Import from Download Monitor</a>
+<a class="button  add-new-h2" style="font-weight: bold" href="http://wordpress.org/support/view/plugin-reviews/download-manager">A 5&#9733; rating will inspire me a lot :)</a>
+<br />
  
 </h2> 
 <div class="updated" style="padding:5px 10px;color:#fff;font-weight:bold;background: #6F9348; border: 0px;padding:8px 20px;font-size:10pt;font-style: italic;">
  <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
  <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
-</div>
+ </div>
  <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
 
  

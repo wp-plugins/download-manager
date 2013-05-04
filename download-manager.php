@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.4.0
+Version: 2.4.1
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -32,6 +32,7 @@ include(dirname(__FILE__)."/wpdm-free-mce-button.php");
 if(!$_POST)    $_SESSION['download'] = 0;
 
 function wpdm_download_info(){
+    @header("HTTP/1.1 200 OK");
     include("download.php");
 }
 
@@ -596,7 +597,12 @@ $html = '';
 foreach($ndata as $data){
   
     $link_label = $data['title']?$data['title']:'Download';  
-    $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data[id]}'>$link_label</a>";
+    $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data['id']}'>$link_label</a>";
+    //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
+    if($data['password']=='') { 
+        $url = home_url('/?wpdmact=process&did='.base64_encode($data['id'].'.hotlink'));         
+        $data['page_link'] = "<a href='{$url}'>$link_label</a>";
+    }
     if($data[preview]!='')
     $data['thumb'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[preview]}' />";
     else
