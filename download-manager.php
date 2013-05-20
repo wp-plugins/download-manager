@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.4.1
+Version: 2.4.2
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -137,7 +137,7 @@ function wpdm_import_download_monitor(){
     
 }
 
-   function wpdm_all_packages($params = array()){    
+function wpdm_all_packages($params = array()){    
      @extract($params);
      global $wpdb, $current_user;          
      ob_start();
@@ -198,7 +198,7 @@ function wpdm_downloadable_nsc($params){
     $html .= "</div></div><div class='clear'></div></div></div>";
     }
     else {
-    if($data['icon']!='') $bg = "background-image: url(".plugins_url()."/download-manager/icon/{$data[icon]});";    
+    if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");";    
     if($data['password']=='') { $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); $classrel = ""; }
     else { $classrel='haspass'; /*$url = home_url('/?download='.$id);*/ $url = home_url('/');  $password_field = "<div class=passit>Enter password<br/><input type=password id='pass_{$id}' size=15 /><span class='perror'></span></div>"; }
     $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c' style='{$bg}'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
@@ -601,17 +601,9 @@ foreach($ndata as $data){
     //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
     if($data['password']=='') { 
         $url = home_url('/?wpdmact=process&did='.base64_encode($data['id'].'.hotlink'));         
-        $data['page_link'] = "<a href='{$url}'>$link_label</a>";
+       // $data['page_link'] = "<a href='{$url}'>$link_label</a>";
     }
-    if($data[preview]!='')
-    $data['thumb'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[preview]}' />";
-    else
-    $data['thumb'] = '';
-    if($data[icon]!='')
-    $data['icon'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[icon]}' />";
-    else
-    $data['icon'] = '';
-    
+    if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");"; 
     
             if($data['show_counter']==1){
                 $counter = "{$data[download_count]} downloads<br/>";
@@ -620,9 +612,9 @@ foreach($ndata as $data){
             
             //foreach( $data as $ind=>$val ) $reps["[".$ind."]"] = $val;
             //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));  
-            $template = "<li><div class='wpdm_clink'><b>$data[page_link]</b><br/><small>$data[counter]</small></div></li>";
+            $template = "<li><div class='wpdm_clink' style='{$bg}'><b>$data[page_link]</b><br/><small>$data[counter]</small></div></li>";
             if($data['access']=='member'&&!is_user_logged_in())
-            $template = "<li><div class='wpdm_clink'><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]</a></b><br/><small>login to download</small></div></li>";
+            $template = "<li><div class='wpdm_clink' style='{$bg}'><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]</a></b><br/><small>login to download</small></div></li>";
             $html .= $template;
           
             

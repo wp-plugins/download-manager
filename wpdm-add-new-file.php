@@ -88,7 +88,7 @@ input{
 <td width="70">Access:</td>
 <td><select id="access" style="width: 120px;" name="file[access]">
     <option value="guest">All Visitors</option>
-    <option value="member" <?php if($file[access]=='memder') echo 'selected'; ?>>Members Only</option>    
+    <option value="member" <?php if($file['access']=='member') echo 'selected'; ?>>Members Only</option>    
     </select>
 </td>
 </tr>

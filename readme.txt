@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.4.2 =
+
+* Added icon support for category short-code
 
 = 2.4.1 =
 
