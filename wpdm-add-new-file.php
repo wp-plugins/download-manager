@@ -103,7 +103,7 @@ input{
 <div  style="width: 48%;float: right;height: inherit;">
  <div class="postbox " id="categories_meta_box">
 <div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Categories</span></h3>
-<div class="inside">
+<div class="inside" style="max-height: 150px;overflow: auto;">
 <ul>
 <?php
  $currentAccesss = maybe_unserialize( $file['category'] );

@@ -24,6 +24,9 @@ if(is_array($data)){
         die();
     }
     @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
+    
+    
+    if($data['download_count']>=$data['quota']&&$data['quota']>0) die('Download Limit Excedded!');
         
     //added for download monitor import feature
     $data['file'] = str_replace(site_url('/'),ABSPATH, $data['file']);

@@ -61,6 +61,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.4.3 =
+* Fixed issue with categories
+* Fixed Download Limit Issue
+
 = 2.4.2 =
 
 * Added icon support for category short-code
