@@ -8,7 +8,7 @@
                                 ed.windowManager.open({
                                         title: 'Download Controller',
                                         file : 'admin.php?wpdm_action=wpdm_tinymce_button',
-                                        height: 350,
+                                        height: 550,
                                         width:400,                                        
                                         inline : 1
                                 }, {

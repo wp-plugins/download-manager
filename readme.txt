@@ -58,8 +58,13 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 4. Frton-end link template preview
 5. Full tree view of categories and files with a simple short-code [wpdm_tree]
 6. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
+7. Insert short-code
+8. Create a new download pacakge quickly from popup
 
 == Changelog ==
+
+= 2.4.4 =
+* Upgrade tinymce button feature, added quick add option
 
 = 2.4.3 =
 * Fixed issue with categories
