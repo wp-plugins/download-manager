@@ -155,16 +155,17 @@ fieldset{padding: 10px;}
                     
                     jQuery(function(){  
                                       
-                    var title ='', desc = '';
+                    var stitle ='', sdesc = '';
                     jQuery('#addtopost').click(function(){
                      
-                    var win = window.dialogArguments || opener || parent || top;                     
-                    if(jQuery('#title').attr("checked")==true) title = ' title="true" ';
-                    if(jQuery('#desc').attr("checked")==true) desc = ' desc="true" ';  
+                    var win = window.dialogArguments || opener || parent || top;       
+                            
+                    if(jQuery('#stitle').attr("checked")=='checked') stitle = ' title="true" ';
+                    if(jQuery('#sdesc').attr("checked")=='checked') sdesc = ' desc="true" ';  
                     var shadow = jQuery('#shadow').val();  
                     var template = ' template="'+jQuery('#template').val()+' '+shadow+'" ';
                     if(jQuery('#template').val()=='') template = "";
-                    win.send_to_editor('[wpdm_file id='+jQuery('#fl').val()+title+desc+template+']');
+                    win.send_to_editor('[wpdm_file id='+jQuery('#fl').val()+stitle+sdesc+template+']');
                     tinyMCEPopup.close();
                     return false;                   
                     });
@@ -187,8 +188,8 @@ fieldset{padding: 10px;}
 <div style="clear: both;"></div>        
 <div id="scode"  class="tab-pane">
 <fieldset><legend>Embed File</legend> 
-<input type="checkbox" id="title" value="1"> <label for="title">Show Title</label> 
-<input type="checkbox" id="desc" value="1"> <label for="desc">Show Description</label> <br/>
+<input type="checkbox" id="stitle" value="1"> <label for="title">Show Title</label> 
+<input type="checkbox" id="sdesc" value="1"> <label for="desc">Show Description</label> <br/>
 Template: <select id="template">
 <option value="">None</option>
 <option value="facebook">Facebook</option>
