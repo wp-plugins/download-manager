@@ -48,13 +48,13 @@ input{
 
 <tr>
 <td valign="top"></td>
-<td align="right">
+<td align="left">
+               <br>
+<input type="button" value="&#171; back" tabindex="9" class="button button-secondary button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input type="button" value="&#171; back" tabindex="9" class="button-secondary" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+<input type="reset" value="reset" tabindex="9" class="button button-secondary button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input type="reset" value="reset" tabindex="9" class="button-secondary" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
-
-<input type="submit" value="save" accesskey="p" tabindex="5" id="publish" class="button-primary" name="publish">
+<input type="submit" value="save" accesskey="p" tabindex="5" id="publish" class="button button-primary button-large" name="publish">
 </td>
 </tr>
 

@@ -211,7 +211,7 @@ Drop Shadow Effect: <select id="shadow">
     foreach($res as $row){
     ?>
     
-    <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+    <option value="<?php echo $row['id']; ?>"><?php echo stripcslashes($row['title']); ?></option>
     
     
     <?php    

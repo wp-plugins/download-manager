@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.4.5
+Version: 2.4.6
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -75,7 +75,7 @@ function wpdm_top_packages($show=5, $show_count=true){
      
     $data = $wpdb->get_results("select * from ahm_files order by download_count desc limit 0, $show",ARRAY_A);
     foreach($data as $d){
-        
+        $d['title'] = stripcslashes($d['title']);
         $key = $d['id'];
         if($show_count) $sc = "<br/><i>$d[download_count] downloads</i>";         
         $url = home_url("/?download={$d[id]}");  
@@ -89,6 +89,7 @@ function wpdm_new_packages($show=5, $show_count=true){
     $data = $wpdb->get_results("select * from ahm_files order by id desc limit 0, $show",ARRAY_A);
     foreach($data as $d){
         $key = $d['id'];
+        $d['title'] = stripcslashes($d['title']);
         $d['icon'] = $d['icon']?$d['icon']:'file_extension_'.end(explode('.',$d['file'])).'.png';
         if($show_count) $sc = "<br/><i>$d[download_count] downloads</i>";         
         $url = home_url("/?download={$d[id]}");  
@@ -156,7 +157,8 @@ function wpdm_downloadable_nsc($params){
     $sap = count($_GET)>0?'&':'?';
         
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);      
-    
+    $data['title'] = stripcslashes($data['title']);  
+    $data['description'] = stripcslashes($data['description']);  
     if($title=='true') $title = "<h3>".$data['title']."</h3>";
     else  $title = '';
     if($desc=='true') $desc = wpautop($data['description'])."</br>";
@@ -221,7 +223,8 @@ function wpdm_downloadable($content){
     $sap = count($_GET)>0?'&':'?';
     for($i=0;$i<count($matches[1]);$i++){        
     $id = $matches[1][$i];       
-    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);      
+    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);    
+    $data['title'] = stripcslashes($data['title']);  
     $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
     $link_label = $data['link_label']?$data['link_label']:'Download';
     if($data['access']=='member'&&!is_user_logged_in())
@@ -332,7 +335,7 @@ if($_GET['task']!='wpdm_tree')     return;
             $_POST['dir'] = $_POST['dir']=='/'?'':$_POST['dir'];
             foreach( $cats as $id=>$file ) {                         
                     if($file['parent']==$_POST['dir'])                                                                                            
-                    echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $id . "\">" . htmlentities($file[title]) . "</a></li>";                
+                    echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $id . "\">" . htmlentities(stripcslashes($file[title])) . "</a></li>";                
             }  
        
             // All files
@@ -347,6 +350,7 @@ if($_GET['task']!='wpdm_tree')     return;
               
             foreach($ndata as $data){
                $html = '';
+                $data['title'] = stripcslashes($data['title']);  
                 $link_label = $data['title']?$data['title']:'Download';  
                 $data['page_link'] = "<a class='wpdm-popup' href='' rel='{$data[id]}'>$link_label</a>";
                 if($data[preview]!='')
@@ -801,6 +805,7 @@ function wpdm_hotlink($params){
     if($id=='') return;
     $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
     if($data['id']=='') return;
+    $data['link_label'] = stripcslashes($data['link_label']);  
     $link_label = $link_label?$link_label:$data['link_label'];
     $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); 
     return "<a href='$url'>$link_label</a>";

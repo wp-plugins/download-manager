@@ -381,11 +381,11 @@ jQuery('#dcf').click(function(){
 
 
 
- <input type="button" value="&#171; Back" tabindex="9" class="button-secondary" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+ <input type="button" value="&#171; Back" tabindex="9" class="button-secondary button button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input  type="reset" value="Reset" tabindex="9" class="button-secondary" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+<input  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input type="submit" value="<?php echo $_GET['task']=='wpdm_edit_file'?'Update Package':'Create Package'; ?>" accesskey="p" tabindex="5" id="publish" class="button-primary" name="publish">
+<input type="submit" value="<?php echo $_GET['task']=='wpdm_edit_file'?'Update Package':'Create Package'; ?>" accesskey="p" tabindex="5" id="publish" class="button-primary button button-large" name="publish">
  <div class="clear"></div>
  
 </div>
