@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.4.6
+Version: 2.4.7
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -458,14 +458,17 @@ function wpdm_create_dir(){
 
 function wpdm_settings(){
     if($_POST){
-        update_option('wpdm_access_level',$_POST[access]);
-        update_option('wpdm_login_msg',$_POST[wpdm_login_msg]);
+       
+        update_option('wpdm_access_level',$_POST['access']);
+        update_option('wpdm_login_msg',$_POST['wpdm_login_msg']);
+        update_option('wpdm_show_cinfo',$_POST['wpdm_show_cinfo']);
     }
     if(is_uploaded_file($_FILES['icon']['tmp_name'])){
         ///print_r(dirname(__FILE__).'/icon/download.png');
         move_uploaded_file($_FILES['icon']['tmp_name'],dirname(__FILE__).'/icon/download.png');
     }
     $access = get_option('wpdm_access_level');
+    $wpdm_show_cinfo = get_option('wpdm_show_cinfo');
     include('wpdm-settings.php'); 
 }
 
@@ -600,7 +603,7 @@ $sap = strpos($plink,'?')>0?'&':'?';
 $html = '';
 foreach($ndata as $data){
   
-    $link_label = $data['title']?$data['title']:'Download';  
+    $link_label = $data['title']?stripcslashes($data['title']):'Download';  
     $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data['id']}'>$link_label</a>";
     //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
     if($data['password']=='') { 
@@ -631,7 +634,8 @@ END;
  
         
 }
- 
+
+if(get_option('wpdm_show_cinfo','no')=='yes')  $html = "<h3>{$category['title']}</h3>".wpautop($category['content']).$html; 
 
 return "<ul class='wpdm-category $id'>".$html."</ul><div style='clear:both'></div>".$pag->show()."<div style='clear:both'></div>";
 }

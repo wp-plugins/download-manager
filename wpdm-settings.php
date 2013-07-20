@@ -27,6 +27,15 @@ input{
     </select>
 </td>
 </tr>
+<tr>
+<td>Show category info with short-code:</td>
+<td><select name="wpdm_show_cinfo">
+    <option value="no">No</option>    
+    <option value="yes" <?php echo $wpdm_show_cinfo=='yes'?'selected':''?>>Yes</option>    
+       
+    </select>
+</td>
+</tr>
 
 <tr>
 <td>Login Required Message:</td>
