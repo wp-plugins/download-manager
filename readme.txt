@@ -3,7 +3,7 @@ Contributors: codename065
 Donate link: 
 Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, downlad tracker, download protection
 Requires at least: 3.4
-Tested up to: 3.5.2
+Tested up to: 3.6
 License: GPLv2 or later
  
   
