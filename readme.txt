@@ -63,6 +63,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.4.8 =
+* Compatibility update for wp 3.6
+* Adjusted minor css issue
+
 = 2.4.7 =
 * added title and description support to category short-code
 

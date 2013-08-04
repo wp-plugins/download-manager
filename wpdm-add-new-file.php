@@ -13,7 +13,7 @@ input{
 .cfile img, .dfile img{cursor: pointer;}
 .inside{padding:10px !important;}
 #editorcontainer textarea{border:0px;width:99.9%;}
-#file_uploadUploader {background: transparent url('<?php echo plugins_url(); ?>/download-manager/images/browse.png') left top no-repeat; }
+#file_uploadUploader {background: transparent url('<?php echo plugins_url('/download-manager/images/browse.png'); ?>') left top no-repeat; }
 #file_uploadUploader:hover {background-position: left bottom; }
 .frm td{line-height: 30px; border-bottom: 1px solid #EEEEEE; padding:5px; font-size:9pt;font-family: Tahoma;}
  
@@ -30,7 +30,7 @@ input{
 <?php }?>
 <form id="wpdmpack" action="" method="post">
 <input type="hidden" name="action" value="save_wpdm_file" />
-<input type="hidden" name="wpdmtask" value="<?php echo $_GET['task']=='wpdm_edit_file'?'update':'create';?>" />
+<input type="hidden" name="wpdmtask" value="<?php echo isset($_GET['task'])&&$_GET['task']=='wpdm_edit_file'?'update':'create';?>" />
 <input type="hidden" name="id" value="<?php echo $file['id']; ?>" />
 <div  style="width: 75%;float:left;">
     
@@ -383,7 +383,7 @@ jQuery('#dcf').click(function(){
 
  <input type="button" value="&#171; Back" tabindex="9" class="button-secondary button button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+<input style="float: right"  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
 <input type="submit" value="<?php echo $_GET['task']=='wpdm_edit_file'?'Update Package':'Create Package'; ?>" accesskey="p" tabindex="5" id="publish" class="button-primary button button-large" name="publish">
  <div class="clear"></div>
