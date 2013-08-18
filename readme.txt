@@ -63,6 +63,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.4.9 =
+* Fixed an issue with tinymce button
+
 = 2.4.8 =
 * Compatibility update for wp 3.6
 * Adjusted minor css issue
