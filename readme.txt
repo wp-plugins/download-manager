@@ -63,6 +63,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.0 =
+* Fixed issue with category id for utf8 charset
+* Fixed issue with file title
+
 = 2.4.9 =
 * Fixed an issue with tinymce button
 

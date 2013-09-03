@@ -37,7 +37,7 @@ input{
 <table cellpadding="5" cellspacing="5" width="100%">
 <tr>
  
-<td><input style="font-size:16pt;width:100%;color:<?php echo $file['title']?'#000':'#ccc'; ?>" onfocus="if(this.value=='Enter title here') {this.value=''; jQuery(this).css('color','#000'); }" onblur="if(this.value==''||this.value=='Enter title here') {this.value='Enter title here'; jQuery(this).css('color','#ccc');}" type="text" value="<?php echo $file['title']?$file['title']:'Enter title here'; ?>" name="file[title]" /></td>
+<td><input style="font-size:16pt;width:100%;color:<?php echo $file['title']?'#000':'#ccc'; ?>" onfocus="if(this.value=='Enter title here') {this.value=''; jQuery(this).css('color','#000'); }" onblur="if(this.value==''||this.value=='Enter title here') {this.value='Enter title here'; jQuery(this).css('color','#ccc');}" type="text" value="<?php echo $file['title']?htmlspecialchars(stripcslashes($file['title'])):'Enter title here'; ?>" name="file[title]" /></td>
 </tr>
 
 <tr>
