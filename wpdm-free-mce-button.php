@@ -175,7 +175,15 @@ fieldset{padding: 10px;}
                     win.send_to_editor('{wpdm_category='+jQuery('#flc').val()+'}');
                     tinyMCEPopup.close();
                     return false;                   
-                    });  
+                    });
+
+                   jQuery('#addtoposte').click(function(){
+                    var win = window.dialogArguments || opener || parent || top;
+
+                    win.send_to_editor(jQuery('#esc').val());
+                    tinyMCEPopup.close();
+                    return false;
+                    });
                               
                 });
                 </script>
@@ -227,6 +235,13 @@ Drop Shadow Effect: <select id="shadow">
     ?>
     </select>
     <input type="submit" id="addtopostc" class="button button-primary" name="addtopost" value="Insert into post" />
+</fieldset>   <br>
+<fieldset><legend>Additional Short-codes</legend>
+    <select class="button input" id="esc">
+    <option value="[wpdm_all_packages]">All Downloads (Data Table)</option>
+    <option value="[wpdm_tree]">All Downloads (Tree View)</option>
+    </select>
+    <input type="submit" id="addtoposte" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>
 </div>
 <div id="qbtn"  class="tab-pane" style="display: none;"> 

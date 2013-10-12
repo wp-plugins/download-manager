@@ -63,6 +63,8 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.2 =
+* Updated tinymce button, added selection option for additional short-codes
 
 = 2.5.1 =
 * Fixed conflict with nextgen gallery
