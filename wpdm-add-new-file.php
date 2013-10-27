@@ -381,7 +381,6 @@ jQuery('#dcf').click(function(){
 
 
 
- <input type="button" value="&#171; Back" tabindex="9" class="button-secondary button button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
 <input style="float: right"  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 

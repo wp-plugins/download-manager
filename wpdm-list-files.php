@@ -29,8 +29,8 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
  
 </h2> 
 <div class="updated" style="padding:5px 10px;color:#fff;font-weight:bold;background: #6F9348; border: 0px;padding:8px 20px;font-size:10pt;font-style: italic;">
- <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
- <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?ref=wpadmin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
+ <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
+ <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
  </div>
  <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
 

@@ -48,8 +48,8 @@ input{
 <tr>
 <td>Download Link Icon:</td>
 <td>
-<input type="file" name="icon">
- | Current Icon: <img src="<?php echo plugins_url(); ?>/download-manager/icon/download.png" />
+    <table><tr><td><img src="<?php echo plugins_url(); ?>/download-manager/icon/download.png" /></td><td><input type="file" name="icon"></td></tr></table>
+
 </td>
 </tr>
 
@@ -59,11 +59,12 @@ input{
 <td valign="top"></td>
 <td align="left">
                <br>
-<input type="button" value="&#171; back" tabindex="9" class="button button-secondary button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
-<input type="reset" value="reset" tabindex="9" class="button button-secondary button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 
 <input type="submit" value="save" accesskey="p" tabindex="5" id="publish" class="button button-primary button-large" name="publish">
+    <input type="button" value="&#171; back" tabindex="9" class="button button-secondary button-large" onclick="location.href='admin.php?page=file-manager'" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+
+    <input type="reset" value="reset" tabindex="9" class="button button-secondary button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
 </td>
 </tr>
 
