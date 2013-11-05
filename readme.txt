@@ -63,6 +63,8 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.4 =
+* Fixed an issue with quick add option
 
 = 2.5.3 =
 * regular maintenance and compatibility release for wp 3.7

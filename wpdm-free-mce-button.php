@@ -247,7 +247,7 @@ Drop Shadow Effect: <select id="shadow">
 <div id="qbtn"  class="tab-pane" style="display: none;"> 
 <fieldset>
 <legend>Add New Package</legend>
-    <form action="admin.php?page=file-manager/add-new-package" id="wpdmpack">
+    <form action="admin.php?page=file-manager/add-new-package" id="wpdmpack" method="post">
      
     <input type="hidden" id="act" name="file[access]" value="guest" />
     <input type="hidden" name="action" value="save_wpdm_file" />
