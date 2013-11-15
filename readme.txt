@@ -63,6 +63,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.5 =
+* Fixed data validation issue
+
 = 2.5.4 =
 * Fixed an issue with quick add option
 
