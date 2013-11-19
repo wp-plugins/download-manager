@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.5
+Version: 2.5.6
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -270,7 +270,7 @@ function wpdm_cblist_categories($parent="", $level = 0, $sel = array()){
 }
 
 function wpdm_dropdown_categories($parent="", $level = 0, $sel='',$cid='',$class=array()){
-   $cats = maybe_unserialize(get_option('_fm_categories')); 
+   $cats = maybe_unserialize(get_option('_fm_categories'));
    if(!is_array($cats)) $cats = array();   
    foreach($cats as $id=>$cat){
        $pres = str_repeat("&mdash;", $level);
@@ -547,7 +547,8 @@ function wpdm_categories(){
      if($_POST['cat']){
         $tpldata = maybe_unserialize(get_option('_fm_categories'));
         if(!is_array($tpldata)) $tpldata =array();
-        $tcid = $_POST['cid']?$_POST['cid']:strtolower(preg_replace("/([^a-zA-Z0-9\-]+)/","-", $_POST['cat']['title']));
+        $tcid = $_POST['cid']?$_POST['cid']:trim(strtolower(preg_replace("/([^a-zA-Z0-9\-]+)/","-", $_POST['cat']['title'])),"-");
+        if($tcid=='') $tcid = uniqid();
         $tcid = $tcid=='-'?uniqid():$tcid;
         $cid = $tcid;
         while(array_key_exists($cid, $tpldata)&&$_POST['cid']==''){
