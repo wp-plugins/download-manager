@@ -43,7 +43,7 @@ input{
 <tr>
 <td valign="top"> 
 <div id="poststuff" class="postarea">
-                <?php wp_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
+                <?php $file['description'] = !isset($file['description'])?' ':$file['description']; wp_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
                 </div>
@@ -62,19 +62,19 @@ input{
 <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="frm">
 <tr id="link_label_row">    
 <td width="110px">Link Label:</td>
-<td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?$file[link_label]:'Download'; ?>" name="file[link_label]" />
+<td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?$file['link_label']:'Download'; ?>" name="file[link_label]" />
 </td></tr>
 <tr id="password_row">
 <td>Password:</td>  
-<td><input size="10" style="width: 200px" type="text" name="file[password]" value="<?php echo $file[password]; ?>" /></td>
+<td><input size="10" style="width: 200px" type="text" name="file[password]" value="<?php echo $file['password']; ?>" /></td>
 </tr>
 <tr id="download_limit_row">
 <td>Stock&nbsp;Limit:</td>  
-<td><input size="10" style="width: 80px" type="text" name="file[quota]" value="<?php echo $file[quota]; ?>" /></td>
+<td><input size="10" style="width: 80px" type="text" name="file[quota]" value="<?php echo $file['quota']; ?>" /></td>
 </tr>
  <tr>
 <td>Download Count: </td>
-<td><input type="text" name="file[download_count]" value="<?php echo $file[download_count]?$file[download_count]:0; ?>" /></td>
+<td><input type="text" name="file[download_count]" value="<?php echo $file['download_count']?$file['download_count']:0; ?>" /></td>
 </tr>
 
 <tr>
@@ -424,17 +424,18 @@ jQuery('#dcf').click(function(){
       jQuery('#svd').fadeOut(); 
       jQuery('#w84sv').fadeIn();
       jQuery('#publish').attr('disabled','disabled');
+      jQuery('#wpdmpack textarea').val(tinyMCE.activeEditor.getContent());  
       jQuery(this).ajaxSubmit({
           url:'admin-ajax.php',
-          beforeSubmit:function(){
-               
+          beforeSubmit:function(){               
+                
           },
           success:function(res){
               var msg = '';
               if(res=='updated') msg = '<?php _e('File Updated Successfully!'); ?>';
               else if(parseInt(res)>0){
                   msg = '<?php _e('File Created Successfully! Please wait while redirecting...'); ?>';
-                  location.href='admin.php?page=file-manager&task=wpdm_edit_file&id='+res;
+                  //location.href='admin.php?page=file-manager&task=wpdm_edit_file&id='+res;
               }
               jQuery('#w84sv').fadeOut(); 
               jQuery('#svd').html(msg).fadeIn(); 

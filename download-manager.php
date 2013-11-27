@@ -4,11 +4,11 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.6
+Version: 2.5.7
 Author URI: http://www.wpdownloadmanager.com/
 */
 
-
+error_reporting(0);
 $d = str_replace('\\','/',dirname(__FILE__));
 $d = explode("/", $d);
 array_pop($d);
@@ -153,6 +153,8 @@ function wpdm_downloadable_nsc($params){
     extract($params);       
          
     $home = home_url('/');
+    $password_field = '';
+    $bg = '';
     
     $sap = count($_GET)>0?'&':'?';
         
@@ -203,7 +205,7 @@ function wpdm_downloadable_nsc($params){
     if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");";    
     if($data['password']=='') { $url = home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink')); $classrel = ""; }
     else { $classrel='haspass'; /*$url = home_url('/?download='.$id);*/ $url = home_url('/');  $password_field = "<div class=passit>Enter password<br/><input type=password id='pass_{$id}' size=15 /><span class='perror'></span></div>"; }
-    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c' style='{$bg}'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data[title]}' href='$url'  >$link_label</a>";
+    $html = "<div id='wpdm_file_{$id}' class='wpdm_file $template'>{$title}<div class='cont'>{$desc}{$password_field}<div class='btn_outer'><div class='btn_outer_c' style='{$bg}'><a class='btn_left $classrel $hc' rel='{$id}' title='{$data['title']}' href='$url'  >$link_label</a>";
     if($data['show_counter']!=0)
     $html .= "<span class='btn_right counter'>$data[download_count] downloads</span>";    
     else
@@ -322,7 +324,7 @@ TREE;
 } 
 
 function wpdm_embed_tree(){  
-if($_GET['task']!='wpdm_tree')     return;
+if(!isset($_GET['task'])||$_GET['task']!='wpdm_tree')     return;
         global $wpdb;
         $cats = maybe_unserialize(get_option('_fm_categories')); 
         if(!is_array($cats)) $cats = array();   
@@ -335,7 +337,7 @@ if($_GET['task']!='wpdm_tree')     return;
             $_POST['dir'] = $_POST['dir']=='/'?'':$_POST['dir'];
             foreach( $cats as $id=>$file ) {                         
                     if($file['parent']==$_POST['dir'])                                                                                            
-                    echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $id . "\">" . htmlentities(stripcslashes($file[title])) . "</a></li>";                
+                    echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $id . "\">" . htmlentities(stripcslashes($file['title'])) . "</a></li>";                
             }  
        
             // All files
@@ -352,19 +354,19 @@ if($_GET['task']!='wpdm_tree')     return;
                $html = '';
                 $data['title'] = stripcslashes($data['title']);  
                 $link_label = $data['title']?$data['title']:'Download';  
-                $data['page_link'] = "<a class='wpdm-popup' href='' rel='{$data[id]}'>$link_label</a>";
-                if($data[preview]!='')
-                $data['thumb'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[preview]}' />";
+                $data['page_link'] = "<a class='wpdm-popup' href='' rel='{$data['id']}'>$link_label</a>";
+                if(isset($data['preview'])&&$data['preview']!='')
+                $data['thumb'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data['preview']}' />";
                 else
                 $data['thumb'] = '';
-                if($data[icon]!='')
-                $data['icon'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data[icon]}' />";
+                if(isset($data['icon'])&&$data['icon']!='')
+                $data['icon'] = "<img class='wpdm_icon' align='left' src='".plugins_url()."/{$data['icon']}' />";
                 else
                 $data['icon'] = '';
                 
                 
                         if($data['show_counter']==1){
-                            $counter = "{$data[download_count]} downloads<br/>";
+                            $counter = "{$data['download_count']} downloads<br/>";
                             $data['counter'] = $counter;
                         }
                         $ext = end(explode(".", $data['file']));
@@ -372,7 +374,7 @@ if($_GET['task']!='wpdm_tree')     return;
                         //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));  
                         $template = "<li class=\"wpdm_clink file ext_$ext\">$data[page_link]</li>";
                         if($data['access']=='member'&&!is_user_logged_in())
-                        $template = "<li  class=\"file ext_$ext\"><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]<small> (login to download)</small></a></li>";
+                        $template = "<li  class=\"file ext_$ext\"><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >{$data['title']}<small> (login to download)</small></a></li>";
                         $html .= $template;
                         
                       
