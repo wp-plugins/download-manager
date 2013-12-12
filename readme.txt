@@ -63,6 +63,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.9 = 
+* Fixed input validation issue
+
 = 2.5.8 =
 * Adjusted 3 minor issues with input validation and notice display.
 

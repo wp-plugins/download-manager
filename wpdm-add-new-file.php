@@ -37,7 +37,7 @@ input{
 <table cellpadding="5" cellspacing="5" width="100%">
 <tr>
  
-<td><input style="font-size:16pt;width:100%;color:<?php echo $file['title']?'#000':'#ccc'; ?>" onfocus="if(this.value=='Enter title here') {this.value=''; jQuery(this).css('color','#000'); }" onblur="if(this.value==''||this.value=='Enter title here') {this.value='Enter title here'; jQuery(this).css('color','#ccc');}" type="text" value="<?php echo $file['title']?htmlspecialchars(stripcslashes($file['title'])):'Enter title here'; ?>" name="file[title]" /></td>
+    <td><input style="font-size:16pt;width:100%;color:<?php echo $file['title']?'#000':'#ccc'; ?>" onfocus="if(this.value=='Enter title here') {this.value=''; jQuery(this).css('color','#000'); }" onblur="if(this.value==''||this.value=='Enter title here') {this.value='Enter title here'; jQuery(this).css('color','#ccc');}" type="text" value="<?php echo $file['title']?esc_attr($file['title']):'Enter title here'; ?>" name="file[title]" /></td>
 </tr>
 
 <tr>
@@ -62,11 +62,11 @@ input{
 <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="frm">
 <tr id="link_label_row">    
 <td width="110px">Link Label:</td>
-<td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?$file['link_label']:'Download'; ?>" name="file[link_label]" />
+<td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?esc_attr($file['link_label']):'Download'; ?>" name="file[link_label]" />
 </td></tr>
 <tr id="password_row">
 <td>Password:</td>  
-<td><input size="10" style="width: 200px" type="text" name="file[password]" value="<?php echo $file['password']; ?>" /></td>
+<td><input size="10" style="width: 200px" type="text" name="file[password]" value="<?php echo esc_attr($file['password']); ?>" /></td>
 </tr>
 <tr id="download_limit_row">
 <td>Stock&nbsp;Limit:</td>  
