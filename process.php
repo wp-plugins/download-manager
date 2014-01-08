@@ -1,4 +1,6 @@
 <?php
+if(!defined('ABSPATH')) die('Error!');
+
 global $wpdb; 
  if(!file_exists(dirname(__FILE__).'/cache/'))
     die("<code>".dirname(__FILE__).'/cache/</code> is missing!' );
@@ -8,7 +10,7 @@ global $wpdb;
 $did = explode('.',base64_decode($_GET['did']));
 $id = array_shift($did);
 if(!is_numeric($id)){   
-    $_GET['did'] = esc_attr($_GET['did']); 
+    $_GET['did'] =  esc_attr($_GET['did']); 
     $data = @unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
    
 }
@@ -23,6 +25,7 @@ if(is_array($data)){
         header("location: wp-login.php?redirect_to=".urlencode($_SERVER['REQUEST_URI']));
         die();
     }
+    $_GET['did'] = sanitize_file_name($_GET['did']);
     @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
     
     

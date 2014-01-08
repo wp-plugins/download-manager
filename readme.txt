@@ -63,6 +63,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.92 =
+* Applied sanitize file name for cached file 
+
 = 2.5.91 =
 * regular maintenance and compatibility release for wp 3.8
 
