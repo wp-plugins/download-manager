@@ -1,4 +1,5 @@
 <?php
+if(!defined('ABSPATH')) die('Direct Access is not Allowed!'); 
 global $wpdb;
 $limit = 10;
 

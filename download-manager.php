@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.92
+Version: 2.5.93
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -65,7 +65,7 @@ function wpdm_free_install(){
       if(!in_array('icon',$fields))
       $wpdb->query("ALTER TABLE `ahm_files` ADD `icon` VARCHAR( 255 ) NOT NULL");
       
-   update_option('wpdm_access_level','administrator');
+   update_option('wpdm_access_level','publish_posts');
    wpdm_create_dir();
       
 }
@@ -459,7 +459,7 @@ function wpdm_create_dir(){
 }
 
 function wpdm_settings(){
-    if(isset($_POST)){
+    if(isset($_POST['access'])){
        
         update_option('wpdm_access_level',$_POST['access']);
         update_option('wpdm_login_msg',$_POST['wpdm_login_msg']);
@@ -477,7 +477,7 @@ function wpdm_settings(){
 function wpdm_add_new_file(){
     global $wpdb; 
     
-    if(isset($_POST)){
+    if(isset($_POST['file'])){
     extract($_POST);
      
                       
@@ -504,7 +504,7 @@ function wpdm_add_new_file(){
         </p></div>";        
     }
     
-    if($_GET[success]==1){
+    if($_GET['success']==1){
         echo "
         <div id=\"message\" class=\"updated fade\"><p>
         Congratulation! Plugin is ready to use now.
@@ -518,13 +518,13 @@ function wpdm_add_new_file(){
 
 function wpdm_edit_file(){
      global $wpdb;
-    if($_POST){
+    if($_POST['file']&&$_POST['id']){
     extract($_POST);
          
          
         $file['category'] = serialize($file['category']);        
          
-        $wpdb->update("ahm_files", $file, array("id"=>$_POST[id])); 
+        $wpdb->update("ahm_files", $file, array("id"=>$_POST['id'])); 
      
         die('Updated!');
     
@@ -909,13 +909,13 @@ function wpdm_help(){
  
 
 function wpdm_menu(){
-    add_menu_page("File Manager","File Manager",get_option('wpdm_access_level'),'file-manager','wpdm_admin_options',plugins_url('download-manager/img/donwloadmanager-16.png'));
-    $access = get_option('wpdm_access_level')?get_option('wpdm_access_level'):'administrator';
-    add_submenu_page( 'file-manager', 'File Manager', 'Manage', $access, 'file-manager', 'wpdm_admin_options');    
-    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', $access, 'file-manager/add-new-file', 'wpdm_add_new_file');    
-    add_submenu_page( 'file-manager', 'Categories &lsaquo; File Manager', 'Categories', 'administrator', 'file-manager/categories', 'wpdm_categories');        
-    add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', 'administrator', 'file-manager/settings', 'wpdm_settings');    
-    add_submenu_page( 'file-manager', 'Help &lsaquo; File Manager', 'Help', get_option('wpdm_access_level'), 'file-manager/help', 'wpdm_help');    
+    //echo get_option('wpdm_access_level','manage_options');die();
+    add_menu_page("File Manager","File Manager",get_option('wpdm_access_level','manage_options'),'file-manager','wpdm_admin_options',plugins_url('download-manager/img/donwloadmanager-16.png'));     
+    add_submenu_page( 'file-manager', 'File Manager', 'Manage', get_option('wpdm_access_level','manage_options'), 'file-manager', 'wpdm_admin_options');    
+    add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', get_option('wpdm_access_level','manage_options'), 'file-manager/add-new-file', 'wpdm_add_new_file');    
+    add_submenu_page( 'file-manager', 'Categories &lsaquo; File Manager', 'Categories', get_option('wpdm_access_level','manage_options'), 'file-manager/categories', 'wpdm_categories');        
+    add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', get_option('wpdm_access_level','manage_options'), 'file-manager/settings', 'wpdm_settings');    
+    add_submenu_page( 'file-manager', 'Help &lsaquo; File Manager', 'Help', get_option('wpdm_access_level','manage_options'), 'file-manager/help', 'wpdm_help');    
     
 }
 

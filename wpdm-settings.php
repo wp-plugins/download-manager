@@ -21,9 +21,9 @@ input{
 <tr>
 <td>Minimum User Access Level:</td>
 <td><select name="access">
-    <option value="level_10">Administrator</option>    
-    <option value="level_5" <?php echo $access=='level_5'?'selected':''?>>Editor</option>    
-    <option value="level_2" <?php echo $access=='level_2'?'selected':''?>>Author</option>    
+    <option value="manage_options">Administrator</option>    
+    <option value="manage_categories" <?php echo $access=='manage_categories'?'selected':''?>>Editor</option>    
+    <option value="publish_posts" <?php echo $access=='publish_posts'?'selected':''?>>Author</option>    
     </select>
 </td>
 </tr>
