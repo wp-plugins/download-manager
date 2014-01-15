@@ -63,11 +63,15 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.94 =
+* Fixed HTTP response code for download page
+* and this is the last update of v2.5.x , next update 2.6.0 , where wpdm moving to custom post type, but still I'll keep this version in archive.
+
+
 = 2.5.93 =
 * Added validation for input data
 * Updated settings page
 * Fixed access level issue
-* and this is the last update of v2.5.x , next update 2.6.0 , where wpdm moving to custom post type, but still I'll keep this version in archive.
 
 = 2.5.92 =
 * Applied sanitize file name for cached file 

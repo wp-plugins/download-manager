@@ -3,6 +3,7 @@ global $wpdb;
 $did = '';
 $dl = isset($_REQUEST['download'])?(int)$_REQUEST['download']:0;
 if($dl>0){
+    @header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
     $data = $wpdb->get_row("select * from ahm_files where id='$dl'",ARRAY_A);
     if($data['access']=='member'&&!is_user_logged_in()){
         $wpdm_login_msg = get_option('wpdm_login_msg')?get_option('wpdm_login_msg'):'Login Required';
