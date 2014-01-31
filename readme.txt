@@ -63,9 +63,12 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.95 =
+* Adjusted sorting option for category short-code
+* You can use now [wpdm_category id=cid order_field="field_name" order="desc/asc"]
+
 = 2.5.94 =
 * Fixed HTTP response code for download page
-* and this is the last update of v2.5.x , next update 2.6.0 , where wpdm moving to custom post type, but still I'll keep this version in archive.
 
 
 = 2.5.93 =

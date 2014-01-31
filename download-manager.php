@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.94
+Version: 2.5.95
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -646,7 +646,77 @@ if(get_option('wpdm_show_cinfo','no')=='yes')  $html = "<h3>{$category['title']}
 return "<ul class='wpdm-category $id'>".$html."</ul><div style='clear:both'></div>".$pag->show()."<div style='clear:both'></div>";
 }
 
- 
+function wpdm_embed_category_sc($params){
+    global $wpdb, $current_user, $post, $wp_query;
+    extract($params);
+    $postlink = get_permalink($post->ID);
+    get_currentuserinfo();
+
+    $user = new WP_User(null);
+    $categories = maybe_unserialize(get_option("_fm_categories",true));
+    $category = $categories[$id];
+    $order = isset($order) && $order!="" ? $order: "desc";
+
+    $order_query = isset($order_field) && $order_field != '' ? "order by $order_field $order" : "order by $id DESC";
+    $total = $wpdb->get_var("select count(*) from ahm_files where category like '%\"$id\"% $order_query'");
+
+    $item_per_page =  10;
+    $pages = ceil($total/$item_per_page);
+    $page = $_GET['cp']?$_GET['cp']:1;
+    $start = ($page-1)*$item_per_page;
+    $pag = new wpdmpagination();
+    $pag->items($total);
+    $pag->limit($item_per_page);
+    $pag->currentPage($page);
+    $plink = $url = preg_replace("/[\?|\&]+cp=[0-9]+/","",$_SERVER['REQUEST_URI']);
+    $url = strpos($url,'?')?$url.'&':$url.'?';
+    $pag->urlTemplate($url."cp=[%PAGENO%]");
+
+    $ndata = $wpdb->get_results("select * from ahm_files where category like '%\"$id\"%' $order_query limit $start, $item_per_page",ARRAY_A);
+
+
+
+    $sap = strpos($plink,'?')>0?'&':'?';
+    $html = '';
+    foreach($ndata as $data){
+
+        $link_label = $data['title']?stripcslashes($data['title']):'Download';
+        $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data['id']}'>$link_label</a>";
+        //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
+        if($data['password']=='') {
+            $url = home_url('/?wpdmact=process&did='.base64_encode($data['id'].'.hotlink'));
+            $data['page_link'] = "<a href='{$url}'>$link_label</a>";
+        }
+        if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");";
+
+        if($data['show_counter']==1){
+            $counter = "{$data[download_count]} downloads<br/>";
+            $data['counter'] = $counter;
+        }
+
+        //foreach( $data as $ind=>$val ) $reps["[".$ind."]"] = $val;
+        //$repeater =  stripslashes( strtr( $category['template_repeater'],   $reps ));
+        $template = "<li><div class='wpdm_clink' style='{$bg}'><b>$data[page_link]</b><br/><small>$data[counter]</small></div></li>";
+        if($data['access']=='member'&&!is_user_logged_in())
+            $template = "<li><div class='wpdm_clink' style='{$bg}'><a href='".get_option('siteurl')."/wp-login.php?redirect_to=".$_SERVER['REQUEST_URI']."' >$data[title]</a></b><br/><small>login to download</small></div></li>";
+        $html .= $template;
+
+
+        END;
+
+
+
+
+
+
+
+    }
+
+    if(get_option('wpdm_show_cinfo','no')=='yes')  $html = "<h3>{$category['title']}</h3>".wpautop($category['content']).$html;
+
+    return "<ul class='wpdm-category $id'>".$html."</ul><div style='clear:both'></div>".$pag->show()."<div style='clear:both'></div>";
+}
+
 
 function wpdm_tinymce()
 {
@@ -957,6 +1027,7 @@ add_shortcode('wpdm_all_packages','wpdm_all_packages');
 add_shortcode('wpdm_hotlink','wpdm_hotlink');
 add_shortcode('wpdm_file','wpdm_downloadable_nsc');
 add_shortcode('wpdm_tree','wpdm_tree');
+add_shortcode('wpdm_category','wpdm_embed_category_sc');
 
 add_action('init','wpdm_embed_tree');
 add_action('init','wpdm_process');
