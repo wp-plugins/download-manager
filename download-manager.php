@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.95
+Version: 2.5.96
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -657,7 +657,7 @@ function wpdm_embed_category_sc($params){
     $category = $categories[$id];
     $order = isset($order) && $order!="" ? $order: "desc";
 
-    $order_query = isset($order_field) && $order_field != '' ? "order by $order_field $order" : "order by $id DESC";
+    $order_query = isset($order_field) && $order_field != '' ? "order by $order_field $order" : "order by id DESC";
     $total = $wpdb->get_var("select count(*) from ahm_files where category like '%\"$id\"% $order_query'");
 
     $item_per_page =  10;

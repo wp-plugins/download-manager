@@ -172,7 +172,7 @@ fieldset{padding: 10px;}
                     jQuery('#addtopostc').click(function(){              
                     var win = window.dialogArguments || opener || parent || top;
 
-                    win.send_to_editor('{wpdm_category='+jQuery('#flc').val()+'}');
+                    win.send_to_editor('[wpdm_category id='+jQuery('#flc').val()+']');
                     tinyMCEPopup.close();
                     return false;                   
                     });

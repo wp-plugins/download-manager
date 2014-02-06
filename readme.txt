@@ -63,6 +63,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.96 =
+* Fixed issues with category short-code
+* Fixed issue with tinymce button for category short-code
+
 = 2.5.95 =
 * Adjusted sorting option for category short-code
 * You can use now [wpdm_category id=cid order_field="field_name" order="desc/asc"]
