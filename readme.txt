@@ -63,6 +63,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.97 =
+* Updates file missing code
+* Fixed redirection issue after creating new package
+
 = 2.5.96 =
 * Fixed issues with category short-code
 * Fixed issue with tinymce button for category short-code

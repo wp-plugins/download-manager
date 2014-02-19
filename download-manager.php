@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.96
+Version: 2.5.97
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -260,7 +260,7 @@ function wpdm_cblist_categories($parent="", $level = 0, $sel = array()){
        $checked = 'checked=checked';
        else
        $checked = '';
-       echo "<li style='line-height:16px'><input type='checkbox' name='file[category][]' value='$id' $checked /> $cat[title]";
+       echo "<li style='line-height:16px'><label><input type='checkbox' name='file[category][]' value='$id' $checked /> $cat[title]</label>";
        echo "<ul style='margin:0px;margin-left:20px;padding:0px;'>";
        wpdm_cblist_categories($id,$level+1, $sel);
        echo "</ul>";

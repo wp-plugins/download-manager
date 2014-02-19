@@ -40,12 +40,14 @@ if(is_array($data)){
         die();
     }
     $data['file'] = trim($data['file']);
-    if(file_exists($data['file']))
+    if(file_exists($data['file']) && $data['file']!= "")
     $fname = $data['file'];    
-    else if(file_exists(UPLOAD_DIR . $data['file']))
+    else if(file_exists(UPLOAD_DIR . $data['file']) && $data['file']!= "")
     $fname = UPLOAD_DIR . $data['file'];
+    else if( $data['file']== "")
+        wp_die("No file attached yet.");
     else 
-    die('File not found!');
+    wp_die('File not found!');
     
     $wpdb->query("update ahm_files set download_count=download_count+1 where id='$data[id]'");
 /*    

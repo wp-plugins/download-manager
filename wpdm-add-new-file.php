@@ -36,8 +36,8 @@ input{
     
 <table cellpadding="5" cellspacing="5" width="100%">
 <tr>
- 
-    <td><input style="font-size:16pt;width:100%;color:<?php echo $file['title']?'#000':'#ccc'; ?>" onfocus="if(this.value=='Enter title here') {this.value=''; jQuery(this).css('color','#000'); }" onblur="if(this.value==''||this.value=='Enter title here') {this.value='Enter title here'; jQuery(this).css('color','#ccc');}" type="text" value="<?php echo $file['title']?esc_attr($file['title']):'Enter title here'; ?>" name="file[title]" /></td>
+
+    <td><input style="font-size:16pt;width:100%;" placeholder="Enter Title Here"  type="text" value="<?php echo $file['title']?esc_attr($file['title']):""; ?>" name="file[title]" /></td>
 </tr>
 
 <tr>
@@ -435,7 +435,7 @@ jQuery('#dcf').click(function(){
               if(res=='updated') msg = '<?php _e('File Updated Successfully!'); ?>';
               else if(parseInt(res)>0){
                   msg = '<?php _e('File Created Successfully! Please wait while redirecting...'); ?>';
-                  //location.href='admin.php?page=file-manager&task=wpdm_edit_file&id='+res;
+                  location.href='admin.php?page=file-manager&task=wpdm_edit_file&id='+res;
               }
               jQuery('#w84sv').fadeOut(); 
               jQuery('#svd').html(msg).fadeIn(); 
