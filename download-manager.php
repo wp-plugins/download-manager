@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.97
+Version: 2.5.98
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -65,7 +65,13 @@ function wpdm_free_install(){
       if(!in_array('icon',$fields))
       $wpdb->query("ALTER TABLE `ahm_files` ADD `icon` VARCHAR( 255 ) NOT NULL");
       
-   update_option('wpdm_access_level','publish_posts');
+    update_option('wpdm_access_level','publish_posts');
+    delete_option('wpdm_first_install');
+    $tf = $wpdb->get_var("select count(*) from `ahm_files`");
+   if($tf==0){
+       update_option('wpdm_install_time',time());
+       update_option('wpdm_first_install',1);
+   }
    wpdm_create_dir();
       
 }
@@ -660,19 +666,19 @@ function wpdm_embed_category_sc($params){
     $order_query = isset($order_field) && $order_field != '' ? "order by $order_field $order" : "order by id DESC";
     $total = $wpdb->get_var("select count(*) from ahm_files where category like '%\"$id\"% $order_query'");
 
-    $item_per_page =  10;
-    $pages = ceil($total/$item_per_page);
+    $items_per_page =  isset($items_per_page)?$items_per_page:10;
+    $pages = ceil($total/$items_per_page);
     $page = $_GET['cp']?$_GET['cp']:1;
-    $start = ($page-1)*$item_per_page;
+    $start = ($page-1)*$items_per_page;
     $pag = new wpdmpagination();
     $pag->items($total);
-    $pag->limit($item_per_page);
+    $pag->limit($items_per_page);
     $pag->currentPage($page);
     $plink = $url = preg_replace("/[\?|\&]+cp=[0-9]+/","",$_SERVER['REQUEST_URI']);
     $url = strpos($url,'?')?$url.'&':$url.'?';
     $pag->urlTemplate($url."cp=[%PAGENO%]");
 
-    $ndata = $wpdb->get_results("select * from ahm_files where category like '%\"$id\"%' $order_query limit $start, $item_per_page",ARRAY_A);
+    $ndata = $wpdb->get_results("select * from ahm_files where category like '%\"$id\"%' $order_query limit $start, $items_per_page",ARRAY_A);
 
 
 

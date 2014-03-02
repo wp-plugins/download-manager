@@ -63,6 +63,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.5.98 =
+* added "items_per_page" parameter with category short-code
+
 = 2.5.97 =
 * Updates file missing code
 * Fixed redirection issue after creating new package
