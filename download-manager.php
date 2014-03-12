@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.5.98
+Version: 2.5.99
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -431,18 +431,19 @@ function wpdm_admin_options(){
 
 function wpdm_delete_file(){
     global $wpdb;
-    if(is_array($_GET[id])){
-        foreach($_GET[id] as $id){
+    if(isset($_GET['task']) && $_GET['task'] == 'DeleteFile' && is_admin()){
+    if(is_array($_GET['id'])){
+        foreach($_GET['id'] as $id){
             $qry[] = "id='".(int)$id."'";
         }
-        $cond = implode(" and ", $qry);
+        $cond = implode(" or ", $qry);
     } else
-    $cond = "id='".(int)$_GET[id]."'";
+    $cond = "id='".(int)$_GET['id']."'";
+     
     $wpdb->query("delete from ahm_files where ". $cond);
-    echo "<script>
-        location.href='admin.php?page=file-manager';
-        </script>";
+    wp_redirect('admin.php?page=file-manager');
     die();
+    }
 }
 
 function wpdm_create_dir(){
@@ -485,9 +486,8 @@ function wpdm_add_new_file(){
     
     if(isset($_POST['file'])){
     extract($_POST);
-     
-                      
-        $file['show_counter'] = 0;
+            
+        $file['show_counter'] = isset($file['show_counter'])?$file['show_counter']:0;
         $file['quota'] = $file['quota']?$file['quota']:0;
         $file['category'] = serialize($file['category']);        
         $wpdb->insert("ahm_files", $file); 
@@ -924,7 +924,7 @@ function wpdm_save_file(){
        if($_POST['wpdmtask']=='create'){
             extract($_POST);
                           
-            $file['show_counter'] = 0;
+            $file['show_counter'] = isset($file['show_counter'])?$file['show_counter']:0;
             $file['quota'] = $file['quota']?$file['quota']:0;
             $file['category'] = serialize($file['category']);  
             $file['title'] = esc_attr($file['title']);
@@ -966,6 +966,7 @@ function wpdm_delete__file(){
   die('ok');
 }
 
+ 
 
 function wpdm_help(){
     ?>
@@ -1017,6 +1018,7 @@ function wpdm_enque_scripts(){
 
 add_action("admin_menu","wpdm_menu");
 add_action("init","delete_all_cats");
+add_action("init","wpdm_delete_file");
 
 add_action('admin_enqueue_scripts','wpdm_admin_enque_scripts');
 add_action('wp_enqueue_scripts','wpdm_enque_scripts');

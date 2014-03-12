@@ -111,7 +111,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
         ?>
     <tr valign="top" class="alternate author-self status-inherit" id="post-8">
 
-                <th class="check-column" scope="row"><input type="checkbox" value="8" name="id[]"></th>
+                <th class="check-column" scope="row"><input type="checkbox" value="<?php echo $media['id']?>" name="id[]"></th>
                 <td class="column-icon media-icon">                
                     <a title="Edit" href="admin.php?page=file-manager&task=EditFile&id=<?php echo $media['id']?>">
                     <img title="<?php echo end(explode(".",$media['file']))?> file" alt="<?php echo end(explode(".",$media['file']))?> file" class="attachment-80x60" src="../wp-content/plugins/download-manager/file-type-icons/<?php echo $icon; ?>">
