@@ -44,6 +44,15 @@ input{
 </td>
 </tr>
 
+<?php if(current_user_can("manage_options")){ ?>
+<tr>
+<td>Server File Borwser Rooe:</td>
+<td>
+<input type="text" name="_wpdm_file_browser_root" value="<?php echo get_option('_wpdm_file_browser_root',$_SERVER['DOCUMENT_ROOT']); ?>" size="90">
+</td>
+</tr>
+<?php } ?>
+
 
 <tr>
 <td>Download Link Icon:</td>
