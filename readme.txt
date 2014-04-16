@@ -3,7 +3,7 @@ Contributors: codename065, shahriar0822
 Donate link: 
 Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, download tracker, download protection
 Requires at least: 3.4
-Tested up to: 3.8
+Tested up to: 3.9
 License: GPLv2 or later
  
   
@@ -60,6 +60,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 8. Create a new download package quickly from popup
 
 == Changelog ==
+
+= 2.6.1 =
+* Compatibility release for WordPress 3.9
 
 = 2.6.0 =
 * Added new option for setting up server file browser base dir.

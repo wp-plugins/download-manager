@@ -84,6 +84,8 @@
         if(function_exists('curl_init')){
         $ch=curl_init();
         curl_setopt($ch,CURLOPT_URL,'http://wpdownloadmanager.com/notice.php');
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,2);
+        curl_setopt($ch,CURLOPT_TIMEOUT,3);
         curl_exec($ch);
         curl_close($ch);
         } else 
@@ -144,6 +146,30 @@
         include("messages.php");
         return $msgs[$key]?$msgs[$key]:$key;
     }
+
+global $pagenow;
+
+function wpdm_update_notice($plugin_data, $r){
+    if(function_exists('curl_init')){
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,"http://www.wpdownloadmanager.com/wp-content/update-notice.txt");
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,2);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch,CURLOPT_TIMEOUT,3);
+        $data = curl_exec($ch);
+        curl_close($ch);
+    }
+    echo "<hr/><a href='http://www.wpdownloadmanager.com/wp-content/update-notice.txt' target='_blank'><strong style='color: #b92b35;'>Must Read Before Update</strong></a><hr/>";
+    echo "<div style='color: #D86038'>".$data."</div>";
+}
+
+if ( 'plugins.php' === $pagenow )
+{
+
+    $hook = "in_plugin_update_message-download-manager/download-manager.php";
+
+    add_action( $hook, 'wpdm_update_notice', 20, 2 );
+}
     
     function wpdm_skip_ngg_resource_manager($r){
         return false;
