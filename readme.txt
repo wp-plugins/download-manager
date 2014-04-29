@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.2 =
+* Fixed an issue with categroy short-code pagination
+
 = 2.6.1 =
 * Compatibility release for WordPress 3.9
 
