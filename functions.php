@@ -80,16 +80,23 @@
     // Function that output's the contents of the dashboard widget
     function wpdm_dashboard_widget_function() {
         echo "<img src='".plugins_url('/download-manager/images/wpdm-logo.png')."' /><br/>";
-         
-        if(function_exists('curl_init')){
-        $ch=curl_init();
-        curl_setopt($ch,CURLOPT_URL,'http://wpdownloadmanager.com/notice.php');
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,2);
-        curl_setopt($ch,CURLOPT_TIMEOUT,3);
-        curl_exec($ch);
-        curl_close($ch);
-        } else 
-        echo "CURL need to be enabled!";
+
+        ?>
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="settings">
+                <iframe id="excelz" src="" style="height: 350px;width:100%;border:0px;overflow: hidden !important;"></iframe>
+            </div>
+        </div>
+
+        <script>
+            jQuery(function () {
+
+                jQuery('#excelz').attr('src','http://www.wpdownloadmanager.com/notice.php?wpdmvarsion=<?php echo WPDM_Version; ?>').css('overflow','hidden');
+
+            })
+        </script>
+    <?php
     }
 
     // Function that beeng used in the action hook

@@ -43,7 +43,7 @@ input{
 <tr>
 <td valign="top"> 
 <div id="poststuff" class="postarea">
-                <?php $file['description'] = !isset($file['description'])?' ':$file['description']; wp_editor(stripslashes($file['description']),'file[description]','file[description]', true); ?>
+                <?php $file['description'] = !isset($file['description'])?' ':$file['description']; wp_editor(stripslashes($file['description']),'filedescription',array('textarea_name'=>'file[description]')); ?>
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
                 </div>

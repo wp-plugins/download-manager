@@ -33,11 +33,19 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
  <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
  <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
  </div>
- <i><b style="font-family:Georgia">Simply Copy and Paste the embed code at anywhere in post contents</b></i><br><br>
-
+<?php if(get_option('hide_wpdm270n',0)==0){ ?>
+<div class="updated" style="padding: 20px" id="wpdm270n">
+    If you like to move wpdm to custom post type, you can start with <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org from June 2014.
+    <a href="#" style="float: right;font-size: 16pt;color: #880000" onclick="return _close_notice('#wpdm270n')">&times;</a>
+</div>
  
- 
- 
+ <script>
+     function _close_notice(id){
+        jQuery(id).fadeOut();
+        jQuery.post('admin-ajax.php?action=hide_wpdm270n');
+     }
+ </script>
+<?php } ?>
 <div style="position: absolute;right:10px;margin-top: 5px;">
 <form action="" method="get">
  <input type="hidden" name="page" value="file-manager" />
@@ -121,7 +129,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
                     <strong><a title="Edit" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>"><?php echo stripslashes($media['title'])?></a></strong> <input style="text-align:center" type="text" onclick="this.select()" size="20" title="Simply Copy and Paste in post contents" value="[wpdm_file id=<?php echo $media['id'];?>]" /><br>
                     <code>File: <?php echo $media['file']; ?></code><Br>
                      
-                    <div class="row-actions"><div class="button-group"><a class="button" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>">Edit</a><a href="admin.php?page=file-manager&task=wpdm_delete_file&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="button submitdelete" style="color: #aa0000;">Delete Permanently</a></div></div>
+                    <div class="row-actions"><div class="button-group"><a class="button" href="admin.php?page=file-manager&task=wpdm_edit_file&id=<?php echo $media['id']?>">Edit</a><a href="admin.php?page=file-manager&task=DeleteFile&id=<?php echo $media['id']?>" onclick="return showNotice.warn();" class="button submitdelete" style="color: #aa0000;">Delete Permanently</a></div></div>
                 </td>
                 <td class="author column-author"><?php echo $media['password']; ?></td>
                 <td class="parent column-parent"><?php echo $media['access']; ?></td>
