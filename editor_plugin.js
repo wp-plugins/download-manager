@@ -3,20 +3,20 @@
 
     tinymce.create('tinymce.plugins.wpdm_tinyplugin', {
 
-        init : function(ed, url){            
+        init : function(ed, url){
             ed.addCommand('wpdm_mcedonwloadmanager', function() {
                                 ed.windowManager.open({
                                         title: 'Download Controller',
                                         file : 'admin.php?wpdm_action=wpdm_tinymce_button',
-                                        height: 550,
-                                        width:400,                                        
+                                        height: 600,
+                                        width:480,
                                         inline : 1
                                 }, {
                                         plugin_url : url, // Plugin absolute URL
                                         some_custom_arg : 'custom arg' // Custom argument
                                 });
                         });
-            
+
             ed.addButton('wpdm_tinyplugin', {
                 title : 'Download Manager: Insert Package or Category',
                 cmd : 'wpdm_mcedonwloadmanager',
@@ -36,5 +36,6 @@
     });
 
     tinymce.PluginManager.add('wpdm_tinyplugin', tinymce.plugins.wpdm_tinyplugin);
-    
+
+
 })();

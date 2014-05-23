@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.4 =
+* Fixed issue with quick add window
+
 = 2.6.3 =
 * Fixed issue with delete single item
 

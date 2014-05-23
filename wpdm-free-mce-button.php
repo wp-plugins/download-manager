@@ -23,11 +23,15 @@ function wpdm_tinyplugin_register($plugin_array)
 function wpdm_free_tinymce(){
     global $wpdb;
     if(!isset($_GET['wpdm_action'])||$_GET['wpdm_action']!='wpdm_tinymce_button') return false;
+    //wp_enqueue_script('thickbox');
+    //wp_enqueue_style('thickbox');
+    //wp_enqueue_script('media-upload');
+    //wp_enqueue_media();
     ?>
-<html>
+<html style="height: 100%;background: #eeeeee">
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
-<title>Download Contrller &#187; Insert Package or Category</title>
+<title>Download Manager</title>
 <style type="text/css">
 *{font-family: Tahoma !important; font-size: 9pt; letter-spacing: 1px;}
 select,input{padding:5px;font-size: 9pt !important;font-family: Tahoma !important; letter-spacing: 1px;margin:5px;}
@@ -39,9 +43,9 @@ background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /*
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* webkit */
 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* ie */
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
 border:0px solid #FFF;
 color: #FFF;
 cursor: pointer;
@@ -141,20 +145,34 @@ fieldset{padding: 10px;}
     background: #ffffff;
     padding:10px;
 }
-
+a.tab{
+    color: #4096ee;
+    font-weight: 700;
+}
+    .tab-pane fieldset{
+        border: 1px solid #dddddd;
+    }
 </style>
-<script type="text/javascript" src="<?php echo includes_url('/js/jquery/jquery.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo includes_url('/js/jquery/jquery.form.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo includes_url('/js/tinymce/tiny_mce_popup.js'); ?>"></script>
-<script type='text/javascript' src='<?php echo includes_url('/js/plupload/plupload.js');?>'></script>
-<script type='text/javascript' src='<?php echo includes_url('/js/plupload/plupload.html5.js');?>'></script>
-<script type='text/javascript' src='<?php echo includes_url('/js/plupload/plupload.flash.js');?>'></script>
-<script type='text/javascript' src='<?php echo includes_url('/js/plupload/plupload.silverlight.js');?>'></script>
-<script type='text/javascript' src='<?php echo includes_url('/js/plupload/plupload.html4.js');?>'></script>
+
+ 
+    <link rel='stylesheet' id='dashicons-css'  href='<?php echo  includes_url(); ?>/css/dashicons.min.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='admin-bar-css'  href='<?php echo  includes_url(); ?>/css/admin-bar.min.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='thickbox-css'  href='<?php echo  includes_url(); ?>/js/thickbox/thickbox.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='buttons-css'  href='<?php echo  includes_url(); ?>/css/buttons.min.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='mediaelement-css'  href='<?php echo  includes_url(); ?>/js/mediaelement/mediaelementplayer.min.css?ver=2.13.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-mediaelement-css'  href='<?php echo  includes_url(); ?>/js/mediaelement/wp-mediaelement.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='media-views-css'  href='<?php echo  includes_url(); ?>/css/media-views.min.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='imgareaselect-css'  href='<?php echo  includes_url(); ?>/js/imgareaselect/imgareaselect.css?ver=0.9.8' type='text/css' media='all' />
+    <script type='text/javascript' src='<?php echo  admin_url(); ?>/load-scripts.php?c=1&amp;load%5B%5D=jquery-core,jquery-migrate,jquery-form,utils,plupload,json2&amp;ver=3.9.1'></script>
+    <?php
+    //do_action('wp_head');
+
+
+    ?>
                 <script type="text/javascript">
                     
-                    jQuery(function(){  
-                                      
+                    jQuery(function(){
+
                     var s_title ='', s_desc = '';
                     jQuery('#addtopost').click(function(){
                      
@@ -166,14 +184,14 @@ fieldset{padding: 10px;}
                     var template = ' template="'+jQuery('#template').val()+' '+shadow+'" ';
                     if(jQuery('#template').val()=='') template = "";
                     win.send_to_editor('[wpdm_file id='+jQuery('#fl').val()+s_title+s_desc+template+']');
-                    tinyMCEPopup.close();
+                        parent.tinyMCE.activeEditor.windowManager.close(window);
                     return false;                   
                     });
                     jQuery('#addtopostc').click(function(){              
                     var win = window.dialogArguments || opener || parent || top;
 
                     win.send_to_editor('[wpdm_category id='+jQuery('#flc').val()+']');
-                    tinyMCEPopup.close();
+                        parent.tinyMCE.activeEditor.windowManager.close(window);
                     return false;                   
                     });
 
@@ -181,13 +199,13 @@ fieldset{padding: 10px;}
                     var win = window.dialogArguments || opener || parent || top;
 
                     win.send_to_editor(jQuery('#esc').val());
-                    tinyMCEPopup.close();
+                       parent.tinyMCE.activeEditor.windowManager.close(window);
                     return false;
                     });
                               
                 });
                 </script>
-                 
+
 </head>
 <body>    
 
@@ -212,7 +230,7 @@ Drop Shadow Effect: <select id="shadow">
 <br/>
 <br/>
 
-    <select class="button input" id="fl">
+    <select id="fl">
     <?php
     $res = $wpdb->get_results("select * from ahm_files", ARRAY_A); 
     foreach($res as $row){
@@ -229,7 +247,7 @@ Drop Shadow Effect: <select id="shadow">
     <input type="submit" id="addtopost" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>   <br>
 <fieldset><legend>Embed Category</legend>
-    <select class="button input" id="flc">
+    <select id="flc">
     <?php
     wpdm_dropdown_categories();
     ?>
@@ -237,7 +255,7 @@ Drop Shadow Effect: <select id="shadow">
     <input type="submit" id="addtopostc" class="button button-primary" name="addtopost" value="Insert into post" />
 </fieldset>   <br>
 <fieldset><legend>Additional Short-codes</legend>
-    <select class="button input" id="esc">
+    <select id="esc">
     <option value="[wpdm_all_packages]">All Downloads (Data Table)</option>
     <option value="[wpdm_tree]">All Downloads (Tree View)</option>
     </select>
@@ -471,7 +489,7 @@ jQuery('#dcf').click(function(){
               var win = window.dialogArguments || opener || parent || top;                
                     
                     win.send_to_editor('[wpdm_file id='+res+']');
-                    tinyMCEPopup.close();
+              parent.tinyMCE.activeEditor.windowManager.close(window);
                     return false;
           }
       });
@@ -497,5 +515,5 @@ jQuery('#dcf').click(function(){
 }
  
 
-add_action('init', 'wpdm_free_tinymce');
+add_action('admin_init', 'wpdm_free_tinymce');
 
