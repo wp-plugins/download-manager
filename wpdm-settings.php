@@ -27,6 +27,15 @@ input{
     </select>
 </td>
 </tr>
+    <tr>
+        <td>Minimum User Level to Use TinyMce Button with Editor:</td>
+        <td><select name="edtbtn">
+                <option value="manage_options">Administrator</option>
+                <option value="manage_categories" <?php echo $edtbtn=='manage_categories'?'selected':''?>>Editor</option>
+                <option value="publish_posts" <?php echo $edtbtn=='publish_posts'?'selected':''?>>Author</option>
+            </select>
+        </td>
+    </tr>
 <tr>
 <td>Show category info with short-code:</td>
 <td><select name="wpdm_show_cinfo">
@@ -46,7 +55,7 @@ input{
 
 <?php if(current_user_can("manage_options")){ ?>
 <tr>
-<td>Server File Borwser Rooe:</td>
+<td>Server File Borwser Root:</td>
 <td>
 <input type="text" name="_wpdm_file_browser_root" value="<?php echo get_option('_wpdm_file_browser_root',$_SERVER['DOCUMENT_ROOT']); ?>" size="90">
 </td>

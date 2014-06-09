@@ -35,7 +35,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
  </div>
 <?php if(get_option('hide_wpdm270n',0)==0){ ?>
 <div class="updated" style="padding: 20px" id="wpdm270n">
-    If you like to move wpdm to custom post type, you can start with <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org from June 2014.
+    If you like to move wpdm to custom post type, you can start with <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org soon.
     <a href="#" style="float: right;font-size: 16pt;color: #880000" onclick="return _close_notice('#wpdm270n')">&times;</a>
 </div>
  

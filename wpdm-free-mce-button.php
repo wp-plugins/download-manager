@@ -7,14 +7,15 @@ add_filter('mce_buttons', 'wpdm_tinyplugin_add_button', 0);
  
 function wpdm_tinyplugin_add_button($buttons)
 {
+    if(!current_user_can(get_option('wpdm_edtbtn','manage_options'))) return $buttons;
     array_push($buttons, "separator", "wpdm_tinyplugin");
     return $buttons;
 }
 
 function wpdm_tinyplugin_register($plugin_array)
 {
+    if(!current_user_can(get_option('wpdm_edtbtn','manage_options'))) return $plugin_array;
     $url = plugins_url("download-manager/editor_plugin.js");
-
     $plugin_array['wpdm_tinyplugin'] = $url;
     return $plugin_array;
 }

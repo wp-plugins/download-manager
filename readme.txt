@@ -61,6 +61,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.5 =
+* Added new option to control tinymce button visibility
+
 = 2.6.4 =
 * Fixed issue with quick add window
 
@@ -68,7 +71,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 * Fixed issue with delete single item
 
 = 2.6.2 =
-* Fixed an issue with categroy short-code pagination
+* Fixed an issue with category short-code pagination
 
 = 2.6.1 =
 * Compatibility release for WordPress 3.9
