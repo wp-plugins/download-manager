@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.6.5
+Version: 2.6.6
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -403,8 +403,10 @@ if(!isset($_GET['task'])||$_GET['task']!='wpdm_tree')     return;
 
 function wpdm_admin_options(){
     
+    if(!file_exists(UPLOAD_DIR)&&$_GET[task]=='wpdm_create_dir') wpdm_create_dir();
+
     if(!file_exists(UPLOAD_DIR)&&$_GET[task]!='wpdm_create_dir'){
-        
+
         echo "    
         <div id=\"warning\" class=\"error fade\"><p>
         Automatic dir creation failed! [ <a href='admin.php?page=file-manager&task=CreateDir&re=1'>Try again to create dir automatically</a> ]<br><br>
@@ -419,13 +421,14 @@ function wpdm_admin_options(){
         </div>
         ";
     }
-    
-    
+
+
+
     if(!file_exists(UPLOAD_DIR.'.htaccess'))
     wpdm_set_htaccess();
-    
-    if(isset($_GET['task'])&&$_GET['task']!=''&&function_exists($_GET['task']))
-    return call_user_func($_GET['task']);        
+    //if(isset($_GET['task'])) die($_GET['task']);
+    if(isset($_GET['task'])&&$_GET['task']=='wpdm_edit_file')
+    return wpdm_edit_file();
     else
     include('wpdm-list-files.php');
 }
@@ -982,9 +985,13 @@ function wpdm_help(){
     If you have anything to ask or if anything not clear please search or ask here:
     <br/>
     <strong><a href="http://www.wpdownloadmanager.com/support/forum/download-manager-free/" target="_blank">http://www.wpdownloadmanager.com/support/forum/download-manager-free/</a></strong>
-    
-     
-    
+<br/>
+<br/>
+        <div class="updated" style="padding: 20px" id="wpdm270n">
+            If you like to move wpdm to custom post type, you can start with <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org soon.
+
+        </div>
+
     <?php
 }
 
@@ -996,8 +1003,8 @@ function wpdm_menu(){
     add_submenu_page( 'file-manager', 'File Manager', 'Manage', get_option('wpdm_access_level','manage_options'), 'file-manager', 'wpdm_admin_options');    
     add_submenu_page( 'file-manager', 'Add New File &lsaquo; File Manager', 'Add New File', get_option('wpdm_access_level','manage_options'), 'file-manager/add-new-file', 'wpdm_add_new_file');    
     add_submenu_page( 'file-manager', 'Categories &lsaquo; File Manager', 'Categories', get_option('wpdm_access_level','manage_options'), 'file-manager/categories', 'wpdm_categories');        
-    add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', get_option('wpdm_access_level','manage_options'), 'file-manager/settings', 'wpdm_settings');    
-    add_submenu_page( 'file-manager', 'Help &lsaquo; File Manager', 'Help', get_option('wpdm_access_level','manage_options'), 'file-manager/help', 'wpdm_help');    
+    add_submenu_page( 'file-manager', 'Settings &lsaquo; File Manager', 'Settings', 'manage_options', 'file-manager/settings', 'wpdm_settings');
+    add_submenu_page( 'file-manager', 'Help &lsaquo; File Manager', 'Help', get_option('wpdm_access_level','manage_options'), 'file-manager/help', 'wpdm_help');
     
 }
 
