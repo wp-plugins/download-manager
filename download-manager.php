@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.6.6
+Version: 2.6.7
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -150,8 +150,7 @@ function wpdm_all_packages($params = array()){
      global $wpdb, $current_user;          
      ob_start();
      include("wpdm-all-downloads.php");
-     $data = ob_get_contents();
-     ob_clean();  
+     $data = ob_get_clean();      
      return $data;
      }   
 
@@ -403,9 +402,9 @@ if(!isset($_GET['task'])||$_GET['task']!='wpdm_tree')     return;
 
 function wpdm_admin_options(){
     
-    if(!file_exists(UPLOAD_DIR)&&$_GET[task]=='wpdm_create_dir') wpdm_create_dir();
+    if(!file_exists(UPLOAD_DIR) && isset($_GET['task']) && $_GET['task']=='wpdm_create_dir') wpdm_create_dir();
 
-    if(!file_exists(UPLOAD_DIR)&&$_GET[task]!='wpdm_create_dir'){
+    if(!file_exists(UPLOAD_DIR) && isset($_GET['task']) && $_GET['task']!='wpdm_create_dir'){
 
         echo "    
         <div id=\"warning\" class=\"error fade\"><p>
