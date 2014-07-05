@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.6.7
+Version: 2.6.8
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -478,7 +478,7 @@ function wpdm_settings(){
         update_option('_wpdm_file_browser_root',$_POST['_wpdm_file_browser_root']);
         
     }
-    if(is_uploaded_file($_FILES['icon']['tmp_name'])){
+    if(isset($_FILES['icon']) && is_uploaded_file($_FILES['icon']['tmp_name'])){
         ///print_r(dirname(__FILE__).'/icon/download.png');
         move_uploaded_file($_FILES['icon']['tmp_name'],dirname(__FILE__).'/icon/download.png');
     }
@@ -549,8 +549,8 @@ function wpdm_edit_file(){
 } 
 
 function wpdm_categories(){
-   $cid = addslashes($_GET['cid']); 
-   if($_GET['task']=='DeleteCategory'){
+   $cid = isset($_GET['cid'])?addslashes($_GET['cid']):'';
+   if(isset($_GET['task']) && $_GET['task']=='DeleteCategory'){
         $tpldata = maybe_unserialize(get_option('_fm_categories'));
         unset($tpldata[$cid]);         
         update_option('_fm_categories',@serialize($tpldata)); 
@@ -559,7 +559,7 @@ function wpdm_categories(){
         </script>";   
     die();
     } 
-     if($_POST['cat']){
+     if(isset($_POST['cat'])){
         $tpldata = maybe_unserialize(get_option('_fm_categories'));
         if(!is_array($tpldata)) $tpldata =array();
         $_POST['cat']['title'] = esc_attr($_POST['cat']['title']);
@@ -906,7 +906,7 @@ function wpdm_hotlink($params){
 }
 
 function delete_all_cats(){
-    if(!isset($_GET['page'])) return;
+    if(!isset($_GET['page']) || !isset($_GET['task'])) return;
     if($_GET['page']=='file-manager/categories'&&$_GET['task']=='delete-all'){
         delete_option('_fm_categories');
         header('location: '.$_SERVER['HTTP_REFERER']);

@@ -28,11 +28,15 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 <a class="button  add-new-h2" style="font-weight: bold" href="http://wordpress.org/support/view/plugin-reviews/download-manager">A 5&#9733; rating will inspire me a lot :)</a>
 <br />
  
-</h2> 
-<div class="updated" style="padding:5px 10px;color:#fff;font-weight:bold;background: #6F9348; border: 0px;padding:8px 20px;font-size:10pt;font-style: italic;">
- <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" target="_blank">Get download manager premium version now! </a> /
- <a style="color: #fff;font-family: 'Verdana'" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>#features" target="_blank">Checkout the features here</a>
- </div>
+</h2>
+    <div style="border-radius: 3px;border: 2px solid #1E8CBE" class="updated">
+        <p>
+            <strong>Download Manager Pro! Social Locks. </strong><br>
+            <i><a target="_blank" href="http://www.wpdownloadmanager.com/?affid=admin&amp;domain=localhost">Get Download Manager Pro Version Now! </a></i>
+            <a target="_blank" href="http://www.wpdownloadmanager.com/?affid=admin&amp;domain=localhost#features" class="button button-primary button-hero" style="float:right;margin-top: -23px;margin-right: -6px;border: 0 none;border-radius: 2px;box-shadow: none;">Checkout The Features Here →</a>
+        </p>
+    </div>
+
 <?php if(get_option('hide_wpdm270n',0)==0){ ?>
 <div class="updated" style="padding: 20px" id="wpdm270n">
     If you like to move wpdm to custom post type, you can start with <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org soon.
@@ -99,8 +103,8 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 
     <tbody class="list:post" id="the-list">
     <?php foreach($res as $media) { 
-        
-            switch(end(explode(".",$media['file']))){
+            $tmp = explode(".",$media['file']);
+            switch(end($tmp)){
                 case 'jpg':  case 'png':  case 'bmp':   case 'gif': 
                     $icon = 'img.png';
                 break;
@@ -109,7 +113,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
                 case 'zip':  $icon = 'zip.png';  break;
                 
                 default:
-                $icon = end(explode(".",$media['file'])).'.png';  
+                $icon = end($tmp).'.png';
                 break;
                 
                 
