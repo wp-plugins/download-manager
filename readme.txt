@@ -61,6 +61,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.9 =
+* Adjusted a string formatting issue in edit file window
+* adjusted download url, trimmed "="
+
 = 2.6.8 =
 * Adjusted some notices and deprecated functions
 

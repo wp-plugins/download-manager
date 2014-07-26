@@ -31,9 +31,9 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 </h2>
     <div style="border-radius: 3px;border: 2px solid #1E8CBE" class="updated">
         <p>
-            <strong>Download Manager Pro! Social Locks. </strong><br>
-            <i><a target="_blank" href="http://www.wpdownloadmanager.com/?affid=admin&amp;domain=localhost">Get Download Manager Pro Version Now! </a></i>
-            <a target="_blank" href="http://www.wpdownloadmanager.com/?affid=admin&amp;domain=localhost#features" class="button button-primary button-hero" style="float:right;margin-top: -23px;margin-right: -6px;border: 0 none;border-radius: 2px;box-shadow: none;">Checkout The Features Here →</a>
+            <em><b>Download Manager Pro!</b><br>Social Locks/Share, Build a Shop or Even a Marketplace, Multi-Level Marketing Add-on to Boost Sales and many more... </em>
+
+            <a target="_blank" href="http://www.wpdownloadmanager.com/?affid=admin&domain=<?php echo $_SERVER['HTTP_HOST']; ?>" class="button button-primary button-hero" style="float:right;margin-top: -23px;margin-right: -6px;border: 0 none;border-radius: 2px;box-shadow: none;">Checkout The Features Here →</a>
         </p>
     </div>
 

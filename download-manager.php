@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.6.8
+Version: 2.6.9
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -626,7 +626,7 @@ foreach($ndata as $data){
     $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data['id']}'>$link_label</a>";
     //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
     if($data['password']=='') { 
-        $url = home_url('/?wpdmact=process&did='.base64_encode($data['id'].'.hotlink'));         
+        $url = home_url('/?wpdmact=process&did='.trim(base64_encode($data['id'].'.hotlink'),"="));
         $data['page_link'] = "<a href='{$url}'>$link_label</a>";
     }
     if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");"; 
@@ -697,7 +697,7 @@ function wpdm_embed_category_sc($params){
         $data['page_link'] = "<a class='wpdm-popup' href='{$postlink}{$sap}download={$data['id']}'>$link_label</a>";
         //if($data['password']=='') { $data['page_link'] = "<a href='".home_url('/?wpdmact=process&did='.base64_encode($id.'.hotlink'))."'>{$link_label}</a>"; }
         if($data['password']=='') {
-            $url = home_url('/?wpdmact=process&did='.base64_encode($data['id'].'.hotlink'));
+            $url = home_url('/?wpdmact=process&did='.trim(base64_encode($data['id'].'.hotlink'),"="));
             $data['page_link'] = "<a href='{$url}'>$link_label</a>";
         }
         if($data['icon']!='') $bg = "background-image: url(\"".plugins_url()."/download-manager/icon/{$data[icon]}\");";

@@ -37,7 +37,7 @@ input{
 <table cellpadding="5" cellspacing="5" width="100%">
 <tr>
 
-    <td><input style="font-size:16pt;width:100%;" placeholder="Enter Title Here"  type="text" value="<?php echo $file['title']?esc_attr($file['title']):""; ?>" name="file[title]" /></td>
+    <td><input style="font-size:16pt;width:100%;" placeholder="Enter Title Here"  type="text" value="<?php echo isset($file['title'])?esc_attr($file['title']):""; ?>" name="file[title]" /></td>
 </tr>
 
 <tr>

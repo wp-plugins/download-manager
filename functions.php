@@ -79,7 +79,7 @@
     
     // Function that output's the contents of the dashboard widget
     function wpdm_dashboard_widget_function() {
-        echo "<img src='".plugins_url('/download-manager/images/wpdm-logo.png')."' /><br/>";
+        echo "<img style='max-width:100%;' src='".plugins_url('/download-manager/images/wpdm-logo.png')."' /><br/>";
 
         ?>
         <div class="tab-content">
@@ -92,7 +92,7 @@
         <script>
             jQuery(function () {
 
-                jQuery('#excelz').attr('src','http://www.wpdownloadmanager.com/notice.php?wpdmvarsion=<?php echo WPDM_Version; ?>').css('overflow','hidden');
+                jQuery('#excelz').attr('src','http://cdn.wpdownloadmanager.com/notice.php?wpdmvarsion=<?php echo WPDM_Version; ?>').css('overflow','hidden');
 
             })
         </script>
