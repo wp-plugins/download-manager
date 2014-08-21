@@ -62,7 +62,7 @@ input{
 <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="frm">
 <tr id="link_label_row">    
 <td width="110px">Link Label:</td>
-<td><input size="10" type="text" style="width: 200px" value="<?php echo $file[link_label]?esc_attr($file['link_label']):'Download'; ?>" name="file[link_label]" />
+<td><input size="10" type="text" style="width: 200px" value="<?php echo isset($file['link_label'])?esc_attr($file['link_label']):'Download'; ?>" name="file[link_label]" />
 </td></tr>
 <tr id="password_row">
 <td>Password:</td>  
@@ -70,7 +70,7 @@ input{
 </tr>
 <tr id="download_limit_row">
 <td>Stock&nbsp;Limit:</td>  
-<td><input size="10" style="width: 80px" type="text" name="file[quota]" value="<?php echo $file['quota']; ?>" /></td>
+<td><input size="10" style="width: 80px" type="text" name="file[quota]" value="<?php echo isset($file['quota'])?$file['quota']:''; ?>" /></td>
 </tr>
  <tr>
 <td>Download Count: </td>

@@ -61,6 +61,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.91 =
+* Compatibility release for WordPress 3.9.2
+* adjusted a minor issue with download url
+* Fixed 3 minor issues from add new file window
+
 = 2.6.9 =
 * Adjusted a string formatting issue in edit file window
 * adjusted download url, trimmed "="

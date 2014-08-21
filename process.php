@@ -30,7 +30,7 @@ if(is_array($data)){
     @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
     
     
-    if($data['download_count']>=$data['quota']&&$data['quota']>0) die('Download Limit Excedded!');
+    if($data['download_count']>=$data['quota']&&$data['quota']>0)        wp_die('Download Limit Excedded!');
         
     //added for download monitor import feature
     $data['file'] = str_replace(site_url('/'),ABSPATH, $data['file']);
@@ -99,7 +99,7 @@ if(is_array($data)){
     }
 
 }  else {
-    die('File not found or Downlaoad Link Expired!');
+    wp_die('File not found or Downlaoad Link Expired!');
 }
 
 die();
