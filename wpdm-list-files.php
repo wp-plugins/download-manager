@@ -40,7 +40,7 @@ $row = $wpdb->get_row("select count(*) as total from ahm_files $cond",ARRAY_A);
 <?php if(get_option('hide_wpdm270n',0)==0){ ?>
     <div style="border-radius: 3px;border: 2px solid #D54E21;padding:12px" class="updated" id="wpdm270n">
         <em><b>WordPress Download Manager 2.7</b><a href="#" style="float: right;font-size: 16pt;color: #880000" onclick="return _close_notice('#wpdm270n')">&times;</a><br/>
-    If you like to move wpdm to custom post type, you can download <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org soon.
+    Custom Post Type version is available now, you can download <strong><a href="http://www.wpdownloadmanager.com/download/wordpress-download-manager-v2-7-0/">WPDM v2.7.0 here</a></strong>. This new version will be available at wp.org soon.
     </em>
 </div>
  
