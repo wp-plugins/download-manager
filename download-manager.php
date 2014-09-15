@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your wordpress site
 Author: Shaon
-Version: 2.6.92
+Version: 2.6.93
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -434,7 +434,7 @@ function wpdm_admin_options(){
 
 function wpdm_delete_file(){
     global $wpdb;
-    if(isset($_GET['task']) && $_GET['task'] == 'DeleteFile' && is_admin()){
+    if(isset($_GET['task']) && $_GET['task'] == 'DeleteFile' && current_user_can('edit_posts')){
     if(is_array($_GET['id'])){
         foreach($_GET['id'] as $id){
             $qry[] = "id='".(int)$id."'";
@@ -916,7 +916,7 @@ function delete_all_cats(){
 
 function wpdm_save_file(){    
        global $wpdb;
-      if(isset($_POST['id'])&&isset($_POST['wpdmtask'])&&$_POST['wpdmtask']=='update'){
+      if(isset($_POST['id'])&&isset($_POST['wpdmtask'])&&$_POST['wpdmtask']=='update' && current_user_can('edit_posts')){
         extract($_POST);
               
              
@@ -961,6 +961,7 @@ function wpdm_check_upload(){
 }
 
 function wpdm_delete__file(){
+  if(current_user_can('edit_posts')){
   global $wpdb;  
   $id = intval($_REQUEST['file']);
   $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);  
@@ -971,6 +972,7 @@ function wpdm_delete__file(){
   unset($data['file']);
   $wpdb->query("update ahm_files set `file`='' where id='$id'");   
   die('ok');
+  }
 }
 
  
