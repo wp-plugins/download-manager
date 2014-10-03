@@ -61,6 +61,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.94 =
+* Upgraded tinymce button add-on
+* Fixed some notices
+
 = 2.6.93 =
 * Fixed security issue with update file
 * Fixed security issue with delete file

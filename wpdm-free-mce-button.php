@@ -36,21 +36,7 @@ function wpdm_free_tinymce(){
 <style type="text/css">
 *{font-family: Tahoma !important; font-size: 9pt; letter-spacing: 1px;}
 select,input{padding:5px;font-size: 9pt !important;font-family: Tahoma !important; letter-spacing: 1px;margin:5px;}
-.button{
-    background: #7abcff; /* old browsers */
 
-background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /* firefox */
-
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* webkit */
-
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* ie */
--webkit-border-radius: 2px;
--moz-border-radius: 2px;
-border-radius: 2px;
-border:0px solid #FFF;
-color: #FFF;
-cursor: pointer;
-}
  
 .input{
  width: 340px;   
@@ -153,10 +139,22 @@ a.tab{
     .tab-pane fieldset{
         border: 1px solid #dddddd;
     }
+    input[type=text], textarea{
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        padding: 10px;
+        width: 100%;
+    }
+    legend{
+        font-weight: 800;
+        padding: 0 10px !important;
+    }
+
 </style>
 
  
     <link rel='stylesheet' id='dashicons-css'  href='<?php echo  includes_url(); ?>/css/dashicons.min.css?ver=3.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='dashicons-css'  href='<?php echo  includes_url(); ?>/css/buttons.css' type='text/css' media='all' />
     <link rel='stylesheet' id='admin-bar-css'  href='<?php echo  includes_url(); ?>/css/admin-bar.min.css?ver=3.9.1' type='text/css' media='all' />
     <link rel='stylesheet' id='thickbox-css'  href='<?php echo  includes_url(); ?>/js/thickbox/thickbox.css?ver=3.9.1' type='text/css' media='all' />
     <link rel='stylesheet' id='buttons-css'  href='<?php echo  includes_url(); ?>/css/buttons.min.css?ver=3.9.1' type='text/css' media='all' />
@@ -208,7 +206,7 @@ a.tab{
                 </script>
 
 </head>
-<body>    
+<body class="wp-core-ui">
 
 <a href="#scode" class="tab active">Insert ShortCode</a><a href="#qbtn" class="tab">Quick Add</a> 
 <div style="clear: both;"></div>        
@@ -266,7 +264,7 @@ Drop Shadow Effect: <select id="shadow">
 <div id="qbtn"  class="tab-pane" style="display: none;"> 
 <fieldset>
 <legend>Add New Package</legend>
-    <form action="admin.php?page=file-manager/add-new-package" id="wpdmpack" method="post">
+    <form action="admin.php?page=file-manager/add-new-package" id="wpdmpack" method="post" style="margin: 0 !important;">
      
     <input type="hidden" id="act" name="file[access]" value="guest" />
     <input type="hidden" name="action" value="save_wpdm_file" />
@@ -274,9 +272,9 @@ Drop Shadow Effect: <select id="shadow">
 
     <div class="row-fluid">    
     <b>Title:</b><br>
-    <input type="text" size="40" name="file[title]" /><br>
+    <input type="text" class="widefat" size="40" name="file[title]" /><br>
     <b>Description:</b><br>
-    <textarea cols="50" rows="3" class="span12" name="file[description]"></textarea><br>
+    <textarea cols="50" rows="3" class="span12 widefat" name="file[description]"></textarea><br>
     <div>
     <b>Download Link Label:</b><br>
     <input type="text" id="act" style="max-width: 100%;"  name="file[link_label]" value="Download" />
@@ -465,8 +463,8 @@ jQuery('#dcf').click(function(){
  <div class="clear"></div>
 </div>
 </div>
-    
-    <input type="submit" class="button btn btn-success" value="Insert into post" /> 
+    <br/>
+    <input style="margin: 0 !important;" type="submit" class="button button-primary btn btn-success" value="Insert into post" />
     <div id="sving" style="float: right;margin-right:10px;padding-left: 20px;background:url('<?php echo admin_url('images/loading.gif');?>') left center no-repeat;display: none;">Please Wait...</div>
     </div>       
     </form>    

@@ -6,7 +6,7 @@
         init : function(ed, url){
             ed.addCommand('wpdm_mcedonwloadmanager', function() {
                                 ed.windowManager.open({
-                                        title: 'Download Controller',
+                                        title: 'Download Manager',
                                         file : 'admin.php?wpdm_action=wpdm_tinymce_button',
                                         height: 600,
                                         width:480,

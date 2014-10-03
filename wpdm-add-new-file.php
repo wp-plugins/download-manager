@@ -330,7 +330,7 @@ jQuery('#dcf').click(function(){
 
 </ul>   <br>
 
-<a href="admin.php?page=file-manager&task=wpdm_file_browser" class="thickbox button-secondary">Open File Browser</a>
+<a title="Server File Browser" href="admin.php?page=file-manager&task=wpdm_file_browser" class="thickbox button-secondary">Open File Browser</a>
 
 
 
@@ -382,7 +382,7 @@ jQuery('#dcf').click(function(){
 
 
 
-<input style="float: right"  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" class="add:the-list:newmeta" name="addmeta" id="addmetasub">
+<input style="float: right;width: 90px !important;border: 1px solid #ddd"  type="reset" value="Reset" tabindex="9" class="button-secondary button button-large" name="addmeta" id="addmetasub">
 
 <input type="submit" value="<?php echo $_GET['task']=='wpdm_edit_file'?'Update Package':'Create Package'; ?>" accesskey="p" tabindex="5" id="publish" class="button-primary button button-large" name="publish">
  <div class="clear"></div>
