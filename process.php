@@ -59,7 +59,14 @@ if(is_array($data)){
     $asfname = basename($fname);
 
     $fsize = filesize($fname);
+    
+    
 
+    header("Pragma: public");
+    header("Expires: 0");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    header("Cache-Control: public");
+    header("Robots: none");
     header("Content-Description: File Transfer");
     header("Content-Type: $mtype");
     header("Content-Disposition: attachment; filename=\"$asfname\"");

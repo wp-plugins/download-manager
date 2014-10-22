@@ -20,7 +20,7 @@ input{
 </style>
  
 <div class="wrap metabox-holder has-right-sidebar">
-<?php if($_GET['task']=='wpdm_edit_file'){ ?>
+<?php if(isset($_GET['task']) && $_GET['task']=='wpdm_edit_file'){ ?>
     <div class="icon32" id="icon-add-new-file"><br></div>
 <h2>Edit Download Package</h2>
 <?php } else { ?>
@@ -31,7 +31,7 @@ input{
 <form id="wpdmpack" action="" method="post">
 <input type="hidden" name="action" value="save_wpdm_file" />
 <input type="hidden" name="wpdmtask" value="<?php echo isset($_GET['task'])&&$_GET['task']=='wpdm_edit_file'?'update':'create';?>" />
-<input type="hidden" name="id" value="<?php echo $file['id']; ?>" />
+<input type="hidden" name="id" value="<?php echo isset($file['id'])?$file['id']:''; ?>" />
 <div  style="width: 75%;float:left;">
     
 <table cellpadding="5" cellspacing="5" width="100%">
