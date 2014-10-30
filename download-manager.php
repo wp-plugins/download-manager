@@ -4,7 +4,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, track and control file download from your WordPress site
 Author: Shaon
-Version: 2.6.95
+Version: 2.6.96
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -475,6 +475,7 @@ function wpdm_settings(){
         update_option('wpdm_access_level',$_POST['access']);
         update_option('wpdm_login_msg',$_POST['wpdm_login_msg']);
         update_option('wpdm_show_cinfo',$_POST['wpdm_show_cinfo']);
+        update_option('server_file_browser',$_POST['server_file_browser']);
         update_option('_wpdm_file_browser_root',$_POST['_wpdm_file_browser_root']);
         
     }
@@ -485,6 +486,7 @@ function wpdm_settings(){
     $access = get_option('wpdm_access_level');
     $edtbtn = get_option('wpdm_edtbtn');
     $wpdm_show_cinfo = get_option('wpdm_show_cinfo');
+    $server_file_browser = get_option('server_file_browser',1);
     include('wpdm-settings.php'); 
 }
 

@@ -316,7 +316,7 @@ jQuery('#dcf').click(function(){
  <div class="clear"></div>
 </div>
 </div>
-
+<?php if(get_option('server_file_browser',1)==1){ ?>
 <div class="postbox " id="action">
 <div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Add file from server</span></h3>
 <div class="inside">
@@ -342,7 +342,7 @@ jQuery('#dcf').click(function(){
  <div class="clear"></div>
 </div>
 </div>
-
+<?php } ?>
 
 <!--download icon-->
 

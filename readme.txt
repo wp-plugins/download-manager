@@ -61,6 +61,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 == Changelog ==
 
+= 2.6.96 =
+* Upgraded server file browser option to control access
+* Fixed minor issues
+
 = 2.6.95 =
 * Fixed a few notices in add new file page
 * Fixed issue with output buffering
