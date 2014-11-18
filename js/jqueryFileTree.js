@@ -69,8 +69,7 @@ if(jQuery) (function($){
 									$(this).parent().parent().find('LI.directory').removeClass('expanded').addClass('collapsed');
 								}
 								$(this).parent().find('UL').remove(); // cleanup
-                                var dr =  escape($(this).attr('rel').match( /.*\// ))=='null'?$(this).attr('rel'):escape($(this).attr('rel').match( /.*\// ));
-								showTree( $(this).parent(), dr );
+								showTree( $(this).parent(), escape($(this).attr('rel').match( /.*\// )) );
 								$(this).parent().removeClass('collapsed').addClass('expanded');
 							} else {
 								// Collapse
@@ -78,8 +77,9 @@ if(jQuery) (function($){
 								$(this).parent().removeClass('expanded').addClass('collapsed');
 							}
 						} else {
-							h($(this).attr('rel'));
+							h($(this).attr('rel'), $(this).attr('id'));
 						}
+                        /*alert($(this).attr('rel'));*/
 						return false;
 					});
 					// Prevent A from triggering the # on non-click events

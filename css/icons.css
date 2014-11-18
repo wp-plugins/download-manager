@@ -1,4 +1,4 @@
-
+ 
 #icon-file-manager{
     background: url('../images/download-manager.png') center center no-repeat;
 }
@@ -24,6 +24,9 @@
 #icon-stats{
     background: url('../images/stats.png') center center no-repeat;
 }
+#icon-sales{
+    background: url('../images/sales.png') center center no-repeat;
+}
 
 .infoicon{
     background: url('../images/help1.png') center center no-repeat;
@@ -34,5 +37,15 @@
     height:16px;
     border:0px !important;
 }
-
- 
+.img60px{
+    width: 40px;
+    height: auto;
+    border-radius: 3px;
+}
+.column-image{
+    width: 50px;
+}
+.wpdm-scode{
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+}

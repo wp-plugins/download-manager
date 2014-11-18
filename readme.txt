@@ -20,7 +20,6 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Control who can access to download
 *	Password protection
 *	Download Counter
-*	Control who can user this plugin (author, editor, administrator)
 *	Custom download link icon
 *	File type icon support
 *	DataTable support ( use short-code [wpdm_all_packages] )
@@ -37,8 +36,6 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Category embed short-code
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
-*	"Download Monitor" to "Download Manager" files Importer 
-
  
  
 == Installation ==
@@ -50,16 +47,21 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 
 == Screenshots ==
-1. Create new download package
-2. Manage download packages
-3. Categories
-4. Front-end link template preview
-5. Full tree view of categories and files with a simple short-code [wpdm_tree]
-6. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
-7. Insert short-code
-8. Create a new download package quickly from popup
+1. Create New  
+2. Front-end link template preview
+3. Full tree view of categories and files with a simple short-code [wpdm_tree]
+4. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
+5. Settings Page
+5. Front-end preview for category short-code
 
 == Changelog ==
+
+= 2.7.0 =
+* Moved to Custom Post Type
+* Upgraded Access setting to allow role based access
+* Added support for add-on usage
+* More extensive SEO support
+* Translation Ready
 
 = 2.6.96 =
 * Upgraded server file browser option to control access

@@ -1,113 +1,82 @@
 <?php
-if(!defined('ABSPATH')) die('Error!');
 
-global $wpdb; 
- if(!file_exists(dirname(__FILE__).'/cache/'))
-    die("<code>".dirname(__FILE__).'/cache/</code> is missing!' );
-    
-    if(!is_writable(dirname(__FILE__).'/cache/'))
-    die("<code>".dirname(__FILE__).'/cache/</code> must have to be writable!' );
-$did = explode('.',base64_decode($_GET['did']));
-$id = array_shift($did);
-if(!is_numeric($id)){   
-    $_GET['did'] =  esc_attr($_GET['did']); 
-    $data = @unserialize(file_get_contents(dirname(__FILE__).'/cache/'.$_GET['did']));
-    
-   
-}
-else {    
-    
-    $id = (int)$id;
-    $data = $wpdb->get_row("select * from ahm_files where id='$id'",ARRAY_A);
-}
+    if(!defined('ABSPATH')) exit();
 
-if(is_array($data)){   
-    if($data['access']=='member'&&!is_user_logged_in()) {
-        header("location: wp-login.php?redirect_to=".urlencode($_SERVER['REQUEST_URI']));
-        die();
-    }
-    $_GET['did'] = sanitize_file_name($_GET['did']);
-    @unlink(dirname(__FILE__).'/cache/'.$_GET['did']);
+    do_action("wpdm_onstart_download", $package);
+
+    global $current_user, $dfiles;
     
-    
-    if($data['download_count']>=$data['quota']&&$data['quota']>0)        wp_die('Download Limit Excedded!');
+    $speed = 1024; //in KB - default 1 MB
+    $speed = apply_filters('wpdm_download_speed', $speed);
+     
+    get_currentuserinfo();
+    if(wpdm_is_download_limit_exceed($package['ID'])) die(__msg('DOWNLOAD_LIMIT_EXCEED'));
+    $files = $package['files'];
+//    $dir = isset($package['package_dir'])?$package['package_dir']:'';
+//    if($dir!=''){
+//    $dfiles = array();
+//    wpmp_get_files($dir);
+//    }
+    $log = new Stats();
         
-    //added for download monitor import feature
-    $data['file'] = str_replace(site_url('/'),ABSPATH, $data['file']);
-     
-    if(strpos($data['file'],'ttp://')){
-        header("location: ".$data['file']);
+    $oid = isset($_GET['oid'])?addslashes($_GET['oid']):'';
+
+    if(!isset($_GET['ind'])&&!isset($_GET['nostat']))
+    $log->NewStat($package['ID'], $current_user->ID,$oid);
+
+    if(count($files)==0) {
+      if(isset($package['sourceurl'])&&$package['sourceurl']!='') {
+                
+        if(!isset($package['url_protect'])||$package['url_protect']==0&&strpos($package['sourceurl'],'://')){
+            header('location: '.$package['sourceurl']);
+            die();
+        }
+        
+        $r_filename = basename($package['sourceurl']);
+        $r_filename = explode("?", $r_filename);
+        $r_filename = $r_filename[0];
+        wpdm_download_file($package['sourceurl'],$r_filename, $speed, 1, $package);
         die();
+      } 
+    
+       wpdm_download_data('download-not-available.txt','Sorry! Download is not available yet.');
+       die();
+    
     }
-    $data['file'] = trim($data['file']);
-    if(file_exists($data['file']) && $data['file']!= "")
-    $fname = $data['file'];    
-    else if(file_exists(UPLOAD_DIR . $data['file']) && $data['file']!= "")
-    $fname = UPLOAD_DIR . $data['file'];
-    else if( $data['file']== "")
-        wp_die("No file attached yet.");
-    else 
-    wp_die('File not found!');
-    
-    $wpdb->query("update ahm_files set download_count=download_count+1 where id='$data[id]'");
-
      
-    $filetype = wp_check_filetype($fname);
-                       
-    $mtype = $filetype['type'];
+    $idvdl = isset($package['individual_file_download'])&&isset($_GET['ind'])?1:0;
+
     
-    $asfname = basename($fname);
+    //Individual file or single file download section
 
-    $fsize = filesize($fname);
-    
-    
+        $ind = 0;
 
-    header("Pragma: public");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: public");
-    header("Robots: none");
-    header("Content-Description: File Transfer");
-    header("Content-Type: $mtype");
-    header("Content-Disposition: attachment; filename=\"$asfname\"");
-    header("Content-Transfer-Encoding: binary");
-    header("Content-Length: " . $fsize);
-    
- 
-    $wpdm_tsize = 0;
-    $wpdm_chunk = 8192;
-    $file = @fopen($fname,"rb");
-    $wpdm_rest = $fsize;
-    if ($file) {
 
-                                       
-       while (!feof($file)) {
-            if($wpdm_rest<$wpdm_chunk&&$wpdm_rest>0) $wpdm_chunk = $wpdm_rest;
-            echo fread($file, $wpdm_chunk);
-            if(function_exists('ob_flush')) @ob_flush();
-            $wpdm_tsize += $wpdm_chunk;
-            $wpdm_rest = $fsize - $wpdm_tsize;
-        }
-      fclose($file);
 
-        if (connection_status()!=0) {
 
-          @fclose($file);
+    $files[$ind] = trim($files[$ind]);
 
-          die();
-
-        }
-
-     
-
-      @fclose($file);
-      
-
+    if(file_exists(UPLOAD_DIR.$files[$ind]) && $files[$ind]!='')
+    $filepath = UPLOAD_DIR.$files[$ind];
+    else if(file_exists($files[$ind]) && $files[$ind]!='')
+    $filepath = $files[$ind];
+    else if(file_exists(WP_CONTENT_DIR.end($tmp = explode("wp-content",$files[$ind]))) && $files[$ind]!='') //path fix on site move
+    $filepath = WP_CONTENT_DIR.end($tmp = explode("wp-content",$files[$ind]));
+    else {
+        wpdm_download_data('file-not-found.txt','File not found or deleted from server');
+        die();        
     }
 
-}  else {
-    wp_die('File not found or Downlaoad Link Expired!');
-}
+    //$plock = get_wpdm_meta($file['id'],'password_lock',true);
+    //$fileinfo = get_wpdm_meta($package['id'],'fileinfo');
+     
+    $filename = basename($filepath);
+    $filename = preg_replace("/([0-9]+)[wpdm]*_/","",$filename);
+    
+    wpdm_download_file($filepath, $filename, $speed, 1, $package);    
+    //@unlink($filepath);
 
+
+do_action("after_downlaod", $package);
 die();
 ?>
