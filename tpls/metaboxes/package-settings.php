@@ -109,7 +109,7 @@
 
 
 
-        jQuery('#img').live('click', function( event ){
+        jQuery('#img').on('click', function( event ){
 
             event.preventDefault();
 
@@ -145,13 +145,13 @@
         });
 
 
-        jQuery(".cb-enable").live('click',function(){
+        jQuery(".cb-enable").on('click',function(){
             var parent = jQuery(this).parents('.switch');
             jQuery('.cb-disable',parent).removeClass('selected');
             jQuery(this).addClass('selected');
             jQuery('.checkbox',parent).attr('checked', true);
         });
-        jQuery(".cb-disable").live('click',function(){
+        jQuery(".cb-disable").on('click',function(){
             var parent = jQuery(this).parents('.switch');
             jQuery('.cb-enable',parent).removeClass('selected');
             jQuery(this).addClass('selected');
@@ -169,14 +169,14 @@
 
         });
 
-        jQuery('#rmvp').live('click',function(){
+        jQuery('#rmvp').on('click',function(){
             jQuery('#fpvw').val('');
             jQuery('#mpim').slideUp().remove();
             jQuery(this).fadeOut();
             jQuery('#img').html('<img src="<?php echo plugins_url("/download-manager/images/add-image.gif"); ?>\" /> Add Main Preview Image<input type="hidden" name="file[preview]" value="" id="fpvw" />');
             return false;
         });
-        jQuery('.wpdm-label').live('click',function(){
+        jQuery('.wpdm-label').on('click',function(){
             //alert(jQuery(this).attr('class'));
             if(jQuery(this).hasClass('wpdm-checked')) jQuery(this).addClass('wpdm-unchecked').removeClass('wpdm-checked');
             else jQuery(this).addClass('wpdm-checked').removeClass('wpdm-unchecked');

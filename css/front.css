@@ -791,7 +791,7 @@ div.tooltip.in{
 }
 
 .link-btn .wpdm_icon{
-    width: 32px;
+    width: 40px;
 }
 
 .link-btn * {
@@ -804,6 +804,11 @@ div.tooltip.in{
     margin-left: 1px;
 }
 
+.ptitle{
+    font-size: 12pt;
+    margin-bottom: 3px;
+    display: block;
+}
 
 .light {
     -moz-box-shadow: 0px 1px 0px 0px #ffffff;
@@ -928,4 +933,10 @@ div.tooltip.in{
 }
 .panel-body{
     color: #222222 !important;
+}
+
+.wpdm-category .link-btn{
+    margin: 3px 0 !important;
+    width: 100%;
+    display: block;
 }

@@ -245,7 +245,7 @@
 
              <?php if(!function_exists('wpdm_tinymce')){ ?>
              <div class="col-md-12 lead text-center">Lets install following add-ons to make your WordPress Download Manager more awesome<br/></div>
-                 <div class="col-md-4 col-sm-6 col-xs-12 all add-ons free-add-ons tools" style="display: block;">
+                 <div class="col-md-4 col-sm-6 col-xs-12">
                      <div class="panel panel-default">
                          <div style="min-height: 130px;height: 130px;overflow: hidden" class="panel-body">
                              <div class="media">
@@ -267,7 +267,7 @@
                      </div>
                  </div>
 
-                 <div class="col-md-4 col-sm-6 col-xs-12 all add-ons free-add-ons tools" style="display: block;">
+                 <div class="col-md-4 col-sm-6 col-xs-12">
                      <div class="panel panel-default">
                          <div style="min-height: 130px;height: 130px;overflow: hidden" class="panel-body">
                              <div class="media">
@@ -290,7 +290,7 @@
                  </div>
 
 
-                 <div class="col-md-4 col-sm-6 col-xs-12 all add-ons free-add-ons ui-add-ons" style="display: block;">
+                 <div class="col-md-4 col-sm-6 col-xs-12">
                      <div class="panel panel-default">
                          <div style="min-height: 130px;height: 130px;overflow: hidden" class="panel-body">
                              <div class="media">
@@ -331,7 +331,7 @@
 
              <div class="col-md-12 lead">
                  <h3>What's New?</h3>
-                 What new with WordPress Download Manager Pro v2.7.0:
+                 What new with WordPress Download Manager Pro v2.7:
              </div>
 
              <div class="col-md-4 r">
@@ -353,7 +353,8 @@
              </div>
 
              <div class="col-md-12 lead">
-                 <hr/>
+                 <br/>
+                 <hr/><br/>
                  Lets start: Admin Menu <i class="fa fa-angle-double-right"></i> <a href="<?php echo admin_url('edit.php?post_type=wpdmpro'); ?>">Downloads</a> <i class="fa fa-angle-double-right"></i> <a href="<?php echo admin_url('post-new.php?post_type=wpdmpro'); ?>">Add New</a>
              </div>
 

@@ -41,6 +41,7 @@ if (is_admin()) {
     add_shortcode("wpdm_category", "wpdm_category");
 
     add_shortcode('wpdm-all-packages', 'wpdm_all_packages');
+    add_shortcode('wpdm_all_packages', 'wpdm_all_packages');
 
     /** Actions */
     add_action('wp_enqueue_scripts', 'wpdm_enqueue_scripts');

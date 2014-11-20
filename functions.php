@@ -476,9 +476,12 @@ function wpdm_package_link($params)
     }
 
 
-    $template = "link-template-default.php";
-    if(isset($style) && $style =='button')
-        $template = "link-template-button.php";
+    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-button')))
+        $template = "{$template}.php";
+    else
+        $template = "link-template-default.php";
+    if(isset($color))
+        $data['color'] = $color;
 
     return "<div class='w3eden'>" . FetchTemplate($template, $data, 'link') . "</div>";
 }
@@ -781,7 +784,11 @@ function wpdm_embed_category($params = array('id' => '', 'items_per_page' => 10,
 
     $html = '';
 
-    $template = "<div class='media'><div class='pull-left'>[icon]</div><div class='media-body'><b>[title]</b><br/>[download_link]</div></div>";
+    //$template = "<div class='media'><div class='pull-left'>[icon]</div><div class='media-body'><b>[title]</b><br/>[download_link]</div></div>";
+    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-button')))
+        $template = "{$template}.php";
+    else
+        $template = "link-template-default.php";
     global $post;
     while($packs->have_posts()) { $packs->the_post();
 
@@ -871,7 +878,7 @@ TBR;
         $toolbar = '';
 
     wp_reset_query();
-    return "<div class='w3eden'>" . $cimg . $desc . $toolbar . $subcats . $html  . $pgn . "<div style='clear:both'></div></div>";
+    return "<div class='w3eden'><div class='wpdm-category'>" . $cimg . $desc . $toolbar . $subcats . $html  . $pgn . "<div style='clear:both'></div></div></div>";
 }
 
 /**
@@ -1269,6 +1276,10 @@ function wpdm_add_help_tab()
 
 }
 
+/**
+ * @param $id
+ * @return bool|mixed|null|void|WP_Post
+ */
 function wpdm_get_package($id)
 {
     global $wpdb, $wpdm_package;
@@ -1280,6 +1291,19 @@ function wpdm_get_package($id)
     $data = wpdm_setup_package_data($data);
     return $data;
 }
+
+
+/**
+ * @usage Get download manager package data
+ * @param $ID
+ * @param $meta
+ * @return mixed
+ */
+function get_package_data($ID, $key){
+    $data = get_post_meta($ID, "__wpdm_{$key}", true);
+    return $data;
+}
+
 
 function wpdm_check_invpass()
 {

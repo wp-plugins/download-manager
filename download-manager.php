@@ -5,11 +5,11 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.7.0
+Version: 2.7.1
 Author URI: http://www.wpdownloadmanager.com/
 */
 
-
+//error_reporting(E_ALL);
        
 if(!isset($_SESSION))
 session_start();    
@@ -20,7 +20,7 @@ include(dirname(__FILE__)."/class.logs.php");
 include(dirname(__FILE__)."/class.pagination.php");
 include(dirname(__FILE__)."/server-file-browser.php");
 
-define('WPDM_Version','2.7.0');
+define('WPDM_Version','2.7.1');
     
 $d = str_replace('\\','/',WP_CONTENT_DIR);
 
@@ -60,24 +60,6 @@ function wpdm_pro_Install(){
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8";
             
       
-     /* $sqls[] = "CREATE TABLE  IF NOT EXISTS `{$wpdb->prefix}ahm_categories` (
-            `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-            `title` VARCHAR( 255 ) NOT NULL ,
-            `desc` TEXT NOT NULL ,
-            `url_key` VARCHAR( 255 ) NOT NULL ,
-            `pcount` INT NOT NULL ,
-            `image` VARCHAR( 255 ) NOT NULL ,
-            `parent` INT NOT NULL ,
-            UNIQUE (
-            `url_key`
-            )
-            )";*/
-      //$sqls[] = "ALTER TABLE `{$wpdb->prefix}ahm_files` ADD `uid` INT NOT NULL";      
-      //$sqls[] = "ALTER TABLE `{$wpdb->prefix}ahm_files` ADD `create_date` INT NOT NULL";
-      //$sqls[] = "ALTER TABLE `{$wpdb->prefix}ahm_files` ADD `update_date` INT NOT NULL";
-      //$sqls[] = "ALTER TABLE `{$wpdb->prefix}ahm_files` ADD `url_key` varchar(255) NOT NULL";
-      //$sqls[] = "ALTER TABLE `{$wpdb->prefix}ahm_emails` ADD `custom_data` TEXT NOT NULL ";
-      //$sqls[] = "ALTER TABLE `wp_ahm_files` ADD `version` VARCHAR( 100 ) NOT NULL";      
       
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       foreach($sqls as $sql){
@@ -113,48 +95,17 @@ function wpdm_pro_Install(){
 
 include("wpdm-core.php");
 
-function wdm_tinymce()
-{
-/*  wp_enqueue_script('common');
-  wp_enqueue_script('jquery-color');
-  wp_admin_css('thickbox');
-  wp_print_scripts('post');
-  wp_print_scripts('media-upload');
-  wp_print_scripts('jquery');
-  //wp_print_scripts('jquery-ui-core');
-  //wp_print_scripts('jquery-ui-tabs');
-  wp_print_scripts('tiny_mce');
-  wp_print_scripts('editor');
-  wp_print_scripts('editor-functions');
-  add_thickbox();
-  wp_tiny_mce();
-  wp_admin_css();
-  wp_enqueue_script('utils');
-  do_action("admin_print_styles-post-php");
-  do_action('admin_print_styles');
-  remove_all_filters('mce_external_plugins'); */
-}
-
-//if($_GET['page']=='file-manager/add-new-package'||$_GET['page']=='file-manager'||$_GET['page']=='file-manager/templates')
-//add_action('admin_head','wdm_tinymce');
 
 
 register_activation_hook(__FILE__,'wpdm_pro_Install');
  
-//if(!is_admin()){
-
-
-
-
 /** native upload code **/
 function plu_admin_enqueue() {     
     wp_enqueue_script('plupload-all');    
     wp_enqueue_style('plupload-all');    
 }
 
-
-
-
+ 
 // handle uploaded file here
 function wpdm_check_upload(){
   check_ajax_referer('photo-upload');

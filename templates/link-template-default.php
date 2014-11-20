@@ -8,8 +8,7 @@
                 [title]
             </strong>
 
-            <div style="font-size: 8pt">[download_link] <i style="margin: 4px 0 0 5px;opacity:0.5"
-                                                           class="fa fa-th-large"></i> [file_size]
+            <div style="font-size: 9pt">[download_link] <i style="margin: 4px 0 0 5px;opacity:0.5" class="fa fa-th-large"></i> [file_size]
             </div>
         </div>
     </div>

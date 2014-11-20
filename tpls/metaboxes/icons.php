@@ -126,20 +126,21 @@
     <div id="w-icons">
         <img  id="icon-loading" src="<?php  echo plugins_url('download-manager/images/loading.gif'); ?>" style=";display:none;padding:5px; margin:1px; float:left; border:#fff 2px solid;height: 32px;width:auto; " />
         <?php
+
         $img = array('jpg','gif','jpeg','png');
         foreach($fileinfo as $index=>$value): $tmpvar = explode(".",$value['file']); $ext = strtolower(end($tmpvar)); if(in_array($ext,$img)): ?>
             <label>
                 <img class="wdmiconfile" id="<?php echo md5($value['file']) ?>" src="<?php  echo plugins_url().'/'.$value['file'] ?>" alt="<?php echo $value['name'] ?>" style="padding:5px; margin:1px; float:left; border:#fff 2px solid;height: 32px;width:auto; " />
-                <input rel="wdmiconfile" style="display:none" <?php checked(get_post_meta($post->ID,'icon', true),$value['file']); ?> type="radio"  name="file[icon]"  class="checkbox"  value="<?php echo $value['file'] ?>"></label>
+                <input rel="wdmiconfile" style="display:none" <?php checked(get_post_meta($post->ID,'__wpdm_icon', true),$value['file']); ?> type="radio"  name="file[icon]"  class="checkbox"  value="<?php echo $value['file'] ?>"></label>
         <?php endif; endforeach; ?>
     </div>
     <script type="text/javascript">
         //border:#CCCCCC 2px solid
 
-        <?php if(isset($file['icon'])){ ?>   
-        jQuery('#<?php echo md5($file['icon']) ?>').css('border','#008000 2px solid').css('background','#F2FFF2');
+        <?php if(get_post_meta($post->ID,'__wpdm_icon', true) != ''){ ?>
+        jQuery('#<?php echo md5(get_post_meta($post->ID,'__wpdm_icon', true)) ?>').css('border','#008000 2px solid').css('background','#F2FFF2');
         <?php } ?>    
-        jQuery('img.wdmiconfile').live('click',function(){
+        jQuery('img.wdmiconfile').on('click',function(){
 
             jQuery('img.wdmiconfile').css('border','#fff 2px solid').css('background','transparent');
             jQuery(this).css('border','#008000 2px solid').css('background','#F2FFF2');

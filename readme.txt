@@ -16,28 +16,38 @@ WordPress Download Manager is a Files and Documents Management plugin for your W
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
 = Features =
-*	Drag and Drop File Upload
+*	Custom post type and & taxonomy
+*   Drag and Drop File Upload
 *	Control who can access to download
 *	Password protection
 *	Download Counter
 *	Custom download link icon
 *	File type icon support
-*	DataTable support ( use short-code [wpdm_all_packages] )
+*	DataTable support ( use short-code [wpdm-all-packages] )
 *	Searching and Sorting Option
 *	Custom link label
 *	Short-code for download link
 *	Short-code for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
-*	New templates for file links
-*	WP Thickbox popup for download page
-*	Tinymce button for short-code embed
 *	Widget for new downloads
 *	Multi-level Categories
 *	Custom TinyMce Button
 *	Category embed short-code
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
- 
- 
+*   Translation Ready
+
+= Add-ons =
+Download and Install following free add-on to add additional features as per your need
+*   [Advanced Tiny-Mce Button](http://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
+*   [Extnded Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
+*   [WPDM Button Templates](www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
+*   [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
+
+= Mobile App =
+Check download stats and get push notification when someone downloads, install:
+*   [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
+*   [WPDM form Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
+
 == Installation ==
 
 
@@ -55,6 +65,11 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 5. Front-end preview for category short-code
 
 == Changelog ==
+
+= 2.7.1 =
+* Fixed jquery issue
+* Added 3 link templates
+* Upgraded category short-code view
 
 = 2.7.0 =
 * Moved to Custom Post Type

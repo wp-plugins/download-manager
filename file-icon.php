@@ -132,7 +132,7 @@ foreach($fileinfo as $index=>$value): $tmpvar = explode(".",$value['file']); $ex
 
 jQuery('#<?php echo md5($file['icon']) ?>').css('border','#008000 2px solid').css('background','#F2FFF2');
 
-jQuery('img.wdmiconfile').live('click',function(){
+jQuery('img.wdmiconfile').on('click',function(){
 
 jQuery('img.wdmiconfile').css('border','#fff 2px solid').css('background','transparent');
 jQuery(this).css('border','#008000 2px solid').css('background','#F2FFF2');

@@ -2,7 +2,7 @@
 
 <div class="row">
 <div class="col-md-12">
-[thumb_600x0]
+[thumb_900x0]
 </div>
     <div class="col-md-12"><br/>
 <table class="table">
