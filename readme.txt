@@ -17,7 +17,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 = Features =
 *	Custom post type and & taxonomy
-*   Drag and Drop File Upload
+*       Drag and Drop File Upload
 *	Control who can access to download
 *	Password protection
 *	Download Counter
@@ -34,19 +34,19 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Category embed short-code
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
-*   Translation Ready
+*       Translation Ready
 
 = Add-ons =
 Download and Install following free add-on to add additional features as per your need
-*   [Advanced Tiny-Mce Button](http://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
-*   [Extnded Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
-*   [WPDM Button Templates](www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
-*   [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
+*       [Advanced Tiny-Mce Button](http://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
+*       [Extnded Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
+*       [WPDM Button Templates](www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
+*       [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
 
 = Mobile App =
 Check download stats and get push notification when someone downloads, install:
-*   [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
-*   [WPDM form Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
+*       [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
+*       [WPDM form Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
 
 == Installation ==
 
