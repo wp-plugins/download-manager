@@ -1,5 +1,5 @@
 jQuery(function ($) {
-    $('.wpdm-download-locked.pop-over').live('click',function () {
+    $('.wpdm-download-locked.pop-over').on('click',function () {
 
         var $dc = $($(this).attr('href'));
         if ($(this).attr('data-ready') == undefined) {
@@ -28,4 +28,5 @@ jQuery(function ($) {
 
     return false;
     });
+
 });

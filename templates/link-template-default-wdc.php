@@ -1,15 +1,11 @@
 <!-- WPDM Link Template: Default Template with Download Count -->
 
 
-<div class="link-btn [color]">
+<div class="wpdm-link-tpl link-btn [color]" data-durl="[download_url]" >
     <div class="media">
         <div class="pull-left">[icon]</div>
-        <div class="pull-left"><strong class="ptitle">
-                [title] <span style="font-weight: 400;font-style: italic">( [download_count] downloads )</span>
-            </strong>
-
-            <div style="font-size: 9pt"><strong>[download_link]</strong> <i style="margin: 4px 0 0 5px;opacity:0.5" class="fa fa-th-large"></i> [file_size]
-            </div>
+        <div class="media-body"><strong class="ptitle">[title] <span class="label label-default" style="font-weight: 400;">[download_count] downloads</span>&nbsp;<span class="label label-default" style="font-weight: 400;">[file_size]</span></strong>
+            <div><strong>[download_link_extended]</strong></div>
         </div>
     </div>
 </div>

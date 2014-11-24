@@ -19,6 +19,7 @@ if (is_admin()) {
     add_action('wp_ajax_dismiss-wpdm-pointer', 'wpdm_dismiss_pointer');
     add_action('wp_ajax_photo_gallery_upload', 'wpdm_check_upload');
     add_action('wp_ajax_icon_upload', 'wpdm_upload_icon');
+    add_action('wp_ajax_wpdm-install-addon', 'wpdm_install_addon');
 
 
     add_action('admin_init', 'wpdm_meta_boxes', 0);
@@ -74,7 +75,7 @@ if (is_admin()) {
 
 }
 
-
+add_action( 'plugins_loaded', 'wpdm_load_textdomain' );
 add_action("init", "wpdm_common_actions");
 add_action("init", "wpdm_upload_file");
 add_action('save_post', 'wpdm_save_package_data', 999999);

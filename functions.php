@@ -297,12 +297,8 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         if ($package['password'] != '') {
             $lock = 'locked';
             $data = '
-         <div class="panel panel-default">
-            <div class="panel-heading">
-    Enter Correct Password to Download
-  </div>
-  <div class="panel-body">
-        <div id="msg_' . $package['ID'] . '" style="display:none;">processing...</div>
+       
+        <div id="msg_' . $package['ID'] . '" style="display:none;" class="text-danger">processing...</div>
         <form id="wpdmdlf_' . $unqid . '_' . $package['ID'] . '" method=post action="' . home_url('/') . '" style="margin-bottom:0px;">
         <input type=hidden name="id" value="' . $package['ID'] . '" />
         <input type=hidden name="dataType" value="json" />
@@ -311,9 +307,10 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         ';
 
             $data .= '
-        <input type="password"  class="form-control" placeholder="Enter Password" size="10" id="password_' . $unqid . '_' . $package['ID'] . '" name="password" />
-        <input style="margin:5px 0" id="wpdm_submit_' . $unqid . '_' . $package['ID'] . '" style="padding:6px 10px;font-size:10pt" class="wpdm_submit btn btn-warning" type="submit" value="' . __('Submit', 'wpdmpro') . '" />
-
+                <div class="input-group" style="max-width:250px;">
+        <input type="password" class="form-control input-sm" placeholder="Enter Password" size="10" id="password_' . $unqid . '_' . $package['ID'] . '" name="password" />
+        <span class="input-group-btn"><input style="margin-left:5px" id="wpdm_submit_' . $unqid . '_' . $package['ID'] . '" class="wpdm_submit btn btn-sm btn-warning" type="submit" value="' . __('Download', 'wpdmpro') . '" /></span>
+            </div>
         </form>        
         
         <script type="text/javascript">
@@ -351,13 +348,13 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
                 jQuery("#msg_' . $package['ID'] . '").html("processing...").hide();
                 jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show();
                 } else {
-                    jQuery("#msg_' . $package['ID'] . '").html(""+res.error);
+                    jQuery("#msg_' . $package['ID'] . '").html(""+res.error+"&nbsp;<span class=\"label label-primary\">Retry</span>");
                 }
         }
         });
         return false;
         });
-        </script></div></div>
+        </script> 
          
         ';
         }
@@ -366,7 +363,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         if ($lock === 'locked') {
             $popstyle = isset($popstyle) && in_array($popstyle, array('modal', 'pop-over')) ? $popstyle : 'pop-over';
             if ($embed == 1)
-                $adata = "</strong><table class='table all-locks-table' style='border:0px'><tr><td style='padding:5px 0px;border:0px;'>" . $data . "</td></tr></table>";
+                $adata = "</strong><table class='table all-locks-table' style='border:0px;margin:0;'><tr><td style='padding:5px 0px;border:0px;'>" . $data . "</td></tr></table>";
             else {
                 $adata = '<a href="#pkg_' . $package['ID'] . '" data-title="Download ' . $package['title'] . '" class="wpdm-download-link wpdm-download-locked ' . $popstyle . ' ' . $btnclass . '"><i class=\'' . $wpdm_download_lock_icon . '\'></i>' . $package['link_label'] . '</a>';
                 if ($popstyle == 'pop-over')
@@ -476,7 +473,7 @@ function wpdm_package_link($params)
     }
 
 
-    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-button')))
+    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-default-ext','link-template-button')))
         $template = "{$template}.php";
     else
         $template = "link-template-default.php";
@@ -542,7 +539,7 @@ function wpdm_downloadable($content)
     $wp_query->query_vars[get_option('__wpdm_purl_base', 'download')] = isset($wp_query->query_vars[get_option('__wpdm_purl_base', 'download')]) ? urldecode($wp_query->query_vars[get_option('__wpdm_purl_base', 'download')]) : '';
 
     if (is_singular('wpdmpro')) {
-        if (get_option('_wpdm_custom_template') == 1) return $content;
+        if (get_option('_wpdm_custom_template') == 1 || file_exists(get_template_directory().'/single-wpdmpro.php')) return $content;
 
         return DownloadPageContent();
     }
@@ -1097,11 +1094,28 @@ function FetchTemplate($template, $vars, $type = 'link')
 
     if ($vars['download_link'] == 'blocked' && $type == 'link') return "";
     if ($vars['download_link'] == 'blocked' && $type == 'page') return get_option('wpdm_permission_msg');
+    //if($vars['password']=='') $template = $template."<script>jQuery('body').on('click','.wpdm-link-tpl', function(){ var durl = jQuery(this).data('durl'); location.href=durl; });</script>";
     return @str_replace($keys, $values, @stripcslashes($template));
 }
 
-
-
+/**
+ * @usage WPDM Add-on Installer
+ */
+function wpdm_install_addon(){
+    if(isset($_REQUEST['addon']) && current_user_can('manage_options')){
+        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+        include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+        $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('title', 'url', 'nonce', 'plugin', 'api') ) );
+        if(strpos($_REQUEST['addon'], '.zip'))
+            $downloadlink = $_REQUEST['addon'];
+        else
+            $downloadlink = 'http://www.wpdownloadmanager.com/?wpdmdl='.$_REQUEST['addon'];
+        $upgrader->install($downloadlink);
+        die();
+    } else {
+        die("Only site admin is authorized to install add-on");
+    }
+}
 
 /**
  * Process Download Request

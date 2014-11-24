@@ -1,6 +1,7 @@
-<script type="text/javascript" src="<?php echo plugins_url();?>/download-manager/js/jquery.form.js"></script>
 <link rel="stylesheet" href="<?php echo plugins_url('/download-manager/css/chosen.css'); ?>" />
 <script language="JavaScript" src="<?php echo plugins_url('/download-manager/js/chosen.jquery.min.js'); ?>"></script>
+<script language="JavaScript" src="<?php echo plugins_url('/download-manager/bootstrap/js/bootstrap.min.js');?>" ></script>
+<script type="text/javascript" src="<?php echo plugins_url();?>/download-manager/js/jquery.form.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url('/download-manager/bootstrap/css/bootstrap.css');?>" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -315,7 +316,7 @@
 
 
              <?php } ?>
-
+            <div style="clear:both"></div>
              <div class="col-md-12">
                  <div class="well">
                      <div class="media">

@@ -16,7 +16,7 @@ WordPress Download Manager is a Files and Documents Management plugin for your W
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
 = Features =
-*	Custom post type and & taxonomy
+*	Custom post type and taxonomy
 *       Drag and Drop File Upload
 *	Control who can access to download
 *	Password protection
@@ -28,7 +28,8 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom link label
 *	Short-code for download link
 *	Short-code for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
-*	Widget for new downloads
+*	Widget for new file
+*	Widget for top downloads
 *	Multi-level Categories
 *	Custom TinyMce Button
 *	Category embed short-code
@@ -48,7 +49,7 @@ Download and Install following free add-on to add additional features as per you
 Check download stats and get push notification when someone downloads, install:
 
 * [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
-* [WPDM form Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
+* [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
 
 == Installation ==
 
@@ -64,9 +65,15 @@ Check download stats and get push notification when someone downloads, install:
 3. Full tree view of categories and files with a simple short-code [wpdm_tree]
 4. Sortable and Searchable Download List , use short-code [wpdm_all_packages] to embed the list
 5. Settings Page
-5. Front-end preview for category short-code
+6. Front-end preview for category short-code
+7. Password Protection
 
 == Changelog ==
+
+= 2.7.2 =
+* Updated Add-on Installer
+* Re-added widgets
+* New Link template added
 
 = 2.7.1 =
 * Fixed jquery issue

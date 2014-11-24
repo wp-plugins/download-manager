@@ -25,9 +25,9 @@
 <div id="plupload-upload-ui" class="hide-if-no-js">
         <div id="drag-drop-area">
             <div class="drag-drop-inside">
-                <p class="drag-drop-info"><?php _e('Drop files here'); ?></p>
-                <p><?php _ex('or', 'Uploader: Drop files here - or - Select Files'); ?></p>
-                <p class="drag-drop-buttons"><input id="plupload-browse-button" type="button" value="<?php esc_attr_e('Select Files'); ?>" class="button" /></p>
+                <p class="drag-drop-info"><?php _e('Drop files here','wpdmpro'); ?></p>
+                <p><?php _ex('or', 'Uploader: Drop files here - or - Select Files','wpdmpro'); ?></p>
+                <p class="drag-drop-buttons"><input id="plupload-browse-button" type="button" value="<?php esc_attr_e('Select Files','wpdmpro'); ?>" class="button" /></p>
             </div>
         </div>
     </div>

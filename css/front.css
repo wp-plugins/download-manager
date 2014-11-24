@@ -781,8 +781,7 @@ div.tooltip.in{
 .link-btn {
     border: 1px solid #cccccc;
     padding: 6px;
-    display: block;
-    float: left;
+    display: block;     
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -794,15 +793,18 @@ div.tooltip.in{
     width: 40px;
 }
 
+.w3eden .link-btn .label-default {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 2px !important;
+    line-height: 20px !important;
+    padding: 4px 6px !important;
+}
+
 .link-btn * {
     text-decoration: none !important;
     line-height: normal !important;
 }
-
-.link-btn:active {
-    margin-top: 1px;
-    margin-left: 1px;
-}
+ 
 
 .ptitle{
     font-size: 12pt;
@@ -823,8 +825,7 @@ div.tooltip.in{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
     background-color: #ffffff;
     border: 1px solid #dcdcdc;
-    display: inline-block;
-    cursor: pointer;
+    display: inline-block;    
     color: #666666;
     text-decoration: none;
     text-shadow: 0px 1px 0px #ffffff;
@@ -867,7 +868,7 @@ div.tooltip.in{
     background-color: #74ad5a;
     border: 1px solid #3b6e22;
     display: inline-block;
-    cursor: pointer;
+     
     color: #ffffff;
     text-decoration: none;
 }
@@ -900,7 +901,7 @@ div.tooltip.in{
 
     border: 1px solid #124d77;
     display: inline-block;
-    cursor: pointer;
+     
     color: #ffffff;
 
     font-size: 13px;
