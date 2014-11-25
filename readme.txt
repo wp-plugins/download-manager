@@ -70,6 +70,10 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.3 = 
+* Fixed a security issue with settings save ( found in v2.7.2 with function wdm_ajax_settings )
+* Added missing template for category short-code
+
 = 2.7.2 =
 * Updated Add-on Installer
 * Re-added widgets

@@ -782,7 +782,7 @@ function wpdm_embed_category($params = array('id' => '', 'items_per_page' => 10,
     $html = '';
 
     //$template = "<div class='media'><div class='pull-left'>[icon]</div><div class='media-body'><b>[title]</b><br/>[download_link]</div></div>";
-    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-button')))
+    if(isset($template) && in_array($template, array('link-template-default','link-template-default-wdc','link-template-default-ext','link-template-button')))
         $template = "{$template}.php";
     else
         $template = "link-template-default.php";

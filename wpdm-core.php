@@ -198,9 +198,10 @@ function FMSettings()
 
 function basic_settings()
 {
-    if (isset($_POST['task']) && $_POST['task'] == 'wdm_save_settings') {
+    if (isset($_POST['task']) && $_POST['task'] == 'wdm_save_settings' && current_user_can('manage_options')) {
 
         foreach ($_POST as $optn => $optv) {
+            if(strpos("__".$optn, "wpdm")) //Option must have "wpdm" in its name to avoid any type ambiguity  
             update_option($optn, $optv);
         }
         if (!isset($_POST['__wpdm_login_form'])) delete_option('__wpdm_login_form');
@@ -215,6 +216,7 @@ function basic_settings()
 function wdm_ajax_settings()
 {
     global $stabs;
+    if(current_user_can('manage_options'))
     call_user_func($stabs[$_POST['section']]['callback']);
     die();
 }
