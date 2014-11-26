@@ -49,3 +49,12 @@
     border: 1px solid #eeeeee;
     border-radius: 3px;
 }
+#wpdm-image{
+    width: 50px !important;
+}
+#download_count{
+    width: 120px !important;
+}
+#wpdm-shortcode{
+    width: 210px !important;
+}

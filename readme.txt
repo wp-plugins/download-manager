@@ -70,6 +70,11 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.4 =
+* Fixed issue with icon view
+* Fixed issue with db table checking for old version compatibility
+* Optimized link template css to resolve some theme conflict
+
 = 2.7.3 = 
 * Fixed a security issue with settings save ( found in v2.7.2 with function wdm_ajax_settings )
 * Added missing template for category short-code

@@ -363,7 +363,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         if ($lock === 'locked') {
             $popstyle = isset($popstyle) && in_array($popstyle, array('modal', 'pop-over')) ? $popstyle : 'pop-over';
             if ($embed == 1)
-                $adata = "</strong><table class='table all-locks-table' style='border:0px;margin:0;'><tr><td style='padding:5px 0px;border:0px;'>" . $data . "</td></tr></table>";
+                $adata = "" . $data . "";
             else {
                 $adata = '<a href="#pkg_' . $package['ID'] . '" data-title="Download ' . $package['title'] . '" class="wpdm-download-link wpdm-download-locked ' . $popstyle . ' ' . $btnclass . '"><i class=\'' . $wpdm_download_lock_icon . '\'></i>' . $package['link_label'] . '</a>';
                 if ($popstyle == 'pop-over')
@@ -977,6 +977,8 @@ function wpdm_setup_package_data($vars)
 
     $type = (get_post_type() != 'wpdmpro' || !array_key_exists(get_option('__wpdm_purl_base', 'download'), $wp_query->query_vars)) ? 'link' : 'page';
 
+    if(isset($vars['icon']) && !file_exists(WP_PLUGIN_DIR.'/'.$vars['icon']))
+        $vars['icon'] = "download-manager/file-type-icons/blank.png";
 
     if (!isset($vars['icon']) || $vars['icon'] == '')
         $vars['icon'] = '<img class="wpdm_icon" src="' . plugins_url('download-manager/file-type-icons/') . (@count($vars['files']) <= 1 ? @end(@explode('.', @end($vars['files']))) : 'zip') . '.png" onError=\'this.src="' . plugins_url('download-manager/file-type-icons/_blank.png') . '";\' />';
@@ -1095,7 +1097,9 @@ function FetchTemplate($template, $vars, $type = 'link')
     if ($vars['download_link'] == 'blocked' && $type == 'link') return "";
     if ($vars['download_link'] == 'blocked' && $type == 'page') return get_option('wpdm_permission_msg');
     //if($vars['password']=='') $template = $template."<script>jQuery('body').on('click','.wpdm-link-tpl', function(){ var durl = jQuery(this).data('durl'); location.href=durl; });</script>";
-    return @str_replace($keys, $values, @stripcslashes($template));
+    $data = @str_replace($keys, $values, @stripcslashes($template));
+    $data = str_replace(array("\r","\n"),"", $data);
+    return $data;
 }
 
 /**
@@ -1605,10 +1609,10 @@ function wpdm_array_splice_assoc(&$input, $offset, $length, $replacement) {
 
 function wpdm_columns_th($defaults) {
     if(get_post_type()!='wpdmpro') return $defaults;
-    $img['image'] = "Img/Ico";
+    $img['wpdm-image'] = "Img/Ico";
     wpdm_array_splice_assoc( $defaults, 1, 0, $img );
     $otf['download_count'] = 'Downloads';
-    $otf['shortcode'] = 'Short-code';
+    $otf['wpdm-shortcode'] = 'Short-code';
     wpdm_array_splice_assoc( $defaults, 3, 0, $otf );
     return $defaults;
 }
@@ -1620,21 +1624,25 @@ function wpdm_columns_td($column_name, $post_ID) {
         echo get_post_meta($post_ID, '__wpdm_download_count', true);
 
     }
-    if ($column_name == 'shortcode') {
+    if ($column_name == 'wpdm-shortcode') {
 
-        echo "<input readonly=readonly class='wpdm-scode' onclick='this.select();' value=\"[wpdm_package id='$post_ID']\" />";
+        echo "<input style='font-family: Courier;font-size: 9pt;width:210px;padding: 10px 5px;text-align: center' readonly=readonly class='wpdm-scode' onclick='this.select();' value=\"[wpdm_package id='$post_ID']\" />";
 
     }
-    if ($column_name == 'image') {
-        if(has_post_thumbnail($post_ID))
-            echo get_the_post_thumbnail( $post_ID, 'thumbnail', array('class'=>'img60px') );
-        else {
+    if ($column_name == 'wpdm-image') {
+//        if(has_post_thumbnail($post_ID))
+//            echo get_the_post_thumbnail( $post_ID, 'thumbnail', array('class'=>'img60px') );
+//        else {
             $icon = get_post_meta($post_ID,'__wpdm_icon', true);
             if($icon!=''){
+                if(!file_exists(WP_PLUGIN_DIR.'/'.$icon))
+                    $icon = "/download-manager/file-type-icons/blank.png";
                 $icon = plugins_url('/').$icon;
                 echo "<img src='$icon' class='img60px' alt='Icon' />";
+            } else {
+                echo "<img src='".WPDM_BASE_URL."/file-type-icons/blank.png' title='Default Icon' class='img60px' alt='Icon' />";
             }
-        }
+        //}
     }
 }
 

@@ -21,8 +21,8 @@ class wpdm_affiliate_widget extends WP_Widget {
         echo $before_widget;
 
         echo "<div class='w3eden'><div class='panel panel-primary'>";
-        echo "<div class='panel-heading' style='font-size: 10pt'>Best File & Document Management Plugin</div><div class='panel-body' style='padding-bottom:0;background:#F2F2F2;'><a href='http://www.wpdownloadmanager.com/pricing/?affid={$title}'><img src='http://cdn.wpdownloadmanager.com/wp-content/uploads/images/wpdm-main-banner-v4x.png' alt='WordPress Download Manager' /></a><div class='text-center' style='margin:10px 0'>{$promo}</div></div>";
-        echo "<div class='panel-footer' style='line-height: 30px'><a class='pull-right btn btn-sm btn-danger' style='color: #ffffff;font-weight:900' href='http://www.wpdownloadmanager.com/pricing/?affid={$title}'>Buy Now <i class='fa fa-angle-right'></i></a><span class='text-success' style='font-weight:900;font-size: 10pt;border-radius: 2px;line-height: 20px'>$45.00</span></div></div></div>";
+        echo "<div class='panel-heading' style='font-size: 10pt'>Best File & Document Management Plugin</div><div class='panel-body' style='padding-bottom:0;background:#F2F2F2;'><a href='http://www.wpdownloadmanager.com/pricing/?affid={$title}'><img src='http://cdn.wpdownloadmanager.com/wp-content/uploads/images/wpdm-main-banner-v4x.png' style='max-width: 100%' alt='WordPress Download Manager' /></a><div class='text-center' style='margin:10px 0'>{$promo}</div></div>";
+        echo "<div class='panel-footer' style='line-height: 30px'><a class='pull-right btn btn-sm btn-danger' style='color: #ffffff;font-weight:900' href='http://www.wpdownloadmanager.com/pricing/?affid={$title}'>Buy Now <i class='fa fa-angle-right'></i></a><span class='text-success' style='line-height: 30px;font-weight:900;font-size: 10pt;border-radius: 2px;'>$45.00</span></div></div></div>";
         echo $after_widget;
     }
 

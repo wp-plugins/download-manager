@@ -941,3 +941,8 @@ div.tooltip.in{
     width: 100%;
     display: block;
 }
+
+.w3eden .panel form,
+.w3eden .link-btn form{
+    margin-top: 10px;
+}

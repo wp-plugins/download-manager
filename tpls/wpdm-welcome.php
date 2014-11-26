@@ -229,6 +229,8 @@
 
              <?php
              global $wpdb;
+             $tf = 0;
+             if($wpdb->get_var("SHOW TABLES LIKE 'ahm_files'") == 'ahm_files')
              $tf = $wpdb->get_var("select count(*) from `ahm_files`");
              if($tf>0){
                  ?>

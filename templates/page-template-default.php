@@ -11,7 +11,7 @@
 <tr><td>Stock</td><td>[quota]</td></tr>
 <tr><td>File Size</td><td>[file_size]</td></tr>
 <tr><td>Create Date</td><td>[create_date]</td></tr>
-<tr><td colspan="2">[download_link]</td></tr>
+<tr><td colspan="2">[download_link_extended]</td></tr>
 </tr>
 </tbody></table>
         </div>

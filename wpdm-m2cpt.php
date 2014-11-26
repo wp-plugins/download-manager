@@ -171,7 +171,9 @@ function wpdm_m24x(){
 
 
 global $wpdb;
-$tf = $wpdb->get_var("select count(*) from `ahm_files`");
-if( function_exists('add_wdm_settings_tab') && $tf>0 )
-add_wdm_settings_tab("m24x","Migrate",'wpdm_m24x');
+if($wpdb->get_var("SHOW TABLES LIKE 'ahm_files'") == 'ahm_files') {
+    $tf = $wpdb->get_var("select count(*) from `ahm_files`");
+    if (function_exists('add_wdm_settings_tab') && $tf > 0)
+        add_wdm_settings_tab("m24x", "Migrate", 'wpdm_m24x');
+}
  
