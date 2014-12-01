@@ -37,9 +37,8 @@
 
 
                  <div class="form-group">
-                            <label><?php echo __('Login Required Message <em>( use short-code [loginform] inside message box to integrate login form )</em>:','wpdmpro'); ?></label>
-                     <textarea class="form-control" cols="70" rows="6" name="wpdm_login_msg"><?php echo get_option('wpdm_login_msg')?stripslashes(get_option('wpdm_login_msg')):"<a href='".get_option('siteurl')."/wp-login.php'  style=\"background:url('".get_option('siteurl')."/wp-content/plugins/download-manager/images/lock.png') no-repeat;padding:3px 12px 12px 28px;font:bold 10pt verdana;\">Please login to access downloadables</a>"; ?></textarea><br>
-                     <input  type="checkbox" name="__wpdm_login_form" value="1" <?php echo get_option('__wpdm_login_form',0)==1?'checked=checked':'';?> > <?php echo __('Show Only Login Button Instead of Login Required Message','wpdmpro'); ?>
+                            <label><?php echo __('Login Required Message:','wpdmpro'); ?></label>
+                     <textarea class="form-control" cols="70" rows="6" name="wpdm_login_msg"><?php echo get_option('wpdm_login_msg')?stripslashes(get_option('wpdm_login_msg')):"<a href='".wp_login_url()."' >Please login to download</a>"; ?></textarea><br>
 
                  </div>
 

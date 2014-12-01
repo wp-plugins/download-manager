@@ -16,7 +16,6 @@ if (is_admin()) {
     add_action("wp_ajax_quick_add_package","wpdm_save_new_package");
     add_action('wp_ajax_wpdm_category_dropdown', 'wpdm_print_cat_dropdown');
 
-    add_action('wp_ajax_dismiss-wpdm-pointer', 'wpdm_dismiss_pointer');
     add_action('wp_ajax_photo_gallery_upload', 'wpdm_check_upload');
     add_action('wp_ajax_icon_upload', 'wpdm_upload_icon');
     add_action('wp_ajax_wpdm-install-addon', 'wpdm_install_addon');

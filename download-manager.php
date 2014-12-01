@@ -5,7 +5,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.7.4
+Version: 2.7.5
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -14,7 +14,7 @@ Author URI: http://www.wpdownloadmanager.com/
 if(!isset($_SESSION))
 session_start();
 
-define('WPDM_Version','2.7.4');
+define('WPDM_Version','2.7.5');
         
 include(dirname(__FILE__)."/functions.php");        
 include(dirname(__FILE__)."/class.pack.php");
@@ -126,6 +126,7 @@ function wpdm_check_upload(){
 
 
 function wpdm_upload_icon(){
+  if(!current_user_can('manage_options')) return;
   check_ajax_referer('icon-upload');
   if(file_exists(dirname(__FILE__).'/file-type-icons/'.$_FILES['icon-async-upload']['name']))
   $filename = time().'wpdm_'.$_FILES['icon-async-upload']['name'];  
@@ -147,6 +148,7 @@ function wpdm_welcome(){
 
 function fmmenu(){
     $access_level = 'manage_options';
+    add_submenu_page( 'edit.php?post_type=wpdmpro', __('Add-Ons &lsaquo; Download Manager',"wpdmpro"), __('Add-Ons',"wpdmpro"), $access_level, 'wpdm-addons', 'wpdm_addonslist');
     add_submenu_page( 'edit.php?post_type=wpdmpro', __('Settings &lsaquo; Download Manager',"wpdmpro"), __('Settings',"wpdmpro"), $access_level, 'settings', 'FMSettings');
     add_dashboard_page('Welcome', 'Welcome', 'read', 'wpdm-welcome', 'wpdm_welcome');
 }

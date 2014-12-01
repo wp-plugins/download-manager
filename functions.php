@@ -278,12 +278,14 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
     }
     if (!@in_array('guest', @maybe_unserialize($package['access'])) && !is_user_logged_in()) {
 
-        $loginform = wp_login_form(array('echo' => 0));
+        //$loginform = wp_login_form(array('echo' => 0));
+        //$loginform = str_replace('class="', 'class="form-control ', $loginform);
 
-        $loginform = '<a class="wpdm-download-link wpdm-download-login ' . $btnclass . '" href="#wpdm-login-form" data-toggle="modal"><i class=\'glyphicon glyphicon-lock\'></i>' . __('Login', 'wpdmpro') . '</a><div id="wpdm-login-form" class="modal fade">' . $loginform . "</div>";
-        $package['download_url'] = home_url('/wp-login.php?redirect_to=' . urlencode($_SERVER['REQUEST_URI']));
-        $package['download_link'] = stripcslashes(str_replace("[loginform]", $loginform, get_option('wpdm_login_msg')));
-        return get_option('__wpdm_login_form', 0) == 1 ? $loginform : $package['download_link'];
+        //$loginform = '<a class="wpdm-download-link wpdm-download-login ' . $btnclass . '" href="#wpdm-login-form" data-toggle="modal"><i class=\'glyphicon glyphicon-lock\'></i>' . __('Login', 'wpdmpro') . '</a><div id="wpdm-login-form" class="modal fade">' . $loginform . "</div>";
+        $package['download_url'] = wp_login_url($_SERVER['REQUEST_URI']);
+        $package['download_link'] =  get_option('wpdm_login_msg');
+        $package['download_link'] = $package['download_link'] == ''?"<a class='btn btn-danger btn-xs' href='{$package['download_url']}'>".__('Please login to download','wpdmpro')."</a>":$package['download_link'];
+        return $package['download_link']; //get_option('__wpdm_login_form', 0) == 1 ? $loginform : $package['download_link'];die();
 
     }
 
@@ -387,6 +389,23 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
     //return str_replace(array("\r","\n"),"",$data);
     return $data;
 
+}
+
+
+function wpdm_addonslist(){
+
+    if(!isset($_SESSION['wpdm_addon_store_data'])){
+        $data = remote_get('http://www.wpdownloadmanager.com/?wpdm_api_req=getPackageList');
+        $cats = remote_get('http://www.wpdownloadmanager.com/?wpdm_api_req=getCategoryList');
+        $_SESSION['wpdm_addon_store_data'] = $data;
+        $_SESSION['wpdm_addon_store_cats'] = $cats;
+    }
+    else {
+        $data = $_SESSION['wpdm_addon_store_data'];
+        $cats = $_SESSION['wpdm_addon_store_cats'];
+    }
+
+    include(WPDM_BASE_DIR."/tpls/wpdm-addons-list.php");
 }
 
 
@@ -1198,16 +1217,6 @@ function wpdm_is_ajax()
     return false;
 }
 
-/**
- * function for hiding wp pointer
- * added from v3.2.0
- *
- */
-function wpdm_dismiss_pointer()
-{
-    update_option($_POST['pointer'], 1);
-}
-
 
 
 function __msg($key)
@@ -1760,10 +1769,3 @@ function wpdm_package_filetypes($id, $img = true){
 }
 
 
-/*** developer fns **/
-function  dd($data)
-{
-    echo "<pre>" . print_r($data, 1) . "</pre>";
-    die();
-}
-/*** developer fns **/

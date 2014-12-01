@@ -122,40 +122,10 @@ function wpdm_download_url($package, $ext = '')
 }
 
 
-function AdminOptions()
-{
-
-    if (!file_exists(UPLOAD_DIR) && $_GET[task] != 'CreateDir') {
-
-        echo "    
-        <div id=\"warning\" class=\"error fade\"><p>
-        Automatic dir creation failed! [ <a href='admin.php?page=file-manager&task=CreateDir&re=1'>Try again to create dir automatically</a> ]<br><br>
-        Please create dir <strong>" . UPLOAD_DIR . "</strong> manualy and set permission to <strong>644</strong><br><br>
-        Otherwise you will not be able to upload files.</p></div>";
-    }
-
-    if ($_GET[success] == 1) {
-        echo "
-        <div id=\"message\" class=\"updated fade\"><p>
-        Congratulation! Plugin is ready to use now.
-        </div>
-        ";
-    }
-
-
-    if (!file_exists(UPLOAD_DIR . '.htaccess'))
-        setHtaccess();
-
-    if ($_REQUEST[task] != '' && function_exists($_REQUEST['task']))
-        return call_user_func($_REQUEST['task']);
-    else
-        include('list-files.php');
-}
-
 function wpdm_upload_file()
 {
     if (!isset($_FILES['Filedata'])) return;
-    if (is_uploaded_file($_FILES['Filedata']['tmp_name']) && is_admin() && $_GET['task'] == 'wpdm_upload_files') {
+    if (is_uploaded_file($_FILES['Filedata']['tmp_name']) && is_admin() && $_GET['task'] == 'wpdm_upload_files' && current_user_can("edit_posts")) {
         $tempFile = $_FILES['Filedata']['tmp_name'];
         $targetFile = UPLOAD_DIR . time() . 'wpdm_' . $_FILES['Filedata']['name'];
         move_uploaded_file($tempFile, $targetFile);
@@ -498,8 +468,8 @@ function wpdm_adminjs()
 function wpdm_ajax_call_exec()
 {
     if (isset($_POST['action']) && $_POST['action'] == 'wpdm_ajax_call') {
-        if (function_exists($_POST['execute']))
-            call_user_func($_POST['execute'], $_POST);
+        if ($_POST['execute']=='wpdm_getlink')
+            wpdm_getlink();
         else
             echo "function not defined!";
         die();
