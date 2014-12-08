@@ -70,6 +70,10 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.6 =
+* Added new option to control server file browser access
+* Fixed issue with cookie ( removed cookie usage totally )
+
 = 2.7.5 =
 * Fixed a security issue
 * Optimized inline js code to avoid conflict

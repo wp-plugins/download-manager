@@ -18,7 +18,9 @@
 <div id="ftabs">
 <ul>
     <li><a href="#upload">Upload</a></li>
+    <?php  if(current_user_can('access_server_browser')){ ?>
     <li><a href="#browse">Browse</a></li>
+    <?php } ?>
 </ul>
 
 <div id="upload">
@@ -139,7 +141,7 @@
 </div>
 
 <div id="browse">
-    <?php wpdm_file_browser(); ?>
+    <?php  if(current_user_can('access_server_browser')) wpdm_file_browser(); ?>
 </div>
 
 </div>

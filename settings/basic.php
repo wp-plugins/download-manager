@@ -36,15 +36,45 @@
 
 
 
-                 <div class="form-group">
-                            <label><?php echo __('Login Required Message:','wpdmpro'); ?></label>
-                     <textarea class="form-control" cols="70" rows="6" name="wpdm_login_msg"><?php echo get_option('wpdm_login_msg')?stripslashes(get_option('wpdm_login_msg')):"<a href='".wp_login_url()."' >Please login to download</a>"; ?></textarea><br>
+                         <div class="form-group">
+                                    <label><?php echo __('Login Required Message:','wpdmpro'); ?></label>
+                             <textarea class="form-control" cols="70" rows="6" name="wpdm_login_msg"><?php echo get_option('wpdm_login_msg')?stripslashes(get_option('wpdm_login_msg')):"<a href='".wp_login_url()."' >Please login to download</a>"; ?></textarea><br>
 
-                 </div>
+                         </div>
 
                         <div class="form-group">
                             <label><?php echo __('Server File Browser Base Dir:','wpdmpro'); ?></label>
                             <input type=text class="form-control" name="_wpdm_file_browser_root" value="<?php echo htmlspecialchars(stripslashes(get_option('_wpdm_file_browser_root',ABSPATH))); ?>" />
+                        </div>
+
+                        <div class="form-group">
+                            <label><?php echo __('File Browser Access:','wpdmpro');  ?></label><br/>
+                            <select style="width: 100%" name="_wpdm_file_browser_access[]" multiple="multiple" data-placeholder="<?php _e('Who will have access to server file browser','wpdmpro'); ?>">
+                                <?php
+
+                                $currentAccess = maybe_unserialize(get_option( '_wpdm_file_browser_access', array('administrator')));
+                                $selz = '';
+
+                                ?>
+
+                                <?php
+                                global $wp_roles;
+                                $roles = array_reverse($wp_roles->role_names);
+                                foreach( $roles as $role => $name ) {
+
+                                    $ro = get_role($role);
+
+                                    if(isset($ro->capabilities['edit_posts']) && $ro->capabilities['edit_posts']==1){
+
+                                    if(  $currentAccess ) $sel = (in_array($role,$currentAccess))?'selected=selected':'';
+                                    else $sel = '';
+
+
+
+                                    ?>
+                                    <option value="<?php echo $role; ?>" <?php echo $sel  ?>> <?php echo $name; ?></option>
+                                <?php }} ?>
+                            </select>
                         </div>
 
                     </div>

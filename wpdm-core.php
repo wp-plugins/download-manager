@@ -136,8 +136,8 @@ function wpdm_upload_file()
 
 
 
-function CreateDir()
-{
+function CreateDir(){
+
     if (!file_exists(UPLOAD_BASE)) {
         @mkdir(UPLOAD_BASE, 0755);
     }

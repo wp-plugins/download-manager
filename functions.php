@@ -520,10 +520,11 @@ function wpdm_package_link_old($params)
         'posts_per_page' => 1
     );
     $posts = get_posts($args);
-    $data = (array)$posts[0];
-    $data = wpdm_setup_package_data($data);
-
-    if ($data['ID'] == '') {
+    if(is_array($posts) && isset($posts[0])) {
+        $data = (array)$posts[0];
+        $data = wpdm_setup_package_data($data);
+    }
+    if (!isset($data['ID']) || $data['ID'] == '') {
         return '';
     }
 
@@ -1451,12 +1452,6 @@ function wpdm_enqueue_scripts()
 {
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery-form');
-    wp_enqueue_script('jquery-ui');
-    wp_enqueue_script('jquery-ui-datepicker');
-    wp_enqueue_script('thickbox');
-    wp_enqueue_style('thickbox');
-    wp_enqueue_script('media-upload');
-    wp_enqueue_media();
 
     wp_enqueue_style('icons', plugins_url() . '/download-manager/css/front.css');
 
@@ -1466,8 +1461,6 @@ function wpdm_enqueue_scripts()
     if (get_option('__wpdm_twitter_bootstrap') != 'dall' && get_option('__wpdm_twitter_bootstrap') != 'djs')
         wp_enqueue_script('wpdm-bootstrap', plugins_url('/download-manager/bootstrap/js/bootstrap.min.js'), array('jquery'));
 
-
-    wp_enqueue_script('jquery-cookie', plugins_url('/download-manager/js/jquery.cookie.js'), array('jquery'));
     wp_enqueue_script('frontjs', plugins_url('/download-manager/js/front.js'), array('jquery'));
 
 
