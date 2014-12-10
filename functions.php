@@ -159,6 +159,11 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
     header("Content-disposition: attachment;filename=\"{$filename}\"");
     header("Content-Transfer-Encoding: binary");
 
+    if(get_option('__wpdm_download_resume',1)==2) {
+        readfile($filepath);
+        die();
+    }
+
     $file = @fopen($filepath, "rb");
 
     //check if http_range is sent by browser (or download manager)
@@ -283,7 +288,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
 
         //$loginform = '<a class="wpdm-download-link wpdm-download-login ' . $btnclass . '" href="#wpdm-login-form" data-toggle="modal"><i class=\'glyphicon glyphicon-lock\'></i>' . __('Login', 'wpdmpro') . '</a><div id="wpdm-login-form" class="modal fade">' . $loginform . "</div>";
         $package['download_url'] = wp_login_url($_SERVER['REQUEST_URI']);
-        $package['download_link'] =  get_option('wpdm_login_msg');
+        $package['download_link'] = stripcslashes(get_option('wpdm_login_msg'));
         $package['download_link'] = $package['download_link'] == ''?"<a class='btn btn-danger btn-xs' href='{$package['download_url']}'>".__('Please login to download','wpdmpro')."</a>":$package['download_link'];
         return $package['download_link']; //get_option('__wpdm_login_form', 0) == 1 ? $loginform : $package['download_link'];die();
 
@@ -538,6 +543,30 @@ function wpdm_package_link_old($params)
 }
 
 /**
+ * callback function for shortcode [wpdm_package id=pid]
+ *
+ * @param mixed $params
+ * @return mixed
+ */
+function wpdm_hotlink($params)
+{
+
+    extract($params);
+
+    if (isset($pagetemplate) && $pagetemplate == 1)
+        return DownloadPageContent($id);
+    $data = get_post($id, ARRAY_A);
+    $data = wpdm_setup_package_data($data);
+
+    if ($data['ID'] == '') {
+        return '';
+    }
+
+    if(isset($link_label)) $data['link_label'] = $link_label;
+    return  DownloadLink($data, 1);
+}
+
+/**
  * Parse shortcode
  *
  * @param mixed $content
@@ -621,7 +650,7 @@ function wpdm_do_login()
 function wpdm_do_register()
 {
     global $wp_query, $wpdb;
-    if (!isset($_POST['reg'])) return;
+    if (!isset($_POST['reg']) || !get_option('users_can_register')) return;
     extract($_POST['reg']);
     $_SESSION['tmp_reg_info'] = $_POST['reg'];
     $user_id = username_exists($user_login);

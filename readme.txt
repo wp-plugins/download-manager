@@ -23,12 +23,12 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Download Counter
 *	Custom download link icon
 *	File type icon support
-*	DataTable support ( use short-code [wpdm-all-packages] )
+*	DataTable support ( use short-code [wpdm-all-packages jstable=1] )
 *	Searching and Sorting Option
 *	Custom link label
 *	Short-code for download link
 *	Short-code for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
-*	Widget for new file
+*	Widget for new files
 *	Widget for top downloads
 *	Multi-level Categories
 *	Custom TinyMce Button
@@ -69,6 +69,11 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.7 =
+* Fixed data table issue
+* Fixed wpdm_hotlink short-code issue
+* Fixed issue with login require message
 
 = 2.7.6 =
 * Added new option to control server file browser access

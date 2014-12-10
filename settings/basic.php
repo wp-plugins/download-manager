@@ -89,6 +89,17 @@
 
                             <tr>
                                 <td>
+                                    <?php _e('Resumable Downloads','wpdmpro'); ?></td><td>
+                                    <select name="__wpdm_download_resume">
+                                        <option value="1">Enabled</option>
+                                        <option value="2">Disabled</option>
+                                    </select>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
                                     Twitter Bootstrap</td><td>
                                     <select name="__wpdm_twitter_bootstrap">
                                         <option value="active">Active</option>

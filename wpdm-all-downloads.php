@@ -1,5 +1,41 @@
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
+<?php
+if(!isset($params['items_per_page'])) $params['items_per_page'] = 10;
+if(isset($params['jstable']) && $params['jstable']==1): $params['items_per_page'] = -1; ?>
+    <script src="<?php echo WPDM_BASE_URL ?>js/jquery.dataTables.min.js"></script>
+    <link href="<?php echo WPDM_BASE_URL ?>css/jquery.dataTables.css" rel="stylesheet" />
+    <style>
+        #wpdmmydls{
+            border: 1px solid #dddddd !important;
+            border-radius: 3px !important;
+        }
+        #wpdmmydls th{
+            background-color: #eee;
+        }
+        #wpdmmydls_filter input[type=search],
+        #wpdmmydls_length select{
+            padding: 5px !important;
+            border-radius: 3px !important;
+            border: 1px solid #dddddd !important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button{
+            padding: 0.2em 0.8em !important;
+            border-radius: 3px !important;
+        }
+
+
+    </style>
+    <script>
+        jQuery(function($){
+            $('#wpdmmydls').dataTable({
+                "iDisplayLength": <?php echo $params['items_per_page'] ?>,
+                "aLengthMenu": [[<?php echo $params['items_per_page']; ?>, 10, 25, 50, -1], [<?php echo $params['items_per_page']; ?>, 10, 25, 50, "All"]]
+            });
+        });
+    </script>
+<?php endif; ?>
+
 <div class="w3eden">
     <div class="container-fluid" id="wpdm-all-packages">
         <table id="wpdmmydls" class="table table-striped">
@@ -59,6 +95,7 @@
         </table>
 
         <?php
+        if(isset($params['jstable']) && $params['jstable']==1):
         global $wp_rewrite,$wp_query;
 
         $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
@@ -82,6 +119,7 @@
             $pagination['add_args'] = array('s'=>get_query_var('s'));
 
         echo  "<div class='text-center'>".str_replace("<ul class='page-numbers'>","<ul class='page-numbers pagination pagination-centered'>",paginate_links($pagination))."</div>";
+        endif;
         ?>
 
     </div>
