@@ -2,7 +2,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
 <?php
 if(!isset($params['items_per_page'])) $params['items_per_page'] = 10;
-if(isset($params['jstable']) && $params['jstable']==1): $params['items_per_page'] = -1; ?>
+if(isset($params['jstable']) && $params['jstable']==1):  ?>
     <script src="<?php echo WPDM_BASE_URL ?>js/jquery.dataTables.min.js"></script>
     <link href="<?php echo WPDM_BASE_URL ?>css/jquery.dataTables.css" rel="stylesheet" />
     <style>
@@ -34,7 +34,9 @@ if(isset($params['jstable']) && $params['jstable']==1): $params['items_per_page'
             });
         });
     </script>
-<?php endif; ?>
+<?php 
+$params['items_per_page'] = -1;
+endif; ?>
 
 <div class="w3eden">
     <div class="container-fluid" id="wpdm-all-packages">

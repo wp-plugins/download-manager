@@ -72,7 +72,7 @@
 
 
                                     ?>
-                                    <option value="<?php echo $role; ?>" <?php echo $sel  ?>> <?php echo $name; ?></option>
+                                    <option  value="<?php echo $role; ?>" <?php echo $sel  ?>> <?php echo $name; ?></option>
                                 <?php }} ?>
                             </select>
                         </div>
@@ -82,7 +82,7 @@
 
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Misc Settings</div>
+                    <div class="panel-heading"><?php _e("Misc Settings","wpdmpro"); ?></div>
                     <div class="panel-body">
 
                         <table cellpadding="5" cellspacing="0" class="frm" width="100%">
@@ -91,8 +91,8 @@
                                 <td>
                                     <?php _e('Resumable Downloads','wpdmpro'); ?></td><td>
                                     <select name="__wpdm_download_resume">
-                                        <option value="1">Enabled</option>
-                                        <option value="2">Disabled</option>
+                                        <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
+                                        <option value="2" <?php selected(get_option('__wpdm_download_resume'), 2); ?>><?php _e("Disabled","wpdmpro"); ?></option>
                                     </select>
 
                                 </td>
@@ -100,12 +100,12 @@
 
                             <tr>
                                 <td>
-                                    Twitter Bootstrap</td><td>
+                                    <?php _e("Twitter Bootstrap","wpdmpro"); ?></td><td>
                                     <select name="__wpdm_twitter_bootstrap">
-                                        <option value="active">Active</option>
-                                        <option value="djs">Disable JS</option>
-                                        <option value="dcss">Disable CSS</option>
-                                        <option value="dall">Disable Both</option>
+                                        <option value="active"><?php _e("Active","wpdmpro"); ?></option>
+                                        <option value="djs" <?php selected(get_option('__wpdm_twitter_bootstrap'), 'djs'); ?>><?php _e("Disable JS","wpdmpro"); ?></option>
+                                        <option value="dcss" <?php selected(get_option('__wpdm_twitter_bootstrap'), 'dcss'); ?>><?php _e("Disable CSS","wpdmpro"); ?></option>
+                                        <option value="dall" <?php selected(get_option('__wpdm_twitter_bootstrap'), 'dall'); ?>><?php _e("Disable Both","wpdmpro"); ?></option>
                                     </select>
 
                                 </td>

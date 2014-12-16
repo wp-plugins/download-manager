@@ -396,6 +396,27 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
 
 }
 
+/**
+ * @usage Check if a package is locked or public
+ * @param $id
+ * @return bool
+ */
+function wpdm_is_locked($id){
+    $package = array();
+    $package['ID'] = $id;
+    $package = array_merge($package, wpdm_custom_data($package['ID']));
+    $lock = '';
+
+    if (isset($package['password_lock']) && $package['password_lock'] == 1) $lock = 'locked';
+
+    if ($lock !== 'locked')
+        $lock = apply_filters('wpdm_check_lock', $id, $lock);
+
+    return ($lock=='locked');
+
+
+}
+
 
 function wpdm_addonslist(){
 

@@ -334,7 +334,7 @@
 
              <div class="col-md-12 lead">
                  <h3>What's New?</h3>
-                 What new with WordPress Download Manager Pro v2.7:
+                 What new with WordPress Download Manager v2.7:
              </div>
 
              <div class="col-md-4 r">
@@ -346,13 +346,24 @@
              <div class="col-md-4 r">
 
                  <b>Add-On Support</b>
-                 Now you can use free or pro add-ons with WordPress Download Manager v2.7, earlier which were only avalable for wpdm pro.
+                 Now you can use free or pro add-ons with WordPress Download Manager v2.7, earlier which were only available for wpdm pro.
              </div>
 
              <div class="col-md-4 r">
 
                  <b>Theme Support</b>
                  As WordPress Download Manager 2.7 using custom post type now, you will not need any extra work to use it with any WordPress Theme.
+             </div>
+            
+            <div class="col-md-12"><br style="clear:both"/><hr/>
+                 <h3>v2.7.8</h3>
+                 <p class="lead">What new with WordPress Download Manager v2.7.8:</p>
+                 <ul style="list-style:square !important">
+                     <li>Fixed issue with resumable download option</li>
+                     <li>Added missing string in .po file</li>
+                     <li>Fixed issue with bootstrap settings selection</li>
+                     <li>Added items per page option with all downloads table</li>
+                 </ul>
              </div>
 
              <div class="col-md-12 lead">

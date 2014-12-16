@@ -23,7 +23,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Download Counter
 *	Custom download link icon
 *	File type icon support
-*	DataTable support ( use short-code [wpdm-all-packages jstable=1] )
+*	DataTable support ( use short-code [wpdm-all-packages jstable=1 items_per_page=20] )
 *	Searching and Sorting Option
 *	Custom link label
 *	Short-code for download link
@@ -69,6 +69,12 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.8 =
+* Fixed issue with resumable download option
+* Added missing string in .po file
+* Fixed issue with bootstrap settings selection
+* Added items per page option with all downloads table
 
 = 2.7.7 =
 * Fixed data table issue
