@@ -1,5 +1,5 @@
 <input type="hidden" name="file[files][]" value="<?php $afiles = maybe_unserialize(get_post_meta(get_the_ID(), "__wpdm_files", true)); echo $afiles[0]; ?>" id="wpdmfile" />
-<div class="cfile" id="cfl" style="padding: 10px;margin-bottom: 10px;border:1px solid #eee">
+<div class="cfile" id="cfl" style="padding: 10px;margin-bottom:10px;border:1px solid #ddd;background: #fafafa">
     <?php
 
     $afile = is_array($afiles)&&isset($afiles[0])?$afiles[0]:'';
@@ -10,7 +10,7 @@
             $filesize = number_format(filesize($afile)/1025,2);
         ?>
 
-        <div style="position: relative;margin-bottom:20px"><strong><?php echo  basename($afile); ?></strong><br/><?php echo $filesize; ?> KB <a href='#' id="dcf" title="Delete Current File" style="position: absolute;right:0;top:0;height:32px;"><img src="<?php echo plugins_url('/download-manager/images/error.png'); ?>" /></a></div>
+        <div style="position: relative;"><strong><?php echo  basename($afile); ?></strong><br/><?php echo $filesize; ?> KB <a href='#' id="dcf" title="Delete Current File" style="position: absolute;right:0;top:0;height:32px;"><img src="<?php echo plugins_url('/download-manager/images/error.png'); ?>" /></a></div>
     <?php } else echo "<span style='font-weight:bold;color:#ddd'>No file uploaded yet!</span>"; ?>
     <div style="clear: both;"></div>
 </div>

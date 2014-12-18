@@ -3,7 +3,7 @@ Contributors: codename065, shahriar0822
 Donate link: 
 Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, download tracker, download protection
 Requires at least: 3.4
-Tested up to: 4.0
+Tested up to: 4.1
 License: GPLv2 or later
  
   
@@ -69,6 +69,9 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.81 =
+* WordPress v4.1 compatibility release
 
 = 2.7.8 =
 * Fixed issue with resumable download option

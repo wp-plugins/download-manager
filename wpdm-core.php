@@ -1,25 +1,7 @@
 <?php
 
 //error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
-
-function wpdm_unInstall()
-{
-    global $wpdb;
-    global $jal_db_version;
-
-    $table_name = "{$wpdb->prefix}ahm_files";
-    if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-
-        $sql = "DROP TABLE " . $table_name;
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
-
-        remove_option("fm_db_version");
-
-    }
-
-}
+ 
 
 global $stabs, $package, $wpdm_package;
 $stabs['basic'] = array('id' => 'basic', 'link' => 'edit.php?post_type=wpdmpro&page=settings', 'title' => 'Basic', 'callback' => 'basic_settings');
@@ -168,8 +150,11 @@ function FMSettings()
 
 function basic_settings()
 {
+    
     if (isset($_POST['task']) && $_POST['task'] == 'wdm_save_settings' && current_user_can('manage_options')) {
-
+        
+        if ( ! isset( $_POST['wpdmsettingsnonce'] ) || ! wp_verify_nonce( $_POST['wpdmsettingsnonce'], 'wpdm-'.NONCE_KEY ) ) die('Invalid Request!');    
+        
         foreach ($_POST as $optn => $optv) {
             if(strpos("__".$optn, "wpdm")) //Option must have "wpdm" in its name to avoid any type ambiguity  
             update_option($optn, $optv);
@@ -178,7 +163,7 @@ function basic_settings()
 
 
 
-        die('Settings Saved Successfully');
+        die(__('Settings Saved Successfully','wpdmpro'));
     }
     include('settings/basic.php');
 }
@@ -186,6 +171,7 @@ function basic_settings()
 function wdm_ajax_settings()
 {
     global $stabs;
+    
     if(current_user_can('manage_options'))
     call_user_func($stabs[$_POST['section']]['callback']);
     die();
@@ -363,23 +349,7 @@ function remote_get($url)
     return $content;
 }
 
-
-/**
- * @usage Generate direct link to download
- * @param $params
- * @param string $content
- * @return string
- */
-function wpdm_direct_link($params, $content = "")
-{
-    extract($params);
-    global $wpdb;
-    $package = $wpdb->get_row("select * from {$wpdb->prefix}ahm_files where id='$id'", ARRAY_A);
-    $url = wpdm_download_url($package);
-    $data_icon = isset($data_icon) ? $data_icon : plugins_url('/download-manager/images/download-now.png');
-    return "<div class='w3eden aligncenter'><br/><a style='text-align:left;padding:8px 15px;' class='btn $class' rel='nofollow' href='$url'><img src='{$data_icon}' style='border:0px;box-shadow:none;max-height:40px;width:auto;margin-right:10px;float:left;' /> <span id='mlbl' style='font-size:13pt;font-weight:bold;'>{$link_label}</span><br/><small id='slbl'>{$link_slabel}</small></a><br/><div style='clear:both;'></div></div>";
-}
-
+ 
 
 function addusercolumn()
 {
@@ -438,10 +408,7 @@ function wpdm_adminjs()
 
                 options = jQuery.extend(options, {
                     close: function () {
-                        /*$.post( ajaxurl, {
-                         pointer: 'global_wpdm_dd_option',
-                         action: 'dismiss-wpdm-dd-pointer'
-                         }); */
+                        
                     }
                 });
 

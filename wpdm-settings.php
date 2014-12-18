@@ -193,6 +193,7 @@ border-bottom: 1px solid #999999;
 
 <div style="clear: both;"></div>
     <form method="post" id="wdm_settings_form">
+       <?php wp_nonce_field('wpdm-'.NONCE_KEY,'wpdmsettingsnonce'); ?>
  <div style="max-width: 800px;margin:30px" class="panel panel-primary">
      <div class="panel-heading"><button type="submit" class="btn btn-primary pull-right"><span class="pull-left wpdm-loading wpdm-ssb" style="margin: 0.1em 5px 0 0"></span> Save Settings</button><h3 class="h">&nbsp;&nbsp;Download Manager Settings <div class="pull-left wpdm-loading" id="wdms_loading"></div></h3>
 

@@ -35,7 +35,7 @@ if (is_admin()) {
 } else {
 
     /** Short-Codes */
-    add_shortcode('wpdm_direct_link', 'wpdm_direct_link');
+    add_shortcode('wpdm_direct_link', 'wpdm_hotlink');
     add_shortcode("wpdm_package", "wpdm_package_link");
     add_shortcode("wpdm_file", "wpdm_package_link_old");
     add_shortcode("wpdm_category", "wpdm_category");
@@ -49,10 +49,7 @@ if (is_admin()) {
 
     add_action("init", "wpdm_DownloadNow");
     add_action("wp", "wpdm_ajax_call_exec");
-
-    add_action('wp_loaded', 'wpdm_do_login');
-    add_action('wp_loaded', 'wpdm_do_register');
-
+ 
 
     /** Filters */
 

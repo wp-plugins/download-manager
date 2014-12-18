@@ -34,6 +34,7 @@ function wpdm_common_actions()
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
+        'exclude_from_search' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'show_in_nav_menus' => true,
@@ -644,85 +645,8 @@ function wpdm_query_var($var, $params = array())
 
     return $val;
 }
-
-
-function wpdm_do_login()
-{
-    global $wp_query, $post, $wpdb;
-    if (!isset($_POST['login'])) return;
-    unset($_SESSION['login_error']);
-    $creds = array();
-    $creds['user_login'] = $_POST['login']['log'];
-    $creds['user_password'] = $_POST['login']['pwd'];
-    $creds['remember'] = isset($_POST['rememberme']) ? $_POST['rememberme'] : false;
-    $user = wp_signon($creds, false);
-
-    if (is_wp_error($user)) {
-        $_SESSION['login_error'] = $user->get_error_message();
-        header("location: " . $_SERVER['HTTP_REFERER']);
-        die();
-    } else {
-        do_action('wp_login', $creds['user_login']);
-        header("location: " . $_POST['permalink']);
-        die();
-    }
-}
-
-function wpdm_do_register()
-{
-    global $wp_query, $wpdb;
-    if (!isset($_POST['reg']) || !get_option('users_can_register')) return;
-    extract($_POST['reg']);
-    $_SESSION['tmp_reg_info'] = $_POST['reg'];
-    $user_id = username_exists($user_login);
-    $loginurl = $_POST['permalink'];
-    if ($user_login == '') {
-        $_SESSION['reg_error'] = __('Username is Empty!');
-        header("location: " . $_POST['permalink']);
-        die();
-    }
-    if ($user_email == '' || !is_email($user_email)) {
-        $_SESSION['reg_error'] = __('Invalid Email Address!');
-        header("location: " . $_POST['permalink']);
-        die();
-    }
-
-    if (!$user_id) {
-        $user_id = email_exists($user_email);
-        if (!$user_id) {
-            $user_pass = wp_generate_password(12, false);
-            $user_id = wp_create_user($user_login, $user_pass, $user_email);
-            $headers = "From: " . get_option('sitename') . " <" . get_option('admin_email') . ">\r\nContent-type: text/html\r\n";
-            $message = file_get_contents(dirname(__FILE__) . '/templates/wpdm-new-user.html');
-            $loginurl = $_POST['permalink'];
-            $message = str_replace(array("[#support_email#]", "[#homeurl#]", "[#sitename#]", "[#loginurl#]", "[#name#]", "[#username#]", "[#password#]", "[#date#]"), array(get_option('admin_email'), site_url('/'), get_option('blogname'), $loginurl, $display_name, $user_login, $user_pass, date("M d, Y")), $message);
-
-            if ($user_id) {
-                wp_mail($user_email, "Welcome to " . get_option('sitename'), $message, $headers);
-
-            }
-            unset($_SESSION['guest_order']);
-            unset($_SESSION['login_error']);
-            unset($_SESSION['tmp_reg_info']);
-            //if(!isset($_SESSION['reg_warning']))
-            $_SESSION['sccs_msg'] = "Your account created successfully and login info sent to your mail address.";
-            header("location: " . $loginurl);
-            die();
-        } else {
-            $_SESSION['reg_error'] = __('Email already exists.');
-            $plink = $_POST['permalink'] ? $_POST['permalink'] : $_SERVER['HTTP_REFERER'];
-            header("location: " . $loginurl);
-            die();
-        }
-    } else {
-        $_SESSION['reg_error'] = __('User already exists.');
-        $plink = $_POST['permalink'] ? $_POST['permalink'] : $_SERVER['HTTP_REFERER'];
-        header("location: " . $loginurl);
-        die();
-    }
-    die();
-}
-
+        
+        
 function wpdm_validate_newpass_sk()
 {
     global $wp_query, $wpdb;
