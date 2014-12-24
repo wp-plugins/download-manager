@@ -14,6 +14,14 @@
  em{
      color: #888;
  }
+ .input-group .form-control:first-child{
+     border-top-right-radius: 0 !important;
+     border-bottom-right-radius: 0 !important;
+ }
+ .input-group *:last-child{
+     border-top-left-radius: 0 !important;
+     border-bottom-left-radius: 0 !important;
+ }
  </style>
 
     <div class="container-fluid">
@@ -41,6 +49,12 @@
                              <textarea class="form-control" cols="70" rows="6" name="wpdm_login_msg"><?php echo get_option('wpdm_login_msg')?stripslashes(get_option('wpdm_login_msg')):"<a href='".wp_login_url()."' >Please login to download</a>"; ?></textarea><br>
 
                          </div>
+                       </div>
+                </div> 
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading"><?php echo __('Server File Browser','wpdmpro'); ?></div>
+                    <div class="panel-body">
 
                         <div class="form-group">
                             <label><?php echo __('Server File Browser Base Dir:','wpdmpro'); ?></label>
@@ -79,6 +93,27 @@
 
                     </div>
                 </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading"><?php echo __('File Download','wpdmpro'); ?></div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label><?php echo __('Download Speed:','wpdmpro'); ?></label>
+                            <div class="input-group">
+                            <input type=text class="form-control" name="__wpdm_download_speed" value="<?php echo intval(get_option('__wpdm_download_speed',4096)); ?>" />
+                            <span class="input-group-addon">KB</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><?php _e('Resumable Downloads','wpdmpro'); ?></label><br/>
+                            <select name="__wpdm_download_resume">
+                                        <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
+                                        <option value="2" <?php selected(get_option('__wpdm_download_resume'), 2); ?>><?php _e("Disabled","wpdmpro"); ?></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="panel panel-default">
@@ -87,16 +122,7 @@
 
                         <table cellpadding="5" cellspacing="0" class="frm" width="100%">
 
-                            <tr>
-                                <td>
-                                    <?php _e('Resumable Downloads','wpdmpro'); ?></td><td>
-                                    <select name="__wpdm_download_resume">
-                                        <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
-                                        <option value="2" <?php selected(get_option('__wpdm_download_resume'), 2); ?>><?php _e("Disabled","wpdmpro"); ?></option>
-                                    </select>
-
-                                </td>
-                            </tr>
+                             
 
                             <tr>
                                 <td>

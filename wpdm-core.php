@@ -100,7 +100,8 @@ function DownloadPageContent($embedid = 0)
 function wpdm_download_url($package, $ext = '')
 {
     if ($ext) $ext = '&' . $ext;
-    return site_url("/?wpdmdl={$package['ID']}{$ext}");
+    $ID = is_array($package)?$package['ID']:$package;
+    return site_url("/?wpdmdl={$ID}{$ext}");
 }
 
 

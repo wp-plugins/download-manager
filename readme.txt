@@ -19,6 +19,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom post type and taxonomy
 *       Drag and Drop File Upload
 *	Control who can access to download
+*       Download Speed Control
 *	Password protection
 *	Download Counter
 *	Custom download link icon
@@ -51,6 +52,10 @@ Check download stats and get push notification when someone downloads, install:
 * [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
 * [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
 
+= Free Theme =
+* [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/) 
+ 
+
 == Installation ==
 
 
@@ -69,6 +74,11 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.82 =
+* Updated download speed option
+* Regrouped settings page
+* Updated missing text in po file
 
 = 2.7.81 =
 * WordPress v4.1 compatibility release

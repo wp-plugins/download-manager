@@ -192,18 +192,31 @@ border-bottom: 1px solid #999999;
 </style>
 
 <div style="clear: both;"></div>
+<div style="max-width: 800px;margin:-3px 30px 0 30px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success text-center" style="border-radius: 3px">
+             <a class="text-success" href='https://wordpress.org/support/view/plugin-reviews/download-manager?rate=5#postform' title="Please consider it when you get some free moments" target="_blank">A 5* rating will inspire me a lot. Thanks :)</a>
+         </div>
+        </div>
+    </div>
+</div>   
     <form method="post" id="wdm_settings_form">
        <?php wp_nonce_field('wpdm-'.NONCE_KEY,'wpdmsettingsnonce'); ?>
- <div style="max-width: 800px;margin:30px" class="panel panel-primary">
+        
+ <div style="max-width: 800px;margin:0 30px" class="panel panel-primary">
      <div class="panel-heading"><button type="submit" class="btn btn-primary pull-right"><span class="pull-left wpdm-loading wpdm-ssb" style="margin: 0.1em 5px 0 0"></span> Save Settings</button><h3 class="h">&nbsp;&nbsp;Download Manager Settings <div class="pull-left wpdm-loading" id="wdms_loading"></div></h3>
 
      </div>
 <div class="panel-body">
 <div class="container-fluid">
+ 
 <div class="row"><div class="col-md-3">
      <ul id="tabs" class="nav nav-pills nav-stacked">
          <?php render_settings_tabs($tab=isset($_GET['tab'])?esc_attr($_GET['tab']):'basic'); ?>
      </ul>
+        
+         
         </div><div class="col-md-9">
      <div class="tab-content">
 <div onclick="jQuery(this).slideUp();" class="alert alert-info" style="display: none" id="message"></div>
@@ -226,6 +239,7 @@ border-bottom: 1px solid #999999;
 </div>
 </div>
 </div>
+        
  </div>
 
     </form>

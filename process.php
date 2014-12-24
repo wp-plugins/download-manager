@@ -6,7 +6,7 @@
 
     global $current_user, $dfiles;
     
-    $speed = 1024; //in KB - default 1 MB
+    $speed = get_option('__wpdm_download_speed',4096); //in KB - default 4 MB
     $speed = apply_filters('wpdm_download_speed', $speed);
      
     get_currentuserinfo();

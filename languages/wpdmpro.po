@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Download Manager Pro v3.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-19 03:20+0600\n"
-"PO-Revision-Date: 2014-12-19 03:20+0600\n"
+"POT-Creation-Date: 2014-12-24 19:54+0600\n"
+"PO-Revision-Date: 2014-12-24 19:54+0600\n"
 "Last-Translator: \n"
 "Language-Team: Shaon <proshaon@yahoo.com>\n"
 "Language: en_BD\n"
@@ -13,9 +13,8 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.10\n"
-"X-Poedit-SearchPath-0: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/"
-"plugins/download-manager\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-SearchPath-0: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager\n"
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/download-manager.php:152
 msgid "Add-Ons &lsaquo; Download Manager"
@@ -236,8 +235,7 @@ msgid "Legends"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1262
-msgid ""
-" Click on the icon to launch media manager to select or upload preview images"
+msgid " Click on the icon to launch media manager to select or upload preview images"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1262
@@ -251,29 +249,23 @@ msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1268
 msgid ""
-"<b>Link Label:</b> Label to show with download link, like: download now, get "
-"it now<br/>\n"
-"                                    <b>Password:</b> You can set single or "
-"multiple password for a package. In case of multiple password, each password "
-"have to be inside `[]`, like: [1234][456][789sf] and user will be able to "
+"<b>Link Label:</b> Label to show with download link, like: download now, get it now<br/>\n"
+"                                    <b>Password:</b> You can set single or multiple password for a package. In case "
+"of multiple password, each password have to be inside `[]`, like: [1234][456][789sf] and user will be able to "
 "download package using any one of them<br/>\n"
-"                                    <b>PW Usage Limit:</b> When you are "
-"using multiple password, then you may want set a limit, how many time user "
-"will be able to use a password, you can set the numeric value here, suppose "
-"`n`. So each password will expire after it used for `n` times.<br/>\n"
-"                                    <b>Stock Limit:</b> Should be a numeric "
-"value, suppose `9`. After package dowloaded for `9` times, the no one will "
-"able to download it anymore, will show 'out of stock' message<br/>\n"
-"                                    <b>Download Limit/user:</b> Set a "
-"numeric value here if you want to block user after a certain times of "
-"download for this package.<br/>\n"
-"                                    <b>Access</b>: Check the user roles, you "
-"want to enable to download this package, `All Visitors` will enable every "
-"one to download this package<br/>\n"
-"                                    <b>Link Template:</b> Shortcode will be "
-"rendered based on select link template.<br/>\n"
-"                                    <b>Page Template:</b> File details page "
-"will be rendered based on selected page template<br/>\n"
+"                                    <b>PW Usage Limit:</b> When you are using multiple password, then you may want "
+"set a limit, how many time user will be able to use a password, you can set the numeric value here, suppose `n`. So "
+"each password will expire after it used for `n` times.<br/>\n"
+"                                    <b>Stock Limit:</b> Should be a numeric value, suppose `9`. After package "
+"dowloaded for `9` times, the no one will able to download it anymore, will show 'out of stock' message<br/>\n"
+"                                    <b>Download Limit/user:</b> Set a numeric value here if you want to block user "
+"after a certain times of download for this package.<br/>\n"
+"                                    <b>Access</b>: Check the user roles, you want to enable to download this package, "
+"`All Visitors` will enable every one to download this package<br/>\n"
+"                                    <b>Link Template:</b> Shortcode will be rendered based on select link template."
+"<br/>\n"
+"                                    <b>Page Template:</b> File details page will be rendered based on selected page "
+"template<br/>\n"
 "                                "
 msgstr ""
 
@@ -359,51 +351,63 @@ msgstr ""
 msgid "Login Required Message:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:46
-msgid "Server File Browser Base Dir:"
-msgstr ""
-
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:51
-msgid "File Browser Access:"
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:48
+msgid "Server File Browser"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:52
+msgid "Server File Browser Base Dir:"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:57
+msgid "File Browser Access:"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:58
 msgid "Who will have access to server file browser"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:85
-msgid "Misc Settings"
-msgstr ""
-
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:92
-msgid "Resumable Downloads"
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:90
+msgid "File Download"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:94
+msgid "Download Speed:"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:98
+msgid "Resumable Downloads"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:100
 msgid "Enabled"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:95
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:101
 msgid "Disabled"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:103
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:109
+msgid "Misc Settings"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:118
 msgid "Twitter Bootstrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:105
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:120
 msgid "Active"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:106
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:121
 msgid "Disable JS"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:107
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:122
 msgid "Disable CSS"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:108
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:123
 msgid "Disable Both"
 msgstr ""
 
@@ -443,7 +447,7 @@ msgstr ""
 msgid "Create Date"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-core.php:166
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-core.php:167
 msgid "Settings Saved Successfully"
 msgstr ""
 
