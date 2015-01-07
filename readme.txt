@@ -46,15 +46,20 @@ Download and Install following free add-on to add additional features as per you
 * [WPDM Button Templates](http://www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
 * [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
 
-= Mobile App =
+= Mobile Apps =
 Check download stats and get push notification when someone downloads, install:
 
 * [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
-* [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone (app for iPhone is coming soon)
+* [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone
+* [WPDM for iOS](http://www.wpdownloadmanager.com/download/wpdm-ios/) - Check download and sales stats directly from your iPhone or iPad
 
 = Free Theme =
 * [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/) 
- 
+
+= More Themes & Add-ons =
+* [Add-ons](http://www.wpdownloadmanager.com/downloads/add-ons/) - 50+ add-ons
+* [Themes](http://www.wpdownloadmanager.com/downloads/themes-2/) - Themes Specially Optimized for Download Manager
+
 
 == Installation ==
 
@@ -74,6 +79,13 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.83 =
+* Added update check option for add-ons
+* Optimized for iOS app ( iOS app is available now )
+* Updated font awesome
+* Updated api for settings fields
+
 
 = 2.7.82 =
 * Updated download speed option

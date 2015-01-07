@@ -29,6 +29,10 @@ if (is_admin()) {
     add_filter( 'manage_edit-wpdmpro_sortable_columns', 'wpdm_dlc_sortable' );
     add_action('activated_plugin','wpdm_welcome_redirect');
 
+    //Check add-on updates
+    add_action('wp_ajax_wpdm_check_update', 'wpdm_check_update');
+    add_action('admin_footer', 'wpdm_newversion_check');
+
 
 
 

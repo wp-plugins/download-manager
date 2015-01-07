@@ -433,6 +433,98 @@ function wpdm_adminjs()
 
 
 
+function wpdm_plugin_data($dir){
+    $plugins = get_plugins();
+    foreach($plugins as $plugin => $data){
+        $plugin = explode("/", $plugin);
+        if($plugin[0]==$dir) return $data;
+    }
+}
+
+function wpdm_check_update()
+{
+
+    if(!current_user_can('manage_options')) return;
+
+    $latest = '';//get_option('wpdm_latest');
+    $latest_check = get_option('wpdm_latest_check');
+    $time = time() - intval($latest_check);
+    $plugins = get_plugins();
+
+    $latest_v_url = 'http://www.wpdownloadmanager.com/versions.php';
+
+    if ($latest == '' || $time > 86400) {
+        $latest = remote_get($latest_v_url);
+        update_option('wpdm_latest', $latest);
+        update_option('wpdm_latest_check', time());
+
+    }
+    $latest = maybe_unserialize($latest);
+    array_shift($latest);
+    $page = isset($_REQUEST['page'])?esc_attr($_REQUEST['page']):'';
+    $plugin_info_url = isset($_REQUEST['plugin_url'])?$_REQUEST['plugin_url']:'http://www.wpdownloadmanager.com/purchases/';
+    foreach($latest as $plugin_dir => $latestv){
+        $plugin_data = wpdm_plugin_data($plugin_dir);
+
+        if (version_compare($plugin_data['Version'], $latestv, '<') == true ) {
+            $plugin_name = $plugin_data['Name'];
+            $plugin_info_url = $plugin_data['PluginURI'];
+            $trid = sanitize_title($plugin_name);
+            if($trid!=''){
+                if ($page == 'plugins') {
+                    echo <<<NOTICE
+     <script type="text/javascript">
+      jQuery(function(){
+        jQuery('tr#{$trid}').addClass('update').after('<tr class="plugin-update-tr"><td colspan=3 class="plugin-update colspanchange"><div style="background:#D54E21;border-top:0px;padding:5px 15px;color:#fff">There is a new version of {$plugin_name} available. <b><a href="{$plugin_info_url}#{$latestv}" style="color:#fff;float: right;background: rgba(0,0,0,0.2);padding: 5px 15px;margin-top:-5px;margin-right: -15px" target=_blank>Download v{$latestv}  <i class="fa fa-long-arrow-right"></i></a></b></div></td></tr>');
+      });
+      </script>
+NOTICE;
+                } else {
+                    echo <<<NOTICE
+     <script type="text/javascript">
+      jQuery(function(){
+        jQuery('.wrap > h2').after('<div class="updated error" style="margin:10px 0px;padding:10px;border:2px solid #dd3d36;border-radius:4px;background: #ffffff"><div style="float:left;"><b style="color:#dd3d36;">Important!</b><br/>There is a new version of <u>{$plugin_name}</u> available.</div> <a style="border-radius:2px;float:right;display:inline-table;color:#ffffff;background:#D54E21;padding:10px 15px" href="{$plugin_info_url}#{$latestv}"  target=_blank>Download v{$latestv}  <i class="fa fa-long-arrow-right"></i></a><div style="clear:both"></div></div>');
+         });
+         </script>
+NOTICE;
+                }}
+        }
+    }
+    if(wpdm_is_ajax()) die();
+}
+
+function wpdm_newversion_check(){
+
+    if(!current_user_can('manage_options')) return;
+
+    $tmpvar = explode("?", basename($_SERVER['REQUEST_URI']));
+    $page = array_shift($tmpvar);
+    $page = explode(".", $page);
+    $page = array_shift($page);
+
+    if (get_option('wpdm_update_notice') == 'disabled' || !($page == 'plugins' || get_post_type()=='wpdmpro') ) return;
+
+    $page = $page == 'plugins'?$page:get_post_type();
+
+    ?>
+    <script type="text/javascript">
+        jQuery(function(){
+
+            jQuery.post(ajaxurl, {
+                action:         'wpdm_check_update',
+                page:           '<?php echo $page; ?>'
+            }, function(res){
+                jQuery('#wpfooter').after(res);
+            });
+
+
+        });
+    </script>
+<?php
+}
+
+
+
 function wpdm_ajax_call_exec()
 {
     if (isset($_POST['action']) && $_POST['action'] == 'wpdm_ajax_call') {

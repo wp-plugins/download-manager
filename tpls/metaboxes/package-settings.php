@@ -86,10 +86,15 @@
 } ?>
 
 </div>
+<?php if(!is_plugin_active('wpdm-premium-packages/wpdm-premium-packages.php')){ ?>
+<div class="w3eden"><br/>
+<div  class="alert alert-warning" style="background-image: none !important;">
 
-<em style="margin: 15px 0 5px 0;display: block;font-weight: bold">
-    Planning to sell your digital products? Check <a target="_blank" href="http://www.wpdownloadmanager.com/download/premium-package/">WPDM Premium Package Add-on</a>. Now you can use it even with wpdm v2.7
-</em>
+    Planning to sell your digital products? Check <a style="font-weight: 900" target="_blank" href="http://www.wpdownloadmanager.com/download/premium-package/">WPDM Premium Package Add-on</a>. Now you can use it even with wpdm v2.7
+
+</div>
+</div>
+<?php } ?>
 
 
 

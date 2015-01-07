@@ -900,6 +900,50 @@ function wpdm_dynamic_thumb($path, $size)
     return $thumbpath;
 }
 
+
+function wpdm_option_field($data) {
+    switch($data['type']):
+        case 'text':
+            return "<input type='text' name='$data[name]' class='form-control' id='$data[id]' value='$data[value]' placeholder='{$data['placeholder']}'  />";
+            //echo "<div class='note'>{$data['description']}</div>";
+            break;
+        case 'select':
+        case 'dropdown':
+            $html = "<select name='{$data['name']}'  id='{$data['id']}' style='width:100%;min-width:150px;' >";
+            foreach($data['options'] as $value => $label){
+
+                $html .= "<option value='{$value}' ".selected($data['selected'],$value,false).">$label</option>";
+            }
+            $html .= "</select>";
+            return $html;
+            break;
+        case 'textarea':
+            return "<textarea name='$data[name]' id='$data[id]' class='form-control' style='min-height: 100px'>$data[value]</textarea>";
+            //echo "<div class='note'>{$data['description']}</div>";
+            break;
+        case 'checkbox':
+            return "<input type='checkbox' name='$data[name]' id='$data[id]' value='$data[value]' ".checked($data['checked'], $data['value'], false)." />";
+            //echo "<div class='note'>{$data['description']}</div>";
+            break;
+        case 'callback':
+            return call_user_func($data['dom_callback'], $data['dom_callback_params']);
+            //echo "<div class='note'>{$data['description']}</div>";
+            break;
+        case 'heading':
+            return "<h3>".$data['label']."</h3>";
+            break;
+    endswitch;
+}
+
+function wpdm_option_page($options){
+    $html = "<table class='table table-striped table-v' style='margin: 0'>";
+    foreach($options as $id => $option){
+        $html .= "<tr><td>{$option['label']}</td><td>".wpdm_option_field($option)."</td></tr>";
+    }
+    $html .="</table>";
+    return $html;
+}
+
 /**
  * @usage Get All Custom Data of a File
  * @param $pid
@@ -1193,7 +1237,6 @@ function wpdm_is_ajax()
 }
 
 
-
 function __msg($key)
 {
     include("messages.php");
@@ -1442,7 +1485,7 @@ function wpdm_enqueue_scripts()
 
 function wpdm_admin_enqueue_scripts()
 {
-    if(get_post_type()=='wpdmpro'||in_array(wpdm_query_var('page'),array('settings','emails','wpdm-stats','templates','importable-files'))){
+    if(get_post_type()=='wpdmpro' || in_array(wpdm_query_var('page'),array('settings','emails','wpdm-stats','templates','importable-files','wpdm-addons'))){
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-form');
         wp_enqueue_script('jquery-ui-core');
@@ -1464,8 +1507,10 @@ function wpdm_admin_enqueue_scripts()
         wp_enqueue_style('jqui-css', plugins_url('/download-manager/jqui/theme/jquery-ui.css'));
         //if(isset($_GET['page']) && $_GET['page']== 'settings' && get_post_type()=='wpdmpro')
 
+        wp_enqueue_style('wpdm-bootstrap', plugins_url('/download-manager/bootstrap/css/bootstrap.css'));
+        wp_enqueue_style('wpdm-bootstrap-theme', plugins_url('/download-manager/bootstrap/css/bootstrap-theme.min.css'));
         wp_enqueue_script('wpdm-bootstrap', plugins_url('/download-manager/bootstrap/js/bootstrap.min.js'), array('jquery'));
-        wp_enqueue_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+        wp_enqueue_style('font-awesome', plugins_url('/download-manager/font-awesome/css/font-awesome.min.css'));
     }
 
 }
@@ -1585,9 +1630,9 @@ function wpdm_array_splice_assoc(&$input, $offset, $length, $replacement) {
 
 function wpdm_columns_th($defaults) {
     if(get_post_type()!='wpdmpro') return $defaults;
-    $img['wpdm-image'] = "Img/Ico";
+    $img['wpdm-image'] = "<i class='fa fa-image'></i>";
     wpdm_array_splice_assoc( $defaults, 1, 0, $img );
-    $otf['download_count'] = 'Downloads';
+    $otf['download_count'] = "<i class='fa fa-download'></i>";
     $otf['wpdm-shortcode'] = 'Short-code';
     wpdm_array_splice_assoc( $defaults, 3, 0, $otf );
     return $defaults;
