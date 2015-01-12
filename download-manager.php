@@ -5,7 +5,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.7.83
+Version: 2.7.84
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -14,7 +14,7 @@ Author URI: http://www.wpdownloadmanager.com/
 if(!isset($_SESSION))
 session_start();
 
-define('WPDM_Version','2.7.83');
+define('WPDM_Version','2.7.84');
         
 include(dirname(__FILE__)."/functions.php");        
 include(dirname(__FILE__)."/class.pack.php");
@@ -44,7 +44,7 @@ if(function_exists('ini_set'))
 if(!$_POST)    $_SESSION['download'] = 0;
 
 function wpdm_load_textdomain() {     
-    load_plugin_textdomain( 'wpdmpro', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );   
+    load_plugin_textdomain( 'wpdmpro', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 
 function wpdm_pro_Install(){
@@ -114,6 +114,10 @@ function plu_admin_enqueue() {
  
 // handle uploaded file here
 function wpdm_check_upload(){
+
+
+  if(!current_user_can("edit_posts")) return;
+
   check_ajax_referer('photo-upload');
   if(file_exists(UPLOAD_DIR.$_FILES['async-upload']['name']))
   $filename = time().'wpdm_'.$_FILES['async-upload']['name'];  
@@ -132,7 +136,13 @@ function wpdm_upload_icon(){
   if(file_exists(dirname(__FILE__).'/file-type-icons/'.$_FILES['icon-async-upload']['name']))
   $filename = time().'wpdm_'.$_FILES['icon-async-upload']['name'];  
   else
-  $filename = $_FILES['icon-async-upload']['name'];  
+  $filename = $_FILES['icon-async-upload']['name'];
+
+  $ext = explode(".", $filename);
+  $ext = end($ext);
+  $ext = strtolower($ext);
+  if(!in_array($ext, array('png','jpg','jpeg'))) return; //Only Images!
+
   move_uploaded_file($_FILES['icon-async-upload']['tmp_name'],dirname(__FILE__).'/file-type-icons/'.$filename);
   $data = array('rpath'=>"download-manager/file-type-icons/$filename",'fid'=>md5("download-manager/file-type-icons/$filename"),'url'=>plugins_url("download-manager/file-type-icons/$filename"));
   header('HTTP/1.0 200 OK');

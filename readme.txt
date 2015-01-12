@@ -80,6 +80,9 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.84 =
+* Added upload restriction unwanted file types for better security
+
 = 2.7.83 =
 * Added update check option for add-ons
 * Optimized for iOS app ( iOS app is available now )

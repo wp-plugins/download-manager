@@ -107,7 +107,7 @@ function wpdm_download_url($package, $ext = '')
 
 function wpdm_upload_file()
 {
-    if (!isset($_FILES['Filedata'])) return;
+    if (!isset($_FILES['Filedata']) || !isset($_GET['task'])) return;
     if (is_uploaded_file($_FILES['Filedata']['tmp_name']) && is_admin() && $_GET['task'] == 'wpdm_upload_files' && current_user_can("edit_posts")) {
         $tempFile = $_FILES['Filedata']['tmp_name'];
         $targetFile = UPLOAD_DIR . time() . 'wpdm_' . $_FILES['Filedata']['name'];
