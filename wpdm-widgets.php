@@ -1,6 +1,55 @@
 <?php
 
 
+class wpdm_search_widget extends WP_Widget {
+    /** constructor */
+
+
+    function __construct() {
+        parent::__construct(
+            'wpdm_search_widget', // Base ID
+            __( 'WPDM Search', 'wpdmpro' ), // Name
+            array( 'description' => __( 'WordPress Download Manager Search Widget', 'wpdmpro' ), ) // Args
+        );
+    }
+
+    /** @see WP_Widget::widget */
+    function widget($args, $instance) {
+        extract( $args );
+        $title = apply_filters('widget_title', $instance['title']);
+        extract($instance);
+        echo $before_widget;
+        if ( $title )
+            echo $before_title . $title . $after_title;
+        echo "<div class='w3eden'><form action='".home_url('/')."'><input type='hidden' name='post_type[]' value='wpdmpro' />";
+        echo "<input class='form-control input-lg' id='s' name='s' >";
+        echo '</form></div>';
+        echo $after_widget;
+    }
+
+    /** @see WP_Widget::update */
+    function update($new_instance, $old_instance) {
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['promo'] = $new_instance['promo'];
+        return $instance;
+    }
+
+    /** @see WP_Widget::form */
+    function form($instance) {
+        $title = isset($instance['title'])?esc_attr($instance['title']):"";
+        $promo = isset($instance['promo'])?$instance['promo']:"The best plugin to manage your files & documents from your WordPress site";
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+
+        </p>
+
+    <?php
+    }
+
+}
 class wpdm_affiliate_widget extends WP_Widget {
     /** constructor */
 
@@ -282,4 +331,5 @@ class wpdm_newpacks_widget extends WP_Widget {
 add_action('widgets_init', create_function('', 'return register_widget("wpdm_topdls_widget");'));
 add_action('widgets_init', create_function('', 'return register_widget("wpdm_newpacks_widget");'));
 add_action('widgets_init', create_function('', 'return register_widget("wpdm_affiliate_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("wpdm_search_widget");'));
 

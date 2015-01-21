@@ -58,7 +58,12 @@
 
                         <div class="form-group">
                             <label><?php echo __('Server File Browser Base Dir:','wpdmpro'); ?></label>
-                            <input type=text class="form-control" name="_wpdm_file_browser_root" value="<?php echo htmlspecialchars(stripslashes(get_option('_wpdm_file_browser_root',ABSPATH))); ?>" />
+                            <div class="input-group">
+                            <input type=text class="form-control" id="_wpdm_file_browser_root" name="_wpdm_file_browser_root" value="<?php echo htmlspecialchars(stripslashes(get_option('_wpdm_file_browser_root',ABSPATH))); ?>" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default ttip" title="<?php _e('Reset Base Dir'); ?>" type="button" onclick="jQuery('#_wpdm_file_browser_root').val('<?php echo rtrim(ABSPATH,'/'); ?>');"><i class="fa fa-repeat"></i></button>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="form-group">

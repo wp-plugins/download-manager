@@ -31,6 +31,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Short-code for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
 *	Widget for new files
 *	Widget for top downloads
+*	Widget for searching downloads
 *	Multi-level Categories
 *	Custom TinyMce Button
 *	Category embed short-code
@@ -53,8 +54,9 @@ Check download stats and get push notification when someone downloads, install:
 * [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone
 * [WPDM for iOS](http://www.wpdownloadmanager.com/download/wpdm-ios/) - Check download and sales stats directly from your iPhone or iPad
 
-= Free Theme =
-* [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/) 
+= Free Themes =
+* [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/)
+* [WPDM 2015](http://www.wpdownloadmanager.com/download/wpdm-twenty-fifteen/)  - Twenty Fifteen Child Theme for WordPress Download Manager
 
 = More Themes & Add-ons =
 * [Add-ons](http://www.wpdownloadmanager.com/downloads/add-ons/) - 50+ add-ons
@@ -79,6 +81,11 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.85 =
+* Added new option to reset file browser base dir
+* Added new widget for searching downloads
+* Adjusted some css to resolve conflict with some themes
 
 = 2.7.84 =
 * Added upload restriction unwanted file types for better security

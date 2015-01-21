@@ -183,6 +183,8 @@ function wpdm_save_package_data($post)
 {
     global $wpdb, $current_user;
     get_currentuserinfo();
+
+
     if (get_post_type() != 'wpdmpro' || !isset($_POST['file'])) return;
 
     $cdata = get_post_custom($post);
