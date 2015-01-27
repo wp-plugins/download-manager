@@ -110,11 +110,21 @@
                             <span class="input-group-addon">KB</span>
                             </div>
                         </div>
+                        <hr/>
+                        <em class="note"><?php _e('If you get broken download, then try enabling/disabling following options, as sometimes server may not support output buffering or partial downloads','wpdmpro'); ?>:</em>
+                        <hr/>
                         <div class="form-group">
                             <label><?php _e('Resumable Downloads','wpdmpro'); ?></label><br/>
                             <select name="__wpdm_download_resume">
                                         <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
                                         <option value="2" <?php selected(get_option('__wpdm_download_resume'), 2); ?>><?php _e("Disabled","wpdmpro"); ?></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><?php _e('Output Buffering','wpdmpro'); ?></label><br/>
+                            <select name="__wpdm_download_resume">
+                                        <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
+                                        <option value="0" <?php selected(get_option('__wpdm_support_output_buffer'), 1); ?>><?php _e("Disabled","wpdmpro"); ?></option>
                             </select>
                         </div>
                     </div>

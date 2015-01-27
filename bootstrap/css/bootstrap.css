@@ -282,7 +282,7 @@
 .w3eden .btn-link:hover,.w3eden .btn-link:focus{color:#2a6496;text-decoration:underline;background-color:transparent}
 .w3eden .btn-link[disabled]:hover,.w3eden fieldset[disabled] .btn-link:hover,.w3eden .btn-link[disabled]:focus,.w3eden fieldset[disabled] .btn-link:focus{color:#999;text-decoration:none}
 .w3eden .btn-lg{padding:10px 16px;font-size:18px;line-height:1.33;border-radius:6px}
-.w3eden .btn-sm,.w3eden .btn-xs{padding:5px 10px;font-size:12px;line-height:1.5;border-radius:3px}
+.w3eden .btn-sm,.w3eden .btn-xs{padding:5px 10px !important;font-size:12px;line-height:1.5;border-radius:3px}
 .w3eden .btn-xs{padding:1px 5px}
 .w3eden .btn-block{display:block;width:100%;padding-right:0;padding-left:0}
 .w3eden .btn-block+.btn-block{margin-top:5px}

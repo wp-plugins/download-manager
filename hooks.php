@@ -33,6 +33,8 @@ if (is_admin()) {
     add_action('wp_ajax_wpdm_check_update', 'wpdm_check_update');
     add_action('admin_footer', 'wpdm_newversion_check');
 
+    add_action("admin_init", "wpdm_initiate_settings");
+
 
 
 
@@ -80,5 +82,5 @@ add_action( 'plugins_loaded', 'wpdm_load_textdomain' );
 add_action("init", "wpdm_common_actions");
 add_action("init", "wpdm_upload_file");
 add_action( 'admin_init', 'wpdm_sfb_access');
-add_action('save_post', 'wpdm_save_package_data', 999999);
+add_action('save_post', 'wpdm_save_package_data');
     

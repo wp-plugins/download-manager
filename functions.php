@@ -136,11 +136,28 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
     $buffer *= 1024; // in byte 
 
     $bandwidth = 0;
-    @ini_set('zlib.output_compression', 'Off');
+
+    if( function_exists('ini_set') )
+        @ini_set( 'display_errors', 0 );
+
+    @session_write_close();
+
+    if ( function_exists( 'apache_setenv' ) )
+        @apache_setenv( 'no-gzip', 1 );
+
+    if( function_exists('ini_set') )
+        @ini_set('zlib.output_compression', 'Off');
+
+
     @set_time_limit(0);
     @session_cache_limiter('none');
-    @ob_end_clean();
-    @session_write_close();
+
+    if ( get_option( '__wpdm_support_output_buffer', 1 ) == 1 ) {
+
+        do {
+            @ob_end_clean();
+        } while ( ob_get_level() > 0 );
+    }
 
     if (strpos($filepath, '://'))
         $filepath = wpdm_cache_remote_file($filepath, $filename);
@@ -150,11 +167,8 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
     else
         $fsize = 0;
 
-
-    header("Pragma: public");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: public");
+    nocache_headers();
+    header( "X-Robots-Tag: noindex, nofollow", true );
     header("Robots: none");
     header("Content-type: $content_type");
     header("Content-disposition: attachment;filename=\"{$filename}\"");
@@ -306,7 +320,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
             $lock = 'locked';
             $data = '
        
-        <div id="msg_' . $package['ID'] . '" style="display:none;" class="text-danger">processing...</div>
+        <div id="msg_' .$unqid. '_'. $package['ID'] . '" style="display:none;" class="text-danger">processing...</div>
         <form id="wpdmdlf_' . $unqid . '_' . $package['ID'] . '" method=post action="' . home_url('/') . '" style="margin-bottom:0px;">
         <input type=hidden name="id" value="' . $package['ID'] . '" />
         <input type=hidden name="dataType" value="json" />
@@ -323,40 +337,25 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         
         <script type="text/javascript">
         jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").submit(function(){
-            var paramObj = {};        
-            jQuery("#msg_' . $package['ID'] . '").html("processing...").show(); 
+
+            jQuery("#msg_' .$unqid. '_' . $package['ID'] . '").html("Processing...").show();
             jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();    
-            /*jQuery.each(jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").serializeArray(), function(_, kv) {
-              paramObj[kv.name] = kv.value;
-            });*/
 
             jQuery(this).removeClass("wpdm_submit").addClass("wpdm_submit_wait");
-            /*
-            jQuery.post("' . home_url('/') . '",paramObj,function(res){
 
-                jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();            
-                jQuery("#msg_' . $package['ID'] . '").html("verifying...").css("cursor","pointer").show().click(function(){ jQuery(this).hide();jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show(); });            
-                if(res.downloadurl!=""&&res.downloadurl!=undefined) {
-                location.href=res.downloadurl;
-                jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").html("<a style=\'color:#ffffff !important\' class=\'btn btn-success\' href=\'"+res.downloadurl+"\'>Download</a>");
-                jQuery("#msg_' . $package['ID'] . '").html("processing...").hide(); 
-                jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show();    
-                } else {             
-                    jQuery("#msg_' . $package['ID'] . '").html(""+res.error);
-                } 
-        });*/
         jQuery(this).ajaxSubmit({
         success: function(res){
 
-        jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();
-                jQuery("#msg_' . $package['ID'] . '").html("verifying...").css("cursor","pointer").show().click(function(){ jQuery(this).hide();jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show(); });
+                jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();
+                jQuery("#msg_' .$unqid. '_' . $package['ID'] . '").html("Verifying...").css("cursor","pointer").show().click(function(){ jQuery(this).hide();jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show(); });
                 if(res.downloadurl!=""&&res.downloadurl!=undefined) {
                 location.href=res.downloadurl;
                 jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").html("<a style=\'color:#ffffff !important\' class=\'btn btn-success\' href=\'"+res.downloadurl+"\'>Download</a>");
-                jQuery("#msg_' . $package['ID'] . '").html("processing...").hide();
+                jQuery("#msg_' .$unqid. '_' . $package['ID'] . '").html("processing...").hide();
                 jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").show();
                 } else {
-                    jQuery("#msg_' . $package['ID'] . '").html(""+res.error+"&nbsp;<span class=\"label label-primary\">Retry</span>");
+
+                    jQuery("#msg_' .$unqid. '_' . $package['ID'] . '").html(""+res.error+"&nbsp;<span class=\'label label-primary\'>Retry</span>").show();;
                 }
         }
         });
@@ -1098,6 +1097,8 @@ function FetchTemplate($template, $vars, $type = 'link')
 
     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($vars['ID']), 'full');
     $vars['preview'] = $thumb['0'];
+
+    if(isset($vars['quota']) && $vars['quota']==0) $vars['quota'] = __('Unlimited','wpdm');
 
     foreach ($matches[0] as $nd => $scode) {
         $keys[] = $scode;

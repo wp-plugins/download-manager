@@ -4,11 +4,48 @@
  
 
 global $stabs, $package, $wpdm_package;
-$stabs['basic'] = array('id' => 'basic', 'link' => 'edit.php?post_type=wpdmpro&page=settings', 'title' => 'Basic', 'callback' => 'basic_settings');
+/**
+ * @usage Initiate Settings Tabs
+ */
+function wpdm_initiate_settings()
+{
+    global $stabs;
+    $tabs = array();
+    $tabs['basic'] = array('id' => 'basic', 'link' => 'edit.php?post_type=wpdmpro&page=settings', 'title' => 'Basic', 'callback' => 'basic_settings');
+
+    if (function_exists('bp_is_active')) {
+        $tabs['buddypress'] = array('id' => 'buddypress', 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=buddypress', 'title' => 'BuddyPress', 'callback' => 'buddypress_addon_settings');
+    }
+
+    if(defined('WPDM_CLOUD_STORAGE')){
+        $tabs['cloud-storage'] = array('id' => 'cloud-storage', 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=cloud-storage', 'title' => 'Cloud Storage', 'callback' => 'wpdm_cloud_storage_settings');
+    }
+
+    if(!$stabs) $stabs = array();
+
+    $stabs = $tabs + $stabs;
+
+    $stabs = apply_filters("add_wpdm_settings_tab", $stabs);
+
+
+}
+
+/**
+ * @param $tablink
+ * @param $newtab
+ * @param $func
+ * @deprecated Deprecated from v4.2, use filter hook 'add_wpdm_settings_tab'
+ * @usage Deprecated: From v4.2, use filter hook 'add_wpdm_settings_tab'
+ */
 function add_wdm_settings_tab($tablink, $newtab, $func)
 {
     global $stabs;
     $stabs["{$tablink}"] = array('id' => $tablink, 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=' . $tablink, 'title' => $newtab, 'callback' => $func);
+}
+
+function wpdm_create_settings_tab($tabid, $tabtitle, $callback)
+{
+    return array('id' => $tabid, 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=' . $tablink, 'title' => $tabtitle, 'callback' => $callback);
 }
 
 function render_settings_tabs($sel = '')
@@ -24,6 +61,32 @@ function render_settings_tabs($sel = '')
         }
     }
 }
+
+
+function buddypress_addon_settings(){
+    if(isset($_POST['section']) && $_POST['section']=='buddypress' && isset($_POST['task']) && $_POST['task']=='wdm_save_settings' && current_user_can('manage_options')){
+        foreach($_POST as $k => $v){
+            if(strpos($k, '_wpdm_')){
+                update_option($k, $v);
+            }
+        }
+        die('Settings Saved Successfully!');
+    }
+    include(WPDM_BASE_DIR."settings/buddypress.php");
+}
+
+function wpdm_cloud_storage_settings(){
+    if(isset($_POST['section']) && $_POST['section']=='cloud-storage' && isset($_POST['task']) && $_POST['task']=='wdm_save_settings' && current_user_can('manage_options')){
+        foreach($_POST as $k => $v){
+            if(strpos($k, '_wpdm_')){
+                update_option($k, $v);
+            }
+        }
+        die('Settings Saved Successfully!');
+    }
+    include(WPDM_BASE_DIR."settings/cloud-storage.php");
+}
+
 
 
 function wpdm_is_download_limit_exceed($id)

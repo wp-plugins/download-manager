@@ -18,6 +18,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 = Features =
 *	Custom post type and taxonomy
 *       Drag and Drop File Upload
+*	Google Drive support to store your files in Google drive
 *	Control who can access to download
 *       Download Speed Control
 *	Password protection
@@ -38,6 +39,9 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
 *       Translation Ready
+
+= Google Drive =
+Use [Google Drive Explorer](http://www.wpdownloadmanager.com/download/google-drive-explorer/) add-on ( free ) to store your files in google drive and link with download manager, get 15 GB free storage space and save your server bandwidth
 
 = Add-ons =
 Download and Install following free add-on to add additional features as per your need
@@ -81,6 +85,11 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.86 =
+* Fixed issue with password locked files for double link in same page
+* Added new option for disabling output buffering, no more broken downloads
+* Google Drive support to store your files in Google drive
 
 = 2.7.85 =
 * Added new option to reset file browser base dir
