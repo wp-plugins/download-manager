@@ -122,9 +122,9 @@
                         </div>
                         <div class="form-group">
                             <label><?php _e('Output Buffering','wpdmpro'); ?></label><br/>
-                            <select name="__wpdm_download_resume">
+                            <select name="__wpdm_support_output_buffer">
                                         <option value="1"><?php _e("Enabled","wpdmpro"); ?></option>
-                                        <option value="0" <?php selected(get_option('__wpdm_support_output_buffer'), 1); ?>><?php _e("Disabled","wpdmpro"); ?></option>
+                                        <option value="0" <?php selected(get_option('__wpdm_support_output_buffer'), 0); ?>><?php _e("Disabled","wpdmpro"); ?></option>
                             </select>
                         </div>
                     </div>

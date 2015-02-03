@@ -4,10 +4,15 @@
     $filesize = "<em style='color: darkred'>( ".__("attached file is missing/deleted","wpdmpro")." )</em>";
     $afile = is_array($afiles)&&isset($afiles[0])?$afiles[0]:'';
     if($afile !=''){
-        if(file_exists(UPLOAD_DIR.'/'.$afile))
-            $filesize = number_format(filesize(UPLOAD_DIR.'/'.$afile)/1025,2)." KB";
-        else if(file_exists($afile))
-            $filesize = number_format(filesize($afile)/1025,2)." KB";
+
+        if(strpos($afile, "://"))
+            $filesize = "";
+        else {
+            if (file_exists(UPLOAD_DIR . '/' . $afile))
+                $filesize = number_format(filesize(UPLOAD_DIR . '/' . $afile) / 1025, 2) . " KB";
+            else if (file_exists($afile))
+                $filesize = number_format(filesize($afile) / 1025, 2) . " KB";
+        }
         ?>
 
         <div style="position: relative;"><strong><?php echo  basename($afile); ?></strong><br/><?php echo $filesize; ?> <a href='#' id="dcf" title="Delete Current File" style="position: absolute;right:0;top:0;height:32px;"><img src="<?php echo plugins_url('/download-manager/images/error.png'); ?>" /></a></div>

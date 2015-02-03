@@ -56,6 +56,11 @@
 
     $files[$ind] = trim($files[$ind]);
 
+    if(strpos($files[$ind], "://")) {
+        header("location: ". $files[$ind]);
+        die();
+    }
+
     if(file_exists(UPLOAD_DIR.$files[$ind]) && $files[$ind]!='')
     $filepath = UPLOAD_DIR.$files[$ind];
     else if(file_exists($files[$ind]) && $files[$ind]!='')

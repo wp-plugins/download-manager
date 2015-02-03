@@ -357,12 +357,12 @@
             
             <div class="col-md-12"><br style="clear:both"/><hr/>
                  <h3>v2.7.8</h3>
-                 <p class="lead">What new with WordPress Download Manager v2.7.8:</p>
+                 <p class="lead">What new with WordPress Download Manager v2.7.86:</p>
                  <ul style="list-style:square !important">
-                     <li>Fixed issue with resumable download option</li>
-                     <li>Added missing string in .po file</li>
-                     <li>Fixed issue with bootstrap settings selection</li>
-                     <li>Added items per page option with all downloads table</li>
+                     <li>Fixed issue with output buffering option</li>
+                     <li>Fixed issue with broken pdf download ( was only happening in few installations )</li>
+                     <li>Fixed issue with Google Drive file attachment</li>
+                     <li>Fixed issue with Google Drive file download</li>
                  </ul>
              </div>
 

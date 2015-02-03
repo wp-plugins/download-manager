@@ -18,7 +18,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 = Features =
 *	Custom post type and taxonomy
 *       Drag and Drop File Upload
-*	Google Drive support to store your files in Google drive
+*   Google Drive support to store your files in Google drive
 *	Control who can access to download
 *       Download Speed Control
 *	Password protection
@@ -85,6 +85,12 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.87 =
+* Fixed issue with output buffering option
+* Fixed issue with broken pdf download ( was only happening in few installations )
+* Fixed issue with Google Drive file attachment
+* Fixed issue with Google Drive file download
 
 = 2.7.86 =
 * Fixed issue with password locked files for double link in same page

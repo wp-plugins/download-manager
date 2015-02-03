@@ -133,7 +133,7 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
 
     $buffer = $speed ? $speed : 1024;
 
-    $buffer *= 1024; // in byte 
+    $buffer *= 1024; // in byte
 
     $bandwidth = 0;
 
@@ -174,7 +174,7 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
     header("Content-disposition: attachment;filename=\"{$filename}\"");
     header("Content-Transfer-Encoding: binary");
 
-    if(get_option('__wpdm_download_resume',1)==2) {
+    if( ( isset($_REQUEST['play']) && strpos($_SERVER['HTTP_USER_AGENT'],"Safari") ) || get_option('__wpdm_download_resume',1)==2 ) {
         readfile($filepath);
         die();
     }
@@ -222,11 +222,10 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
         //add_action('wpdm_download_completed', $package);
         @fclose($file);
     }
-    @ob_clean();
-    @posix_kill(posix_getpid(), SIGKILL);
-    @posix_kill(posix_getpid(), SIGTERM);
-}
 
+    die();
+
+}
 
 
 /**
