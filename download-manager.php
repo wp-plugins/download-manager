@@ -5,7 +5,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.7.87
+Version: 2.7.88
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -14,7 +14,7 @@ Author URI: http://www.wpdownloadmanager.com/
 if(!isset($_SESSION))
 session_start();
 
-define('WPDM_Version','2.7.87');
+define('WPDM_Version','2.7.88');
         
 include(dirname(__FILE__)."/functions.php");        
 include(dirname(__FILE__)."/class.pack.php");

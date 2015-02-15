@@ -19,6 +19,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Custom post type and taxonomy
 *       Drag and Drop File Upload
 *   Google Drive support to store your files in Google drive
+*   DropBox support to store your files in DropBox
 *	Control who can access to download
 *       Download Speed Control
 *	Password protection
@@ -42,6 +43,10 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 = Google Drive =
 Use [Google Drive Explorer](http://www.wpdownloadmanager.com/download/google-drive-explorer/) add-on ( free ) to store your files in google drive and link with download manager, get 15 GB free storage space and save your server bandwidth
+
+= DropBox =
+Use [DropBox Explorer](http://www.wpdownloadmanager.com/download/dropbox-explorer/) add-on ( free ) to store your files in dropbox and link with download manager, get 2 GB free storage space and save your server bandwidth
+
 
 = Add-ons =
 Download and Install following free add-on to add additional features as per your need
@@ -85,6 +90,12 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.88 =
+
+* Improved icon option
+* Added dropbox support
+* Improved google drive file attachment option
 
 = 2.7.87 =
 * Fixed issue with output buffering option
