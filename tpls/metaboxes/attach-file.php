@@ -40,10 +40,12 @@
 <div id="upload">
 <div id="plupload-upload-ui" class="hide-if-no-js" style="margin-top: 10px">
         <div id="drag-drop-area">
-            <div class="drag-drop-inside" style="width: 100% !important;">
+            <div class="drag-drop-inside" style="width: 100% !important;margin-top: 40px">
                 <p class="drag-drop-info"><?php _e('Drop files here','wpdmpro'); ?></p>
                 <p><?php _ex('or', 'Uploader: Drop files here - or - Select Files','wpdmpro'); ?></p>
-                <p class="drag-drop-buttons"><input id="plupload-browse-button" type="button" value="<?php esc_attr_e('Select Files','wpdmpro'); ?>" class="button" /></p>
+                <p class="drag-drop-buttons"><input id="plupload-browse-button" type="button" value="<?php esc_attr_e('Select Files','wpdmpro'); ?>" class="button" /><br/><br/>
+                Max: <?php echo number_format(wp_max_upload_size()/1048576,2); ?> MB<br/>
+                </p>
             </div>
         </div>
     </div>

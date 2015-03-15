@@ -1013,7 +1013,7 @@ function wpdm_setup_package_data($vars)
 
     $type = (get_post_type() != 'wpdmpro' || !array_key_exists(get_option('__wpdm_purl_base', 'download'), $wp_query->query_vars)) ? 'link' : 'page';
 
-    if(isset($vars['icon']) && !file_exists(WP_PLUGIN_DIR.'/'.$vars['icon']))
+    if(isset($vars['icon']) && !file_exists(WP_PLUGIN_DIR.'/'.$vars['icon']) && strpos($vars['icon'], "://") === false)
         $vars['icon'] = "download-manager/file-type-icons/blank.png";
 
     if (!isset($vars['icon']) || $vars['icon'] == '')
@@ -1656,9 +1656,10 @@ function wpdm_columns_td($column_name, $post_ID) {
 //        else {
             $icon = get_post_meta($post_ID,'__wpdm_icon', true);
             if($icon!=''){
-                if(!file_exists(WP_PLUGIN_DIR.'/'.$icon))
-                    $icon = "/download-manager/file-type-icons/blank.png";
-                $icon = plugins_url('/').$icon;
+                if(file_exists(WP_PLUGIN_DIR.'/'.$icon))
+                    $icon = plugins_url('/').$icon;
+                 //   $icon = "/download-manager/file-type-icons/blank.png";
+
                 echo "<img src='$icon' class='img60px' alt='Icon' />";
             } else {
                 echo "<img src='".WPDM_BASE_URL."/file-type-icons/blank.png' title='Default Icon' class='img60px' alt='Icon' />";
