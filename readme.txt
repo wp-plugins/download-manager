@@ -1,18 +1,18 @@
 === WordPress Download Manager ===
 Contributors: codename065, shahriar0822
 Donate link: 
-Tags: file management plugin, downloads, document management plugin, download manager, file manager, download monitor, download counter, password protection, download tracker, download protection
+Tags: digital store, eshop, ecommrce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
 Tested up to: 4.1
 License: GPLv2 or later
  
   
  
-This is a Files and Documents Management plugin which will help you to manage, track and control file downloads from your WordPress site.
+This Files and Documents Management plugin which will help you to manage, track and control file downloads & sell digital goods from your WordPress site.
    
 
 == Description ==
-WordPress Download Manager is a Files and Documents Management plugin for your WordPress Site. WordPress Download Manager plugin will help you to manage, track and control file downloads from your WordPress site. You can set password and set access level any of your downloadable files from your WordPress site.
+WordPress Download Manager is a Files and Documents Management plugin for your WordPress Site. WordPress Download Manager plugin will help you to manage, track, control file downloads & sell digital goods from your WordPress site. Use Password Protection, User Roles Protection to control access to your files or simply setup prices when you need to sell the digital item.
 You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
 
 = Features =
@@ -40,6 +40,30 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
 *       Translation Ready
+
+= Complete Digital Store Solution: =
+Use (Premium Package – Complete Digital Store Solution)[http://www.wpdownloadmanager.com/download/premium-package-complete-digital-store-solution/] Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
+* Easy Administration
+* PayPal Integrated
+* User-role Based Discount Management
+* Coupon Management
+* Sales Tax
+* Save Cart and Checkout Later
+* Email Saved Cart
+* Product & Price variation ( This Feature Requires WPDM v4+ )
+* Promotional Pricing
+* Invoice Generation
+* Easiest Checkout System
+* Guest Checkout ( This Feature Requires WPDM v4+ )
+* Easy Order Management
+* Sales Notifications vai Email
+* Sales Notification Directly in Your Mobile with Push Message
+* Very Detailed Sales Reports
+* Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
+* Full-featured Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
+* Product Licensing System ( This Feature Requires WPDM v4+ )
+* and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
+
 
 = Google Drive =
 Use [Google Drive Explorer](http://www.wpdownloadmanager.com/download/google-drive-explorer/) add-on ( free ) to store your files in google drive and link with download manager, get 15 GB free storage space and save your server bandwidth
@@ -93,6 +117,10 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.90 =
+* Fixed an issue with settings api
+* Added support to selling downloads
 
 = 2.7.89 =
 * Added Box.com Support

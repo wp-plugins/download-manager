@@ -1479,13 +1479,15 @@ function wpdm_enqueue_scripts()
         wp_enqueue_script('wpdm-bootstrap', plugins_url('/download-manager/bootstrap/js/bootstrap.min.js'), array('jquery'));
 
     wp_enqueue_script('frontjs', plugins_url('/download-manager/js/front.js'), array('jquery'));
+    wp_enqueue_script('jquery-choosen', plugins_url('/download-manager/js/chosen.jquery.min.js'), array('jquery'));
+    wp_enqueue_style('font-awesome', WPDM_BASE_URL.'font-awesome/css/font-awesome.min.css');
 
 
 }
 
 function wpdm_admin_enqueue_scripts()
 {
-    if(get_post_type()=='wpdmpro' || in_array(wpdm_query_var('page'),array('settings','emails','wpdm-stats','templates','importable-files','wpdm-addons'))){
+    if(get_post_type()=='wpdmpro' || in_array(wpdm_query_var('page'),array('settings','emails','wpdm-stats','templates','importable-files','wpdm-addons','orders'))){
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-form');
         wp_enqueue_script('jquery-ui-core');

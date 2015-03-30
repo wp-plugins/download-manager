@@ -43,9 +43,9 @@ function add_wdm_settings_tab($tablink, $newtab, $func)
     $stabs["{$tablink}"] = array('id' => $tablink, 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=' . $tablink, 'title' => $newtab, 'callback' => $func);
 }
 
-function wpdm_create_settings_tab($tabid, $tabtitle, $callback)
+function wpdm_create_settings_tab($tablink, $tabtitle, $callback)
 {
-    return array('id' => $tabid, 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=' . $tablink, 'title' => $tabtitle, 'callback' => $callback);
+    return array('id' => $tablink, 'link' => 'edit.php?post_type=wpdmpro&page=settings&tab=' . $tablink, 'title' => $tabtitle, 'callback' => $callback);
 }
 
 function render_settings_tabs($sel = '')
