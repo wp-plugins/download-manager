@@ -1,4 +1,4 @@
-=== WordPress Download Manager ===
+﻿=== WordPress Download Manager ===
 Contributors: codename065, shahriar0822
 Donate link: 
 Tags: digital store, eshop, ecommrce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
@@ -583,5 +583,4 @@ Check download stats and get push notification when someone downloads, install:
 
 = 1.1 =
 * Fixed security bug with direct download protection
-
 
