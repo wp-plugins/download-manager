@@ -8,7 +8,7 @@ License: GPLv2 or later
  
   
  
-This Files and Documents Management plugin which will help you to manage, track and control file downloads & sell digital goods from your WordPress site.
+This Files and Documents Management plugin which will help you to manage, track and control file downloads & sell digital goods from your WP site.
    
 
 == Description ==
@@ -43,7 +43,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 
 = Complete Digital Store Solution: =
 Use (Premium Package – Complete Digital Store Solution)[http://www.wpdownloadmanager.com/download/premium-package-complete-digital-store-solution/] Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
-
+*   Sale Digital Products Securely
 *   Easy Administration
 *   PayPal Integrated
 *   User-role Based Discount Management
@@ -52,16 +52,16 @@ Use (Premium Package – Complete Digital Store Solution)[http://www.wpdownloadm
 *   Save Cart and Checkout Later
 *   Email Saved Cart
 *   Product & Price variation ( This Feature Requires WPDM v4+ )
-*   Promotional Pricing
+*   Promotional Pricing for Your Digital Products
 *   Invoice Generation
 *   Easiest Checkout System
 *   Guest Checkout ( This Feature Requires WPDM v4+ )
 *   Easy Order Management
-*   Sales Notifications vai Email
+*   Sales Notifications via Email
 *   Sales Notification Directly in Your Mobile with Push Message
 *   Very Detailed Sales Reports
 *   Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
-*   Full-featured Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
+*   Full-featured Digital Products Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
 *   Product Licensing System ( This Feature Requires WPDM v4+ )
 *   and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
 
