@@ -1,4 +1,4 @@
-﻿=== WordPress Download Manager ===
+=== WordPress Download Manager ===
 Contributors: codename065, shahriar0822
 Donate link: 
 Tags: digital store, eshop, ecommrce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
@@ -44,26 +44,26 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 = Complete Digital Store Solution: =
 Use (Premium Package – Complete Digital Store Solution)[http://www.wpdownloadmanager.com/download/premium-package-complete-digital-store-solution/] Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
 
-* Easy Administration
-* PayPal Integrated
-* User-role Based Discount Management
-* Coupon Management
-* Sales Tax
-* Save Cart and Checkout Later
-* Email Saved Cart
-* Product & Price variation ( This Feature Requires WPDM v4+ )
-* Promotional Pricing
-* Invoice Generation
-* Easiest Checkout System
-* Guest Checkout ( This Feature Requires WPDM v4+ )
-* Easy Order Management
-* Sales Notifications vai Email
-* Sales Notification Directly in Your Mobile with Push Message
-* Very Detailed Sales Reports
-* Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
-* Full-featured Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
-* Product Licensing System ( This Feature Requires WPDM v4+ )
-* and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
+*   Easy Administration
+*   PayPal Integrated
+*   User-role Based Discount Management
+*   Coupon Management
+*   Sales Tax
+*   Save Cart and Checkout Later
+*   Email Saved Cart
+*   Product & Price variation ( This Feature Requires WPDM v4+ )
+*   Promotional Pricing
+*   Invoice Generation
+*   Easiest Checkout System
+*   Guest Checkout ( This Feature Requires WPDM v4+ )
+*   Easy Order Management
+*   Sales Notifications vai Email
+*   Sales Notification Directly in Your Mobile with Push Message
+*   Very Detailed Sales Reports
+*   Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
+*   Full-featured Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
+*   Product Licensing System ( This Feature Requires WPDM v4+ )
+*   and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
 
 
 = Google Drive =
@@ -584,4 +584,5 @@ Check download stats and get push notification when someone downloads, install:
 
 = 1.1 =
 * Fixed security bug with direct download protection
+
 
