@@ -87,12 +87,25 @@
 
 </div>
 <?php if(!is_plugin_active('wpdm-premium-packages/wpdm-premium-packages.php')){ ?>
-<div class="w3eden"><br/>
-<div  class="alert alert-warning" style="background-image: none !important;">
+<div class="w3eden" id="wpdm-activate-shop"><br/>
+<div  class="alert alert-warning" id="wpdm-activate-shop-info" style="background-image: none !important;">
 
-    Planning to sell your digital products? Check <a style="font-weight: 900" target="_blank" href="http://www.wpdownloadmanager.com/download/premium-package/">WPDM Premium Package Add-on</a>. Now you can use it even with wpdm v2.7
+    Planning to sell your digital products? <a style="font-weight: 900" href="#" id="wpdm-activate-shop-link">Activate Digital Store Option</a>
 
 </div>
+
+<script>
+    jQuery(function(){
+        jQuery('#wpdm-activate-shop-link').on('click', function(){
+            jQuery(this).html('Activating...')
+            jQuery.post(ajaxurl,{action:'wpdm-activate-shop'}, function(res){
+                jQuery('#wpdm-activate-shop-info').html(res);
+            });
+            return false;
+        });
+    });
+</script>
+
 </div>
 <?php } ?>
 

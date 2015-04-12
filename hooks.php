@@ -10,7 +10,8 @@ if (is_admin()) {
     add_action('admin_head', "addusercolumn");
 
 
-    //add_action('init','wpdm_update_package');
+
+    add_action('wp_ajax_wpdm-activate-shop', 'wpdm_activate_shop');
 
 
     add_action("wp_ajax_quick_add_package","wpdm_save_new_package");

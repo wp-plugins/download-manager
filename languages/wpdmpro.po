@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Download Manager Pro v3.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-03 14:00+0600\n"
-"PO-Revision-Date: 2015-02-03 14:00+0600\n"
+"POT-Creation-Date: 2015-04-13 02:23+0600\n"
+"PO-Revision-Date: 2015-04-13 02:23+0600\n"
 "Last-Translator: \n"
 "Language-Team: Shaon <proshaon@yahoo.com>\n"
 "Language: en_BD\n"
@@ -13,8 +13,9 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.1\n"
-"X-Poedit-SearchPath-0: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-SearchPath-0: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/"
+"plugins/download-manager\n"
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/download-manager.php:162
 msgid "Add-Ons &lsaquo; Download Manager"
@@ -37,13 +38,11 @@ msgid "Select Icon"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/file-icon.php:17
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/icons.php:8
 msgid "Upload New Icon"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/file-icon.php:35
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/attach-file.php:55
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/icons.php:26
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/attach-file.php:66
 msgid "Allowed Files"
 msgstr ""
 
@@ -53,8 +52,8 @@ msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:18
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:30
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:811
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:830
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:814
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:833
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:79
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:92
 msgid "Downloads"
@@ -145,139 +144,146 @@ msgstr ""
 msgid "New Category Name"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:246
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:271
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:333
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:378
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:989
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:249
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:274
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:336
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:381
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:992
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-all-downloads.php:49
 msgid "Download"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:255
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:258
 msgid "Download Limit Exceeded"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:259
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:262
 msgid "Download was expired on"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:261
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:268
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:285
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:264
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:271
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:288
 msgid "Download:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:266
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:269
 msgid "Download will be available from "
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:306
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:309
 msgid "Please login to download"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:378
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:381
 msgid "Please take any of the actions above to start download"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:392
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:395
 msgid "No file attached!"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:811
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:814
 msgid "Sub-Categories"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:829
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:832
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-all-downloads.php:46
 msgid "Title"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:831
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:834
 msgid "Publish Date"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:832
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:835
 msgid "Update Date"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:833
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:836
 msgid "Asc"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:834
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:837
 msgid "Desc"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:835
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:838
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:40
 msgid "Search"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1100
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1103
 msgid "Unlimited"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1211
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1237
 msgid "You don't have permission to download this file"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1217
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1243
 msgid "Download link is expired. Please get new download link."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1219
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1245
 msgid "Download link is expired or not valid. Please get new download link."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1227
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1253
 msgid "Invalid download link."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1304
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1330
 msgid "Legends"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1305
-msgid " Click on the icon to launch media manager to select or upload preview images"
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1331
+msgid ""
+" Click on the icon to launch media manager to select or upload preview images"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1305
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1331
 msgid " Reload link or page templates."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1310
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1551
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1336
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1579
 msgid "File Settings"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1311
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1337
 msgid ""
-"<b>Link Label:</b> Label to show with download link, like: download now, get it now<br/>\n"
-"                                    <b>Password:</b> You can set single or multiple password for a package. In case "
-"of multiple password, each password have to be inside `[]`, like: [1234][456][789sf] and user will be able to "
+"<b>Link Label:</b> Label to show with download link, like: download now, get "
+"it now<br/>\n"
+"                                    <b>Password:</b> You can set single or "
+"multiple password for a package. In case of multiple password, each password "
+"have to be inside `[]`, like: [1234][456][789sf] and user will be able to "
 "download package using any one of them<br/>\n"
-"                                    <b>PW Usage Limit:</b> When you are using multiple password, then you may want "
-"set a limit, how many time user will be able to use a password, you can set the numeric value here, suppose `n`. So "
-"each password will expire after it used for `n` times.<br/>\n"
-"                                    <b>Stock Limit:</b> Should be a numeric value, suppose `9`. After package "
-"dowloaded for `9` times, the no one will able to download it anymore, will show 'out of stock' message<br/>\n"
-"                                    <b>Download Limit/user:</b> Set a numeric value here if you want to block user "
-"after a certain times of download for this package.<br/>\n"
-"                                    <b>Access</b>: Check the user roles, you want to enable to download this package, "
-"`All Visitors` will enable every one to download this package<br/>\n"
-"                                    <b>Link Template:</b> Shortcode will be rendered based on select link template."
-"<br/>\n"
-"                                    <b>Page Template:</b> File details page will be rendered based on selected page "
-"template<br/>\n"
+"                                    <b>PW Usage Limit:</b> When you are "
+"using multiple password, then you may want set a limit, how many time user "
+"will be able to use a password, you can set the numeric value here, suppose "
+"`n`. So each password will expire after it used for `n` times.<br/>\n"
+"                                    <b>Stock Limit:</b> Should be a numeric "
+"value, suppose `9`. After package dowloaded for `9` times, the no one will "
+"able to download it anymore, will show 'out of stock' message<br/>\n"
+"                                    <b>Download Limit/user:</b> Set a "
+"numeric value here if you want to block user after a certain times of "
+"download for this package.<br/>\n"
+"                                    <b>Access</b>: Check the user roles, you "
+"want to enable to download this package, `All Visitors` will enable every "
+"one to download this package<br/>\n"
+"                                    <b>Link Template:</b> Shortcode will be "
+"rendered based on select link template.<br/>\n"
+"                                    <b>Page Template:</b> File details page "
+"will be rendered based on selected page template<br/>\n"
 "                                "
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1552
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1580
 msgid "Attach File"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1553
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1581
 msgid "Other Items"
 msgstr ""
 
@@ -385,8 +391,8 @@ msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:114
 msgid ""
-"If you get broken download, then try enabling/disabling following options, as sometimes server may not support output "
-"buffering or partial downloads"
+"If you get broken download, then try enabling/disabling following options, "
+"as sometimes server may not support output buffering or partial downloads"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:117
@@ -407,27 +413,37 @@ msgstr ""
 msgid "Output Buffering"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:135
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:133
+msgid "Open in Browser"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:134
+msgid ""
+"Try to Open in Browser instead of download when someone clicks on download "
+"link"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:143
 msgid "Misc Settings"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:144
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:152
 msgid "Twitter Bootstrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:146
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:154
 msgid "Active"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:147
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:155
 msgid "Disable JS"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:148
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:156
 msgid "Disable CSS"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:149
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/settings/basic.php:157
 msgid "Disable Both"
 msgstr ""
 
@@ -435,8 +451,12 @@ msgstr ""
 msgid "attached file is missing/deleted"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/attach-file.php:35
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/attach-file.php:44
 msgid "Drop files here"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/icons.php:112
+msgid "Icon URL"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/tpls/metaboxes/package-settings.php:18

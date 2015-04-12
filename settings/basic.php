@@ -127,6 +127,14 @@
                                         <option value="0" <?php selected(get_option('__wpdm_support_output_buffer'), 0); ?>><?php _e("Disabled","wpdmpro"); ?></option>
                             </select>
                         </div>
+
+                        <div class="form-group"><hr/>
+                            <input type="hidden" value="0" name="__wpdm_open_in_browser" />
+                            <label><input style="margin: 0 10px 0 0" type="checkbox" value="1" name="__wpdm_open_in_browser"><?php _e('Open in Browser','wpdmpro'); ?></label><br/>
+                            <em><?php _e('Try to Open in Browser instead of download when someone clicks on download link','wpdmpro'); ?></em>
+                            <br/>
+
+                        </div>
                     </div>
                 </div>
 

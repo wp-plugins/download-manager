@@ -1,25 +1,27 @@
 === WordPress Download Manager ===
-Contributors: codename065, shahriar0822
+Contributors: codename065, shahriar0822, tauhidul-alam
 Donate link: 
-Tags: digital store, eshop, ecommrce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
+Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
 Tested up to: 4.1
 License: GPLv2 or later
  
   
  
-This Files and Documents Management plugin which will help you to manage, track and control file downloads & sell digital goods from your WP site.
+This File Management & Digital Store plugin which will help you to control file downloads & sell digital products from your WP site.
    
 
 == Description ==
-WordPress Download Manager is a Files and Documents Management plugin for your WordPress Site. WordPress Download Manager plugin will help you to manage, track, control file downloads & sell digital goods from your WordPress site. Use Password Protection, User Roles Protection to control access to your files or simply setup prices when you need to sell the digital item.
-You can add/embed downloadable files anywhere in the post just pasting the embed code inside your post content using WordPress Download Manager.
+WordPress Download Manager is a Files / Documents Management Plugin and Complete e-Commerce Solution for selling digital products. WordPress Download Manager plugin will help you to manage, track, control file downloads & sell digital products easily from your WordPress site. Use Password Protection, User Roles Protection to control access to your files. And simply setup prices when you need to sell the digital item. User can directly download free items and when item has a price user will have to go through cart & checkout.
+It has easiest checkout option to give the user better experience in purchasing an item and which always increase the probability of successful completion of an order. As rather than trying to convince customer to buy something, it would be more helpful to think of a cart optimization as an action to remove barrier to that goal.
 
 = Features =
 *	Custom post type and taxonomy
 *       Drag and Drop File Upload
 *   Google Drive support to store your files in Google drive
 *   DropBox support to store your files in DropBox
+*   Box.com support to store your files in Box.com
+*   Option to "Open in Browser" or "Download" files ( PDFs or images )
 *	Control who can access to download
 *       Download Speed Control
 *	Password protection
@@ -44,6 +46,7 @@ You can add/embed downloadable files anywhere in the post just pasting the embed
 = Complete Digital Store Solution: =
 Use [Premium Package – Complete Digital Store Solution](http://www.wpdownloadmanager.com/download/premium-package-complete-digital-store-solution/) Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
 
+*   Single Click Activation ( Auto-install & Activate )
 *   Sale Digital Products Securely
 *   Easy Administration
 *   PayPal Integrated
@@ -81,7 +84,7 @@ Use [Box.com Explorer](http://www.wpdownloadmanager.com/download/box-com-explore
 Download and Install following free add-on to add additional features as per your need
 
 * [Advanced Tiny-Mce Button](http://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
-* [Extnded Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
+* [Extended Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
 * [WPDM Button Templates](http://www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
 * [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
 
@@ -119,6 +122,13 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.91 =
+
+* Added "Open in Browser" option
+* Removed apache_setenv function
+* Fixed with issue with CURLOPT_FOLLOWLOCATION
+* Added one click digital store activation option
 
 = 2.7.90 =
 * Fixed an issue with settings api

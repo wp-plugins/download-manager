@@ -142,8 +142,8 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
 
     @session_write_close();
 
-    if ( function_exists( 'apache_setenv' ) )
-        @apache_setenv( 'no-gzip', 1 );
+    //if ( function_exists( 'apache_setenv' ) )
+    //    @apache_setenv( 'no-gzip', 1 );
 
     if( function_exists('ini_set') )
         @ini_set('zlib.output_compression', 'Off');
@@ -171,6 +171,9 @@ function wpdm_download_file($filepath, $filename, $speed = 0, $resume_support = 
     header( "X-Robots-Tag: noindex, nofollow", true );
     header("Robots: none");
     header("Content-type: $content_type");
+    if(get_option('__wpdm_open_in_browser', 0))
+    header("Content-disposition: inline;filename=\"{$filename}\"");
+    else
     header("Content-disposition: attachment;filename=\"{$filename}\"");
     header("Content-Transfer-Encoding: binary");
 
@@ -1153,6 +1156,29 @@ function wpdm_install_addon(){
         else
             $downloadlink = 'http://www.wpdownloadmanager.com/?wpdmdl='.$_REQUEST['addon'];
         $upgrader->install($downloadlink);
+        die();
+    } else {
+        die("Only site admin is authorized to install add-on");
+    }
+}
+
+
+function wpdm_activate_shop(){
+    if( current_user_can('manage_options')){
+        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+        include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+        $upgrader = new Plugin_Upgrader( new Plugin_Installer_Skin( compact('title', 'url', 'nonce', 'plugin', 'api') ) );
+        $downloadlink = 'http://www.wpdownloadmanager.com/?wpdmdl=15671';
+        ob_start();
+        echo "<div id='acto'>";
+        if(file_exists(dirname(dirname(__FILE__))).'/wpdm-premium-packages/')
+            $upgrader->upgrade($downloadlink);
+        else
+            $upgrader->install($downloadlink);
+        echo '</div><style>#acto .wrap { display: none; }</style>';
+        @ob_clean();
+        activate_plugin( 'wpdm-premium-packages/wpdm-premium-packages.php' );
+        echo "Congratulation! Your Digital Store is Activated. <a href='' class='btn btn-warning'>Refresh The Page!</a>";
         die();
     } else {
         die("Only site admin is authorized to install add-on");
