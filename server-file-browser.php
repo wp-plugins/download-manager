@@ -3,7 +3,12 @@
 function wpdm_dir_tree(){
     $root = '';
     if(!isset($_GET['task'])||$_GET['task']!='wpdm_dir_tree') return;
+
+    if(!current_user_can('access_server_browser')) die("<ul><li>".__('Not Allowed!','wpdmpro')."</li></ul>");
+
     $_POST['dir'] = urldecode($_POST['dir']);
+    echo "<pre>";
+
     if( file_exists( $_POST['dir'])) {
 	    $files = scandir( $_POST['dir']);
 	    natcasesort($files);        
@@ -28,7 +33,7 @@ function wpdm_dir_tree(){
 }
 
 function wpdm_file_browser(){
-    //if($_GET['task']!='wpdm_file_browser') return;
+    if(!current_user_can('access_server_browser')) return 0;
     ?>
     <script type="text/javascript" src="<?php echo plugins_url().'/download-manager/js/jqueryFileTree.js';?>"></script>
     <link rel="stylesheet" href="<?php echo plugins_url().'/download-manager/css/jqueryFileTree.css';?>" />
@@ -92,8 +97,6 @@ function wpmp_file_browser_metabox(){
 }
 
 if(is_admin()){
-     
-    //add_action("init","wpdm_file_browser");
     add_action("init","wpdm_dir_tree");
     add_action("add_new_file_sidebar","wpmp_file_browser_metabox");
 }
