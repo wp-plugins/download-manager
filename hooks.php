@@ -56,7 +56,7 @@ if (is_admin()) {
 
     add_action("init", "wpdm_DownloadNow");
     add_action("wp", "wpdm_ajax_call_exec");
- 
+
 
     /** Filters */
 
@@ -74,6 +74,9 @@ if (is_admin()) {
 
     add_action('init', 'wpdm_check_invpass');
 
+    add_action('wp_loaded', 'wpdm_do_login');
+    add_action('wp_loaded', 'wpdm_do_register');
+
 
 
 
@@ -84,4 +87,3 @@ add_action("init", "wpdm_common_actions");
 add_action("init", "wpdm_upload_file");
 add_action( 'admin_init', 'wpdm_sfb_access');
 add_action('save_post', 'wpdm_save_package_data');
-    

@@ -123,11 +123,14 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.93 =
+* Fixed login issue with order page
 
 = 2.7.92 =
 * Fixed security issue with dir file browser
 
 = 2.7.91 =
+
 * Added "Open in Browser" option
 * Removed apache_setenv function
 * Fixed with issue with CURLOPT_FOLLOWLOCATION

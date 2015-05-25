@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Download Manager Pro v3.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-13 02:23+0600\n"
-"PO-Revision-Date: 2015-04-13 02:23+0600\n"
+"POT-Creation-Date: 2015-05-25 16:07+0600\n"
+"PO-Revision-Date: 2015-05-25 16:07+0600\n"
 "Last-Translator: \n"
 "Language-Team: Shaon <proshaon@yahoo.com>\n"
 "Language: en_BD\n"
@@ -287,6 +287,22 @@ msgstr ""
 msgid "Other Items"
 msgstr ""
 
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1852
+msgid "Username is Empty!"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1861
+msgid "Invalid Email Address!"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1907
+msgid "Email already exists."
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/functions.php:1916
+msgid "User already exists."
+msgstr ""
+
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:28
 msgid "Manage Download Packages"
 msgstr ""
@@ -324,6 +340,9 @@ msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:77
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/list-files.php:90
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:63
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:29
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:33
 msgid "Password"
 msgstr ""
 
@@ -345,7 +364,11 @@ msgstr ""
 msgid "Displaying %s&#8211;%s of %s"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/server-file-browser.php:74
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/server-file-browser.php:7
+msgid "Not Allowed!"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/server-file-browser.php:79
 msgid "Add file(s) from server"
 msgstr ""
 
@@ -491,8 +514,77 @@ msgstr ""
 msgid "Create Date"
 msgstr ""
 
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:19
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:38
+msgid "Log In"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:20
+msgid "Register"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:41
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:8
+msgid "You are already logged in."
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:41
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:8
+msgid "Logout"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:54
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:20
+msgid "Login Failed!"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:59
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:25
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:23
+msgid "Username"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:70
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:36
+msgid "Remember Me"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:77
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:43
+msgid "Forgot Password?"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-be-member.php:77
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:43
+msgid "Request New Password."
+msgstr ""
+
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-core.php:230
 msgid "Settings Saved Successfully"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-login-form.php:16
+msgid "LogIn"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:19
+msgid "Full Name"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:27
+msgid "E-mail"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:38
+msgid "Confirm Password"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:48
+msgid "Join Now!"
+msgstr ""
+
+#: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-reg-form.php:72
+msgid "Registration is disabled!"
 msgstr ""
 
 #: /Applications/XAMPP/xamppfiles/htdocs/wpdm/wp-content/plugins/download-manager/wpdm-widgets.php:11

@@ -1810,3 +1810,143 @@ function wpdm_package_filetypes($id, $img = true){
 }
 
 
+function wpdm_do_login()
+{
+    global $wp_query, $post, $wpdb;
+    if (!isset($_POST['wpdm_login'])) return;
+    unset($_SESSION['login_error']);
+    $creds = array();
+    $creds['user_login'] = $_POST['wpdm_login']['log'];
+    $creds['user_password'] = $_POST['wpdm_login']['pwd'];
+    $creds['remember'] = isset($_POST['rememberme']) ? $_POST['rememberme'] : false;
+    $user = wp_signon($creds, false);
+
+
+    if (is_wp_error($user)) {
+        $_SESSION['login_error'] = $user->get_error_message();
+
+        if(wpdm_is_ajax()) die('failed');
+
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        die();
+    } else {
+        do_action('wp_login', $creds['user_login'], $user);
+
+        if(wpdm_is_ajax()) die('success');
+
+        header("location: " . $_POST['redirect_to']);
+        die();
+    }
+}
+
+function wpdm_do_register()
+{
+    global $wp_query, $wpdb;
+    if (!isset($_POST['wpdm_reg']) || !get_option('users_can_register')) return;
+
+    extract($_POST['wpdm_reg']);
+    $_SESSION['tmp_reg_info'] = $_POST['wpdm_reg'];
+    $user_id = username_exists($user_login);
+    $loginurl = $_POST['permalink'];
+    if ($user_login == '') {
+        $_SESSION['reg_error'] = __('Username is Empty!','wpdmpro');
+
+        if(wpdm_is_ajax()) die('Error: '.$_SESSION['reg_error']);
+
+
+        header("location: " . $_POST['permalink']);
+        die();
+    }
+    if (!isset($user_email) || !is_email($user_email)) {
+        $_SESSION['reg_error'] = __('Invalid Email Address!','wpdmpro');
+
+        if(wpdm_is_ajax()) die('Error: '.$_SESSION['reg_error']);
+
+        header("location: " . $_POST['permalink']);
+        die();
+    }
+
+    if (!$user_id) {
+        $user_id = email_exists($user_email);
+        if (!$user_id) {
+            $auto_login = isset($user_pass) && $user_pass!=''?1:0;
+            $user_pass = isset($user_pass) && $user_pass!=''?$user_pass:wp_generate_password(12, false);
+
+            $user_id = wp_create_user($user_login, $user_pass, $user_email);
+            $display_name = isset($display_name)?$display_name:$user_id;
+            $headers = "From: " . get_option('sitename') . " <" . get_option('admin_email') . ">\r\nContent-type: text/html\r\n";
+            $message = file_get_contents(dirname(__FILE__) . '/templates/wpdm-new-user.html');
+            $loginurl = $_POST['permalink'];
+            $message = str_replace(array("[#support_email#]", "[#homeurl#]", "[#sitename#]", "[#loginurl#]", "[#name#]", "[#username#]", "[#password#]", "[#date#]"), array(get_option('admin_email'), site_url('/'), get_option('blogname'), $loginurl, $display_name, $user_login, $user_pass, date("M d, Y")), $message);
+
+            if ($user_id) {
+                wp_mail($user_email, "Welcome to " . get_option('sitename'), $message, $headers);
+
+            }
+            unset($_SESSION['guest_order']);
+            unset($_SESSION['login_error']);
+            unset($_SESSION['tmp_reg_info']);
+            //if(!isset($_SESSION['reg_warning']))
+            $creds['user_login'] = $user_login;
+            $creds['user_password'] = $user_pass;
+            $creds['remember'] = true;
+            $_SESSION['sccs_msg'] = "Your account has been created successfully and login info sent to your mail address.";
+            if($auto_login==1) {
+                $_SESSION['sccs_msg'] = "Your account has been created successfully and login now.";
+                wp_signon($creds);
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+
+            }
+
+            if(wpdm_is_ajax()) die('success');
+
+            header("location: " . $loginurl);
+            die();
+        } else {
+            $_SESSION['reg_error'] = __('Email already exists.');
+            $plink = $_POST['permalink'] ? $_POST['permalink'] : $_SERVER['HTTP_REFERER'];
+
+            if(wpdm_is_ajax()) die('Error: '.$_SESSION['reg_error']);
+
+            header("location: " . $loginurl);
+            die();
+        }
+    } else {
+        $_SESSION['reg_error'] = __('User already exists.');
+        $plink = $_POST['permalink'] ? $_POST['permalink'] : $_SERVER['HTTP_REFERER'];
+
+        if(wpdm_is_ajax()) die('Error: '.$_SESSION['reg_error']);
+
+        header("location: " . $loginurl);
+        die();
+    }
+    die();
+}
+
+function wpdm_update_profile()
+{
+    global $wp_query, $wpdb, $current_user;
+    get_currentuserinfo();
+    if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'editprofile' && isset($_POST['profile'])) {
+        extract($_POST);
+        $error = 0;
+
+        if ($password != $cpassword) {
+            $_SESSION['member_error'][] = 'Password not matched';
+            $error = 1;
+        }
+        if (!$error) {
+            $profile['ID'] = $current_user->ID;
+            if ($password != '')
+                $profile['user_pass'] = $password;
+            wp_update_user($profile);
+            get_currentuserinfo();
+            update_user_meta($current_user->ID, 'payment_account', $payment_account);
+            $_SESSION['member_success'] = 'Profile data updated successfully.';
+        }
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        die();
+    }
+}
+
