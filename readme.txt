@@ -1,9 +1,9 @@
-﻿=== WordPress Download Manager ===
+=== WordPress Download Manager ===
 Contributors: codename065, shahriar0822, tauhidul-alam
 Donate link: 
 Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
-Tested up to: 4.1
+Tested up to: 4.2
 License: GPLv2 or later
  
   
