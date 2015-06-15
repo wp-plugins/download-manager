@@ -58,6 +58,12 @@ Author URI: http://www.mis-algoritmos.com
 
                 var $calculate = false;
 
+
+                function __construct(){
+                    $this->nextT = __("Next","wpdmpro");
+                    $this->prevT = __("Previous", "wpdmpro");
+                }
+
                 
 
                 #Total items

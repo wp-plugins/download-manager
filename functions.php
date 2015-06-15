@@ -1171,7 +1171,7 @@ function wpdm_activate_shop(){
         $downloadlink = 'http://www.wpdownloadmanager.com/?wpdmdl=15671';
         ob_start();
         echo "<div id='acto'>";
-        if(file_exists(dirname(dirname(__FILE__))).'/wpdm-premium-packages/')
+        if(file_exists(dirname(dirname(__FILE__)).'/wpdm-premium-packages/'))
             $upgrader->upgrade($downloadlink);
         else
             $upgrader->install($downloadlink);

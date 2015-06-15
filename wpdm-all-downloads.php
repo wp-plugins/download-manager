@@ -30,11 +30,34 @@ if(isset($params['jstable']) && $params['jstable']==1){  ?>
         jQuery(function($){
             $('#wpdmmydls').dataTable({
                 "iDisplayLength": <?php echo $params['items_per_page'] ?>,
-                "aLengthMenu": [[<?php echo $params['items_per_page']; ?>, 10, 25, 50, -1], [<?php echo $params['items_per_page']; ?>, 10, 25, 50, "All"]]
+                "aLengthMenu": [[<?php echo $params['items_per_page']; ?>, 10, 25, 50, -1], [<?php echo $params['items_per_page']; ?>, 10, 25, 50, "<?php _e("All",'wpdmpro'); ?>"]],
+                "language": {
+                    "lengthMenu": "<?php _e("Display _MENU_ files per page",'wpdmpro')?>",
+                    "zeroRecords": "<?php _e("Nothing _START_ to - sorry",'wpdmpro')?>",
+                    "info": "<?php _e("Showing _START_ to _END_ of _TOTAL_ files",'wpdmpro')?>",
+                    "infoEmpty": "<?php _e("No records available",'wpdmpro')?>",
+                    "infoFiltered": "<?php _e("(filtered from _MAX_ total files)",'wpdmpro');?>",
+                    "emptyTable":     "<?php _e("No data available in table",'wpdmpro');?>",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "loadingRecords": "<?php _e("Loading...","wpdmpro"); ?>",
+                    "processing":     "<?php _e("Processing...","wpdmpro"); ?>",
+                    "search":         "<?php _e("Search:","wpdmpro"); ?>",
+                    "paginate": {
+                        "first":      "<?php _e("First","wpdmpro"); ?>",
+                        "last":       "<?php _e("Last","wpdmpro"); ?>",
+                        "next":       "<?php _e("Next","wpdmpro"); ?>",
+                        "previous":   "<?php _e("Previous","wpdmpro"); ?>"
+                    },
+                    "aria": {
+                        "sortAscending":  " : <?php _e("activate to sort column ascending","wpdmpro"); ?>",
+                        "sortDescending": ": <?php _e("activate to sort column descending","wpdmpro"); ?>"
+                    }
+                }
             });
         });
     </script>
-<?php 
+<?php
 $params['items_per_page'] = -1;
 } ?>
 
@@ -86,12 +109,12 @@ $params['items_per_page'] = -1;
                     <td style="background-image: url('<?php echo plugins_url('download-manager/file-type-icons/32x32/') . $ext . '.png'; ?>');background-position: 5px 8px;background-repeat:  no-repeat;padding-left: 43px;line-height: normal;">
                         <a style="color:#36597C;font-size: 10pt;font-weight: 300;"
                            href='<?php echo the_permalink(); ?>'><?php the_title(); ?></a><br/>
-                        <small><i class="icon icon-folder-close"></i><?php echo count($data['files']); ?> files &nbsp;&nbsp;
+                        <small><i class="icon icon-folder-close"></i><?php echo count($data['files']); ?> <?php echo count($data['files'])>1?__('files','wpdmpro'):__('file','wpdmpro'); ?> &nbsp;&nbsp;
                             <i class="icon icon-download-alt"></i><?php echo isset($data['download_count'])?$data['download_count']:0; ?>
-                            download<?php echo isset($data['download_count']) && $data['download_count'] > 1 ? 's' : ''; ?></small>
+                            <?php echo isset($data['download_count']) && $data['download_count'] > 1 ? __('downloads','wpdmpro') : __('download','wpdmpro'); ?></small>
                     </td>
                     <td><?php echo $cats; ?></td>
-                    <td><?php echo get_the_date(); ?></td>
+                    <td><?php echo date_i18n( get_option( 'date_format' ), strtotime(get_the_date())); ?></td>
                     <td><?php echo DownloadLink($data, $style = 'simple-dl-link'); ?></td>
                 </tr>
             <?php endwhile; ?>
@@ -112,8 +135,8 @@ $params['items_per_page'] = -1;
             'show_all' => false,
             'type' => 'list',
             'prev_next'    => True,
-            'prev_text' => '<i class="icon icon-angle-left"></i> Previous',
-            'next_text' => 'Next <i class="icon icon-angle-right"></i>',
+            'prev_text' => '<i class="icon icon-angle-left"></i> '.__('Previous','wpdmpro'),
+            'next_text' => __('Next','wpdmpro').' <i class="icon icon-angle-right"></i>',
         );
 
         if( $wp_rewrite->using_permalinks() )

@@ -1,4 +1,4 @@
-=== WordPress Download Manager ===
+﻿=== WordPress Download Manager ===
 Contributors: codename065, shahriar0822, tauhidul-alam
 Donate link: 
 Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
@@ -122,6 +122,11 @@ Check download stats and get push notification when someone downloads, install:
 7. Password Protection
 
 == Changelog ==
+
+= 2.7.94 =
+* Fixed an issue with shop activation
+* Added missing strings in language file
+* Updated datatable js
 
 = 2.7.93 =
 * Fixed login issue with order page
