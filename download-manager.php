@@ -5,7 +5,7 @@ Plugin Name: Download Manager
 Plugin URI: http://www.wpdownloadmanager.com/
 Description: Manage, Protect and Track File Downloads from your WordPress site
 Author: Shaon
-Version: 2.7.94
+Version: 2.7.95
 Author URI: http://www.wpdownloadmanager.com/
 */
 
@@ -14,7 +14,7 @@ Author URI: http://www.wpdownloadmanager.com/
 if(!isset($_SESSION))
 session_start();
 
-define('WPDM_Version','2.7.94');
+define('WPDM_Version','2.7.95');
         
 include(dirname(__FILE__)."/functions.php");        
 include(dirname(__FILE__)."/class.pack.php");
@@ -119,10 +119,13 @@ function wpdm_check_upload(){
   if(!current_user_can("edit_posts")) return;
 
   check_ajax_referer('photo-upload');
-  if(file_exists(UPLOAD_DIR.$_FILES['async-upload']['name']))
-  $filename = time().'wpdm_'.$_FILES['async-upload']['name'];  
-  else
-  $filename = $_FILES['async-upload']['name'];  
+
+  $filename = get_option('__wpdm_sanitize_filename',0) == 1? sanitize_file_name($_FILES['async-upload']['name']):$_FILES['async-upload']['name'] ;
+
+  if(file_exists(UPLOAD_DIR.$filename))
+  $filename = time().'wpdm_'.$filename;
+  //else
+  //$filename = $filename;
   move_uploaded_file($_FILES['async-upload']['tmp_name'],UPLOAD_DIR.$filename);
   //@unlink($status['file']);
   echo $filename;
@@ -133,10 +136,11 @@ function wpdm_check_upload(){
 function wpdm_upload_icon(){
   if(!current_user_can('manage_options')) return;
   check_ajax_referer('icon-upload');
-  if(file_exists(dirname(__FILE__).'/file-type-icons/'.$_FILES['icon-async-upload']['name']))
-  $filename = time().'wpdm_'.$_FILES['icon-async-upload']['name'];  
-  else
-  $filename = $_FILES['icon-async-upload']['name'];
+    $filename = get_option('__wpdm_sanitize_filename',0) == 1? sanitize_file_name($_FILES['icon-async-upload']['name']):$_FILES['icon-async-upload']['name'] ;
+    if(file_exists(dirname(__FILE__).'/file-type-icons/'.$filename))
+    $filename = time().'wpdm_'.$filename;
+  //else
+  //$filename = $_FILES['icon-async-upload']['name'];
 
   $ext = explode(".", $filename);
   $ext = end($ext);
@@ -180,4 +184,3 @@ function wpdm_welcome_redirect($plugin)
 add_filter('run_ngg_resource_manager', 'wpdm_skip_ngg_resource_manager');
 
 include(dirname(__FILE__)."/wpdm-m2cpt.php");
- 

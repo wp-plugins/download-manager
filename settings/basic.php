@@ -98,6 +98,19 @@
 
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><?php echo __('Upload Settings','wpdmpro'); ?></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="hidden" value="0" name="__wpdm_sanitize_filename" />
+                            <label><input style="margin: 0 10px 0 0" <?php checked(1, get_option('__wpdm_sanitize_filename',0)); ?> type="checkbox" value="1" name="__wpdm_sanitize_filename"><?php _e('Sanitize Filename','wpdmpro'); ?></label><br/>
+                            <em><?php _e('Check the option if you want to sanitize uploaded file names to remove illegal chars','wpdmpro'); ?></em>
+                            <br/>
+
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="panel panel-default">
                     <div class="panel-heading"><?php echo __('File Download','wpdmpro'); ?></div>
@@ -130,7 +143,7 @@
 
                         <div class="form-group"><hr/>
                             <input type="hidden" value="0" name="__wpdm_open_in_browser" />
-                            <label><input style="margin: 0 10px 0 0" type="checkbox" value="1" name="__wpdm_open_in_browser"><?php _e('Open in Browser','wpdmpro'); ?></label><br/>
+                            <label><input style="margin: 0 10px 0 0" <?php checked(1, get_option('__wpdm_open_in_browser',0)); ?> type="checkbox" value="1" name="__wpdm_open_in_browser"><?php _e('Open in Browser','wpdmpro'); ?></label><br/>
                             <em><?php _e('Try to Open in Browser instead of download when someone clicks on download link','wpdmpro'); ?></em>
                             <br/>
 

@@ -123,6 +123,14 @@ Check download stats and get push notification when someone downloads, install:
 
 == Changelog ==
 
+= 2.7.95 =
+* Added new option for sanitizing file names to avoid illegal chars
+* Fixed issue with open with browser option
+* Fixed issue with file type icons selection for all files short-code
+* Fixed issue with order expiration check
+* Fixed issue with purchased items access at front-end
+* Added new option to recalculate total sales of a product
+
 = 2.7.94 =
 * Fixed an issue with shop activation
 * Added missing strings in language file

@@ -1016,7 +1016,7 @@ function wpdm_setup_package_data($vars)
 
     $type = (get_post_type() != 'wpdmpro' || !array_key_exists(get_option('__wpdm_purl_base', 'download'), $wp_query->query_vars)) ? 'link' : 'page';
 
-    if(isset($vars['icon']) && !file_exists(WP_PLUGIN_DIR.'/'.$vars['icon']) && strpos($vars['icon'], "://") === false)
+    if(isset($vars['icon']) && strpos($vars['icon'], "://") === false && !file_exists(WP_PLUGIN_DIR.'/'.$vars['icon']))
         $vars['icon'] = "download-manager/file-type-icons/blank.png";
 
     if (!isset($vars['icon']) || $vars['icon'] == '')

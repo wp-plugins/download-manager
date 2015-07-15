@@ -356,13 +356,15 @@
              </div>
             
             <div class="col-md-12"><br style="clear:both"/><hr/>
-                 <h3>v2.7.8</h3>
-                 <p class="lead">What new with WordPress Download Manager v2.7.86:</p>
+                 <h3>v2.7.95</h3>
+                 <p class="lead">What new with WordPress Download Manager v2.7.95:</p>
                  <ul style="list-style:square !important">
-                     <li>Fixed issue with output buffering option</li>
-                     <li>Fixed issue with broken pdf download ( was only happening in few installations )</li>
-                     <li>Fixed issue with Google Drive file attachment</li>
-                     <li>Fixed issue with Google Drive file download</li>
+                     <li>Added new option for sanitizing file names to avoid illegal chars</li>
+                     <li>Fixed issue with open with browser option</li>
+                     <li>Fixed issue with file type icons selection for all files short-codet</li>
+                     <li>Fixed issue with order expiration check</li>
+                     <li>Fixed issue with purchased items access at front-end</li>
+                     <li>Added new option to recalculate total sales of a product</li>
                  </ul>
              </div>
 
